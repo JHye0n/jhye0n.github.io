@@ -5,10 +5,8 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="index,follow">
-    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/archives/2021/01/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2020/09/10/search-algorithm-200910/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -26,7 +24,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2021/1 - JHYEON BLOG</title>
+  <title>탐색 알고리즘(선형, 이진) 정리 - JHYEON BLOG</title>
+  
+    <meta name="keywords" content="Algorithm,선형 탐색,이진 탐색">
   
 
   
@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
           
@@ -329,65 +329,177 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
-      
+    
+    
+      <h1 class="title">
+        탐색 알고리즘(선형, 이진) 정리
+      </h1>
+      <div class='new-meta-box'>
         
           
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>jhyeon</p>
+  </a>
+</div>
+
+          
         
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/01/17/websec-baby/">
-        websec-baby
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Docx/">Docx</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2021-01-17</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>CalendarSep 10, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="탐색-알고리즘-종류"><a href="#탐색-알고리즘-종류" class="headerlink" title="탐색 알고리즘 종류"></a>탐색 알고리즘 종류</h2><h3 id="1-선형-탐색법-리니어-서치"><a href="#1-선형-탐색법-리니어-서치" class="headerlink" title="1. 선형 탐색법 (리니어 서치)"></a>1. 선형 탐색법 (리니어 서치)</h3><ul>
+<li><p>왼쪽부터 순서대로 하나씩 확인해 나가는 방법</p>
+</li>
+<li><p>(한쪽 끝에서 다른 한쪽 끝으로 나아가는 방법)</p>
+</li>
+<li><p>탐색 시작 → 결과를 탐색할 때까지 반복문 실행 → 결과값 반환 후 종료</p>
+</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">array, target</span>):</span></span><br><span class="line">	i = <span class="number">0</span></span><br><span class="line">	<span class="keyword">while</span> i &lt; <span class="built_in">len</span>(array):</span><br><span class="line">		<span class="keyword">if</span> arr[i] == target:</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line">		i += <span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;error&quot;</span></span><br><span class="line"></span><br><span class="line">array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>] <span class="comment"># index 0~6</span></span><br><span class="line">target = <span class="number">9</span></span><br><span class="line"></span><br><span class="line">print(search(array,target))</span><br><span class="line"></span><br><span class="line"><span class="comment">#result</span></span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-이진-알고리즘-탐색-binary"><a href="#2-이진-알고리즘-탐색-binary" class="headerlink" title="2. 이진 알고리즘 탐색(binary)"></a>2. 이진 알고리즘 탐색(binary)</h3><ul>
+<li><p>정렬된 리스트(배열) 에서 원하는 수(target) 값을 찾는 알고리즘 입니다.</p>
+</li>
+<li><p>선형 알고리즘 탐색 방법과 다르게 “이진 알고리즘” 탐색은 리스트가 정렬되어 있어야 한다는 점입니다.</p>
+</li>
+<li><p>배열의 전체의 중간 값(middle) 을 비교 합니다.</p>
+</li>
+<li><p>중간 값(middle) 이 원하는 수(target) 값보다 작다면 왼쪽, 크다면 오른쪽을 선택하여 탐색을 시작합니다.</p>
+</li>
+<li><p>선택된 방향에서 중간 값(middle) 과 원하는 수(target) 을 비교해서 같다면 탐색을 종료합니다.</p>
+</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=UTF-8</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binarysearch</span>(<span class="params">array, target, left, right</span>):</span></span><br><span class="line">    middle_idx = (left+right)//<span class="number">2</span> <span class="comment"># 중간 지점 탐색</span></span><br><span class="line">    print(middle_idx)</span><br><span class="line">    middle = array[middle_idx] <span class="comment"># Array 배열 적용</span></span><br><span class="line">    <span class="keyword">if</span> target == middle: <span class="comment"># 탐색 값과 중간 값이 같다면</span></span><br><span class="line">        print(<span class="string">&#x27;result : &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(middle)) <span class="comment"># 결과 리턴</span></span><br><span class="line">    <span class="keyword">elif</span> middle &gt; target: <span class="comment"># 탐색 값이 중간 값 보다 크다면</span></span><br><span class="line">        binarysearch(array, target, left, middle_idx-<span class="number">1</span>) <span class="comment"># 함수실행</span></span><br><span class="line">    <span class="keyword">elif</span> middle &lt; target: <span class="comment"># 탐색 값이 중간 값 보다 작다면</span></span><br><span class="line">        binarysearch(array, target, middle_idx+<span class="number">1</span>, right) <span class="comment"># 함수실행</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span> <span class="comment"># 위 경우 모두 만족하지 않을 때 false 반환</span></span><br><span class="line"></span><br><span class="line">array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>,<span class="number">9</span>,<span class="number">17</span>,<span class="number">15</span>,<span class="number">19</span>,<span class="number">21</span>]</span><br><span class="line"></span><br><span class="line">length = <span class="built_in">len</span>(array)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;length : &#123;&#125;&quot;</span>.<span class="built_in">format</span>(length))</span><br><span class="line"></span><br><span class="line">array.sort()</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;sort : &#123;&#125;&quot;</span>.<span class="built_in">format</span>(array))</span><br><span class="line"></span><br><span class="line">target = <span class="number">15</span></span><br><span class="line"></span><br><span class="line">left = <span class="number">0</span></span><br><span class="line">right = length-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">binarysearch(array, target, <span class="number">0</span>, right)</span><br></pre></td></tr></table></figure>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://velog.io/@keemun/1">https://velog.io/@keemun/1</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://velog.io/@madfinger/Binary-Search%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8C%8C%EC%9D%B4%EC%8D%AC">https://velog.io/@madfinger/Binary-Search이진-탐색-파이썬</a></p>
+</li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/01/17/websec-baby/'>
-            Read More
-          </a>
-        </div>
+      
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:38:00+09:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>EditJan 17, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Algorithm</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>선형 탐색</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>이진 탐색</p></a></div>
 
 
-	
+        
+      
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/09/10/c-stl-200910/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>C++ STL(Standard Template Library)</p>
+          <p class='content'>list(linked list)list는 순서를 유지하는 구조로 이루어진 노드 기반 컨테이너입니다.
+원소가 노드 단위로 저장되며, list는 이중 연결 리스트(double l...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/08/18/sstf-200818/'>
+          <p class='title'>SSTF 2020 BOF 101 Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>우선 file 명령어와 checksec을 사용해서 바이너리 컴파일 정보와, Memory Mitigation을 확인 해보자.
+사진과 같이 x64 dynamic linked bi...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> Comments</p>
+    
+    <div id="disqus_thread">
+  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
+  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
+  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -395,140 +507,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='/img/profile/my.jpeg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>JHYEON</h2>
-        
-        
-          <p>Web Development &amp; Security Research</p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:stjhyeon@kakao.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/jhye0n"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            id="categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docker/" href="/categories/Docker/"
-            id="categoriesDocker"
-            ><div class='name'>Docker</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docx/" href="/categories/Docx/"
-            id="categoriesDocx"
-            ><div class='name'>Docx</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Memo/" href="/categories/Memo/"
-            id="categoriesMemo"
-            ><div class='name'>Memo</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Pwnable/" href="/categories/Pwnable/"
-            id="categoriesPwnable"
-            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Wargame/" href="/categories/Wargame/"
-            id="categoriesWargame"
-            ><div class='name'>Wargame</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Web/" href="/categories/Web/"
-            id="categoriesWeb"
-            ><div class='name'>Web</div><div class='badge'>(5)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%A2%85%EB%A5%98"><span class="toc-text">탐색 알고리즘 종류</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89%EB%B2%95-%EB%A6%AC%EB%8B%88%EC%96%B4-%EC%84%9C%EC%B9%98"><span class="toc-text">1. 선형 탐색법 (리니어 서치)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%EC%9D%B4%EC%A7%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%ED%83%90%EC%83%89-binary"><span class="toc-text">2. 이진 알고리즘 탐색(binary)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Algorithm/" style="font-size: 14px; color: #999">Algorithm</a> <a href="/tags/B-ngsiri/" style="font-size: 14px; color: #999">B@ngsiri</a> <a href="/tags/BOF/" style="font-size: 14px; color: #999">BOF</a> <a href="/tags/BoB/" style="font-size: 14px; color: #999">BoB</a> <a href="/tags/Browser-Auditor/" style="font-size: 14px; color: #999">Browser Auditor</a> <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CANVAS/" style="font-size: 14px; color: #999">CANVAS</a> <a href="/tags/CSRF/" style="font-size: 14px; color: #999">CSRF</a> <a href="/tags/CheatSheet/" style="font-size: 14px; color: #999">CheatSheet</a> <a href="/tags/Chrome/" style="font-size: 14px; color: #999">Chrome</a> <a href="/tags/Development/" style="font-size: 14px; color: #999">Development</a> <a href="/tags/Dockerfile/" style="font-size: 17.33px; color: #828282">Dockerfile</a> <a href="/tags/Exploitation/" style="font-size: 14px; color: #999">Exploitation</a> <a href="/tags/Firefox/" style="font-size: 14px; color: #999">Firefox</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/LMS/" style="font-size: 14px; color: #999">LMS</a> <a href="/tags/Macro/" style="font-size: 14px; color: #999">Macro</a> <a href="/tags/Malware/" style="font-size: 14px; color: #999">Malware</a> <a href="/tags/Mprotect/" style="font-size: 14px; color: #999">Mprotect</a> <a href="/tags/PHP/" style="font-size: 17.33px; color: #828282">PHP</a> <a href="/tags/Pwn/" style="font-size: 14px; color: #999">Pwn</a> <a href="/tags/Pwnable/" style="font-size: 14px; color: #999">Pwnable</a> <a href="/tags/Python/" style="font-size: 14px; color: #999">Python</a> <a href="/tags/RCE/" style="font-size: 14px; color: #999">RCE</a> <a href="/tags/ROP/" style="font-size: 14px; color: #999">ROP</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Shellcode/" style="font-size: 14px; color: #999">Shellcode</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/Wargame/" style="font-size: 14px; color: #999">Wargame</a> <a href="/tags/Web/" style="font-size: 24px; color: #555">Web</a> <a href="/tags/Writeup/" style="font-size: 20.67px; color: #6c6c6c">Writeup</a> <a href="/tags/XSS/" style="font-size: 20.67px; color: #6c6c6c">XSS</a> <a href="/tags/websec-fr/" style="font-size: 17.33px; color: #828282">websec.fr</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -537,14 +537,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="탐색 알고리즘(선형, 이진) 정리";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
