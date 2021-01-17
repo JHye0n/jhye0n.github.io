@@ -5,8 +5,10 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="index,follow">
+    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/2020/02/05/dockerfile-200205/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/tags/tools/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -24,9 +26,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>CTF Web Challenge(Dockerfile) - JHYEON BLOG</title>
-  
-    <meta name="keywords" content="Dockerfile, Docker">
+  <title>Tag: Tools - JHYEON BLOG</title>
   
 
   
@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
           
@@ -328,152 +328,79 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
+
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-
-
-  
-  <div class="article-meta" id="top">
     
+      
+  <section class="post-list">
     
-    
-      <h1 class="title">
-        CTF Web Challenge(Dockerfile)
-      </h1>
-      <div class='new-meta-box'>
+      
         
           
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
-    <p>jhyeon</p>
-  </a>
-</div>
-
-          
         
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Docker/">Docker</a>
-    </a>
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/02/05/pwnbluekat-200205/">
+        libc database search(bluekat)
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        예전에 포너블 공부할 때 rop 문제에서 오프셋 기반으로립씨 버전 하나하나 찾으려니 솔직히 너무 귀찮았다..
+그래서 찾아보다가 libc bluekat 이라는 사이트를 찾았는데,함수 오프셋을 통해서 일치하는 libc 버전을 간단하게 찾아 주었다!
+포너블 하신다면 자주 이용해먹으면 좋을 것 같다.
+[https://libc.blukat.me](libc-bl...
+      
+    
   </div>
-
-
-          
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
         
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>CalendarFeb 5, 2020</p>
-  </a>
-</div>
-
-          
+        <time>2020-02-05</time>
         
-          
-            
-
-          
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Pwnable/">Pwnable</a>
         
       </div>
-    
-  </div>
-
-
-  
-  
-  <p>간단한 버전이라서 쓰는 사람에 맞게 적절히 수정하면 된다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu:18.04</span><br><span class="line"></span><br><span class="line">ENV DEBIAN_FRONTEND=noninteractive</span><br><span class="line">ENV TERM=linux</span><br><span class="line"></span><br><span class="line">RUN apt-get update -y</span><br><span class="line">RUN apt-get install apache2 -y</span><br><span class="line">RUN apt-get install libapache2-mod-php -y</span><br><span class="line">RUN apt-get install php -y</span><br><span class="line">RUN apt-get install vim -y</span><br><span class="line"></span><br><span class="line">COPY ./files /var/www/html</span><br><span class="line">RUN rm -rf /var/www/html/index.html</span><br><span class="line">EXPOSE 포트번호</span><br><span class="line"></span><br><span class="line">CMD [<span class="string">&quot;/usr/sbin/apache2ctl&quot;</span>, <span class="string">&quot;-D&quot;</span>, <span class="string">&quot;FOREGROUND&quot;</span>]</span><br></pre></td></tr></table></figure>
-  
-  
-    
-    <div class='footer'>
       
-      
-        
-      
-      
+        <div>
+          <a class='readmore' href='/2020/02/05/pwnbluekat-200205/'>
+            Read More
+          </a>
+        </div>
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T16:52:18+09:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
-  </a>
 </div>
 
+          </div>
         
       
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Dockerfile-Docker/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Dockerfile, Docker</p></a></div>
-
-
-        
-      
-        
-      
-    </div>
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2020/02/06/dimictf-200206/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>DIMICTF 2019 Write up</p>
-          <p class='content'>1. web(5shared)1234567891011121314151617181920212223242526272829303132333435363738394041424344454...</p>
-        </a>
-      
-      
-        <a class='next' href='/2020/02/05/pwnbluekat-200205/'>
-          <p class='title'>libc database search(bluekat)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>예전에 포너블 공부할 때 rop 문제에서 오프셋 기반으로립씨 버전 하나하나 찾으려니 솔직히 너무 귀찮았다..
-그래서 찾아보다가 libc bluekat 이라는 사이트를 찾았는데...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> Comments</p>
     
-    <div id="disqus_thread">
-  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
-  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
-  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
-</div>
-
-  </article>
+  </section>
+  
+    
+  
 
 
-
-
-
-
+    
+  
 </div>
 <aside class='l_side'>
   
@@ -481,14 +408,115 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='/img/profile/my.jpeg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>JHYEON</h2>
+        
+        
+          <p>Web Development &amp; Security Research</p>
+
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:stjhyeon@kakao.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/jhye0n"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+    
+  </header>
 
 
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/Docker/" href="/categories/Docker/"
+            id="categoriesDocker"
+            ><div class='name'>Docker</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Pwnable/" href="/categories/Pwnable/"
+            id="categoriesPwnable"
+            ><div class='name'>Pwnable</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/CTF-Web/" style="font-size: 14px; color: #999">CTF, Web</a> <a href="/tags/Dockerfile-Docker/" style="font-size: 14px; color: #999">Dockerfile, Docker</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a>
+    </div>
+  </section>
+
+
+  
 
   
 
 
 </aside>
-
 
 
 		  
@@ -497,8 +525,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="CTF Web Challenge(Dockerfile)";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

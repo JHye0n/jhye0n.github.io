@@ -9,7 +9,7 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sun, 17 Jan 2021 07:55:02 GMT</pubDate>
+    <pubDate>Sun, 17 Jan 2021 08:07:13 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -60,6 +60,33 @@
       
       
       <comments>https://blog.jhyeon.dev/2020/02/05/dockerfile-200205/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>libc database search(bluekat)</title>
+      <link>https://blog.jhyeon.dev/2020/02/05/pwnbluekat-200205/</link>
+      <guid>https://blog.jhyeon.dev/2020/02/05/pwnbluekat-200205/</guid>
+      <pubDate>Tue, 04 Feb 2020 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;예전에 포너블 공부할 때 rop 문제에서 오프셋 기반으로&lt;br&gt;립씨 버전 하나하나 찾으려니 솔직히 너무 귀찮았다..&lt;/p&gt;
+&lt;p&gt;그래서 찾아보다가 libc bluekat 이라는 사이트를 찾았는데,&lt;br&gt;함수 오프셋을 통해서 일치하는 libc 버전</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>예전에 포너블 공부할 때 rop 문제에서 오프셋 기반으로<br>립씨 버전 하나하나 찾으려니 솔직히 너무 귀찮았다..</p><p>그래서 찾아보다가 libc bluekat 이라는 사이트를 찾았는데,<br>함수 오프셋을 통해서 일치하는 libc 버전을 간단하게 찾아 주었다!</p><p>포너블 하신다면 자주 이용해먹으면 좋을 것 같다.</p><p>[<a href="https://libc.blukat.me]">https://libc.blukat.me]</a>(libc-bluekat homepage)</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Pwnable/">Pwnable</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Tools/">Tools</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2020/02/05/pwnbluekat-200205/#disqus_thread</comments>
       
     </item>
     
