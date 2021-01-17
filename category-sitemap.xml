@@ -9,6 +9,27 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/categories/Memo/</loc>
+        <lastmod>2021-01-17T09:25:18.126Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/categories/Docx/</loc>
+        <lastmod>2021-01-17T09:08:38.395Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/categories/Web/</loc>
+        <lastmod>2021-01-17T09:04:39.188Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/categories/Wargame/</loc>
         <lastmod>2021-01-17T09:01:22.638Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -23,13 +44,6 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/categories/Web/</loc>
-        <lastmod>2021-01-17T09:01:08.490Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.jhyeon.dev/categories/Pwnable/</loc>
         <lastmod>2021-01-17T09:00:21.607Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -39,13 +53,6 @@
     <url>
         <loc>https://blog.jhyeon.dev/categories/Docker/</loc>
         <lastmod>2021-01-17T08:59:45.771Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/categories/Memo/</loc>
-        <lastmod>2021-01-17T08:47:52.780Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
