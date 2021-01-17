@@ -339,9 +339,212 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/22/dockerset-200422/">
+        (ko) Docker Language Setting
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1. 설정 변경 사항1sudo apt-get install locales
+123456export LANGUAGE=ko_KR.UTF-8export LANG=ko_KR.UTF-8source ~/.bashrclocale-gen ko_KR ko_KR.UTF-8update-locale LANG=ko_KR.UTF-8dpkg-reconfigure locales
+근...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-22</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Docker/">Docker</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/22/dockerset-200422/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/22/jwtinjection-200422/">
+        JWT None Type Injection
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1. JWT(JSON WEB TOKEN)JWT(JSON WEB TOKEN) 란, 정보를 안전하게 전송하기 위해 개발된 RFC 7519 의 웹 표준 입니다.
+JSON 객체를 통해 “self-contained” 방식으로 데이터를 전송합니다.
+
+2. JWT TOKENJWT는 아래와 같은 형태를 가지고 있고,
+Header, Signature, Payload ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-22</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Web/">Web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/22/jwtinjection-200422/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/22/phpwrapper-200422/">
+        php wrapper
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        12345expect://	expect://lsphp:filter	php://filter/convert.base64-encode/resource=index.phpzip://	zip://filename.zip#webshell.phpdata://	data://text/plain;base64,&#123;RCE CODE HERE&#125;php://input...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-22</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Web/">Web</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/22/phpwrapper-200422/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/22/pwn-mprotect-200422/">
+        Mprotect Exploitation
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1. 참고 링크(Notion)
+Notion : https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b5468e22b7374301
+
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-22</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Pwnable/">Pwnable</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/22/pwn-mprotect-200422/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -423,6 +626,58 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div>
           <a class='readmore' href='/2020/04/10/zer0ptsctf-200410/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/zixemchall-200410/">
+        zixem challenge Write up
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Site : https://www.zixem.altervista.org/SQLi/
+
+1. LEVEL-11id=0%20union%20select%201,version(),3;--%20-
+
+2. LEVEL-21showprofile=0%27%20union%20select%201,2,version(),4;--%20-
+
+3. LEVEL-31item=0%27%2...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Wargame/">Wargame</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/zixemchall-200410/'>
             Read More
           </a>
         </div>
@@ -524,17 +779,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box"
             title="/categories/Docker/" href="/categories/Docker/"
             id="categoriesDocker"
-            ><div class='name'>Docker</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docx/" href="/categories/Docx/"
-            id="categoriesDocx"
-            ><div class='name'>Docx</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>Docker</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Pwnable/" href="/categories/Pwnable/"
             id="categoriesPwnable"
-            ><div class='name'>Pwnable</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Wargame/" href="/categories/Wargame/"
+            id="categoriesWargame"
+            ><div class='name'>Wargame</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Web/" href="/categories/Web/"
+            id="categoriesWeb"
+            ><div class='name'>Web</div><div class='badge'>(3)</div></a></li>
         
       </ul>
     </div>
@@ -558,7 +818,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-      <a href="/tags/CTF-Web/" style="font-size: 14px; color: #999">CTF, Web</a> <a href="/tags/Dockerfile-Docker/" style="font-size: 14px; color: #999">Dockerfile, Docker</a> <a href="/tags/Pwn-ROP/" style="font-size: 14px; color: #999">Pwn, ROP</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/Web-CTF/" style="font-size: 24px; color: #555">Web, CTF</a> <a href="/tags/Web-XSS-CheatSheet/" style="font-size: 14px; color: #999">Web, XSS, CheatSheet</a>
+      <a href="/tags/CTF-Web/" style="font-size: 14px; color: #999">CTF, Web</a> <a href="/tags/Dockerfile-Docker/" style="font-size: 19px; color: #777">Dockerfile, Docker</a> <a href="/tags/Pwn-Mprotect-Shellcode-Exploitation/" style="font-size: 14px; color: #999">Pwn, Mprotect, Shellcode, Exploitation</a> <a href="/tags/Pwn-ROP/" style="font-size: 14px; color: #999">Pwn, ROP</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/Web-CTF/" style="font-size: 24px; color: #555">Web, CTF</a> <a href="/tags/Web-JWT/" style="font-size: 14px; color: #999">Web, JWT</a> <a href="/tags/Web-PHP/" style="font-size: 14px; color: #999">Web, PHP</a> <a href="/tags/Web-Wargame/" style="font-size: 14px; color: #999">Web, Wargame</a> <a href="/tags/Web-XSS-CheatSheet/" style="font-size: 14px; color: #999">Web, XSS, CheatSheet</a>
     </div>
   </section>
 

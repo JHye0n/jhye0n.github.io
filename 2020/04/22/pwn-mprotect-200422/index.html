@@ -5,10 +5,8 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="index,follow">
-    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/archives/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2020/04/22/pwn-mprotect-200422/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -26,7 +24,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive - JHYEON BLOG</title>
+  <title>Mprotect Exploitation - JHYEON BLOG</title>
+  
+    <meta name="keywords" content="Pwn, Mprotect, Shellcode, Exploitation">
   
 
   
@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
           
@@ -329,223 +329,150 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-	  <article id="arc" class="post article white-box reveal shadow">
-			
-			
-				
-				
-					
-						
-						<h2>2020</h2>
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/04/22/dockerset-200422/">
-									<time>04-22</time>
-									
-										(ko) Docker Language Setting
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/04/22/jwtinjection-200422/">
-									<time>04-22</time>
-									
-										JWT None Type Injection
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/04/22/phpwrapper-200422/">
-									<time>04-22</time>
-									
-										php wrapper
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/04/22/pwn-mprotect-200422/">
-									<time>04-22</time>
-									
-										Mprotect Exploitation
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/04/10/angstormctf-200410/">
-									<time>04-10</time>
-									
-										angstorm ctf 2020 Write up
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/04/10/zer0ptsctf-200410/">
-									<time>04-10</time>
-									
-										zer0pts 2020 Write up
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/04/10/zixemchall-200410/">
-									<time>04-10</time>
-									
-										zixem challenge Write up
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/02/23/trustctf-200223/">
-									<time>02-23</time>
-									
-										TRUST CTF 2019 Write up
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/02/10/rop-instruction-200210/">
-									<time>02-10</time>
-									
-										ROP & SSE Instruction
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/02/06/dimictf-200206/">
-									<time>02-06</time>
-									
-										DIMICTF 2019 Write up
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/02/05/dockerfile-200205/">
-									<time>02-05</time>
-									
-										CTF Web Challenge(Dockerfile)
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/02/05/pwnbluekat-200205/">
-									<time>02-05</time>
-									
-										libc database search(bluekat)
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
-								<a class="meta" href="/2020/02/05/xsscheatsheet-200205/">
-									<time>02-05</time>
-									
-										xss cheatsheet 2020
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-	  </article>
-	
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Mprotect Exploitation
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>jhyeon</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Pwnable/">Pwnable</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>CalendarApr 22, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h3 id="1-참고-링크-Notion"><a href="#1-참고-링크-Notion" class="headerlink" title="1. 참고 링크(Notion)"></a>1. 참고 링크(Notion)</h3><ul>
+<li>Notion : <a target="_blank" rel="noopener" href="https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b5468e22b7374301">https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b5468e22b7374301</a></li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T17:41:18+09:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>EditJan 17, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pwn-Mprotect-Shellcode-Exploitation/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pwn, Mprotect, Shellcode, Exploitation</p></a></div>
+
+
+        
+      
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/04/22/phpwrapper-200422/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>php wrapper</p>
+          <p class='content'>12345expect://	expect://lsphp:filter	php://filter/convert.base64-encode/resource=index.phpzip://	...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/04/10/angstormctf-200410/'>
+          <p class='title'>angstorm ctf 2020 Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1. [WEB - The Magic Word]12345678910&lt;script&gt;    var msg = document.getElementById(&quot;mag...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> Comments</p>
+    
+    <div id="disqus_thread">
+  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
+  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
+  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -553,130 +480,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='/img/profile/my.jpeg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>JHYEON</h2>
-        
-        
-          <p>Web Development &amp; Security Research</p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:stjhyeon@kakao.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/jhye0n"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            id="categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docker/" href="/categories/Docker/"
-            id="categoriesDocker"
-            ><div class='name'>Docker</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Pwnable/" href="/categories/Pwnable/"
-            id="categoriesPwnable"
-            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Wargame/" href="/categories/Wargame/"
-            id="categoriesWargame"
-            ><div class='name'>Wargame</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Web/" href="/categories/Web/"
-            id="categoriesWeb"
-            ><div class='name'>Web</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EC%B0%B8%EA%B3%A0-%EB%A7%81%ED%81%AC-Notion"><span class="toc-text">1. 참고 링크(Notion)</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/CTF-Web/" style="font-size: 14px; color: #999">CTF, Web</a> <a href="/tags/Dockerfile-Docker/" style="font-size: 19px; color: #777">Dockerfile, Docker</a> <a href="/tags/Pwn-Mprotect-Shellcode-Exploitation/" style="font-size: 14px; color: #999">Pwn, Mprotect, Shellcode, Exploitation</a> <a href="/tags/Pwn-ROP/" style="font-size: 14px; color: #999">Pwn, ROP</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/Web-CTF/" style="font-size: 24px; color: #555">Web, CTF</a> <a href="/tags/Web-JWT/" style="font-size: 14px; color: #999">Web, JWT</a> <a href="/tags/Web-PHP/" style="font-size: 14px; color: #999">Web, PHP</a> <a href="/tags/Web-Wargame/" style="font-size: 14px; color: #999">Web, Wargame</a> <a href="/tags/Web-XSS-CheatSheet/" style="font-size: 14px; color: #999">Web, XSS, CheatSheet</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -685,14 +510,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Mprotect Exploitation";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
