@@ -3,8 +3,15 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/Web-CTF/</loc>
+        <lastmod>2021-01-17T08:24:01.102Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/Pwn-ROP/</loc>
-        <lastmod>2021-01-17T08:15:50.098Z</lastmod>
+        <lastmod>2021-01-17T08:16:55.377Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
