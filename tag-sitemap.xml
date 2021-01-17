@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/Web-websec-fr-Writeup/</loc>
+        <lastmod>2021-01-17T08:51:40.790Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/BoB/</loc>
+        <lastmod>2021-01-17T08:47:52.780Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Web-XSS-Writeup/</loc>
+        <lastmod>2021-01-17T08:45:29.928Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/Web-Wargame/</loc>
         <lastmod>2021-01-17T08:41:50.555Z</lastmod>
         <changefreq>weekly</changefreq>
