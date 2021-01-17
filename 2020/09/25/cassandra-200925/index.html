@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -409,24 +409,30 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><a target="_blank" rel="noopener" href="https://cassandra.apache.org/download/">https://cassandra.apache.org/download/</a></li>
 </ul>
 <h3 id="Cassandra-예제"><a href="#Cassandra-예제" class="headerlink" title="Cassandra 예제"></a>Cassandra 예제</h3><p>Cassandra CQL Shell에 접속하는 방법은 다음과 같습니다. (Debian/Ubuntu 기준)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cqlsh</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">$ cqlsh</code></pre>
 <p>이 때, 사용자 인증을 거치지않고 쉘에 접속하게 되는데 보안 설정을 위해서는 다음과 같이 설정합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/cassandra/cassandra.yaml</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">$ sudo vi /etc/cassandra/cassandra.yaml</code></pre>
 <p>(104 Lines) authenticator: PasswordAuthenticator # AllowAllAuthenticator 주석 처리 후 변경</p>
 <p>이후 CQL Shell에 접속하기 위해서는 다음과 같은 명령어로 접속합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cqlsh -u cassandra -p cassandra <span class="comment"># 기본 계정</span></span><br></pre></td></tr></table></figure>
+<pre><code class="bash">$ cqlsh -u cassandra -p cassandra # 기본 계정</code></pre>
 <p>하지만 위와 같은 방법도 기본 계정으로 설정되어 있기 때문에 새로운 유저를 추가해서 사용하는 방식으로 변경합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cassandra@cqlsh&gt; create user username with password <span class="string">&#x27;password&#x27;</span> superuser;</span><br><span class="line">cassandra@cqlsh&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cqlsh -u username -p password</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cassandra@cqlsh&gt; drop user cassandra;</span><br><span class="line">cassandra@cqlsh&gt; LIST USERS; /* 생성된 계정 확인 */</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">cassandra@cqlsh&gt; create user username with password &#39;password&#39; superuser;
+cassandra@cqlsh&gt; exit</code></pre>
+<pre><code class="bash">$ cqlsh -u username -p password</code></pre>
+<pre><code class="bash">cassandra@cqlsh&gt; drop user cassandra;
+cassandra@cqlsh&gt; LIST USERS; /* 생성된 계정 확인 */</code></pre>
 <p>이제 Cassandra에 대한 기본적인 보안을 거쳐 사용하실 수 있습니다!</p>
-<h3 id="새로운-Keyspace-생성"><a href="#새로운-Keyspace-생성" class="headerlink" title="새로운 Keyspace 생성"></a>새로운 Keyspace 생성</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username@cqlsh&gt; create keyspace keyspace_name with replication = &#123;&#x27;class&#x27;: &#x27;SimpleStrategy&#x27;, &#x27;replication_factor&#x27;: 3&#125;;</span><br><span class="line">username<span class="variable">@cqlsh</span><span class="operator">&gt;</span> <span class="keyword">desc</span> keyspaces; <span class="comment">/* 생성된 keyspace 확인 */</span></span><br></pre></td></tr></table></figure>
+<h3 id="새로운-Keyspace-생성"><a href="#새로운-Keyspace-생성" class="headerlink" title="새로운 Keyspace 생성"></a>새로운 Keyspace 생성</h3><pre><code class="sql">username@cqlsh&gt; create keyspace keyspace_name with replication = &#123;&#39;class&#39;: &#39;SimpleStrategy&#39;, &#39;replication_factor&#39;: 3&#125;;
+username@cqlsh&gt; desc keyspaces; /* 생성된 keyspace 확인 */</code></pre>
 <p>Replication이란 Keyspace를 생성할때 Replication의 복제 개수, 위치를 결정할 수 있는데 옵션은 아래와 같습니다.</p>
 <p>SimpleStrategy 옵션은 단일 데이터 센터일 경우 사용하는 옵션이며,</p>
 <p>멀티 데이터 센터를 사용할 경우 NetworkTopologyStrategy 를 사용하면 됩니다.</p>
 <p>또, replication_factor란 동일한 데이터의 사본(복사본)을 수신할 클러스터의 시스템 수를 의미합니다.</p>
-<h3 id="새로운-Table-생성"><a href="#새로운-Table-생성" class="headerlink" title="새로운 Table 생성"></a>새로운 Table 생성</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username<span class="variable">@cqlsh</span><span class="operator">&gt;</span> use keyspace_name; <span class="comment">/* 이전에 만든 keyspace로 접속 */</span></span><br><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> test.test_table(idx <span class="type">int</span>, name text, context text); <span class="comment">/* 테이블 생성 */</span></span><br><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">desc</span> test.test_table;</span><br></pre></td></tr></table></figure>
-<h3 id="생성한-Table에-데이터-삽입"><a href="#생성한-Table에-데이터-삽입" class="headerlink" title="생성한 Table에 데이터 삽입"></a>생성한 Table에 데이터 삽입</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> test.test_table (idx, name, context) <span class="keyword">values</span> (<span class="number">1</span>, <span class="string">&#x27;bob&#x27;</span>, <span class="string">&#x27;bobgood&#x27;</span>); <span class="comment">/* 데이터 삽입 */</span></span><br><span class="line">username<span class="variable">@cqlsh</span>:keyspace_name<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test.test_table; <span class="comment">/* 테이블의 모든 행 조회 */</span></span><br></pre></td></tr></table></figure>
+<h3 id="새로운-Table-생성"><a href="#새로운-Table-생성" class="headerlink" title="새로운 Table 생성"></a>새로운 Table 생성</h3><pre><code class="sql">username@cqlsh&gt; use keyspace_name; /* 이전에 만든 keyspace로 접속 */
+username@cqlsh:keyspace_name&gt; create table test.test_table(idx int, name text, context text); /* 테이블 생성 */
+username@cqlsh:keyspace_name&gt; desc test.test_table;</code></pre>
+<h3 id="생성한-Table에-데이터-삽입"><a href="#생성한-Table에-데이터-삽입" class="headerlink" title="생성한 Table에 데이터 삽입"></a>생성한 Table에 데이터 삽입</h3><pre><code class="sql">username@cqlsh:keyspace_name&gt; insert into test.test_table (idx, name, context) values (1, &#39;bob&#39;, &#39;bobgood&#39;); /* 데이터 삽입 */
+username@cqlsh:keyspace_name&gt; select * from test.test_table; /* 테이블의 모든 행 조회 */</code></pre>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
 <li><p><a target="_blank" rel="noopener" href="https://meetup.toast.com/search?searchText=Cassandra">https://meetup.toast.com/search?searchText=Cassandra</a></p>
 </li>
@@ -442,6 +448,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='footer'>
       
       
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
+      
       
       
     </div>
@@ -454,10 +468,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:57:20+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-25T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditSep 25, 2020</p>
   </a>
 </div>
 
@@ -492,7 +506,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>POX(Power of xx) 2020 Write up</p>
           <p class='content'>POX 2020 출제자 Write up 자료입니다.
 아래 노션에서 풀이를 확인하실 수 있습니다.
-질문 사항이 있으시면 &#115;&#116;&#x6a;&#x68;&#121;&...</p>
+질문 사항이 있으시면 &#x73;&#116;&#x6a;&#104;&#121;&...</p>
         </a>
       
       
@@ -593,42 +607,6 @@ Primary Key(PK)
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -764,6 +742,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1139,6 +1119,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

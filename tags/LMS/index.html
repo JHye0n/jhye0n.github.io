@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -362,7 +362,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         OSOS : Ubuntu 16.04 Desktop(http://old-releases.ubuntu.com/releases/16.04.4/)
 Canvas LMS - Open Source : https://github.com/instructure/canvas-lms
-설치postgresql 설치1$ sudo apt-get install postgresql-...
+설치postgresql 설치$ sudo apt-get install postgresql-9...
       
     
   </div>
@@ -532,8 +532,6 @@ Canvas LMS - Open Source : https://github.com/instructure/canvas-lms
 
   
 
-  
-
 
 </aside>
 
@@ -560,42 +558,6 @@ Canvas LMS - Open Source : https://github.com/instructure/canvas-lms
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -731,6 +693,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1106,6 +1070,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

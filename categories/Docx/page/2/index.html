@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -362,7 +362,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 탐색 시작 → 결과를 탐색할 때까지 반복문 실행 → 결과값 반환 후 종료
 
 
-1234567891011121314151617#!/usr/bin/python3def search(array, target):	i...
+#!/usr/bin/python3
+
+def search(array, target):
+    i = 0
+    while i &l...
       
     
   </div>
@@ -410,7 +414,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         OSOS : Ubuntu 16.04 Desktop(http://old-releases.ubuntu.com/releases/16.04.4/)
 Canvas LMS - Open Source : https://github.com/instructure/canvas-lms
-설치postgresql 설치1$ sudo apt-get install postgresql-...
+설치postgresql 설치$ sudo apt-get install postgresql-9...
       
     
   </div>
@@ -603,9 +607,14 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
   <div class='md'>
     
       
-        1. 설정 변경 사항1sudo apt-get install locales
-123456export LANGUAGE=ko_KR.UTF-8export LANG=ko_KR.UTF-8source ~/.bashrclocale-gen ko_KR ko_KR.UTF-8update-locale LANG=ko_KR.UTF-8dpkg-reconfigure locales
-근...
+        1. 설정 변경 사항sudo apt-get install locales
+export LANGUAGE=ko_KR.UTF-8
+export LANG=ko_KR.UTF-8
+source ~/.bashrc
+locale-gen ko_KR ko_KR.UTF-8
+update-locale LANG=ko_KR.UTF-8
+dpkg-reconfigure locales
+근데 ...
       
     
   </div>
@@ -652,7 +661,14 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
     
       
         간단한 버전이라서 쓰는 사람에 맞게 적절히 수정하면 된다.
-12345678910111213141516FROM ubuntu:18.04ENV DEBIAN_FRONTEND=noninteractiveENV TERM=linuxRUN apt-get update -yRUN apt-get install apache2 -yRUN apt-get install libap...
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=linux
+
+RUN apt-get update -y
+RUN apt-get install apache2 -y
+RUN apt-get install libapache2-mod-php -y...
       
     
   </div>
@@ -837,8 +853,6 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
 
   
 
-  
-
 
 </aside>
 
@@ -865,42 +879,6 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -1036,6 +1014,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1411,6 +1391,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

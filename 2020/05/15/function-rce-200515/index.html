@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -392,10 +392,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>정의된 내용으로, 매개변수를 전달받아 익명 함수를 생성하는 함수 입니다.</p>
 <hr>
 <h3 id="함수-정의"><a href="#함수-정의" class="headerlink" title="함수 정의"></a>함수 정의</h3><p>해당 함수는 아래와 같이 사용할 수 있습니다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_function ( string $args , string $code ) : string</span><br></pre></td></tr></table></figure>
+<pre><code>create_function ( string $args , string $code ) : string</code></pre>
 <hr>
 <h3 id="함수-취약점-분석"><a href="#함수-취약점-분석" class="headerlink" title="함수 취약점 분석"></a>함수 취약점 분석</h3><p>하지만, 함수를 잘못된 방법으로 사용할 시 RCE 취약점이 발생하게 되는데 예시는 다음과 같습니다.</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_function(<span class="keyword">string</span> <span class="variable">$args</span>, <span class="variable">$_POST</span>[<span class="string">&#x27;code&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+<pre><code class="php">create_function(string $args, $_POST[&#39;code&#39;]);</code></pre>
 <p>위와 같은 방법으로 사용할 시에 두번째 인자에 임의적인 값을 주입하여 원하는 코드를 실행시킬 수 있습니다.</p>
 <p><code> return -1;&#125; phpinfo(); /* </code></p>
 
@@ -404,6 +404,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     <div class='footer'>
       
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/04/22/phpwrapper-200422/" title="php wrapper" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">php wrapper</span></a><a class="item" href="/2020/04/22/jwtinjection-200422/" title="JWT None Type Injection" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">JWT None Type Injection</span></a></div></section></div>
       
       
       
@@ -417,10 +425,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:04:39+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-15T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditMay 15, 2020</p>
   </a>
 </div>
 
@@ -460,7 +468,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='next' href='/2020/05/14/websecbaby-200514/'>
           <p class='title'>websec.fr babysteps Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1. LEVEL-1123456789101112131415class LevelOne &#123;    public function doQuery($injection) &#123...</p>
+          <p class='content'>1. LEVEL-1class LevelOne &#123;
+    public function doQuery($injection) &#123;
+        $pdo = new...</p>
         </a>
       
     </div>
@@ -539,42 +549,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -710,6 +684,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1085,6 +1061,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

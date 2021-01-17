@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur "  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -421,15 +421,15 @@ https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53
         Step 1
 우분투 패키지 업데이트를 진행합니다.
 
-1sudo apt update
+sudo apt update
 Step 2
 도커 필수 라이브러리를 설치합니다.
 
-1sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 Step 3
 GPG KEY 등록
 
-1c...
+curl...
       
     
   </div>
@@ -835,8 +835,6 @@ https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0
 
   
 
-  
-
 
 </aside>
 
@@ -863,42 +861,6 @@ https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -1034,6 +996,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1409,6 +1373,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

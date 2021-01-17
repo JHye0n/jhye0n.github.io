@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -388,18 +388,39 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="1-설정-변경-사항"><a href="#1-설정-변경-사항" class="headerlink" title="1. 설정 변경 사항"></a>1. 설정 변경 사항</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install locales</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LANGUAGE=ko_KR.UTF-8</span><br><span class="line"><span class="built_in">export</span> LANG=ko_KR.UTF-8</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line">locale-gen ko_KR ko_KR.UTF-8</span><br><span class="line">update-locale LANG=ko_KR.UTF-8</span><br><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
+  <h3 id="1-설정-변경-사항"><a href="#1-설정-변경-사항" class="headerlink" title="1. 설정 변경 사항"></a>1. 설정 변경 사항</h3><pre><code class="bash">sudo apt-get install locales</code></pre>
+<pre><code class="bash">export LANGUAGE=ko_KR.UTF-8
+export LANG=ko_KR.UTF-8
+source ~/.bashrc
+locale-gen ko_KR ko_KR.UTF-8
+update-locale LANG=ko_KR.UTF-8
+dpkg-reconfigure locales</code></pre>
 <p>근데 한글화가 필요하면, 도커 빌드 때 미리 해두는게 솔직히 편하다.. 그래서 아래에 도커 빌드 설정도 첨부해보려 한다.</p>
 <ul>
 <li>Dockerfile</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RUN apt-get install language-pack-ko -y</span><br><span class="line">RUN apt-get install fonts-nanum -y</span><br><span class="line">RUN apt-get install fonts-nanum-coding -y</span><br><span class="line"></span><br><span class="line">RUN locale-gen ko_KR.UTF-8</span><br><span class="line">ENV LANG ko_KR.UTF-8</span><br><span class="line">ENV LANGUAGE ko_KR.UTF-8</span><br><span class="line">ENV LC_ALL ko_KR.UTF-8</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">RUN apt-get install language-pack-ko -y
+RUN apt-get install fonts-nanum -y
+RUN apt-get install fonts-nanum-coding -y
+
+RUN locale-gen ko_KR.UTF-8
+ENV LANG ko_KR.UTF-8
+ENV LANGUAGE ko_KR.UTF-8
+ENV LC_ALL ko_KR.UTF-8</code></pre>
+
   
   
     
     <div class='footer'>
       
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/02/05/dockerfile-200205/" title="CTF Web Challenge(Dockerfile)" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">CTF Web Challenge(Dockerfile)</span></a><a class="item" href="/2021/01/08/docker-install-210108/" title="Ubuntu 20.04 Docker Installation" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Ubuntu 20.04 Docker Installation</span></a><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
       
       
       
@@ -413,10 +434,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T19:11:36+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-22T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditApr 22, 2020</p>
   </a>
 </div>
 
@@ -537,42 +558,6 @@ JSON 객체를 통...</p>
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -708,6 +693,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1083,6 +1070,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

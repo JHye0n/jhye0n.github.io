@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur "  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -469,7 +469,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 정의된 내용으로, 매개변수를 전달받아 익명 함수를 생성하는 함수 입니다.
 
 함수 정의해당 함수는 아래와 같이 사용할 수 있습니다.
-1create_function ( string $args...
+create_function ( string $args ...
       
     
   </div>
@@ -515,7 +515,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. LEVEL-1123456789101112131415class LevelOne &#123;    public function doQuery($injection) &#123;        $pdo = new SQLite3(&#x27;database.db&#x27;, SQLITE3_OPEN_READONLY);                $query =...
+        1. LEVEL-1class LevelOne &#123;
+    public function doQuery($injection) &#123;
+        $pdo = new SQLite3(&#39;database.db&#39;, SQLITE3_OPEN_READONLY);
+
+        $query = &#39;SELECT id,username FR...
       
     
   </div>
@@ -561,7 +565,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. LEVEL 2123456789101112131415161718class LevelTwo &#123;    public function doQuery($injection) &#123;        $pdo = new SQLite3(&#x27;leveltwo.db&#x27;, SQLITE3_OPEN_READONLY);        $searchWor...
+        1. LEVEL 2class LevelTwo &#123;
+    public function doQuery($injection) &#123;
+        $pdo = new SQLite3(&#39;leveltwo.db&#39;, SQLITE3_OPEN_READONLY);
+
+        $searchWords = implode ([&#39;union...
       
     
   </div>
@@ -780,8 +788,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
 
-  
-
 
 </aside>
 
@@ -808,42 +814,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -979,6 +949,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1354,6 +1326,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

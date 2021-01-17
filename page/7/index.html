@@ -110,7 +110,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -353,7 +353,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. [web] can you guess it?(338 pt)12345678910111213141516171819202122&lt;?phpinclude &#x27;config.php&#x27;; // FLAG is defined in config.phpif (preg_match(&#x27;/config\.php\/*$/i&#x27;, $_SERVER[...
+        1. [web] can you guess it?(338 pt)&lt;?php
+include &#39;config.php&#39;; // FLAG is defined in config.php
+
+if (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;
+  exit(...
       
     
   </div>
@@ -401,11 +405,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         Site : https://www.zixem.altervista.org/SQLi/
 
-1. LEVEL-11id=0%20union%20select%201,version(),3;--%20-
+1. LEVEL-1id=0%20union%20select%201,version(),3;--%20-
 
-2. LEVEL-21showprofile=0%27%20union%20select%201,2,version(),4;--%20-
+2. LEVEL-2showprofile=0%27%20union%20select%201,2,version(),4;--%20-
 
-3. LEVEL-31item=0%27%2...
+3. LEVEL-3item=0%27%20un...
       
     
   </div>
@@ -451,7 +455,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. (web) ezrc12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152&lt;?php session_start(); include &#x27;config.php&#x27;; ?&gt;&lt;?php    if(!isset($_SE...
+        1. (web) ezrc&lt;?php session_start(); include &#39;config.php&#39;; ?&gt;
+&lt;?php
+    if(!isset($_SESSION[&#39;id&#39;]))&#123;
+        header(&#39;Location: ./login.html&#39;);
+        exit;
+   ...
       
     
   </div>
@@ -544,7 +553,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. web(5shared)12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;?phprequire_once &#x27;lib.php&#x27;;session_start();$session = md5(session_id());$upload...
+        1. web(5shared)&lt;?php
+
+require_once &#39;lib.php&#39;;
+
+session_start();
+$session = md5(session_id());
+$uploaddir = __DIR__ . &quot;/~uploads/&#123;$session&#125;/&quot;;
+
+createDirectory(__DIR__...
       
     
   </div>
@@ -588,7 +605,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       
         간단한 버전이라서 쓰는 사람에 맞게 적절히 수정하면 된다.
-12345678910111213141516FROM ubuntu:18.04ENV DEBIAN_FRONTEND=noninteractiveENV TERM=linuxRUN apt-get update -yRUN apt-get install apache2 -yRUN apt-get install libap...
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=linux
+
+RUN apt-get update -y
+RUN apt-get install apache2 -y
+RUN apt-get install libapache2-mod-php -y...
       
     
   </div>
@@ -777,8 +801,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
 
-  
-
 
 </aside>
 
@@ -806,42 +828,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -977,6 +963,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1352,6 +1340,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

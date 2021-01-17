@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -390,54 +390,181 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><p>OS : Ubuntu 16.04 Desktop(<a target="_blank" rel="noopener" href="http://old-releases.ubuntu.com/releases/16.04.4/">http://old-releases.ubuntu.com/releases/16.04.4/</a>)</p>
 <p>Canvas LMS - Open Source : <a target="_blank" rel="noopener" href="https://github.com/instructure/canvas-lms">https://github.com/instructure/canvas-lms</a></p>
-<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><h3 id="postgresql-설치"><a href="#postgresql-설치" class="headerlink" title="postgresql 설치"></a>postgresql 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install postgresql-9.5</span><br></pre></td></tr></table></figure>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><h3 id="postgresql-설치"><a href="#postgresql-설치" class="headerlink" title="postgresql 설치"></a>postgresql 설치</h3><pre><code class="bash">$ sudo apt-get install postgresql-9.5</code></pre>
 <hr>
-<h3 id="관리자-계정-생성"><a href="#관리자-계정-생성" class="headerlink" title="관리자 계정 생성"></a>관리자 계정 생성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser sysadmin</span><br></pre></td></tr></table></figure>
+<h3 id="관리자-계정-생성"><a href="#관리자-계정-생성" class="headerlink" title="관리자 계정 생성"></a>관리자 계정 생성</h3><pre><code class="bash">adduser sysadmin</code></pre>
 <hr>
-<h3 id="sysadmin-계정에-대한-Root-권한-부여"><a href="#sysadmin-계정에-대한-Root-권한-부여" class="headerlink" title="sysadmin 계정에 대한 Root 권한 부여"></a>sysadmin 계정에 대한 Root 권한 부여</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">visudo → User Privileges → sysadmin ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<h3 id="sysadmin-계정에-대한-Root-권한-부여"><a href="#sysadmin-계정에-대한-Root-권한-부여" class="headerlink" title="sysadmin 계정에 대한 Root 권한 부여"></a>sysadmin 계정에 대한 Root 권한 부여</h3><pre><code class="bash">visudo → User Privileges → sysadmin ALL=(ALL:ALL) ALL</code></pre>
 <hr>
-<h3 id="sysadmin-계정으로-사용자-변경"><a href="#sysadmin-계정으로-사용자-변경" class="headerlink" title="sysadmin 계정으로 사용자 변경"></a>sysadmin 계정으로 사용자 변경</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su sysadmin</span><br></pre></td></tr></table></figure>
+<h3 id="sysadmin-계정으로-사용자-변경"><a href="#sysadmin-계정으로-사용자-변경" class="headerlink" title="sysadmin 계정으로 사용자 변경"></a>sysadmin 계정으로 사용자 변경</h3><pre><code class="bash">su sysadmin</code></pre>
 <hr>
-<h3 id="postgres-설정"><a href="#postgres-설정" class="headerlink" title="postgres 설정"></a>postgres 설정</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo -u postgres createuser canvas --no-createdb \</span><br><span class="line">   --no-superuser --no-createrole --pwprompt</span><br><span class="line"></span><br><span class="line">sudo -u postgres createdb canvas_production --owner=canvas</span><br></pre></td></tr></table></figure>
+<h3 id="postgres-설정"><a href="#postgres-설정" class="headerlink" title="postgres 설정"></a>postgres 설정</h3><pre><code class="bash">sudo -u postgres createuser canvas --no-createdb \
+   --no-superuser --no-createrole --pwprompt
+
+sudo -u postgres createdb canvas_production --owner=canvas</code></pre>
 <hr>
-<h3 id="git-설정"><a href="#git-설정" class="headerlink" title="git 설정"></a>git 설정</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/instructure/canvas-lms.git canvas</span><br><span class="line"><span class="built_in">cd</span> canvas</span><br><span class="line">git checkout stable</span><br></pre></td></tr></table></figure>
+<h3 id="git-설정"><a href="#git-설정" class="headerlink" title="git 설정"></a>git 설정</h3><pre><code class="bash">sudo apt-get install git-core
+git clone https://github.com/instructure/canvas-lms.git canvas
+cd canvas
+git checkout stable</code></pre>
 <hr>
-<h3 id="installation-1"><a href="#installation-1" class="headerlink" title="installation(1)"></a>installation(1)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /var/canvas</span><br><span class="line">sudo chown -R sysadmin /var/canvas</span><br><span class="line"></span><br><span class="line">$(canvas) cp -av . /var/canvas</span><br></pre></td></tr></table></figure>
+<h3 id="installation-1"><a href="#installation-1" class="headerlink" title="installation(1)"></a>installation(1)</h3><pre><code class="bash">sudo mkdir -p /var/canvas
+sudo chown -R sysadmin /var/canvas
+
+$(canvas) cp -av . /var/canvas</code></pre>
 <hr>
-<h3 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:brightbox/ruby-ng</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<h3 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h3><pre><code class="bash">sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:brightbox/ruby-ng
+sudo apt-get update</code></pre>
 <hr>
-<h3 id="ruby2-4-install"><a href="#ruby2-4-install" class="headerlink" title="ruby2.4 install"></a>ruby2.4 install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ruby2.4 ruby2.4-dev zlib1g-dev libxml2-dev \</span><br><span class="line">                       libsqlite3-dev postgresql libpq-dev \</span><br><span class="line">                       libxmlsec1-dev curl make g++</span><br></pre></td></tr></table></figure>
+<h3 id="ruby2-4-install"><a href="#ruby2-4-install" class="headerlink" title="ruby2.4 install"></a>ruby2.4 install</h3><pre><code class="bash">sudo apt-get install ruby2.4 ruby2.4-dev zlib1g-dev libxml2-dev \
+                       libsqlite3-dev postgresql libpq-dev \
+                       libxmlsec1-dev curl make g++</code></pre>
 <hr>
-<h3 id="node-js-install"><a href="#node-js-install" class="headerlink" title="node.js install"></a>node.js install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt-get install nodejs</span><br></pre></td></tr></table></figure>
+<h3 id="node-js-install"><a href="#node-js-install" class="headerlink" title="node.js install"></a>node.js install</h3><pre><code class="bash">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install nodejs</code></pre>
 <hr>
-<h3 id="set-sysadmin-postgres-superuser"><a href="#set-sysadmin-postgres-superuser" class="headerlink" title="set sysadmin postgres superuser"></a>set sysadmin postgres superuser</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u postgres createuser <span class="variable">$USER</span></span><br><span class="line">$ sudo -u postgres psql -c <span class="string">&quot;alter user <span class="variable">$USER</span> with superuser&quot;</span> postgres</span><br></pre></td></tr></table></figure>
+<h3 id="set-sysadmin-postgres-superuser"><a href="#set-sysadmin-postgres-superuser" class="headerlink" title="set sysadmin postgres superuser"></a>set sysadmin postgres superuser</h3><pre><code class="bash">$ sudo -u postgres createuser $USER
+$ sudo -u postgres psql -c &quot;alter user $USER with superuser&quot; postgres</code></pre>
 <hr>
-<h3 id="bundler-and-canvas-dependencies"><a href="#bundler-and-canvas-dependencies" class="headerlink" title="bundler and canvas dependencies"></a>bundler and canvas dependencies</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem install bundler --version 1.13.7</span><br><span class="line">$ bundle _1.13.7_ install --path vendor/bundle</span><br></pre></td></tr></table></figure>
+<h3 id="bundler-and-canvas-dependencies"><a href="#bundler-and-canvas-dependencies" class="headerlink" title="bundler and canvas dependencies"></a>bundler and canvas dependencies</h3><pre><code class="bash">$ sudo gem install bundler --version 1.13.7
+$ bundle _1.13.7_ install --path vendor/bundle</code></pre>
 <hr>
-<h3 id="yarn-installation"><a href="#yarn-installation" class="headerlink" title="yarn installation"></a>yarn installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;deb https://dl.yarnpkg.com/debian/ stable main&quot;</span> | sudo tee /etc/apt/sources.list.d/yarn.list</span><br><span class="line">$ sudo apt-get update &amp;&amp; sudo apt-get install yarn=1.10.1-1</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install python</span><br><span class="line">$ yarn install</span><br></pre></td></tr></table></figure>
+<h3 id="yarn-installation"><a href="#yarn-installation" class="headerlink" title="yarn installation"></a>yarn installation</h3><pre><code class="bash">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+$ echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list
+$ sudo apt-get update &amp;&amp; sudo apt-get install yarn=1.10.1-1
+
+$ sudo apt-get install python
+$ yarn install</code></pre>
 <hr>
-<h3 id="canvas-default-config"><a href="#canvas-default-config" class="headerlink" title="canvas default config"></a>canvas default config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> config <span class="keyword">in</span> amazon_s3 database \</span><br><span class="line">  delayed_jobs domain file_store outgoing_mail security external_migration; \</span><br><span class="line">  <span class="keyword">do</span> cp config/<span class="variable">$config</span>.yml.example config/<span class="variable">$config</span>.yml; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3 id="canvas-default-config"><a href="#canvas-default-config" class="headerlink" title="canvas default config"></a>canvas default config</h3><pre><code class="bash">$ for config in amazon_s3 database \
+  delayed_jobs domain file_store outgoing_mail security external_migration; \
+  do cp config/$config.yml.example config/$config.yml; done</code></pre>
 <hr>
-<h3 id="dynamic-setting"><a href="#dynamic-setting" class="headerlink" title="dynamic setting"></a>dynamic setting</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/dynamic_settings.yml.example config/dynamic_settings.yml</span><br><span class="line">$ (check) nano config/dynamic_settings.yml (vi로 진행해도 상관 없음)</span><br></pre></td></tr></table></figure>
+<h3 id="dynamic-setting"><a href="#dynamic-setting" class="headerlink" title="dynamic setting"></a>dynamic setting</h3><pre><code class="bash">$ cp config/dynamic_settings.yml.example config/dynamic_settings.yml
+$ (check) nano config/dynamic_settings.yml (vi로 진행해도 상관 없음)</code></pre>
 <hr>
-<h3 id="database-setting"><a href="#database-setting" class="headerlink" title="database setting"></a>database setting</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/database.yml.example config/database.yml</span><br><span class="line">$ (check) nano config/database.yml (vi로 진행해도 상관 없음)</span><br><span class="line"></span><br><span class="line"><span class="comment"># do not create a queue: section for your test environment</span></span><br><span class="line"><span class="built_in">test</span>:</span><br><span class="line">  adapter: postgresql</span><br><span class="line">  encoding: utf8</span><br><span class="line">  database: canvas_test</span><br><span class="line">  host: localhost</span><br><span class="line">  username: canvas</span><br><span class="line">  timeout: 5000</span><br><span class="line"></span><br><span class="line">development:</span><br><span class="line">  adapter: postgresql</span><br><span class="line">  encoding: utf8</span><br><span class="line">  database: canvas_development</span><br><span class="line">  timeout: 5000</span><br><span class="line"></span><br><span class="line">production:</span><br><span class="line">  adapter: postgresql</span><br><span class="line">  encoding: utf8</span><br><span class="line">  database: canvas_production</span><br><span class="line">  host: localhost</span><br><span class="line">  username: canvas</span><br><span class="line">  password: your_password</span><br><span class="line">  timeout: 5000</span><br></pre></td></tr></table></figure>
+<h3 id="database-setting"><a href="#database-setting" class="headerlink" title="database setting"></a>database setting</h3><pre><code class="bash">$ cp config/database.yml.example config/database.yml
+$ (check) nano config/database.yml (vi로 진행해도 상관 없음)
+
+# do not create a queue: section for your test environment
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_test
+  host: localhost
+  username: canvas
+  timeout: 5000
+
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_development
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_production
+  host: localhost
+  username: canvas
+  password: your_password
+  timeout: 5000</code></pre>
 <hr>
-<h3 id="outgoing-mail-config"><a href="#outgoing-mail-config" class="headerlink" title="outgoing mail config"></a>outgoing mail config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/outgoing_mail.yml.example config/outgoing_mail.yml</span><br><span class="line">$ (check) nano config/outgoing_mail.yml (vi로 진행해도 상관 없음)</span><br></pre></td></tr></table></figure>
+<h3 id="outgoing-mail-config"><a href="#outgoing-mail-config" class="headerlink" title="outgoing mail config"></a>outgoing mail config</h3><pre><code class="bash">$ cp config/outgoing_mail.yml.example config/outgoing_mail.yml
+$ (check) nano config/outgoing_mail.yml (vi로 진행해도 상관 없음)</code></pre>
 <hr>
-<h3 id="url-config"><a href="#url-config" class="headerlink" title="url config"></a>url config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/domain.yml.example config/domain.yml</span><br><span class="line">$ (check) nano config/domain.yml (vi로 진행해도 상관 없음)</span><br><span class="line"></span><br><span class="line">production:</span><br><span class="line">  domain: <span class="string">&quot;canvas.jhyeon.xyz&quot;</span></span><br><span class="line">  <span class="comment"># whether this instance of canvas is served over ssl (https) or not</span></span><br><span class="line">  <span class="comment"># defaults to true for production, false for test/development</span></span><br><span class="line">  ssl: <span class="literal">false</span></span><br><span class="line">  <span class="comment"># files_domain: &quot;canvasfiles.example.com&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="url-config"><a href="#url-config" class="headerlink" title="url config"></a>url config</h3><pre><code class="bash">$ cp config/domain.yml.example config/domain.yml
+$ (check) nano config/domain.yml (vi로 진행해도 상관 없음)
+
+production:
+  domain: &quot;canvas.jhyeon.xyz&quot;
+  # whether this instance of canvas is served over ssl (https) or not
+  # defaults to true for production, false for test/development
+  ssl: false
+  # files_domain: &quot;canvasfiles.example.com&quot;</code></pre>
 <hr>
-<h3 id="security-config"><a href="#security-config" class="headerlink" title="security config"></a>security config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ cp config/security.yml.example config/security.yml</span><br><span class="line">$ nano config/security.yml (vi로 진행해도 상관 없음)</span><br><span class="line"></span><br><span class="line">production: &amp;default</span><br><span class="line">  <span class="comment"># replace this with a random string of at least 20 characters</span></span><br><span class="line">  encryption_key: 12345123451234512345</span><br><span class="line">  lti_iss: <span class="string">&#x27;https://canvas.instructure.com&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="security-config"><a href="#security-config" class="headerlink" title="security config"></a>security config</h3><pre><code class="bash">$ cp config/security.yml.example config/security.yml
+$ nano config/security.yml (vi로 진행해도 상관 없음)
+
+production: &amp;default
+  # replace this with a random string of at least 20 characters
+  encryption_key: 12345123451234512345
+  lti_iss: &#39;https://canvas.instructure.com&#39;</code></pre>
 <hr>
-<h3 id="generate-assets"><a href="#generate-assets" class="headerlink" title="generate assets"></a>generate assets</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ (/var/canvas) mkdir -p <span class="built_in">log</span> tmp/pids public/assets app/stylesheets/brandable_css_brands</span><br><span class="line">$ (/var/canvas) touch app/stylesheets/_brandable_variables_defaults_autogenerated.scss</span><br><span class="line">$ (/var/canvas) touch Gemfile.lock</span><br><span class="line">$ (/var/canvas) touch <span class="built_in">log</span>/production.log</span><br><span class="line">$ (/var/canvas) sudo adduser --disabled-password --gecos canvas canvasuser</span><br><span class="line">$ (/var/canvas) sudo chown -R canvasuser config/environment.rb <span class="built_in">log</span> tmp public/assets \</span><br><span class="line">                              app/stylesheets/_brandable_variables_defaults_autogenerated.scss \</span><br><span class="line">                              app/stylesheets/brandable_css_brands Gemfile.lock config.ru</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ (/var/canvas) yarn install</span><br><span class="line">$ (/var/canvas) RAILS_ENV=production bundle <span class="built_in">exec</span> rake canvas:compile_assets</span><br><span class="line">$ (/var/canvas) sudo chown -R canvasuser public/dist/brandable_css</span><br><span class="line"></span><br><span class="line">$ (/var/canvas) RAILS_ENV=production bundle <span class="built_in">exec</span> rake brand_configs:generate_and_upload_all</span><br><span class="line"></span><br><span class="line">* VM 메모리 최소 8GB 메모리 구성 필요합니다.</span><br></pre></td></tr></table></figure>
+<h3 id="generate-assets"><a href="#generate-assets" class="headerlink" title="generate assets"></a>generate assets</h3><pre><code class="bash">$ (/var/canvas) mkdir -p log tmp/pids public/assets app/stylesheets/brandable_css_brands
+$ (/var/canvas) touch app/stylesheets/_brandable_variables_defaults_autogenerated.scss
+$ (/var/canvas) touch Gemfile.lock
+$ (/var/canvas) touch log/production.log
+$ (/var/canvas) sudo adduser --disabled-password --gecos canvas canvasuser
+$ (/var/canvas) sudo chown -R canvasuser config/environment.rb log tmp public/assets \
+                              app/stylesheets/_brandable_variables_defaults_autogenerated.scss \
+                              app/stylesheets/brandable_css_brands Gemfile.lock config.ru
+
+
+$ (/var/canvas) yarn install
+$ (/var/canvas) RAILS_ENV=production bundle exec rake canvas:compile_assets
+$ (/var/canvas) sudo chown -R canvasuser public/dist/brandable_css
+
+$ (/var/canvas) RAILS_ENV=production bundle exec rake brand_configs:generate_and_upload_all
+
+* VM 메모리 최소 8GB 메모리 구성 필요합니다.</code></pre>
 <hr>
-<h3 id="database-population"><a href="#database-population" class="headerlink" title="database population"></a>database population</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RAILS_ENV=production bundle <span class="built_in">exec</span> rake db:initial_setup</span><br></pre></td></tr></table></figure>
+<h3 id="database-population"><a href="#database-population" class="headerlink" title="database population"></a>database population</h3><pre><code class="bash">RAILS_ENV=production bundle exec rake db:initial_setup</code></pre>
 <hr>
-<h3 id="apache2-installation"><a href="#apache2-installation" class="headerlink" title="apache2 installation"></a>apache2 installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install passenger libapache2-mod-passenger apache2</span><br><span class="line">$ sudo a2enmod rewrite</span><br><span class="line">$ sudo a2enmod passenger</span><br><span class="line">$ sudo a2enmod ssl</span><br><span class="line">$ sudo unlink /etc/apache2/sites-enabled/000-default.conf</span><br><span class="line">아래 단계 완료 후 수행</span><br><span class="line">$ sudo a2ensite canvas</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  ServerName canvas.jhyeon.xyz</span><br><span class="line">  ServerAlias canvasfiles.canvas.jhyeon.xyz</span><br><span class="line">  ServerAdmin admin@canvas.jhyeon.xyz</span><br><span class="line">  DocumentRoot /var/canvas/public</span><br><span class="line">  ErrorLog /var/<span class="built_in">log</span>/apache2/canvas_errors.log</span><br><span class="line">  LogLevel warn</span><br><span class="line">  CustomLog /var/<span class="built_in">log</span>/apache2/canvas_access.log combined</span><br><span class="line">  SetEnv RAILS_ENV production</span><br><span class="line">  &lt;Directory /var/canvas/public&gt;</span><br><span class="line">    Options All</span><br><span class="line">    AllowOverride All</span><br><span class="line">    Require all granted</span><br><span class="line">    Options -MultiViews</span><br><span class="line">  &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="apache2-installation"><a href="#apache2-installation" class="headerlink" title="apache2 installation"></a>apache2 installation</h3><pre><code class="bash">$ sudo apt-get install passenger libapache2-mod-passenger apache2
+$ sudo a2enmod rewrite
+$ sudo a2enmod passenger
+$ sudo a2enmod ssl
+$ sudo unlink /etc/apache2/sites-enabled/000-default.conf
+아래 단계 완료 후 수행
+$ sudo a2ensite canvas</code></pre>
+<pre><code class="bash">&lt;VirtualHost *:80&gt;
+  ServerName canvas.jhyeon.xyz
+  ServerAlias canvasfiles.canvas.jhyeon.xyz
+  ServerAdmin admin@canvas.jhyeon.xyz
+  DocumentRoot /var/canvas/public
+  ErrorLog /var/log/apache2/canvas_errors.log
+  LogLevel warn
+  CustomLog /var/log/apache2/canvas_access.log combined
+  SetEnv RAILS_ENV production
+  &lt;Directory /var/canvas/public&gt;
+    Options All
+    AllowOverride All
+    Require all granted
+    Options -MultiViews
+  &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
 <hr>
-<h3 id="cache-config"><a href="#cache-config" class="headerlink" title="cache config"></a>cache config</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository ppa:chris-lea/redis-server</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install redis-server</span><br><span class="line"></span><br><span class="line">$ sudo cp config/cache_store.yml.example config/cache_store.yml</span><br><span class="line">$ sudo vi config/cache_store.yml</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>:</span><br><span class="line">  cache_store: redis_store</span><br><span class="line">development:</span><br><span class="line">  cache_store: redis_store</span><br><span class="line">production:</span><br><span class="line">  cache_store: redis_store</span><br><span class="line"></span><br><span class="line">$ sudo chown canvasuser config/cache_store.yml</span><br><span class="line"></span><br><span class="line">$ sudo cp config/redis.yml.example config/redis.yml</span><br><span class="line">$ sudo vi config/redis.yml</span><br><span class="line"></span><br><span class="line">production:</span><br><span class="line">  servers:</span><br><span class="line">    - redis://localhost</span><br><span class="line"></span><br><span class="line">$ sudo chown canvasuser config/redis.yml</span><br></pre></td></tr></table></figure>
+<h3 id="cache-config"><a href="#cache-config" class="headerlink" title="cache config"></a>cache config</h3><pre><code class="bash">$ sudo add-apt-repository ppa:chris-lea/redis-server
+$ sudo apt-get update
+$ sudo apt-get install redis-server
+
+$ sudo cp config/cache_store.yml.example config/cache_store.yml
+$ sudo vi config/cache_store.yml
+
+test:
+  cache_store: redis_store
+development:
+  cache_store: redis_store
+production:
+  cache_store: redis_store
+
+$ sudo chown canvasuser config/cache_store.yml
+
+$ sudo cp config/redis.yml.example config/redis.yml
+$ sudo vi config/redis.yml
+
+production:
+  servers:
+    - redis://localhost
+
+$ sudo chown canvasuser config/redis.yml</code></pre>
 <hr>
-<h3 id="start-server"><a href="#start-server" class="headerlink" title="start server"></a>start server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ln -s /var/canvas/script/canvas_init /etc/init.d/canvas_init</span><br><span class="line">$ sudo update-rc.d canvas_init defaults</span><br><span class="line">$ sudo /etc/init.d/canvas_init start</span><br><span class="line">$ sudo /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure>
+<h3 id="start-server"><a href="#start-server" class="headerlink" title="start server"></a>start server</h3><pre><code class="bash">$ sudo ln -s /var/canvas/script/canvas_init /etc/init.d/canvas_init
+$ sudo update-rc.d canvas_init defaults
+$ sudo /etc/init.d/canvas_init start
+$ sudo /etc/init.d/apache2 restart</code></pre>
 <hr>
 <h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><ul>
 <li><p><a target="_blank" rel="noopener" href="https://github.com/instructure/canvas-lms/wiki/Production-Start">https://github.com/instructure/canvas-lms/wiki/Production-Start</a></p>
@@ -452,6 +579,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='footer'>
       
       
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
+      
       
       
     </div>
@@ -464,10 +599,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:29:21+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-27T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditJun 27, 2020</p>
   </a>
 </div>
 
@@ -587,42 +722,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -758,6 +857,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1133,6 +1234,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 

