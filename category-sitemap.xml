@@ -10,7 +10,7 @@
 
     <url>
         <loc>https://blog.jhyeon.dev/categories/Docx/</loc>
-        <lastmod>2021-01-17T10:09:55.728Z</lastmod>
+        <lastmod>2021-01-17T10:17:21.447Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -46,13 +46,6 @@
     <url>
         <loc>https://blog.jhyeon.dev/categories/Pwnable/</loc>
         <lastmod>2021-01-17T09:00:21.607Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/categories/Docker/</loc>
-        <lastmod>2021-01-17T08:59:45.771Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

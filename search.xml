@@ -4,6 +4,87 @@
   
     
     <entry>
+      <title>2021년 IT/보안 분야 전망/동향 자료</title>
+      <link href="2021/01/12/newit-210112/"/>
+      <url>2021/01/12/newit-210112/</url>
+      
+        <content type="html"><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53">https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 정보보안 </tag>
+            
+            <tag> 최신동향 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Ubuntu 20.04 Docker Installation</title>
+      <link href="2021/01/08/docker-install-210108/"/>
+      <url>2021/01/08/docker-install-210108/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><ul><li>우분투 패키지 업데이트를 진행합니다.</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h3><ul><li>도커 필수 라이브러리를 설치합니다.</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common</span><br></pre></td></tr></table></figure><h3 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h3><ul><li>GPG KEY 등록</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure><h3 id="Step-4"><a href="#Step-4" class="headerlink" title="Step 4"></a>Step 4</h3><ul><li>Repositry 생성</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line"><span class="string">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string"><span class="subst">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">stable&quot;</span></span><br></pre></td></tr></table></figure><h3 id="Step-5"><a href="#Step-5" class="headerlink" title="Step 5"></a>Step 5</h3><ul><li>도커 설치</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install docker</span><br><span class="line">sudo apt install docker-compose</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Suricata 설치 &amp; 기초</title>
+      <link href="2021/01/08/suricata-210108/"/>
+      <url>2021/01/08/suricata-210108/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Suricata란"><a href="#Suricata란" class="headerlink" title="Suricata란?"></a>Suricata란?</h3><p>IDS(Intrusion Detection System) 시스템으로, 실시간 IDS, IPS, NSM(Network Security Monitoring) 및 pcap 캡처를 지원한다.</p><h3 id="Suricata-Installation"><a href="#Suricata-Installation" class="headerlink" title="Suricata Installation"></a>Suricata Installation</h3><p>아래 설치 가이드는 우분투 20.04 환경에 맞는 설치 방법이다. 18.04는 아마 “sudo apt install suricata”로도 설치가 가능할 것이다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:oisf/suricata-stable</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install suricata</span><br></pre></td></tr></table></figure><h3 id="Suricata-기본-룰-셋-다운로드"><a href="#Suricata-기본-룰-셋-다운로드" class="headerlink" title="Suricata 기본 룰 셋 다운로드"></a>Suricata 기본 룰 셋 다운로드</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo suricata-update</span><br><span class="line">sudo systemctl restart suricata</span><br></pre></td></tr></table></figure><h3 id="테스트-룰-셋"><a href="#테스트-룰-셋" class="headerlink" title="테스트 룰 셋"></a>테스트 룰 셋</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert tcp any any -&gt; any 80 (msg:<span class="string">&quot;Connection to sites.com&quot;</span>; content:<span class="string">&quot;sites.com&quot;</span>; sid:1001; rev:1;)</span><br></pre></td></tr></table></figure><p>위와 같이 테스트 룰 셋을 짜고 저장하면 80포트로 tcp통신하는 sites.com에 대한 패킷을 로그에 찍을 수 있다.</p><p>로그 파일은 “/var/log/suricata/fast.log”에서 볼 수 있고 tail 명령어로 실시간으로 찍어볼 수도 있다.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Suricata </tag>
+            
+            <tag> Network </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Memory Mitigation - Canary</title>
       <link href="2021/01/02/mitigation-210102/"/>
       <url>2021/01/02/mitigation-210102/</url>
@@ -176,7 +257,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#106;&#x68;&#121;&#101;&#111;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#x6f;&#x2e;&#99;&#111;&#x6d;">&#x73;&#x74;&#106;&#x68;&#121;&#101;&#111;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#x6f;&#x2e;&#99;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#x6a;&#x68;&#x79;&#x65;&#x6f;&#110;&#64;&#x6b;&#97;&#x6b;&#x61;&#x6f;&#46;&#x63;&#111;&#x6d;">&#x73;&#116;&#x6a;&#x68;&#x79;&#x65;&#x6f;&#110;&#64;&#x6b;&#97;&#x6b;&#x61;&#x6f;&#46;&#x63;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
@@ -752,12 +833,14 @@
       
       <categories>
           
-          <category> Docker </category>
+          <category> Docx </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Docker </tag>
             
             <tag> Dockerfile </tag>
             
@@ -1029,12 +1112,14 @@
       
       <categories>
           
-          <category> Docker </category>
+          <category> Docx </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Docker </tag>
             
             <tag> Dockerfile </tag>
             

