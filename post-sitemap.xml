@@ -9,8 +9,16 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/2020/04/10/zer0ptsctf-200410/</loc>
+        <lastmod>2021-01-17T08:28:38.313Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/2020/04/10/angstormctf-200410/</loc>
-        <lastmod>2021-01-17T08:24:01.102Z</lastmod>
+        <lastmod>2021-01-17T08:24:48.651Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
