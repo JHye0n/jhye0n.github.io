@@ -9,8 +9,32 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/2020/09/10/c-stl-200910/</loc>
+        <lastmod>2021-01-17T09:35:17.095Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/2020/06/13/swmodel-200613/</loc>
+        <lastmod>2021-01-17T09:29:36.561Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/2020/06/27/canvas-install-200627/</loc>
-        <lastmod>2021-01-17T09:25:18.126Z</lastmod>
+        <lastmod>2021-01-17T09:29:21.026Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/2020/08/18/sstf-200818/</loc>
+        <lastmod>2021-01-17T09:27:36.566Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -27,14 +51,6 @@
     <url>
         <loc>https://blog.jhyeon.dev/2020/06/16/python-pickle-200616/</loc>
         <lastmod>2021-01-17T09:16:49.211Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/2020/06/13/swmodel-200613/</loc>
-        <lastmod>2021-01-17T09:14:19.056Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
