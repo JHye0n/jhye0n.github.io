@@ -3,8 +3,92 @@
 
 
     <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-websec-fr-Writeup/</loc>
-        <lastmod>2021-01-17T08:57:11.276Z</lastmod>
+        <loc>https://blog.jhyeon.dev/tags/Web/</loc>
+        <lastmod>2021-01-17T09:01:22.638Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/XSS/</loc>
+        <lastmod>2021-01-17T09:01:08.490Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Writeup/</loc>
+        <lastmod>2021-01-17T09:01:08.490Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/CheatSheet/</loc>
+        <lastmod>2021-01-17T09:00:58.633Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/ROP/</loc>
+        <lastmod>2021-01-17T09:00:21.607Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Exploitation/</loc>
+        <lastmod>2021-01-17T09:00:13.268Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Shellcode/</loc>
+        <lastmod>2021-01-17T09:00:13.268Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Mprotect/</loc>
+        <lastmod>2021-01-17T09:00:13.268Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Pwn/</loc>
+        <lastmod>2021-01-17T09:00:13.268Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/PHP/</loc>
+        <lastmod>2021-01-17T08:59:57.921Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/JWT/</loc>
+        <lastmod>2021-01-17T08:59:51.832Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Dockerfile/</loc>
+        <lastmod>2021-01-17T08:59:45.771Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/websec-fr/</loc>
+        <lastmod>2021-01-17T08:59:08.661Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -17,78 +101,8 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-XSS-Writeup/</loc>
-        <lastmod>2021-01-17T08:45:29.928Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-Wargame/</loc>
-        <lastmod>2021-01-17T08:41:50.555Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-XSS-CheatSheet/</loc>
-        <lastmod>2021-01-17T08:41:42.050Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-JWT/</loc>
-        <lastmod>2021-01-17T08:41:27.537Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-PHP/</loc>
-        <lastmod>2021-01-17T08:41:21.776Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Pwn-Mprotect-Shellcode-Exploitation/</loc>
-        <lastmod>2021-01-17T08:41:18.525Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Dockerfile-Docker/</loc>
-        <lastmod>2021-01-17T08:35:55.650Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-CTF/</loc>
-        <lastmod>2021-01-17T08:30:09.452Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Pwn-ROP/</loc>
-        <lastmod>2021-01-17T08:16:55.377Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.jhyeon.dev/tags/Tools/</loc>
         <lastmod>2021-01-17T08:08:00.797Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/CTF-Web/</loc>
-        <lastmod>2021-01-17T08:07:13.718Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

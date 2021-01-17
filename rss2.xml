@@ -9,7 +9,7 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sun, 17 Jan 2021 08:51:40 GMT</pubDate>
+    <pubDate>Sun, 17 Jan 2021 08:59:01 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -31,7 +31,11 @@
       <category domain="https://blog.jhyeon.dev/categories/Wargame/">Wargame</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-websec-fr-Writeup/">Web, websec.fr, Writeup</category>
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/websec-fr/">websec.fr</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Writeup/">Writeup</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/05/14/websecbaby-200514/#disqus_thread</comments>
@@ -57,7 +61,11 @@
       <category domain="https://blog.jhyeon.dev/categories/Wargame/">Wargame</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-websec-fr-Writeup/">Web, websec.fr, Writeup</category>
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/websec-fr/">websec.fr</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Writeup/">Writeup</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/05/14/webseceasy-200514/#disqus_thread</comments>
@@ -112,7 +120,7 @@
       <category domain="https://blog.jhyeon.dev/categories/Docker/">Docker</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Dockerfile-Docker/">Dockerfile, Docker</category>
+      <category domain="https://blog.jhyeon.dev/tags/Dockerfile/">Dockerfile</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/22/dockerset-200422/#disqus_thread</comments>
@@ -138,7 +146,7 @@
       <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-JWT/">Web, JWT</category>
+      <category domain="https://blog.jhyeon.dev/tags/JWT/">JWT</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/22/jwtinjection-200422/#disqus_thread</comments>
@@ -164,7 +172,7 @@
       <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-PHP/">Web, PHP</category>
+      <category domain="https://blog.jhyeon.dev/tags/PHP/">PHP</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/22/phpwrapper-200422/#disqus_thread</comments>
@@ -191,7 +199,13 @@
       <category domain="https://blog.jhyeon.dev/categories/Pwnable/">Pwnable</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Pwn-Mprotect-Shellcode-Exploitation/">Pwn, Mprotect, Shellcode, Exploitation</category>
+      <category domain="https://blog.jhyeon.dev/tags/Pwn/">Pwn</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Mprotect/">Mprotect</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Shellcode/">Shellcode</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Exploitation/">Exploitation</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/22/pwn-mprotect-200422/#disqus_thread</comments>
@@ -218,7 +232,9 @@
       <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-XSS-Writeup/">Web, XSS, Writeup</category>
+      <category domain="https://blog.jhyeon.dev/tags/Writeup/">Writeup</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/XSS/">XSS</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/22/xssgame-200422/#disqus_thread</comments>
@@ -244,7 +260,7 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-CTF/">Web, CTF</category>
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/10/angstormctf-200410/#disqus_thread</comments>
@@ -270,7 +286,7 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-CTF/">Web, CTF</category>
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/10/zer0ptsctf-200410/#disqus_thread</comments>
@@ -298,7 +314,7 @@
       <category domain="https://blog.jhyeon.dev/categories/Wargame/">Wargame</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-Wargame/">Web, Wargame</category>
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/04/10/zixemchall-200410/#disqus_thread</comments>
@@ -324,7 +340,7 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-CTF/">Web, CTF</category>
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/02/23/trustctf-200223/#disqus_thread</comments>
@@ -350,7 +366,7 @@
       <category domain="https://blog.jhyeon.dev/categories/Pwnable/">Pwnable</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Pwn-ROP/">Pwn, ROP</category>
+      <category domain="https://blog.jhyeon.dev/tags/ROP/">ROP</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/02/10/rop-instruction-200210/#disqus_thread</comments>
@@ -374,7 +390,7 @@
       
       
       
-      <category domain="https://blog.jhyeon.dev/tags/CTF-Web/">CTF, Web</category>
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/02/06/dimictf-200206/#disqus_thread</comments>
@@ -401,7 +417,7 @@
       <category domain="https://blog.jhyeon.dev/categories/Docker/">Docker</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Dockerfile-Docker/">Dockerfile, Docker</category>
+      <category domain="https://blog.jhyeon.dev/tags/Dockerfile/">Dockerfile</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/02/05/dockerfile-200205/#disqus_thread</comments>
@@ -454,7 +470,9 @@
       <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web-XSS-CheatSheet/">Web, XSS, CheatSheet</category>
+      <category domain="https://blog.jhyeon.dev/tags/XSS/">XSS</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/CheatSheet/">CheatSheet</category>
       
       
       <comments>https://blog.jhyeon.dev/2020/02/05/xsscheatsheet-200205/#disqus_thread</comments>
