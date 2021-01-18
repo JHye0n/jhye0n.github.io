@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post focus' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
+    <img no-lazy src="/img/header/cat.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>May 14, 2020</p>
+    <p>Date : May 14, 2020</p>
   </a>
 </div>
 
@@ -378,6 +378,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="websec.fr babysteps Write up" data-path="/2020/05/14/websecbaby-200514/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
 
           
         
@@ -388,123 +399,30 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><pre><code class="php">class LevelOne &#123;
-    public function doQuery($injection) &#123;
-        $pdo = new SQLite3(&#39;database.db&#39;, SQLITE3_OPEN_READONLY);
-
-        $query = &#39;SELECT id,username FROM users WHERE id=&#39; . $injection . &#39; LIMIT 1&#39;;
-        $getUsers = $pdo-&gt;query($query);
-        $users = $getUsers-&gt;fetchArray(SQLITE3_ASSOC);
-
-        if ($users) &#123;
-            return $users;
-        &#125;
-
-        return false;
-    &#125;
-&#125;</code></pre>
+  <h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LevelOne</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doQuery</span>(<span class="hljs-params"><span class="hljs-variable">$injection</span></span>) </span>&#123;<br>        <span class="hljs-variable">$pdo</span> = <span class="hljs-keyword">new</span> SQLite3(<span class="hljs-string">&#x27;database.db&#x27;</span>, SQLITE3_OPEN_READONLY);<br>        <br>        <span class="hljs-variable">$query</span> = <span class="hljs-string">&#x27;SELECT id,username FROM users WHERE id=&#x27;</span> . <span class="hljs-variable">$injection</span> . <span class="hljs-string">&#x27; LIMIT 1&#x27;</span>;<br>        <span class="hljs-variable">$getUsers</span> = <span class="hljs-variable">$pdo</span>-&gt;query(<span class="hljs-variable">$query</span>);<br>        <span class="hljs-variable">$users</span> = <span class="hljs-variable">$getUsers</span>-&gt;fetchArray(SQLITE3_ASSOC);<br><br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$users</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable">$users</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>문제 풀이의 핵심적인 부분만 추려내서 보자.</p>
-<pre><code class="sql">$query = &#39;SELECT id,username FROM users WHERE id=&#39; . $injection . &#39; LIMIT 1&#39;;</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">$query <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SELECT id,username FROM users WHERE id=&#x27;</span> . $injection . <span class="hljs-string">&#x27; LIMIT 1&#x27;</span>;<br></code></pre></td></tr></table></figure>
 <p>일단 쿼리문의 형태는 다음과 같다, $injection 이 부분에 입력하는 데이터가 들어가게 된다.</p>
 <p>예를 들면 1을 입력했을 때 where id=1 limit 1과 같은 구조를 가질 것 이다.</p>
 <p>먼저 해당 문제는 sqlite3 를 사용하는 문제이기 때문에 테이블의 구조를 union 연산자로 뽑아보자.</p>
 <p>table structure –&gt; 1 union select 1, sql from sqlite_master– -</p>
 <p>그러면 아래와 같이 결과를 출력해줄 것 이다.</p>
-<pre><code class="sql">id -&gt; 1
-username -&gt; CREATE TABLE users(id int(7), username varchar(255), password varchar(255))</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">id <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span><br>username <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> users(id <span class="hljs-type">int</span>(<span class="hljs-number">7</span>), username <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>), password <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>))<br></code></pre></td></tr></table></figure>
 <p>테이블 명, 컬럼 구조를 알았으니 그냥 이제 데이터 빼내오면 된다.</p>
 <p>password –&gt; 1 union select 1, password from users where id=1– -</p>
 <hr>
-<h3 id="2-LEVEL-4"><a href="#2-LEVEL-4" class="headerlink" title="2. LEVEL-4"></a>2. LEVEL-4</h3><pre><code class="php">if (isset ($_COOKIE[&#39;leet_hax0r&#39;])) &#123;
-    $sess_data = unserialize (base64_decode ($_COOKIE[&#39;leet_hax0r&#39;]));
-    try &#123;
-        if (is_array($sess_data) &amp;&amp; $sess_data[&#39;ip&#39;] != $_SERVER[&#39;REMOTE_ADDR&#39;]) &#123;
-            die(&#39;CANT HACK US!!!&#39;);
-        &#125;
-    &#125; catch(Exception $e) &#123;
-        echo $e;
-    &#125;
-&#125; else &#123;
-    $cookie = base64_encode (serialize (array ( &#39;ip&#39; =&gt; $_SERVER[&#39;REMOTE_ADDR&#39;]))) ;
-    setcookie (&#39;leet_hax0r&#39;, $cookie, time () + (86400 * 30));
-&#125;
-
-if (isset ($_REQUEST[&#39;id&#39;]) &amp;&amp; is_numeric ($_REQUEST[&#39;id&#39;])) &#123;
-    try &#123;
-        $sql-&gt;query .= $_REQUEST[&#39;id&#39;];
-    &#125; catch(Exception $e) &#123;
-        echo &#39; Invalid query&#39;;
-    &#125;
-&#125;</code></pre>
-<pre><code class="php">&lt;?php
-
-class SQL &#123;
-    public $query = &#39;&#39;;
-    public $conn;
-    public function __construct() &#123;
-    &#125;
-
-    public function connect() &#123;
-        $this-&gt;conn = new SQLite3 (&quot;database.db&quot;, SQLITE3_OPEN_READONLY);
-    &#125;
-
-    public function SQL_query($query) &#123;
-        $this-&gt;query = $query;
-    &#125;
-
-    public function execute() &#123;
-        return $this-&gt;conn-&gt;query ($this-&gt;query);
-    &#125;
-
-    public function __destruct() &#123;
-        if (!isset ($this-&gt;conn)) &#123;
-            $this-&gt;connect ();
-        &#125;
-
-        $ret = $this-&gt;execute ();
-        if (false !== $ret) &#123;    
-            while (false !== ($row = $ret-&gt;fetchArray (SQLITE3_ASSOC))) &#123;
-                echo &#39;&lt;p class=&quot;well&quot;&gt;&lt;strong&gt;Username:&lt;strong&gt; &#39; . $row[&#39;username&#39;] . &#39;&lt;/p&gt;&#39;;
-            &#125;
-        &#125;
-    &#125;
-&#125;
-?&gt;</code></pre>
+<h3 id="2-LEVEL-4"><a href="#2-LEVEL-4" class="headerlink" title="2. LEVEL-4"></a>2. LEVEL-4</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;leet_hax0r&#x27;</span>])) &#123;<br>    <span class="hljs-variable">$sess_data</span> = unserialize (base64_decode (<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;leet_hax0r&#x27;</span>]));<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">if</span> (is_array(<span class="hljs-variable">$sess_data</span>) &amp;&amp; <span class="hljs-variable">$sess_data</span>[<span class="hljs-string">&#x27;ip&#x27;</span>] != <span class="hljs-variable">$_SERVER</span>[<span class="hljs-string">&#x27;REMOTE_ADDR&#x27;</span>]) &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;CANT HACK US!!!&#x27;</span>);<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span>(<span class="hljs-built_in">Exception</span> <span class="hljs-variable">$e</span>) &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$e</span>;<br>    &#125;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-variable">$cookie</span> = base64_encode (serialize (<span class="hljs-keyword">array</span> ( <span class="hljs-string">&#x27;ip&#x27;</span> =&gt; <span class="hljs-variable">$_SERVER</span>[<span class="hljs-string">&#x27;REMOTE_ADDR&#x27;</span>]))) ;<br>    setcookie (<span class="hljs-string">&#x27;leet_hax0r&#x27;</span>, <span class="hljs-variable">$cookie</span>, time () + (<span class="hljs-number">86400</span> * <span class="hljs-number">30</span>));<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span> (<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;id&#x27;</span>]) &amp;&amp; is_numeric (<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;id&#x27;</span>])) &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-variable">$sql</span>-&gt;query .= <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;id&#x27;</span>];<br>    &#125; <span class="hljs-keyword">catch</span>(<span class="hljs-built_in">Exception</span> <span class="hljs-variable">$e</span>) &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27; Invalid query&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SQL</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$query</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$conn</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>) </span>&#123;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">$this</span>-&gt;conn = <span class="hljs-keyword">new</span> SQLite3 (<span class="hljs-string">&quot;database.db&quot;</span>, SQLITE3_OPEN_READONLY);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SQL_query</span>(<span class="hljs-params"><span class="hljs-variable">$query</span></span>) </span>&#123;<br>        <span class="hljs-keyword">$this</span>-&gt;query = <span class="hljs-variable">$query</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">execute</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;conn-&gt;query (<span class="hljs-keyword">$this</span>-&gt;query);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span> (<span class="hljs-keyword">$this</span>-&gt;conn)) &#123;<br>            <span class="hljs-keyword">$this</span>-&gt;connect ();<br>        &#125;<br>        <br>        <span class="hljs-variable">$ret</span> = <span class="hljs-keyword">$this</span>-&gt;execute ();<br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> !== <span class="hljs-variable">$ret</span>) &#123;    <br>            <span class="hljs-keyword">while</span> (<span class="hljs-literal">false</span> !== (<span class="hljs-variable">$row</span> = <span class="hljs-variable">$ret</span>-&gt;fetchArray (SQLITE3_ASSOC))) &#123;<br>                <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;p class=&quot;well&quot;&gt;&lt;strong&gt;Username:&lt;strong&gt; &#x27;</span> . <span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;username&#x27;</span>] . <span class="hljs-string">&#x27;&lt;/p&gt;&#x27;</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>해당 문제는 PHP Object Injection(Serialize) 문제 이다.</p>
 <p>코드의 실행 흐름을 보면 leet_hax0r 라는 쿠키가 존재하면, $sess_data 변수에 쿠키값을 unserialize 해주고 값을 담는다.</p>
 <p>결론은 SQL 쿼리문을 serialize -&gt; base64_encode 한 다음 쿠키 값을 바꿔주면 원하는 쿼리문을 실행시킬 수가 있다.</p>
 <p>문제와 조건을 맞춰서 seralize화 코드를 짜서 풀었는데 아래와 같다.</p>
-<pre><code class="php">&lt;?php
-class SQL &#123;
-        public $query = &#39;query&#39;;
-        public $conn;
-&#125;
-$sql = new SQL;
-$result = serialize($sql);
-$encode = base64_encode($result);
-echo $encode;
-?&gt;</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SQL</span> </span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$query</span> = <span class="hljs-string">&#x27;query&#x27;</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$conn</span>;<br>&#125;<br><span class="hljs-variable">$sql</span> = <span class="hljs-keyword">new</span> SQL;<br><span class="hljs-variable">$result</span> = serialize(<span class="hljs-variable">$sql</span>);<br><span class="hljs-variable">$encode</span> = base64_encode(<span class="hljs-variable">$result</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$encode</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>table structure –&gt; select id, username from users where id=1 union select 1, sql from sqlite_master– -</p>
 <p>password –&gt; select password as username from users where id=1– -</p>
 <hr>
-<h3 id="3-LEVEL-17"><a href="#3-LEVEL-17" class="headerlink" title="3. LEVEL-17"></a>3. LEVEL-17</h3><pre><code class="php">&lt;?php
-include &quot;flag.php&quot;;
-
-function sleep_rand() &#123; /* I wish php5 had random_int() */
-        $range = 100000;
-        $bytes = (int) (log($range, 2) / 8) + 1;
-        do &#123;  /* Side effect: more random cpu cycles wasted ;) */
-            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
-        &#125; while ($rnd &gt;= $range);
-        usleep($rnd);
-&#125;
-?&gt;</code></pre>
-<pre><code class="php">&lt;?php
-if (! strcasecmp ($_POST[&#39;flag&#39;], $flag))
-echo &#39;&lt;div class=&quot;alert alert-success&quot;&gt;Here is your flag: &lt;mark&gt;&#39; . $flag . &#39;&lt;/mark&gt;.&lt;/div&gt;&#39;;
-else
-echo &#39;&lt;div class=&quot;alert alert-danger&quot;&gt;Invalid flag, sorry.&lt;/div&gt;&#39;;
-?&gt;</code></pre>
+<h3 id="3-LEVEL-17"><a href="#3-LEVEL-17" class="headerlink" title="3. LEVEL-17"></a>3. LEVEL-17</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">include</span> <span class="hljs-string">&quot;flag.php&quot;</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sleep_rand</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">/* I wish php5 had random_int() */</span><br>        <span class="hljs-variable">$range</span> = <span class="hljs-number">100000</span>;<br>        <span class="hljs-variable">$bytes</span> = (<span class="hljs-keyword">int</span>) (log(<span class="hljs-variable">$range</span>, <span class="hljs-number">2</span>) / <span class="hljs-number">8</span>) + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">do</span> &#123;  <span class="hljs-comment">/* Side effect: more random cpu cycles wasted ;) */</span><br>            <span class="hljs-variable">$rnd</span> = hexdec(bin2hex(openssl_random_pseudo_bytes(<span class="hljs-variable">$bytes</span>)));<br>        &#125; <span class="hljs-keyword">while</span> (<span class="hljs-variable">$rnd</span> &gt;= <span class="hljs-variable">$range</span>);<br>        usleep(<span class="hljs-variable">$rnd</span>);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">if</span> (! strcasecmp (<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;flag&#x27;</span>], <span class="hljs-variable">$flag</span>))<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;div class=&quot;alert alert-success&quot;&gt;Here is your flag: &lt;mark&gt;&#x27;</span> . <span class="hljs-variable">$flag</span> . <span class="hljs-string">&#x27;&lt;/mark&gt;.&lt;/div&gt;&#x27;</span>;<br><span class="hljs-keyword">else</span><br><span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;div class=&quot;alert alert-danger&quot;&gt;Invalid flag, sorry.&lt;/div&gt;&#x27;</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>조건문만 보고 바로 strcmp 취약점이라는 것을 알 수 있었다.</p>
 <p>php loose comparison 라고도 부르는데, 참고 자료는 아래를 확인하자.</p>
 <p>즉 $_POST[‘flag’] 부분을 배열로 넘겨주면 된다.</p>
@@ -516,14 +434,7 @@ echo &#39;&lt;div class=&quot;alert alert-danger&quot;&gt;Invalid flag, sorry.&l
 </li>
 </ul>
 <hr>
-<h3 id="4-LEVEL-25"><a href="#4-LEVEL-25" class="headerlink" title="4. LEVEL-25"></a>4. LEVEL-25</h3><pre><code class="php">&lt;?php
-parse_str(parse_url($_SERVER[&#39;REQUEST_URI&#39;])[&#39;query&#39;], $query);
-foreach ($query as $k =&gt; $v) &#123;
-if (stripos($v, &#39;flag&#39;) !== false)
-    die(&#39;You are not allowed to get the flag, sorry :/&#39;);
-&#125;
-include $_GET[&#39;page&#39;] . &#39;.txt&#39;;
-?&gt;</code></pre>
+<h3 id="4-LEVEL-25"><a href="#4-LEVEL-25" class="headerlink" title="4. LEVEL-25"></a>4. LEVEL-25</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>parse_str(parse_url(<span class="hljs-variable">$_SERVER</span>[<span class="hljs-string">&#x27;REQUEST_URI&#x27;</span>])[<span class="hljs-string">&#x27;query&#x27;</span>], <span class="hljs-variable">$query</span>);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$query</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$k</span> =&gt; <span class="hljs-variable">$v</span>) &#123;<br><span class="hljs-keyword">if</span> (stripos(<span class="hljs-variable">$v</span>, <span class="hljs-string">&#x27;flag&#x27;</span>) !== <span class="hljs-literal">false</span>)<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;You are not allowed to get the flag, sorry :/&#x27;</span>);<br>&#125;<br><span class="hljs-keyword">include</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;page&#x27;</span>] . <span class="hljs-string">&#x27;.txt&#x27;</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>parse_url 함수에서 발생하는 버그(좋버그?) 같은 개념의 문제이다..</p>
 <p>간단히 요약만 하면 주소에서 //를 사용하면 http://와 같은 개념이다.</p>
 <p>그런데 /// 를 쓰면 이 함수에서는 정상적인 호스트 값이 아님을 인식하여 false를 반환시킬 수 있다.</p>
@@ -536,28 +447,7 @@ include $_GET[&#39;page&#39;] . &#39;.txt&#39;;
 </li>
 </ul>
 <hr>
-<h3 id="5-LEVEL-28"><a href="#5-LEVEL-28" class="headerlink" title="5. LEVEL-28"></a>5. LEVEL-28</h3><pre><code class="php">&lt;?php
-if(isset($_POST[&#39;submit&#39;])) &#123;
-  if ($_FILES[&#39;flag_file&#39;][&#39;size&#39;] &gt; 4096) &#123;
-    die(&#39;Your file is too heavy.&#39;);
-  &#125;
-  $filename = md5($_SERVER[&#39;REMOTE_ADDR&#39;]) . &#39;.php&#39;;
-
-  $fp = fopen($_FILES[&#39;flag_file&#39;][&#39;tmp_name&#39;], &#39;r&#39;);
-  $flagfilecontent = fread($fp, filesize($_FILES[&#39;flag_file&#39;][&#39;tmp_name&#39;]));
-  @fclose($fp);
-
-    file_put_contents($filename, $flagfilecontent);
-  if (md5_file($filename) === md5_file(&#39;flag.php&#39;) &amp;&amp; $_POST[&#39;checksum&#39;] == crc32($_POST[&#39;checksum&#39;])) &#123;
-    include($filename);  // it contains the `$flag` variable
-    &#125; else &#123;
-        $flag = &quot;Nope, $filename is not the right file, sorry.&quot;;
-        sleep(1);  // Deter bruteforce
-    &#125;
-
-  unlink($filename);
-&#125;
-?&gt;</code></pre>
+<h3 id="5-LEVEL-28"><a href="#5-LEVEL-28" class="headerlink" title="5. LEVEL-28"></a>5. LEVEL-28</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;submit&#x27;</span>])) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;flag_file&#x27;</span>][<span class="hljs-string">&#x27;size&#x27;</span>] &gt; <span class="hljs-number">4096</span>) &#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;Your file is too heavy.&#x27;</span>);<br>  &#125;<br>  <span class="hljs-variable">$filename</span> = md5(<span class="hljs-variable">$_SERVER</span>[<span class="hljs-string">&#x27;REMOTE_ADDR&#x27;</span>]) . <span class="hljs-string">&#x27;.php&#x27;</span>;<br><br>  <span class="hljs-variable">$fp</span> = fopen(<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;flag_file&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>], <span class="hljs-string">&#x27;r&#x27;</span>);<br>  <span class="hljs-variable">$flagfilecontent</span> = fread(<span class="hljs-variable">$fp</span>, filesize(<span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;flag_file&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>]));<br>  @fclose(<span class="hljs-variable">$fp</span>);<br><br>    file_put_contents(<span class="hljs-variable">$filename</span>, <span class="hljs-variable">$flagfilecontent</span>);<br>  <span class="hljs-keyword">if</span> (md5_file(<span class="hljs-variable">$filename</span>) === md5_file(<span class="hljs-string">&#x27;flag.php&#x27;</span>) &amp;&amp; <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;checksum&#x27;</span>] == crc32(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;checksum&#x27;</span>])) &#123;<br>    <span class="hljs-keyword">include</span>(<span class="hljs-variable">$filename</span>);  <span class="hljs-comment">// it contains the `$flag` variable</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-variable">$flag</span> = <span class="hljs-string">&quot;Nope, <span class="hljs-subst">$filename</span> is not the right file, sorry.&quot;</span>;<br>        sleep(<span class="hljs-number">1</span>);  <span class="hljs-comment">// Deter bruteforce</span><br>    &#125;<br><br>  unlink(<span class="hljs-variable">$filename</span>);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>음 여러가지로 고민을 좀 했던 문제이다.</p>
 <p>md5, crc32를 조건을 우회해서 접근할까? 라는 생각을 잠깐 해봤었던 나는 정상이 아닌 것 같다.</p>
 <p>암튼 본론으로 가면 해당 문제는 레이스 컨디션(race condition) 기법으로 풀이 하였다.</p>
@@ -593,10 +483,10 @@ if(isset($_POST[&#39;submit&#39;])) &#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-14T00:00:00+09:00">
+          <div class="new-meta-item date">
   <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditMay 14, 2020</p>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : May 14, 2020</p>
   </a>
 </div>
 
@@ -631,9 +521,7 @@ if(isset($_POST[&#39;submit&#39;])) &#123;
       
         <a class='next' href='/2020/05/14/webseceasy-200514/'>
           <p class='title'>websec.fr easy Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1. LEVEL 2class LevelTwo &#123;
-    public function doQuery($injection) &#123;
-        $pdo = new...</p>
+          <p class='content'>1. LEVEL 2123456789101112131415161718class LevelTwo &#123;    public function doQuery($injection)...</p>
         </a>
       
     </div>
@@ -678,7 +566,7 @@ if(isset($_POST[&#39;submit&#39;])) &#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-1"><span class="toc-text">1. LEVEL-1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-4"><span class="toc-text">2. LEVEL-4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-17"><span class="toc-text">3. LEVEL-17</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-25"><span class="toc-text">4. LEVEL-25</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-28"><span class="toc-text">5. LEVEL-28</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-LEVEL-1"><span class="toc-number">1.</span> <span class="toc-text">1. LEVEL-1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LEVEL-4"><span class="toc-number">2.</span> <span class="toc-text">2. LEVEL-4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LEVEL-17"><span class="toc-number">3.</span> <span class="toc-text">3. LEVEL-17</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-LEVEL-25"><span class="toc-number">4.</span> <span class="toc-text">4. LEVEL-25</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LEVEL-28"><span class="toc-number">5.</span> <span class="toc-text">5. LEVEL-28</span></a></li></ol>
     </div>
   </section>
 
@@ -848,7 +736,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1241,6 +1129,215 @@ volantis.pjax.push(()=>{
 
 
 
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://blog.jhyeon.dev' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
 
 
 
@@ -1262,8 +1359,6 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
-		
-		behavior: "smooth"
 		
 	  });
     });

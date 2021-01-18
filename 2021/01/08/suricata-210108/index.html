@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post focus' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
+    <img no-lazy src="/img/header/cat.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Jan 8, 2021</p>
+    <p>Date : Jan 8, 2021</p>
   </a>
 </div>
 
@@ -378,6 +378,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Suricata 설치 & 기초" data-path="/2021/01/08/suricata-210108/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
 
           
         
@@ -390,14 +401,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <h3 id="Suricata란"><a href="#Suricata란" class="headerlink" title="Suricata란?"></a>Suricata란?</h3><p>IDS(Intrusion Detection System) 시스템으로, 실시간 IDS, IPS, NSM(Network Security Monitoring) 및 pcap 캡처를 지원한다.</p>
 <h3 id="Suricata-Installation"><a href="#Suricata-Installation" class="headerlink" title="Suricata Installation"></a>Suricata Installation</h3><p>아래 설치 가이드는 우분투 20.04 환경에 맞는 설치 방법이다. 18.04는 아마 “sudo apt install suricata”로도 설치가 가능할 것이다.</p>
-<pre><code class="bash">sudo apt update
-sudo apt install software-properties-common
-sudo add-apt-repository ppa:oisf/suricata-stable
-sudo apt update
-sudo apt install suricata</code></pre>
-<h3 id="Suricata-기본-룰-셋-다운로드"><a href="#Suricata-기본-룰-셋-다운로드" class="headerlink" title="Suricata 기본 룰 셋 다운로드"></a>Suricata 기본 룰 셋 다운로드</h3><pre><code class="bash">sudo suricata-update
-sudo systemctl restart suricata</code></pre>
-<h3 id="테스트-룰-셋"><a href="#테스트-룰-셋" class="headerlink" title="테스트 룰 셋"></a>테스트 룰 셋</h3><pre><code class="bash">alert tcp any any -&gt; any 80 (msg:&quot;Connection to sites.com&quot;; content:&quot;sites.com&quot;; sid:1001; rev:1;)</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt install software-properties-common<br>sudo add-apt-repository ppa:oisf/suricata-stable<br>sudo apt update<br>sudo apt install suricata<br></code></pre></td></tr></table></figure>
+<h3 id="Suricata-기본-룰-셋-다운로드"><a href="#Suricata-기본-룰-셋-다운로드" class="headerlink" title="Suricata 기본 룰 셋 다운로드"></a>Suricata 기본 룰 셋 다운로드</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo suricata-update<br>sudo systemctl restart suricata<br></code></pre></td></tr></table></figure>
+<h3 id="테스트-룰-셋"><a href="#테스트-룰-셋" class="headerlink" title="테스트 룰 셋"></a>테스트 룰 셋</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">alert tcp any any -&gt; any 80 (msg:<span class="hljs-string">&quot;Connection to sites.com&quot;</span>; content:<span class="hljs-string">&quot;sites.com&quot;</span>; sid:1001; rev:1;)<br></code></pre></td></tr></table></figure>
 <p>위와 같이 테스트 룰 셋을 짜고 저장하면 80포트로 tcp통신하는 sites.com에 대한 패킷을 로그에 찍을 수 있다.</p>
 <p>로그 파일은 “/var/log/suricata/fast.log”에서 볼 수 있고 tail 명령어로 실시간으로 찍어볼 수도 있다.</p>
 
@@ -427,10 +433,10 @@ sudo systemctl restart suricata</code></pre>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-08T00:00:00+09:00">
+          <div class="new-meta-item date">
   <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>EditJan 8, 2021</p>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Jan 8, 2021</p>
   </a>
 </div>
 
@@ -461,11 +467,11 @@ sudo systemctl restart suricata</code></pre>
           <p class='content'>Step 1
 우분투 패키지 업데이트를 진행합니다.
 
-sudo apt update
+1sudo apt update
 Step 2
 도커 필수 라이브러리를 설치합니다.
 
-sudo apt-get install apt...</p>
+1sudo apt-get install a...</p>
         </a>
       
       
@@ -516,7 +522,7 @@ sudo apt-get install apt...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Suricata%EB%9E%80"><span class="toc-text">Suricata란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Suricata-Installation"><span class="toc-text">Suricata Installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Suricata-%EA%B8%B0%EB%B3%B8-%EB%A3%B0-%EC%85%8B-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C"><span class="toc-text">Suricata 기본 룰 셋 다운로드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%A3%B0-%EC%85%8B"><span class="toc-text">테스트 룰 셋</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Suricata%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">Suricata란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Suricata-Installation"><span class="toc-number">2.</span> <span class="toc-text">Suricata Installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Suricata-%EA%B8%B0%EB%B3%B8-%EB%A3%B0-%EC%85%8B-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C"><span class="toc-number">3.</span> <span class="toc-text">Suricata 기본 룰 셋 다운로드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%A3%B0-%EC%85%8B"><span class="toc-number">4.</span> <span class="toc-text">테스트 룰 셋</span></a></li></ol>
     </div>
   </section>
 
@@ -686,7 +692,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1079,6 +1085,215 @@ volantis.pjax.push(()=>{
 
 
 
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://blog.jhyeon.dev' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
 
 
 
@@ -1100,8 +1315,6 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
-		
-		behavior: "smooth"
 		
 	  });
     });
