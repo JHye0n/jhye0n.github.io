@@ -297,7 +297,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  focus' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -353,12 +353,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. [WEB - The Magic Word]12345678910&lt;script&gt;    var msg = document.getElementById(&quot;magic&quot;);    setInterval(function() &#123;    if (magic.innerText == &quot;please give flag&quot;) ...
+        1. [WEB - The Magic Word]&lt;script&gt;
+    var msg = document.getElementById(&quot;magic&quot;);
+    setInterval(function() &#123;
+    if (magic.innerText == &quot;please give flag&quot;) &#123;
+ ...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -402,12 +406,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. [web] can you guess it?(338 pt)12345678910111213141516171819202122&lt;?phpinclude &#x27;config.php&#x27;; // FLAG is defined in config.phpif (preg_match(&#x27;/config\.php\/*$/i&#x27;, $_SERVER[...
+        1. [web] can you guess it?(338 pt)&lt;?php
+include &#39;config.php&#39;; // FLAG is defined in config.php
+
+if (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;
+  exit(...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -453,16 +461,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         Site : https://www.zixem.altervista.org/SQLi/
 
-1. LEVEL-11id=0%20union%20select%201,version(),3;--%20-
+1. LEVEL-1id=0%20union%20select%201,version(),3;--%20-
 
-2. LEVEL-21showprofile=0%27%20union%20select%201,2,version(),4;--%20-
+2. LEVEL-2showprofile=0%27%20union%20select%201,2,version(),4;--%20-
 
-3. LEVEL-31item=0%27%2...
+3. LEVEL-3item=0%27%20un...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -506,12 +514,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. (web) ezrc12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152&lt;?php session_start(); include &#x27;config.php&#x27;; ?&gt;&lt;?php    if(!isset($_SE...
+        1. (web) ezrc&lt;?php session_start(); include &#39;config.php&#39;; ?&gt;
+&lt;?php
+    if(!isset($_SESSION[&#39;id&#39;]))&#123;
+        header(&#39;Location: ./login.html&#39;);
+        exit;
+   ...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -561,7 +574,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -605,12 +618,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        1. web(5shared)12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;?phprequire_once &#x27;lib.php&#x27;;session_start();$session = md5(session_id());$upload...
+        1. web(5shared)&lt;?php
+
+require_once &#39;lib.php&#39;;
+
+session_start();
+$session = md5(session_id());
+$uploaddir = __DIR__ . &quot;/~uploads/&#123;$session&#125;/&quot;;
+
+createDirectory(__DIR__...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -957,7 +978,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1036,7 +1057,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -1154,29 +1175,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1278,7 +1276,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1290,7 +1288,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

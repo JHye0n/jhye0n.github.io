@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -415,7 +415,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/02/05/pwnbluekat-200205/" title="libc database search(bluekat)" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">libc database search(bluekat)</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/02/05/pwnbluekat-200205/" title="libc database search(bluekat)" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">libc database search(bluekat)</span></a></div></section></div>
       
       
       
@@ -460,16 +460,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/2020/04/22/phpwrapper-200422/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>php wrapper</p>
-          <p class='content'>12345expect://	expect://lsphp:filter	php://filter/convert.base64-encode/resource=index.phpzip://	...</p>
+          <p class='content'>expect://    expect://ls
+php:filter    php://filter/convert.base64-encode/resource=index.php
+zip:...</p>
         </a>
       
       
         <a class='next' href='/2020/04/22/xssgame-200422/'>
           <p class='title'>xss game Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>홈페이지 : https://xss-game.appspot.com/
-1. LEVEL-11&lt;svg onload=alert(1)&gt;
+1. LEVEL-1&lt;svg onload=alert(1)&gt;
 
-2. LEVEL-21&lt;img s...</p>
+2. LEVEL-2&lt;img src...</p>
         </a>
       
     </div>
@@ -684,7 +686,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -763,7 +765,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -881,29 +883,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1005,7 +984,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1017,7 +996,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -407,7 +407,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>Cassandra를 이용하면 Sharing, Master-Slave와 같은 정책 없이도 장애 대응이 가능하며 장비를 늘리고 줄이는 것에 큰 비용이 들지 않습니다.</p>
 <p>단점 : Cassandra는 테이블 간 Join이나 Transaction을 지원하지 않고, Index 등의 검색을 위한 기능도 매우 단출하며,</p>
 <p>Cassandra의 구조상 RDBMS와 같은 페이징(Paging)을 구현하는 것이 어렵고 Keyspace, Table을 과도하게 생성할 경우 메모리 오버플로우가 발생할 수 있습니다.</p>
-<h3 id="Cassandra-Data-Structure"><a href="#Cassandra-Data-Structure" class="headerlink" title="Cassandra Data Structure"></a>Cassandra Data Structure</h3><img src="/img/post/cassandra/1.png" class="lazyload placeholder" data-srcset="/img/post/cassandra/1.png" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg">
+<h3 id="Cassandra-Data-Structure"><a href="#Cassandra-Data-Structure" class="headerlink" title="Cassandra Data Structure"></a>Cassandra Data Structure</h3><img src="/img/post/cassandra/1.png" class="lazyload" data-srcset="/img/post/cassandra/1.png" srcset="data:image/png;base64,666">
 
 <p>Cassandra의 데이터 구조는 다음 사진과 같습니다.</p>
 <p>Keyspace -&gt; Table -&gt; Row key -&gt; Column(Name, Value)로 구성되어 있습니다.</p>
@@ -420,24 +420,30 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><a target="_blank" rel="noopener" href="https://cassandra.apache.org/download/">https://cassandra.apache.org/download/</a></li>
 </ul>
 <h3 id="Cassandra-예제"><a href="#Cassandra-예제" class="headerlink" title="Cassandra 예제"></a>Cassandra 예제</h3><p>Cassandra CQL Shell에 접속하는 방법은 다음과 같습니다. (Debian/Ubuntu 기준)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ cqlsh<br></code></pre></td></tr></table></figure>
+<pre><code class="bash">$ cqlsh</code></pre>
 <p>이 때, 사용자 인증을 거치지않고 쉘에 접속하게 되는데 보안 설정을 위해서는 다음과 같이 설정합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sudo vi /etc/cassandra/cassandra.yaml<br></code></pre></td></tr></table></figure>
+<pre><code class="bash">$ sudo vi /etc/cassandra/cassandra.yaml</code></pre>
 <p>(104 Lines) authenticator: PasswordAuthenticator # AllowAllAuthenticator 주석 처리 후 변경</p>
 <p>이후 CQL Shell에 접속하기 위해서는 다음과 같은 명령어로 접속합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ cqlsh -u cassandra -p cassandra <span class="hljs-comment"># 기본 계정</span><br></code></pre></td></tr></table></figure>
+<pre><code class="bash">$ cqlsh -u cassandra -p cassandra # 기본 계정</code></pre>
 <p>하지만 위와 같은 방법도 기본 계정으로 설정되어 있기 때문에 새로운 유저를 추가해서 사용하는 방식으로 변경합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cassandra@cqlsh&gt; create user username with password <span class="hljs-string">&#x27;password&#x27;</span> superuser;<br>cassandra@cqlsh&gt; <span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ cqlsh -u username -p password<br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cassandra@cqlsh&gt; drop user cassandra;<br>cassandra@cqlsh&gt; LIST USERS; /* 생성된 계정 확인 */<br></code></pre></td></tr></table></figure>
+<pre><code class="bash">cassandra@cqlsh&gt; create user username with password &#39;password&#39; superuser;
+cassandra@cqlsh&gt; exit</code></pre>
+<pre><code class="bash">$ cqlsh -u username -p password</code></pre>
+<pre><code class="bash">cassandra@cqlsh&gt; drop user cassandra;
+cassandra@cqlsh&gt; LIST USERS; /* 생성된 계정 확인 */</code></pre>
 <p>이제 Cassandra에 대한 기본적인 보안을 거쳐 사용하실 수 있습니다!</p>
-<h3 id="새로운-Keyspace-생성"><a href="#새로운-Keyspace-생성" class="headerlink" title="새로운 Keyspace 생성"></a>새로운 Keyspace 생성</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">username@cqlsh&gt; create keyspace keyspace_name with replication = &#123;&#x27;class&#x27;: &#x27;SimpleStrategy&#x27;, &#x27;replication_factor&#x27;: 3&#125;;<br>username<span class="hljs-variable">@cqlsh</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> keyspaces; <span class="hljs-comment">/* 생성된 keyspace 확인 */</span><br></code></pre></td></tr></table></figure>
+<h3 id="새로운-Keyspace-생성"><a href="#새로운-Keyspace-생성" class="headerlink" title="새로운 Keyspace 생성"></a>새로운 Keyspace 생성</h3><pre><code class="sql">username@cqlsh&gt; create keyspace keyspace_name with replication = &#123;&#39;class&#39;: &#39;SimpleStrategy&#39;, &#39;replication_factor&#39;: 3&#125;;
+username@cqlsh&gt; desc keyspaces; /* 생성된 keyspace 확인 */</code></pre>
 <p>Replication이란 Keyspace를 생성할때 Replication의 복제 개수, 위치를 결정할 수 있는데 옵션은 아래와 같습니다.</p>
 <p>SimpleStrategy 옵션은 단일 데이터 센터일 경우 사용하는 옵션이며,</p>
 <p>멀티 데이터 센터를 사용할 경우 NetworkTopologyStrategy 를 사용하면 됩니다.</p>
 <p>또, replication_factor란 동일한 데이터의 사본(복사본)을 수신할 클러스터의 시스템 수를 의미합니다.</p>
-<h3 id="새로운-Table-생성"><a href="#새로운-Table-생성" class="headerlink" title="새로운 Table 생성"></a>새로운 Table 생성</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">username<span class="hljs-variable">@cqlsh</span><span class="hljs-operator">&gt;</span> use keyspace_name; <span class="hljs-comment">/* 이전에 만든 keyspace로 접속 */</span><br>username<span class="hljs-variable">@cqlsh</span>:keyspace_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> test.test_table(idx <span class="hljs-type">int</span>, name text, context text); <span class="hljs-comment">/* 테이블 생성 */</span><br>username<span class="hljs-variable">@cqlsh</span>:keyspace_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> test.test_table;<br></code></pre></td></tr></table></figure>
-<h3 id="생성한-Table에-데이터-삽입"><a href="#생성한-Table에-데이터-삽입" class="headerlink" title="생성한 Table에 데이터 삽입"></a>생성한 Table에 데이터 삽입</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">username<span class="hljs-variable">@cqlsh</span>:keyspace_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test.test_table (idx, name, context) <span class="hljs-keyword">values</span> (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;bob&#x27;</span>, <span class="hljs-string">&#x27;bobgood&#x27;</span>); <span class="hljs-comment">/* 데이터 삽입 */</span><br>username<span class="hljs-variable">@cqlsh</span>:keyspace_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> test.test_table; <span class="hljs-comment">/* 테이블의 모든 행 조회 */</span><br></code></pre></td></tr></table></figure>
+<h3 id="새로운-Table-생성"><a href="#새로운-Table-생성" class="headerlink" title="새로운 Table 생성"></a>새로운 Table 생성</h3><pre><code class="sql">username@cqlsh&gt; use keyspace_name; /* 이전에 만든 keyspace로 접속 */
+username@cqlsh:keyspace_name&gt; create table test.test_table(idx int, name text, context text); /* 테이블 생성 */
+username@cqlsh:keyspace_name&gt; desc test.test_table;</code></pre>
+<h3 id="생성한-Table에-데이터-삽입"><a href="#생성한-Table에-데이터-삽입" class="headerlink" title="생성한 Table에 데이터 삽입"></a>생성한 Table에 데이터 삽입</h3><pre><code class="sql">username@cqlsh:keyspace_name&gt; insert into test.test_table (idx, name, context) values (1, &#39;bob&#39;, &#39;bobgood&#39;); /* 데이터 삽입 */
+username@cqlsh:keyspace_name&gt; select * from test.test_table; /* 테이블의 모든 행 조회 */</code></pre>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
 <li><p><a target="_blank" rel="noopener" href="https://meetup.toast.com/search?searchText=Cassandra">https://meetup.toast.com/search?searchText=Cassandra</a></p>
 </li>
@@ -459,7 +465,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
       
       
       
@@ -506,7 +512,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>POX(Power of xx) 2020 Write up</p>
           <p class='content'>POX 2020 출제자 Write up 자료입니다.
 아래 노션에서 풀이를 확인하실 수 있습니다.
-질문 사항이 있으시면 &#x73;&#116;&#106;&#x68;&#121;&...</p>
+질문 사항이 있으시면 &#115;&#x74;&#106;&#104;&#x79;&...</p>
         </a>
       
       
@@ -743,7 +749,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -822,7 +828,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -940,29 +946,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1064,7 +1047,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1076,7 +1059,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

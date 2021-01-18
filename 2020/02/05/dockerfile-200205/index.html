@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -400,7 +400,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
   <p>간단한 버전이라서 쓰는 사람에 맞게 적절히 수정하면 된다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">FROM ubuntu:18.04<br><br>ENV DEBIAN_FRONTEND=noninteractive<br>ENV TERM=linux<br><br>RUN apt-get update -y<br>RUN apt-get install apache2 -y<br>RUN apt-get install libapache2-mod-php -y<br>RUN apt-get install php -y<br>RUN apt-get install vim -y<br><br>COPY ./files /var/www/html<br>RUN rm -rf /var/www/html/index.html<br>EXPOSE 포트번호<br><br>CMD [<span class="hljs-string">&quot;/usr/sbin/apache2ctl&quot;</span>, <span class="hljs-string">&quot;-D&quot;</span>, <span class="hljs-string">&quot;FOREGROUND&quot;</span>]<br></code></pre></td></tr></table></figure>
+<pre><code class="bash">FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=linux
+
+RUN apt-get update -y
+RUN apt-get install apache2 -y
+RUN apt-get install libapache2-mod-php -y
+RUN apt-get install php -y
+RUN apt-get install vim -y
+
+COPY ./files /var/www/html
+RUN rm -rf /var/www/html/index.html
+EXPOSE 포트번호
+
+CMD [&quot;/usr/sbin/apache2ctl&quot;, &quot;-D&quot;, &quot;FOREGROUND&quot;]</code></pre>
+
   
   
     
@@ -413,7 +429,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/04/22/dockerset-200422/" title="(ko) Docker Language Setting" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">(ko) Docker Language Setting</span></a><a class="item" href="/2021/01/08/docker-install-210108/" title="Ubuntu 20.04 Docker Installation" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Ubuntu 20.04 Docker Installation</span></a><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/04/22/dockerset-200422/" title="(ko) Docker Language Setting" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">(ko) Docker Language Setting</span></a><a class="item" href="/2021/01/08/docker-install-210108/" title="Ubuntu 20.04 Docker Installation" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Ubuntu 20.04 Docker Installation</span></a><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
       
       
       
@@ -458,7 +474,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/2020/02/06/dimictf-200206/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>DIMICTF 2019 Write up</p>
-          <p class='content'>1. web(5shared)1234567891011121314151617181920212223242526272829303132333435363738394041424344454...</p>
+          <p class='content'>1. web(5shared)&lt;?php
+
+require_once &#39;lib.php&#39;;
+
+session_start();
+$session = md5(session...</p>
         </a>
       
       
@@ -666,7 +687,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -745,7 +766,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -863,29 +884,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -987,7 +985,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -999,7 +997,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -407,7 +407,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><p>탐색 시작 → 결과를 탐색할 때까지 반복문 실행 → 결과값 반환 후 종료</p>
 </li>
 </ul>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">search</span>(<span class="hljs-params">array, target</span>):</span><br>	i = <span class="hljs-number">0</span><br>	<span class="hljs-keyword">while</span> i &lt; <span class="hljs-built_in">len</span>(array):<br>		<span class="hljs-keyword">if</span> arr[i] == target:<br>			<span class="hljs-keyword">return</span> i<br>		i += <span class="hljs-number">1</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;error&quot;</span><br><br>array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>] <span class="hljs-comment"># index 0~6</span><br>target = <span class="hljs-number">9</span><br><br>print(search(array,target))<br><br><span class="hljs-comment">#result</span><br><span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+<pre><code class="py">#!/usr/bin/python3
+
+def search(array, target):
+    i = 0
+    while i &lt; len(array):
+        if arr[i] == target:
+            return i
+        i += 1
+    return &quot;error&quot;
+
+array = [1,2,3,5,7,8,9] # index 0~6
+target = 9
+
+print(search(array,target))
+
+#result
+6</code></pre>
 <h3 id="2-이진-알고리즘-탐색-binary"><a href="#2-이진-알고리즘-탐색-binary" class="headerlink" title="2. 이진 알고리즘 탐색(binary)"></a>2. 이진 알고리즘 탐색(binary)</h3><ul>
 <li><p>정렬된 리스트(배열) 에서 원하는 수(target) 값을 찾는 알고리즘 입니다.</p>
 </li>
@@ -420,7 +436,36 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><p>선택된 방향에서 중간 값(middle) 과 원하는 수(target) 을 비교해서 같다면 탐색을 종료합니다.</p>
 </li>
 </ul>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#coding=UTF-8</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binarysearch</span>(<span class="hljs-params">array, target, left, right</span>):</span><br>    middle_idx = (left+right)//<span class="hljs-number">2</span> <span class="hljs-comment"># 중간 지점 탐색</span><br>    print(middle_idx)<br>    middle = array[middle_idx] <span class="hljs-comment"># Array 배열 적용</span><br>    <span class="hljs-keyword">if</span> target == middle: <span class="hljs-comment"># 탐색 값과 중간 값이 같다면</span><br>        print(<span class="hljs-string">&#x27;result : &#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(middle)) <span class="hljs-comment"># 결과 리턴</span><br>    <span class="hljs-keyword">elif</span> middle &gt; target: <span class="hljs-comment"># 탐색 값이 중간 값 보다 크다면</span><br>        binarysearch(array, target, left, middle_idx-<span class="hljs-number">1</span>) <span class="hljs-comment"># 함수실행</span><br>    <span class="hljs-keyword">elif</span> middle &lt; target: <span class="hljs-comment"># 탐색 값이 중간 값 보다 작다면</span><br>        binarysearch(array, target, middle_idx+<span class="hljs-number">1</span>, right) <span class="hljs-comment"># 함수실행</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span> <span class="hljs-comment"># 위 경우 모두 만족하지 않을 때 false 반환</span><br><br>array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">11</span>,<span class="hljs-number">13</span>,<span class="hljs-number">9</span>,<span class="hljs-number">17</span>,<span class="hljs-number">15</span>,<span class="hljs-number">19</span>,<span class="hljs-number">21</span>]<br><br>length = <span class="hljs-built_in">len</span>(array)<br><br>print(<span class="hljs-string">&quot;length : &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(length))<br><br>array.sort()<br><br>print(<span class="hljs-string">&quot;sort : &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(array))<br><br>target = <span class="hljs-number">15</span><br><br>left = <span class="hljs-number">0</span><br>right = length-<span class="hljs-number">1</span><br><br>binarysearch(array, target, <span class="hljs-number">0</span>, right)<br></code></pre></td></tr></table></figure>
+<pre><code class="py">#coding=UTF-8
+def binarysearch(array, target, left, right):
+    middle_idx = (left+right)//2 # 중간 지점 탐색
+    print(middle_idx)
+    middle = array[middle_idx] # Array 배열 적용
+    if target == middle: # 탐색 값과 중간 값이 같다면
+        print(&#39;result : &#123;&#125;&#39;.format(middle)) # 결과 리턴
+    elif middle &gt; target: # 탐색 값이 중간 값 보다 크다면
+        binarysearch(array, target, left, middle_idx-1) # 함수실행
+    elif middle &lt; target: # 탐색 값이 중간 값 보다 작다면
+        binarysearch(array, target, middle_idx+1, right) # 함수실행
+    else:
+        return False # 위 경우 모두 만족하지 않을 때 false 반환
+
+array = [1,2,3,5,7,11,13,9,17,15,19,21]
+
+length = len(array)
+
+print(&quot;length : &#123;&#125;&quot;.format(length))
+
+array.sort()
+
+print(&quot;sort : &#123;&#125;&quot;.format(array))
+
+target = 15
+
+left = 0
+right = length-1
+
+binarysearch(array, target, 0, right)</code></pre>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
 <li><p><a target="_blank" rel="noopener" href="https://velog.io/@keemun/1">https://velog.io/@keemun/1</a></p>
 </li>
@@ -440,7 +485,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/06/13/swmodel-200613/" title="S/W 소프트웨어 개발 프로세스 모델" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">S/W 소프트웨어 개발 프로세스 모델</span></a><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/06/13/swmodel-200613/" title="S/W 소프트웨어 개발 프로세스 모델" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">S/W 소프트웨어 개발 프로세스 모델</span></a><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
       
       
       
@@ -708,7 +753,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -787,7 +832,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -905,29 +950,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1029,7 +1051,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1041,7 +1063,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

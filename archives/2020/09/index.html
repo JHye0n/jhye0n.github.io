@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  focus' style="display: ;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -377,7 +377,7 @@ Cassand...
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -454,7 +454,7 @@ Check
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -498,15 +498,16 @@ Check
   <div class='md'>
     
       
-        Install12$ sudo apt-get install libpcap-dev$ sudo apt-get install iftop
-Command1$ sudo iftop # 라이브로 모니터링 하기 때문에 root 권한이 필요하다.
+        Install$ sudo apt-get install libpcap-dev
+$ sudo apt-get install iftop
+Command$ sudo iftop # 라이브로 모니터링 하기 때문에 root 권한이 필요하다.
 별도의 옵션 없이 실행했을때는 네트워크의 최상단 인터페이스를 기준으로 실시간 모니터링을 수행한다.
-첫번째 라인은 서버의 호스트...
+첫번째 라인은 서버의 호스트, ...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -559,7 +560,7 @@ roppity(analysis)먼저 문제에서 주어지는 파일은 바이너리와 libc
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -610,7 +611,7 @@ https://www.notion.so/jhyeon/PicoCTF-2019-Write-up-358b3f86917443398fa9df9932df5
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -663,7 +664,7 @@ list 선...
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -715,12 +716,16 @@ list 선...
 탐색 시작 → 결과를 탐색할 때까지 반복문 실행 → 결과값 반환 후 종료
 
 
-1234567891011121314151617#!/usr/bin/python3def search(array, target):	i...
+#!/usr/bin/python3
+
+def search(array, target):
+    i = 0
+    while i &l...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -1049,7 +1054,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1128,7 +1133,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -1246,29 +1251,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1370,7 +1352,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1382,7 +1364,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

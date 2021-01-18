@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  focus' style="display: ;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -370,12 +370,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         OSOS : Ubuntu 16.04 Desktop(http://old-releases.ubuntu.com/releases/16.04.4/)
 Canvas LMS - Open Source : https://github.com/instructure/canvas-lms
-설치postgresql 설치1$ sudo apt-get install postgresql-...
+설치postgresql 설치$ sudo apt-get install postgresql-9...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -428,7 +428,7 @@ https://wargame.hacking.one/
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -480,7 +480,7 @@ Vuln해당 모듈은 공식 문서에서도 사용을 권장하지 않습니다,
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -533,7 +533,7 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -586,7 +586,7 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -637,7 +637,7 @@ https://www.notion.so/jhyeon/43ce112d299d42e0be73e5da5d9be39a
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -966,7 +966,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1045,7 +1045,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -1163,29 +1163,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1287,7 +1264,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1299,7 +1276,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

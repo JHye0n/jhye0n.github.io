@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  focus' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -362,12 +362,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 탐색 시작 → 결과를 탐색할 때까지 반복문 실행 → 결과값 반환 후 종료
 
 
-1234567891011121314151617#!/usr/bin/python3def search(array, target):	i...
+#!/usr/bin/python3
+
+def search(array, target):
+    i = 0
+    while i &l...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -413,12 +417,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         OSOS : Ubuntu 16.04 Desktop(http://old-releases.ubuntu.com/releases/16.04.4/)
 Canvas LMS - Open Source : https://github.com/instructure/canvas-lms
-설치postgresql 설치1$ sudo apt-get install postgresql-...
+설치postgresql 설치$ sudo apt-get install postgresql-9...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -471,7 +475,7 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -522,7 +526,7 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -574,7 +578,7 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -618,14 +622,19 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
   <div class='md'>
     
       
-        1. 설정 변경 사항1sudo apt-get install locales
-123456export LANGUAGE=ko_KR.UTF-8export LANG=ko_KR.UTF-8source ~/.bashrclocale-gen ko_KR ko_KR.UTF-8update-locale LANG=ko_KR.UTF-8dpkg-reconfigure locales
-근...
+        1. 설정 변경 사항sudo apt-get install locales
+export LANGUAGE=ko_KR.UTF-8
+export LANG=ko_KR.UTF-8
+source ~/.bashrc
+locale-gen ko_KR ko_KR.UTF-8
+update-locale LANG=ko_KR.UTF-8
+dpkg-reconfigure locales
+근데 ...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -670,12 +679,19 @@ https://www.notion.so/jhyeon/S-W-ed3a6d56bb2f42c199e93a15ceb35342
     
       
         간단한 버전이라서 쓰는 사람에 맞게 적절히 수정하면 된다.
-12345678910111213141516FROM ubuntu:18.04ENV DEBIAN_FRONTEND=noninteractiveENV TERM=linuxRUN apt-get update -yRUN apt-get install apache2 -yRUN apt-get install libap...
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=linux
+
+RUN apt-get update -y
+RUN apt-get install apache2 -y
+RUN apt-get install libapache2-mod-php -y...
       
     
   </div>
   
-    <div class='meta-v3' line_style='dotted'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
           
@@ -1020,7 +1036,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -1099,7 +1115,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -1217,29 +1233,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1341,7 +1334,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1353,7 +1346,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

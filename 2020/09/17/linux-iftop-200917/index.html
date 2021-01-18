@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -399,15 +399,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sudo apt-get install libpcap-dev<br>$ sudo apt-get install iftop<br></code></pre></td></tr></table></figure>
-<h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sudo iftop <span class="hljs-comment"># 라이브로 모니터링 하기 때문에 root 권한이 필요하다.</span><br></code></pre></td></tr></table></figure>
+  <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><pre><code class="bash">$ sudo apt-get install libpcap-dev
+$ sudo apt-get install iftop</code></pre>
+<h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><pre><code class="bash">$ sudo iftop # 라이브로 모니터링 하기 때문에 root 권한이 필요하다.</code></pre>
 <p>별도의 옵션 없이 실행했을때는 네트워크의 최상단 인터페이스를 기준으로 실시간 모니터링을 수행한다.</p>
 <p>첫번째 라인은 서버의 호스트, 두번째 라인은 대상 호스트 네임(IP 주소), 세번째 라인은 패킷의 전송량을 표시해준다.</p>
 <p>또한 하단의 TX, RX, TOTAL 정보들은 각각 전송량, 수신량, 총 송/수신량을 의미한다.</p>
 <p>그리고 -f(filter) 옵션을 통해 특정 조건에 해당하는 네트워크 패킷만을 보여주는 옵션이 있다.</p>
 <p>pcap-filter 형식의 문자열로 보면되고, 필터 옵션들은 다음과 같다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ man pcap-filter<br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sudo iftop -f <span class="hljs-string">&quot;src host 127.0.0.1&quot;</span><br>$ sudo iftop -f <span class="hljs-string">&quot;dst host 8.8.8.8&quot;</span><br></code></pre></td></tr></table></figure>
+<pre><code class="bash">$ man pcap-filter</code></pre>
+<pre><code class="bash">$ sudo iftop -f &quot;src host 127.0.0.1&quot;
+$ sudo iftop -f &quot;dst host 8.8.8.8&quot;</code></pre>
 <p>주로 사용될만한 것들을 정리하면 다음과 같다.</p>
 <p>자세한 것은 manpage에 보면 상세히 나와있다!</p>
 <h3 id="pcap-filter"><a href="#pcap-filter" class="headerlink" title="pcap-filter"></a>pcap-filter</h3><p>dst host hostname    목적지 호스트네임(IP주소)<br>src host hostname    출발지 호스트네임(IP주소)<br>dst port port    목적지 포트<br>src port port    출발지 포트<br>ip proto protocol    프로토콜 유형<br>ether dst ehost    이더넷 목적지 주소가 ehost인지 체크<br>ether src ehost    이더넷 출발지 주소가 ehost인지 체크<br>ether host ehost    이더넷 출발지 또는 목적지 주소가 ehost인지 체크<br>gateway hostname    게이트웨이 호스트네임(IP주소)</p>
@@ -425,7 +427,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2021/01/02/mitigation-210102/" title="Memory Mitigation - Canary" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Memory Mitigation - Canary</span></a><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2021/01/02/mitigation-210102/" title="Memory Mitigation - Canary" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Memory Mitigation - Canary</span></a><a class="item" href="/2020/05/26/browser-auditor-200526/" title="Browser Auditor 기술 발표 자료" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Browser Auditor 기술 발표 자료</span></a></div></section></div>
       
       
       
@@ -709,7 +711,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -788,7 +790,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -906,29 +908,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1030,7 +1009,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1042,7 +1021,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 

