@@ -17,13 +17,6 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/tags/Web/</loc>
-        <lastmod>2021-01-18T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.jhyeon.dev/tags/Backup/</loc>
         <lastmod>2021-01-17T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -87,13 +80,6 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/tags/%ED%9A%8C%EA%B3%A0/</loc>
-        <lastmod>2021-01-01T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.jhyeon.dev/tags/Memory-Mitigation/</loc>
         <lastmod>2021-01-01T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -102,6 +88,13 @@
 
     <url>
         <loc>https://blog.jhyeon.dev/tags/Canary/</loc>
+        <lastmod>2021-01-01T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/%ED%9A%8C%EA%B3%A0/</loc>
         <lastmod>2021-01-01T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -137,6 +130,13 @@
 
     <url>
         <loc>https://blog.jhyeon.dev/tags/System/</loc>
+        <lastmod>2020-12-31T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Web/</loc>
         <lastmod>2020-12-31T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

@@ -370,64 +370,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/19/dvwa-review-210119/">
-        DVWA 웹 취약점 모의 훈련 도구 리뷰
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        IntroDVWA는 웹 취약점 모의 해킹(훈련) 도구이며 다운로드는 아래 링크에서 가능합니다.
-
-http://www.dvwa.co.uk
-
-해당 포스트에서는 초심자인 easy 난이도와 대응 방안에 대해서만 작성합니다.
-
-기능 별 순차적으로 업데이트 할 예정입니다!
-
-
-Brute Force해당 문제는 제목 답게 “Brute Force(무차별 대입 공격)”...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
-        
-        <time>2021-01-19</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Web/">Web</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/01/19/dvwa-review-210119/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
       <a href="/2021/01/01/webhacking-210101/">
         웹 해킹 기법 기초
       </a>
@@ -897,24 +839,63 @@ if (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#12
           </div>
         
       
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/02/06/dimictf-200206/">
+        DIMICTF 2019 Write up
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1. web(5shared)&lt;?php
+
+require_once &#39;lib.php&#39;;
+
+session_start();
+$session = md5(session_id());
+$uploaddir = __DIR__ . &quot;/~uploads/&#123;$session&#125;/&quot;;
+
+createDirectory(__DIR__...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+        
+        <time>2020-02-06</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/02/06/dimictf-200206/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
     
   </section>
   
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 2
-        </p>
-        
-          <a class="next" rel="next" href="/tags/Web/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
     
   
 
