@@ -408,7 +408,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><p>기능 별 순차적으로 업데이트 할 예정입니다!</p>
 </li>
 </ul>
-<h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><h3 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h3><p>해당 문제는 제목 답게 “Brute Force(무차별 대입 공격)” 기법을 사용하는 문제이다.</p>
+<h3 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h3><p>해당 문제는 제목 답게 “Brute Force(무차별 대입 공격)” 기법을 사용하는 문제이다.</p>
 <img src="/img/post/dvwa/bruteforce.png" class="lazyload" data-srcset="/img/post/dvwa/bruteforce.png" srcset="data:image/png;base64,666">
 
 <p>그냥 평범하게 로그인 창이 있는데, 공격 벡터는 두군데 밖에 없다. (아이디 / 패스워드 입력폼)</p>
@@ -486,6 +486,7 @@ with open(&#39;password.txt&#39;) as f:
 <p>또한 연속적으로 시도하지 못하도록 “최대 시도 횟수 제한” 기능을 넣는다면 이런 공격으로부터 방어를 할 수 있지 않나 싶다.</p>
 <h3 id="Command-Injection"><a href="#Command-Injection" class="headerlink" title="Command Injection"></a>Command Injection</h3><p>커맨드 인젝션(Cmd Injection) 공격은 웹 앱에서 시스템 명령을 사용할 때 적절한 필터링 조치가 되어 있지 않은 경우</p>
 <p>하나의 커맨드안에서 두개의 명령을 실행 해 공격자가 원하는 결과를 얻어낼 수 있는 공격입니다.</p>
+<hr>
 <pre><code class="php">&lt;?php
 
 if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;
@@ -542,7 +543,7 @@ if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/02/06/dimictf-200206/" title="DIMICTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">DIMICTF 2019 Write up</span></a><a class="item" href="/2020/05/15/function-rce-200515/" title="create_function() RCE 취약점 정리" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">create_function() RCE 취약점 정리</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a><a class="item" href="/2020/12/26/christmasctf-201226/" title="ChristmasCTF 2019 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">ChristmasCTF 2019 Write up</span></a><a class="item" href="/2020/05/15/function-rce-200515/" title="create_function() RCE 취약점 정리" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">create_function() RCE 취약점 정리</span></a></div></section></div>
       
       
       
@@ -634,7 +635,7 @@ if( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Category"><span class="toc-number"></span> <span class="toc-text">Category</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">1.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">2.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">3.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">4.</span> <span class="toc-text">### Command Injection(대응 방안)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">### Command Injection(대응 방안)</span></a></li></ol>
     </div>
   </section>
 
