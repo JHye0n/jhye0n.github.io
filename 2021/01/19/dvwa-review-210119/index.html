@@ -681,6 +681,73 @@ if( isset( $_POST[ &#39;Upload&#39; ] ) ) &#123;
 </li>
 </ol>
 <hr>
+<h3 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h3><p>SQL Injection 취약점은 OWASP 에서도 매번 Top 10 이슈에 뜨는 취약점이라고 할 수 있습니다.</p>
+<p>공격자가 취약한 사이트를 대상으로, 악의적인 쿼리를 만들어 요청을 보냄으로써 DB 시스템에 접근, 제어(수정, 삭제, 등록), 조회 등의 행위가 가능하게 됩니다.</p>
+<p>예시로 숙박앱을 운영하는 기업중 한 군데가 SQL Injection 공격을 받아 개인정보가 유출당했던 피해도 있었죠</p>
+<p>아무튼.. 한번 실습으로 떠나봅시다.</p>
+<img src="/img/post/dvwa/sql.png" class="lazyload" data-srcset="/img/post/dvwa/sql.png" srcset="data:image/png;base64,666">
+
+<pre><code class="php">&lt;?php
+
+if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
+    // Get input
+    $id = $_REQUEST[ &#39;id&#39; ];
+
+    // Check database
+    $query  = &quot;SELECT first_name, last_name FROM users WHERE user_id = &#39;$id&#39;;&quot;;
+    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &#39;&lt;pre&gt;&#39; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &#39;&lt;/pre&gt;&#39; );
+
+    // Get results
+    while( $row = mysqli_fetch_assoc( $result ) ) &#123;
+        // Get values
+        $first = $row[&quot;first_name&quot;];
+        $last  = $row[&quot;last_name&quot;];
+
+        // Feedback for end user
+        echo &quot;&lt;pre&gt;ID: &#123;$id&#125;&lt;br /&gt;First name: &#123;$first&#125;&lt;br /&gt;Surname: &#123;$last&#125;&lt;/pre&gt;&quot;;
+    &#125;
+
+    mysqli_close($GLOBALS[&quot;___mysqli_ston&quot;]);
+&#125;
+
+?&gt;</code></pre>
+<p>사용자로부터 입력을 받는 폼은 (id) 부분입니다. 값을 입력받아서 $id 변수에 저장하고, users 테이블에 user_id=$id 인 경우를 조회하게 됩니다.</p>
+<p>그리고 만약 조회된 데이터가 있을 경우 first_name, last_name을 출력해주는 로직입니다.</p>
+<p>어디서 취약점이 발생했을까요?</p>
+<pre><code class="php">$query  = &quot;SELECT first_name, last_name FROM users WHERE user_id = &#39;$id&#39;;&quot;;</code></pre>
+<p>해당 부분을 보면 사용자로부터 입력값이 넘어온 상태에서 그대로 $id 변수에 저장하고 어떠한 검증도 거치지 않습니다.</p>
+<p>그래서 사용자가 어떤 값을 입력하든 모두 쿼리문에 들어간다는 의미로 볼 수 있죠.</p>
+<p>만약 해당 쿼리문의 결과를 무조건 참(True)으로 만든다면 결과는 당연히 조회하는 테이블의 모든 행을 출력할 수 있습니다.</p>
+<p>아래 쿼리를 입력해봅시다.</p>
+<pre><code class="sql">&#39; or 1=1#&#39;</code></pre>
+<img src="/img/post/dvwa/sql2.png" class="lazyload" data-srcset="/img/post/dvwa/sql2.png" srcset="data:image/png;base64,666">
+
+<p>조회하는 테이블의 모든 행이 조회가 가능했습니다. 이러한 sql injection 공격의 종류에는 아래와 같이 다양합니다.</p>
+<ol>
+<li><p>nosql injection</p>
+</li>
+<li><p>time based injection</p>
+</li>
+<li><p>blind injection</p>
+</li>
+<li><p>union injection</p>
+</li>
+</ol>
+<p>…</p>
+<p>나중에 예제를 가지고 포스팅 하겠지만, 이외에도 수많은 공격 기법이 존재함을 알 수 있습니다.</p>
+<hr>
+<h3 id="SQL-Injection-대응-방안"><a href="#SQL-Injection-대응-방안" class="headerlink" title="SQL Injection 대응 방안"></a>SQL Injection 대응 방안</h3><ol>
+<li><p>특수문자 필터링</p>
+</li>
+<li><p>PDO(Prepared Statement) 방식의 코드 작성</p>
+</li>
+<li><p>입력 값 필터링(preg_match)</p>
+</li>
+<li><p>입력 값 치환(addslashes 등의 함수)</p>
+</li>
+</ol>
+<p>사실 PDO 방식으로만 해도 거의 대부분의 인젝션 공격은 막을 수 있다고 봅니다.</p>
+<hr>
 
   
   
@@ -786,7 +853,7 @@ if( isset( $_POST[ &#39;Upload&#39; ] ) ) &#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion"><span class="toc-number">8.</span> <span class="toc-text">File Inclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">9.</span> <span class="toc-text">File Inclusion(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload"><span class="toc-number">10.</span> <span class="toc-text">File Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">File Upload (대응 방안)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion"><span class="toc-number">8.</span> <span class="toc-text">File Inclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">9.</span> <span class="toc-text">File Inclusion(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload"><span class="toc-number">10.</span> <span class="toc-text">File Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">File Upload (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection"><span class="toc-number">12.</span> <span class="toc-text">SQL Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">13.</span> <span class="toc-text">SQL Injection 대응 방안</span></a></li></ol>
     </div>
   </section>
 
