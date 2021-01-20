@@ -732,6 +732,8 @@ if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
 </li>
 <li><p>union injection</p>
 </li>
+<li><p>error based injection</p>
+</li>
 </ol>
 <p>…</p>
 <p>나중에 예제를 가지고 포스팅 하겠지만, 이외에도 수많은 공격 기법이 존재함을 알 수 있습니다.</p>
@@ -748,6 +750,10 @@ if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
 </ol>
 <p>사실 PDO 방식으로만 해도 거의 대부분의 인젝션 공격은 막을 수 있다고 봅니다.</p>
 <hr>
+<h3 id="SQL-Injection-Blind"><a href="#SQL-Injection-Blind" class="headerlink" title="SQL Injection(Blind)"></a>SQL Injection(Blind)</h3><p>이번엔, Blind Injection 공격 기법을 알아보겠습니다.</p>
+<p>Blind 의미는 이전의 SQL Injection 단계처럼 화면 상에 결과를 보여주는 것이 아닌</p>
+<p>값이 존재하면 true/false 또는 존재합니다/존재하지 않습니다 등으로 처리하게 됩니다.</p>
+<p>그래서 사용자의 데이터를 이전 방법처럼 시도했을 때는 확인이 불가능합니다.</p>
 
   
   
@@ -804,6 +810,12 @@ if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/01/20/owasp2021-210120/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>OWASP TOP 10 2021 제안 자료</p>
+          <p class='content'>4년마다 OWASP 에서는 웹 애플리케이션에서 발생한 주요 취약점 리스트(top 10/category) 정보를 주는데,
+올해에도 제안 자료가 있어서 링크를 남겨본다. (공식 ...</p>
+        </a>
+      
       
         <a class='next' href='/2021/01/18/memo-210118/'>
           <p class='title'>Mac Big Sur 사용 후기 및 백업의 중요성..<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -853,7 +865,7 @@ if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion"><span class="toc-number">8.</span> <span class="toc-text">File Inclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">9.</span> <span class="toc-text">File Inclusion(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload"><span class="toc-number">10.</span> <span class="toc-text">File Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">File Upload (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection"><span class="toc-number">12.</span> <span class="toc-text">SQL Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">13.</span> <span class="toc-text">SQL Injection 대응 방안</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion"><span class="toc-number">8.</span> <span class="toc-text">File Inclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">9.</span> <span class="toc-text">File Inclusion(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload"><span class="toc-number">10.</span> <span class="toc-text">File Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">File Upload (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection"><span class="toc-number">12.</span> <span class="toc-text">SQL Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">13.</span> <span class="toc-text">SQL Injection 대응 방안</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-Blind"><span class="toc-number">14.</span> <span class="toc-text">SQL Injection(Blind)</span></a></li></ol>
     </div>
   </section>
 
