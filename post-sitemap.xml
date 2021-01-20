@@ -49,7 +49,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2021/01/02/newyear-210102/</loc>
+        <loc>https://blog.jhyeon.dev/2021/01/02/mitigation-210102/</loc>
         <lastmod>2021-01-01T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -57,7 +57,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2021/01/02/mitigation-210102/</loc>
+        <loc>https://blog.jhyeon.dev/2021/01/02/newyear-210102/</loc>
         <lastmod>2021-01-01T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -281,7 +281,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/22/phpwrapper-200422/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/22/pwn-mprotect-200422/</loc>
         <lastmod>2020-04-21T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -289,7 +289,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/22/pwn-mprotect-200422/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/22/phpwrapper-200422/</loc>
         <lastmod>2020-04-21T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

