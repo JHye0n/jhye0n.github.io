@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/Pentesting/</loc>
+        <lastmod>2021-01-18T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/DVWA/</loc>
+        <lastmod>2021-01-18T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Web/</loc>
+        <lastmod>2021-01-18T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/Backup/</loc>
         <lastmod>2021-01-17T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -94,13 +115,6 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-Hacking/</loc>
-        <lastmod>2020-12-31T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.jhyeon.dev/tags/syscall/</loc>
         <lastmod>2020-12-31T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -122,7 +136,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/tags/Web/</loc>
+        <loc>https://blog.jhyeon.dev/tags/Web-Hacking/</loc>
         <lastmod>2020-12-31T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

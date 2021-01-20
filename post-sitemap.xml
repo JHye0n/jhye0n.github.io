@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/2021/01/19/dvwa-review-210119/</loc>
+        <lastmod>2021-01-18T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/2021/01/18/memo-210118/</loc>
         <lastmod>2021-01-17T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -57,7 +65,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2021/01/01/systemos-210101/</loc>
+        <loc>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</loc>
         <lastmod>2020-12-31T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -65,7 +73,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</loc>
+        <loc>https://blog.jhyeon.dev/2021/01/01/systemos-210101/</loc>
         <lastmod>2020-12-31T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -265,7 +273,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/22/jwtinjection-200422/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/22/phpwrapper-200422/</loc>
         <lastmod>2020-04-21T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -273,7 +281,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/22/phpwrapper-200422/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/22/jwtinjection-200422/</loc>
         <lastmod>2020-04-21T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -305,7 +313,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/10/zixemchall-200410/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/10/zer0ptsctf-200410/</loc>
         <lastmod>2020-04-09T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -313,7 +321,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/10/zer0ptsctf-200410/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/10/zixemchall-200410/</loc>
         <lastmod>2020-04-09T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

