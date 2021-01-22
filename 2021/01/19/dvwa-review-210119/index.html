@@ -824,7 +824,7 @@ document.write(&quot;&lt;option value=&#39;German&#39;&gt;German&lt;/option&gt;&
 <p>default 변수 뒤 값이 들어갈 때의 부분을 조작하여 공격자의 URL이나 스크립트를 실행시킬 수 있게됩니다.</p>
 <img src="/img/post/dvwa/domxss.png" class="lazyload" data-srcset="/img/post/dvwa/domxss.png" srcset="data:image/png;base64,666">
 
-<p><code> vulnerabilities/xss_d?default=<script>alert(document.cookie)</script> </code></p>
+<pre><code class="html">alert(document.cookie)</code></pre>
 <h3 id="DOM-Based-XSS-대응-방안"><a href="#DOM-Based-XSS-대응-방안" class="headerlink" title="DOM Based XSS (대응 방안)"></a>DOM Based XSS (대응 방안)</h3><ol>
 <li><p>특수문자 필터링 또는 치환</p>
 </li>
