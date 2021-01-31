@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/</loc>
+        <lastmod>2021-01-31T06:09:52.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/2021/01/31/android-rootkit-210131/</loc>
         <lastmod>2021-01-30T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
