@@ -489,6 +489,43 @@ su # root 권한 요청</code></pre>
 <p>코드를 뚝딱하고나서 앱 실행 -&gt; 코드 실행을 해보면 사진과 같이 exit() 함수가 후킹되었다고 출력되고,</p>
 <p>실제 앱에서 봤을 때도 exit() 함수가 실행되지 않아 앱이 작동하는 화면이다.</p>
 <hr>
+<h3 id="App-Analysis-4-Get-Secret-Key"><a href="#App-Analysis-4-Get-Secret-Key" class="headerlink" title="App Analysis(4) - Get Secret Key"></a>App Analysis(4) - Get Secret Key</h3><img src="/img/post/android_penetration/12.png" class="lazyload" data-srcset="/img/post/android_penetration/12.png" srcset="data:image/png;base64,666">
+
+<p>루팅 탐지 우회만이 끝이 아니다. 앱을 보면 특정 키값을 입력하여 확인하는 로직이 있다.</p>
+<p>a.a() 조건을 만족할 경우 Success 제목과 correct 메세지를 띄워주고, 그게 아니라면 Nope..(try again) 문구를 띄운다.</p>
+<img src="/img/post/android_penetration/13.png" class="lazyload" data-srcset="/img/post/android_penetration/13.png" srcset="data:image/png;base64,666">
+
+<p>키를 만들것 같은 부분은 a.a() 에 존재하는데 해당 로직을 따라가면 사진과 같이 확인할 수 있다.</p>
+<p>8d127684cbc37c17616d806cf50473cc 이 값을 b()에 넣고</p>
+<p>5UJiFctbmgbDoLXmpL12mkno8HT4Lv8dlat8FxR2GOc= 값을 Base64-Decode 한 값을 <code> sg.vantagepoint.a.a.a </code></p>
+<p>함수를 호출하여 bArr 라는 변수에 저장하게 됩니다.</p>
+<p>이후 bArr에 저장된 값과 입력한 값을 비교하여 return (true/false)를 반환 해주고 있다.</p>
+<p>따라서, 키 값을 만들어주는 함수를 후킹해서 값을 확인할 것이다.</p>
+<pre><code class="java">Java.perform(function() &#123;
+    var secret_class = Java.use(&quot;sg.vantagepoint.a.a&quot;);
+        secret_class.a.implementation = function(arr1, arr2)&#123;
+        var retval = this.a(arr1, arr2);
+        var secret_msg = &quot;&quot;;
+
+        for(var i=0; i &lt; retval.length; i++)&#123;
+            secret_msg += String.fromCharCode(retval[i]);
+        &#125;
+
+        console.log(&quot;[*] Secret Method Hooking!!&quot;);
+        console.log(secret_msg);
+        return retval;
+        &#125;
+&#125;);</code></pre>
+<p>후킹하는 코드는 간단하다. exit() 함수를 후킹할 때와 비슷한 방향으로 진행하면 되는데</p>
+<p><code> sg.vantagepoint.a.a.a </code> 는 인자가 2개이기 때문에 그에 맞게 인자를 처리해주고,</p>
+<p>for문을 활용해서 fromCharCode(문자열 변환) 함수로 변수하나를 지정해서 키 값을 저장해주면 된다.</p>
+<img src="/img/post/android_penetration/14.png" class="lazyload" data-srcset="/img/post/android_penetration/14.png" srcset="data:image/png;base64,666">
+
+<p>결과로 Secret key 값을 정상적으로 얻어낼 수 있다.</p>
+<h3 id="기타"><a href="#기타" class="headerlink" title="기타"></a>기타</h3><p>본문에 사용된 코드는 아래 깃허브에서 확인할 수 있습니다</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/jhye0n/android_frida_python">https://github.com/jhye0n/android_frida_python</a></li>
+</ul>
 
   
   
@@ -594,7 +631,7 @@ su # root 권한 요청</code></pre>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OWASP-MSTG%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">OWASP-MSTG란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC"><span class="toc-number">2.</span> <span class="toc-text">분석 도구</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4-amp-PC-%EC%97%B0%EA%B2%B0"><span class="toc-number">3.</span> <span class="toc-text">디바이스 &amp; PC 연결</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-Server-Install"><span class="toc-number">4.</span> <span class="toc-text">Frida Server Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-1-Decompile-to-APK"><span class="toc-number">5.</span> <span class="toc-text">App Analysis(1) - Decompile to APK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-2-Analyze-to-APK"><span class="toc-number">6.</span> <span class="toc-text">App Analysis(2) - Analyze to APK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-3-Root-Detected-Bypass"><span class="toc-number">7.</span> <span class="toc-text">App Analysis(3) - Root Detected Bypass</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OWASP-MSTG%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">OWASP-MSTG란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC"><span class="toc-number">2.</span> <span class="toc-text">분석 도구</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4-amp-PC-%EC%97%B0%EA%B2%B0"><span class="toc-number">3.</span> <span class="toc-text">디바이스 &amp; PC 연결</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-Server-Install"><span class="toc-number">4.</span> <span class="toc-text">Frida Server Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-1-Decompile-to-APK"><span class="toc-number">5.</span> <span class="toc-text">App Analysis(1) - Decompile to APK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-2-Analyze-to-APK"><span class="toc-number">6.</span> <span class="toc-text">App Analysis(2) - Analyze to APK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-3-Root-Detected-Bypass"><span class="toc-number">7.</span> <span class="toc-text">App Analysis(3) - Root Detected Bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-4-Get-Secret-Key"><span class="toc-number">8.</span> <span class="toc-text">App Analysis(4) - Get Secret Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B8%B0%ED%83%80"><span class="toc-number">9.</span> <span class="toc-text">기타</span></a></li></ol>
     </div>
   </section>
 
