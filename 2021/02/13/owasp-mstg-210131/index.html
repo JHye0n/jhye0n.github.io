@@ -403,15 +403,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>모바일 어플리케이션 보안 진단을 위한 정보들과 모의 해킹을 할 수 있는 <code> Crackme </code> 같은 어플리케이션을 제공한다.</p>
 <p>앱 다운로드는 아래 링크에서 가능하다.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes">https://github.com/OWASP/owasp-mstg/tree/master/Crackmes</a></p>
+<hr>
 <h3 id="분석-도구"><a href="#분석-도구" class="headerlink" title="분석 도구"></a>분석 도구</h3><ul>
 <li><p>IDA(<a target="_blank" rel="noopener" href="https://www.hex-rays.com/products/ida/">https://www.hex-rays.com/products/ida/</a>)</p>
 </li>
 <li><p>FRIDA(<a target="_blank" rel="noopener" href="https://frida.re/">https://frida.re/</a>)</p>
 </li>
+<li><p>APKTOOLS(<a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/">https://ibotpeaches.github.io/Apktool/</a>)</p>
+</li>
+<li><p>JADX(<a target="_blank" rel="noopener" href="https://github.com/skylot/jadx">https://github.com/skylot/jadx</a>)</p>
+</li>
+<li><p>JEB(<a target="_blank" rel="noopener" href="https://www.pnfsoftware.com/">https://www.pnfsoftware.com/</a>)</p>
+</li>
 </ul>
 <ul>
 <li>adb command</li>
 </ul>
+<hr>
 <h3 id="디바이스-amp-PC-연결"><a href="#디바이스-amp-PC-연결" class="headerlink" title="디바이스 &amp; PC 연결"></a>디바이스 &amp; PC 연결</h3><ul>
 <li>해당 과정부터는 루팅 및 USB 디버깅 모드가 활성화 상태로만 가능합니다.</li>
 </ul>
@@ -420,7 +428,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <pre><code class="bash">adb devices # 연결된 디바이스 확인
 adb shell # 디바이스 쉘 접속
 su # root 권한 요청</code></pre>
-<h3 id="Frida-Server-amp-Device-Install"><a href="#Frida-Server-amp-Device-Install" class="headerlink" title="Frida Server &amp; Device Install"></a>Frida Server &amp; Device Install</h3><p>루팅이 완료되었다면, 이제 분석 디바이스에 Frdia Server 서비스를 설치하고 구동시켜야 한다. (Frida 분석 목적)</p>
+<hr>
+<h3 id="Frida-Server-Install"><a href="#Frida-Server-Install" class="headerlink" title="Frida Server Install"></a>Frida Server Install</h3><p>루팅이 완료되었다면, 이제 분석 디바이스에 Frdia Server 서비스를 설치하고 구동시켜야 한다. (Frida 분석 목적)</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></li>
 </ul>
@@ -435,6 +444,52 @@ su # root 권한 요청</code></pre>
 <pre><code class="bash">frida-ps -U</code></pre>
 <p>위 과정이 잘 진행이 되었다면 아래와 같은 목록이 표시될 것이다.</p>
 <img src="/img/post/android_penetration/2.png" class="lazyload" data-srcset="/img/post/android_penetration/2.png" srcset="data:image/png;base64,666">
+
+<hr>
+<h3 id="App-Analysis-1-Decompile-to-APK"><a href="#App-Analysis-1-Decompile-to-APK" class="headerlink" title="App Analysis(1) - Decompile to APK"></a>App Analysis(1) - Decompile to APK</h3><p>이제 본격적인 앱 분석을 위해 어플리케이션 디컴파일 과정을 거쳐 smail 코드를 볼 것이다.</p>
+<p>디컴파일 도구로는 본문에 표시된 <code> apktool, jadx, jeb </code> 도구를 활용할 수 있다.</p>
+<p>우선 apktools로 APK를 디컴파일 하는 과정은 아래 명령어로 수행할 수 있다.</p>
+<pre><code class="bash">apktool d &lt;application&gt;</code></pre>
+<img src="/img/post/android_penetration/3.png" class="lazyload" data-srcset="/img/post/android_penetration/3.png" srcset="data:image/png;base64,666">
+
+<img src="/img/post/android_penetration/4.png" class="lazyload" data-srcset="/img/post/android_penetration/4.png" srcset="data:image/png;base64,666">
+
+<p>어플리케이션 디컴파일이 완료되었다면 아래 사진과 같이 어플리케이션을 빌드한 파일들과 smail 코드가 나온다. </p>
+<hr>
+<h3 id="App-Analysis-2-Analyze-to-APK"><a href="#App-Analysis-2-Analyze-to-APK" class="headerlink" title="App Analysis(2) - Analyze to APK"></a>App Analysis(2) - Analyze to APK</h3><p>이제, 어플리케이션 디컴파일 과정을 거쳤다면 앱 로직에 대해서 분석해보는 단계이다.</p>
+<img src="/img/post/android_penetration/5.png" class="lazyload" data-srcset="/img/post/android_penetration/5.png" srcset="data:image/png;base64,666">
+
+<p><code> JADX </code> 도구를 활용하면 위 사진과 같이 java 코드를 확인할 수 있으니 참고하도록 하자.</p>
+<p>우선 다운로드 받은 APK를 루팅 기기에서 일반적으로 실행하면, 루팅 탐지 로직때문에 강제 종료가 된다.</p>
+<p>그 로직을 분석한다음 우회를 해볼건데 하나씩 해보자</p>
+<img src="/img/post/android_penetration/6.png" class="lazyload" data-srcset="/img/post/android_penetration/6.png" srcset="data:image/png;base64,666">
+
+<p>앱이 실행될 때 동작하는 onCreate() 함수 부분을 보면 <code> c.a(), c.b(), c.c() </code> 로직과 같이</p>
+<p>루팅된 디바이스일 경우 탐지하는 로직과 디버깅 모드를 탐지하는 로직이 있다.</p>
+<img src="/img/post/android_penetration/7.png" class="lazyload" data-srcset="/img/post/android_penetration/7.png" srcset="data:image/png;base64,666">
+
+<img src="/img/post/android_penetration/8.png" class="lazyload" data-srcset="/img/post/android_penetration/8.png" srcset="data:image/png;base64,666">
+
+<p>위 두 사진은 디바이스의 루팅 상태를 체크하는 로직, 디버깅 모드 여부를 체크하는 로직이다.</p>
+<p>루팅의 경우 다들 아실만한 <code> SuperSu </code> 관련 파일들이 눈에 띄게 보인다.</p>
+<p>뭐.. 아무튼 시스템 경로나 루팅과 연관된 파일을 검사하는 정도이고</p>
+<p>두 번째 사진에서는 <code> context.getApplicationContext().getApplicationInfo().flags </code> 이 부분이 디버깅 모드 상태를 확인하는 것이다.</p>
+<p>위 두가지 로직에 하나라도 해당되는 상태라면, 앱이 정상적으로 실행되지 않고. exit() 함수가 실행되어 앱이 종료될 것이다.</p>
+<hr>
+<h3 id="App-Analysis-3-Root-Detected-Bypass"><a href="#App-Analysis-3-Root-Detected-Bypass" class="headerlink" title="App Analysis(3) - Root Detected Bypass"></a>App Analysis(3) - Root Detected Bypass</h3><p>그럼 루팅이 감지되었을 때 우회하는 방법은 어떻게 될까.</p>
+<p>위에서 분석해봤듯이, 루팅이나 디버깅 체크 로직에 탐지될 경우 exit() 함수가 실행되는데 이 함수를 후킹해서</p>
+<p>자신이 원하는 흐름으로 흘러가게 할 수 있다. (exit() 함수가 동작하지 않도록 한다거나..)</p>
+<img src="/img/post/android_penetration/9.png" class="lazyload" data-srcset="/img/post/android_penetration/9.png" srcset="data:image/png;base64,666">
+
+<p>위 경우 Frida로 특정 함수를 후킹해서 진행할 수 있는데 예제 코드는 사진과 같다.</p>
+<img src="/img/post/android_penetration/10.png" class="lazyload" data-srcset="/img/post/android_penetration/10.png" srcset="data:image/png;base64,666">
+
+<img src="/img/post/android_penetration/11.png" class="lazyload" data-srcset="/img/post/android_penetration/11.png" srcset="data:image/png;base64,666">
+
+<p>코드를 뚝딱하고나서 앱 실행 -&gt; 코드 실행을 해보면 사진과 같이 exit() 함수가 후킹되었다고 출력되고,</p>
+<p>실제 앱에서 봤을 때도 exit() 함수가 실행되지 않아 앱이 작동하는 화면이다.</p>
+<hr>
+
   
   
     
@@ -539,7 +594,7 @@ su # root 권한 요청</code></pre>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OWASP-MSTG%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">OWASP-MSTG란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC"><span class="toc-number">2.</span> <span class="toc-text">분석 도구</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4-amp-PC-%EC%97%B0%EA%B2%B0"><span class="toc-number">3.</span> <span class="toc-text">디바이스 &amp; PC 연결</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-Server-amp-Device-Install"><span class="toc-number">4.</span> <span class="toc-text">Frida Server &amp; Device Install</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OWASP-MSTG%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">OWASP-MSTG란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC"><span class="toc-number">2.</span> <span class="toc-text">분석 도구</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4-amp-PC-%EC%97%B0%EA%B2%B0"><span class="toc-number">3.</span> <span class="toc-text">디바이스 &amp; PC 연결</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-Server-Install"><span class="toc-number">4.</span> <span class="toc-text">Frida Server Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-1-Decompile-to-APK"><span class="toc-number">5.</span> <span class="toc-text">App Analysis(1) - Decompile to APK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-2-Analyze-to-APK"><span class="toc-number">6.</span> <span class="toc-text">App Analysis(2) - Analyze to APK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Analysis-3-Root-Detected-Bypass"><span class="toc-number">7.</span> <span class="toc-text">App Analysis(3) - Root Detected Bypass</span></a></li></ol>
     </div>
   </section>
 
