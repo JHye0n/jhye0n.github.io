@@ -5,8 +5,10 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="index,follow">
+    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/2021/01/31/android-rootkit-210131/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/archives/2021/02/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -24,9 +26,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>넥서스 5X 벽돌폰 복구 + 루팅 - JHYEON BLOG</title>
-  
-    <meta name="keywords" content="Android,Root,Nexus5X">
+  <title>Archive: 2021/2 - JHYEON BLOG</title>
   
 
   
@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur show"  >
+<header id="l_header" class="l_header always shadow blur "  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -329,219 +329,79 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
-  
-
-
-  
-  <div class="article-meta" id="top">
+	
+		
+  <section class="post-list">
     
-    
-    
-      <h1 class="title">
-        넥서스 5X 벽돌폰 복구 + 루팅
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="/img/header/cat.jpeg">
-    <p>jhyeon</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Mobile/">Mobile</a>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Jan 31, 2021</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="넥서스 5X 벽돌폰 복구 + 루팅" data-path="/2021/01/31/android-rootkit-210131/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        View
-      </div>
-    </a>
-  </div>
-
-
+        
           
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/02/13/owasp-mstg-210131/">
+        안드로이드 앱 모의해킹(OWASP-MSTG) 풀이
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        OWASP-MSTG란?https://github.com/OWASP/owasp-mstg
+모바일 어플리케이션 보안 진단을 위한 정보들과 모의 해킹을 할 수 있는  Crackme  같은 어플리케이션을 제공한다.
+앱 다운로드는 아래 링크에서 가능하다.
+https://github.com/OWASP/owasp-mstg/tree/master/Crackmes
+분석 ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+        
+        <time>2021-02-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Mobile/">Mobile</a>
         
       </div>
-    
-  </div>
-
-
-  
-  
-  <h3 id="벽돌폰-계기"><a href="#벽돌폰-계기" class="headerlink" title="벽돌폰 계기"></a>벽돌폰 계기</h3><p>최근에 BoB 프로젝트 때 썼던 도구들도 있고 이를 바탕으로 앱 모의해킹 한번 시도해보고자</p>
-<p>잠들어있던 Nexus 5X 공기계를 살려냈다.</p>
-<p>근데 이폰이 루팅만 해놓고 몇번 테스트용도로만 쓰다가 안써왔더니 터치도 안되고 해서 그냥 포맷하고</p>
-<p>다시 루팅을 걸어서 앱 분석을 하려고 했으나.. 루팅 하는 과정에서 실수(?)로 인하여 벽돌폰을 만들어버렸다. (ㅎㅎ)</p>
-<img src="/img/post/android_root/1.jpeg" class="lazyload" data-srcset="/img/post/android_root/1.jpeg" srcset="data:image/png;base64,666">
-
-<p>그래서 <code> Nexus Root Toolkit 2.19 </code> 프로그램을 써서 복구를 했는데 과정은 크게 어렵진 않아서 생략한다.</p>
-<p>다만 이 프로그램이 패치가 2년전?부터 중단했기 때문에 펌웨어는 다소 구버전 일 수 있으나 살려내는게 큰 목적이라면 이것도 상관없다.</p>
-<h3 id="루팅-재-시도"><a href="#루팅-재-시도" class="headerlink" title="루팅 재 시도"></a>루팅 재 시도</h3><p>이번에 루팅을 할 때는 그냥 수동으로 oem unlock 걸고 해서 한 방법인데 아래와 같이 수행했다.</p>
-<ul>
-<li>OEM 잠금 해제 -&gt; USB 디버깅 활성화</li>
-</ul>
-<img src="/img/post/android_root/2.jpeg" class="lazyload" data-srcset="/img/post/android_root/2.jpeg" srcset="data:image/png;base64,666">
-
-<img src="/img/post/android_root/3.jpeg" class="lazyload" data-srcset="/img/post/android_root/3.jpeg" srcset="data:image/png;base64,666">
-
-<hr>
-
-<ul>
-<li>안드로이드 스튜디오 &amp; platform tools 설치</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://developer.android.com/studio/install?hl=ko">https://developer.android.com/studio/install?hl=ko</a></p>
-<hr>
-
-<ul>
-<li>디바이스랑 PC를 USB로 연결해서 adb 사용</li>
-</ul>
-<pre><code class="bash">adb devices # 현재 현결된 디바이스 확인
-adb reboot bootloader # 부트로더 화면으로 재부팅
-fastboot oem unlock # oem unlock
-fastboot reboot # 재부팅</code></pre>
-<hr>
-
-<ul>
-<li>TWRP Recovery 도구 설치</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://dl.twrp.me/bullhead/">https://dl.twrp.me/bullhead/</a></p>
-<hr>
-
-<ul>
-<li>루팅(1)</li>
-</ul>
-<pre><code class="bash">adb reboot bootloader
-fastboot flash recovery &lt;imgfile&gt;
-adb reboot bootloader</code></pre>
-<ul>
-<li>SuperSU 다운로드</li>
-</ul>
-<pre><code class="bash">adb push BETA-SuperSU-v2.66-20160103015024.zip /sdcard/</code></pre>
-<p>이런 과정이 사실 좀 복잡한데, 위에 언급됐던 <code> Nexus Root Toolkit 2.19 </code></p>
-<p>써서 원클릭으로 루팅도 가능하니 알아두자..</p>
-
-  
-  
-    
-    <div class='footer'>
       
-      
-        
-  <div class="related_posts">
-    <section class='header'>
-      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
-    </section>
-    <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2021/01/31/android-app-penetration-study-210131/" title="(스터디 자료) 안드로이드 앱 분석 기초 part.1" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">(스터디 자료) 안드로이드 앱 분석 기초 part.1</span></a><a class="item" href="/2021/02/13/owasp-mstg-210131/" title="안드로이드 앱 모의해킹(OWASP-MSTG) 풀이" rel="bookmark "><img src="/img/post/android_penetration/1.png" class="lazyload" data-srcset="/img/post/android_penetration/1.png" srcset="data:image/png;base64,666" /><span class="title">안드로이드 앱 모의해킹(OWASP-MSTG) 풀이</span></a></div></section></div>
-      
-      
+        <div>
+          <a class='readmore' href='/2021/02/13/owasp-mstg-210131/'>
+            Read More
+          </a>
+        </div>
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Jan 31, 2021</p>
-  </a>
 </div>
 
+          </div>
         
       
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Android/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Android</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Root/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Root</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Nexus5X/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Nexus5X</p></a></div>
-
-
-        
-      
-        
-      
-    </div>
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2021/01/31/android-app-penetration-study-210131/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>(스터디 자료) 안드로이드 앱 분석 기초 part.1</p>
-          <p class='content'>Linkhttps://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing
-해당 자료를 활용한...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/01/23/lfi-to-rce-210123/'>
-          <p class='title'>LFI를 활용한 RCE 연계하기<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>IntroDVWA 리뷰를 할 때 LFI 공격에 관해서 잠깐 다뤄보았을 때 LFI를 활용해 어떤 추가 공격이 나올 수 있는지 작성하기로 했었다.
-이번 글에서는 RCE(Remot...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> Comments</p>
     
-    <div id="disqus_thread">
-  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
-  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
-  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
-</div>
-
-  </article>
+  </section>
+  
+    
+  
 
 
-
-
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -549,19 +409,130 @@ adb reboot bootloader</code></pre>
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' target="_blank" rel="noopener" href='https://pf.jhyeon.dev'>
+          <img no-lazy src='/img/profile/my.jpeg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>JHYEON</h2>
+        
+        
+          <p>Web Development &amp; Security Research</p>
 
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:stjhyeon@kakao.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/jhye0n"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
     
   </header>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B2%BD%EB%8F%8C%ED%8F%B0-%EA%B3%84%EA%B8%B0"><span class="toc-number">1.</span> <span class="toc-text">벽돌폰 계기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A3%A8%ED%8C%85-%EC%9E%AC-%EC%8B%9C%EB%8F%84"><span class="toc-number">2.</span> <span class="toc-text">루팅 재 시도</span></a></li></ol>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/CTF/" href="/categories/CTF/"
+            id="categoriesCTF"
+            ><div class='name'>CTF</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Docx/" href="/categories/Docx/"
+            id="categoriesDocx"
+            ><div class='name'>Docx</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Memo/" href="/categories/Memo/"
+            id="categoriesMemo"
+            ><div class='name'>Memo</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Mobile/" href="/categories/Mobile/"
+            id="categoriesMobile"
+            ><div class='name'>Mobile</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Pwnable/" href="/categories/Pwnable/"
+            id="categoriesPwnable"
+            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Wargame/" href="/categories/Wargame/"
+            id="categoriesWargame"
+            ><div class='name'>Wargame</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Web/" href="/categories/Web/"
+            id="categoriesWeb"
+            ><div class='name'>Web</div><div class='badge'>(8)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/Algorithm/" style="font-size: 16.5px; color: #888">Algorithm</a> <a href="/tags/Android/" style="font-size: 19px; color: #777">Android</a> <a href="/tags/Application/" style="font-size: 16.5px; color: #888">Application</a> <a href="/tags/B-ngsiri/" style="font-size: 14px; color: #999">B@ngsiri</a> <a href="/tags/BISC2020/" style="font-size: 14px; color: #999">BISC2020</a> <a href="/tags/BOF/" style="font-size: 14px; color: #999">BOF</a> <a href="/tags/Backup/" style="font-size: 14px; color: #999">Backup</a> <a href="/tags/Big-Sur/" style="font-size: 14px; color: #999">Big Sur</a> <a href="/tags/Blog/" style="font-size: 14px; color: #999">Blog</a> <a href="/tags/BoB/" style="font-size: 14px; color: #999">BoB</a> <a href="/tags/Browser-Auditor/" style="font-size: 14px; color: #999">Browser Auditor</a> <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CANVAS/" style="font-size: 14px; color: #999">CANVAS</a> <a href="/tags/CSAWCTF-2020/" style="font-size: 14px; color: #999">CSAWCTF 2020</a> <a href="/tags/CSRF/" style="font-size: 14px; color: #999">CSRF</a> <a href="/tags/Canary/" style="font-size: 14px; color: #999">Canary</a> <a href="/tags/Cassandra/" style="font-size: 14px; color: #999">Cassandra</a> <a href="/tags/CheatSheet/" style="font-size: 14px; color: #999">CheatSheet</a> <a href="/tags/ChristmasCTF2019/" style="font-size: 14px; color: #999">ChristmasCTF2019</a> <a href="/tags/Chrome/" style="font-size: 14px; color: #999">Chrome</a> <a href="/tags/DB/" style="font-size: 14px; color: #999">DB</a> <a href="/tags/DVWA/" style="font-size: 14px; color: #999">DVWA</a> <a href="/tags/Development/" style="font-size: 14px; color: #999">Development</a> <a href="/tags/Docker/" style="font-size: 19px; color: #777">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 16.5px; color: #888">Dockerfile</a> <a href="/tags/Exploitation/" style="font-size: 14px; color: #999">Exploitation</a> <a href="/tags/Firefox/" style="font-size: 14px; color: #999">Firefox</a> <a href="/tags/Foreign-Key/" style="font-size: 14px; color: #999">Foreign Key</a> <a href="/tags/Github/" style="font-size: 14px; color: #999">Github</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/LFI/" style="font-size: 14px; color: #999">LFI</a> <a href="/tags/LMS/" style="font-size: 14px; color: #999">LMS</a> <a href="/tags/Linux/" style="font-size: 16.5px; color: #888">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 14px; color: #999">Mac OS</a> <a href="/tags/Macro/" style="font-size: 14px; color: #999">Macro</a> <a href="/tags/Malware/" style="font-size: 14px; color: #999">Malware</a> <a href="/tags/Memory-Mitigation/" style="font-size: 14px; color: #999">Memory Mitigation</a> <a href="/tags/Mprotect/" style="font-size: 14px; color: #999">Mprotect</a> <a href="/tags/Network/" style="font-size: 14px; color: #999">Network</a> <a href="/tags/Nexus5X/" style="font-size: 14px; color: #999">Nexus5X</a> <a href="/tags/NoSQL/" style="font-size: 14px; color: #999">NoSQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/OWASP/" style="font-size: 14px; color: #999">OWASP</a> <a href="/tags/OWASP-MSTG/" style="font-size: 14px; color: #999">OWASP-MSTG</a> <a href="/tags/PHP/" style="font-size: 16.5px; color: #888">PHP</a> <a href="/tags/POX2020/" style="font-size: 14px; color: #999">POX2020</a> <a href="/tags/Penetration/" style="font-size: 16.5px; color: #888">Penetration</a> <a href="/tags/Pentesting/" style="font-size: 16.5px; color: #888">Pentesting</a> <a href="/tags/PicoCTF2019/" style="font-size: 14px; color: #999">PicoCTF2019</a> <a href="/tags/Primary-Key/" style="font-size: 14px; color: #999">Primary Key</a> <a href="/tags/Pwn/" style="font-size: 14px; color: #999">Pwn</a> <a href="/tags/Pwnable/" style="font-size: 21.5px; color: #666">Pwnable</a> <a href="/tags/Python/" style="font-size: 14px; color: #999">Python</a> <a href="/tags/RCE/" style="font-size: 16.5px; color: #888">RCE</a> <a href="/tags/ROP/" style="font-size: 19px; color: #777">ROP</a> <a href="/tags/Root/" style="font-size: 14px; color: #999">Root</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Shellcode/" style="font-size: 14px; color: #999">Shellcode</a> <a href="/tags/Study/" style="font-size: 14px; color: #999">Study</a> <a href="/tags/Suricata/" style="font-size: 14px; color: #999">Suricata</a> <a href="/tags/System/" style="font-size: 14px; color: #999">System</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 14px; color: #999">Ubuntu</a> <a href="/tags/Wargame/" style="font-size: 14px; color: #999">Wargame</a> <a href="/tags/Web/" style="font-size: 24px; color: #555">Web</a> <a href="/tags/Web-Hacking/" style="font-size: 14px; color: #999">Web Hacking</a> <a href="/tags/Writeup/" style="font-size: 19px; color: #777">Writeup</a> <a href="/tags/XSS/" style="font-size: 19px; color: #777">XSS</a> <a href="/tags/iftop/" style="font-size: 14px; color: #999">iftop</a> <a href="/tags/syscall/" style="font-size: 14px; color: #999">syscall</a> <a href="/tags/websec-fr/" style="font-size: 16.5px; color: #888">websec.fr</a> <a href="/tags/%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">선형 탐색</a> <a href="/tags/%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">이진 탐색</a> <a href="/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보보안</a> <a href="/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/" style="font-size: 14px; color: #999">최신동향</a> <a href="/tags/%ED%9A%8C%EA%B3%A0/" style="font-size: 14px; color: #999">회고</a>
     </div>
   </section>
 
@@ -572,21 +543,20 @@ adb reboot bootloader</code></pre>
 </aside>
 
 
-
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="넥서스 5X 벽돌폰 복구 + 루팅";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
 </script>
 

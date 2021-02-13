@@ -6,7 +6,7 @@
   
     
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/2021/01/31/owasp-mstg-210131/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Jan 31, 2021</p>
+    <p>Date : Feb 13, 2021</p>
   </a>
 </div>
 
@@ -381,7 +381,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="안드로이드 앱 모의해킹(OWASP-MSTG) 풀이" data-path="/2021/01/31/owasp-mstg-210131/">
+      <div id="lc-pv" data-title="안드로이드 앱 모의해킹(OWASP-MSTG) 풀이" data-path="/2021/02/13/owasp-mstg-210131/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         View
@@ -420,7 +420,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <pre><code class="bash">adb devices # 연결된 디바이스 확인
 adb shell # 디바이스 쉘 접속
 su # root 권한 요청</code></pre>
+<h3 id="Frida-Server-amp-Device-Install"><a href="#Frida-Server-amp-Device-Install" class="headerlink" title="Frida Server &amp; Device Install"></a>Frida Server &amp; Device Install</h3><p>루팅이 완료되었다면, 이제 분석 디바이스에 Frdia Server 서비스를 설치하고 구동시켜야 한다. (Frida 분석 목적)</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></li>
+</ul>
 <img src="/img/post/android_penetration/1.png" class="lazyload" data-srcset="/img/post/android_penetration/1.png" srcset="data:image/png;base64,666">
+
+<p>사진과 같이 Release 버전들이 업로드되어 있는데 본인의 디바이스 환경에 맞는 펌웨어를 선택해서 다운로드 받자.</p>
+<p>본인의 디바이스 환경은 <code> adb shell </code> 환경에서 <code> cat /proc/cpuinfo </code> 명령어를 통해 확인할 수 있다.</p>
+<p>다운로드가 완료되었으면, 아래 명령어를 통해 디바이스 로컬 저장소에 파일을 넣어준 뒤 실행하자.</p>
+<pre><code class="bash">adb push &lt;filename&gt; /date/local/tmp
+./&lt;binary filename&gt; &amp;</code></pre>
+<p>Frida Server를 실행시킨 뒤 <code> adb shell </code> 모드를 빠져나와서 아래 명령어를 입력해보자.</p>
+<pre><code class="bash">frida-ps -U</code></pre>
+<p>위 과정이 잘 진행이 되었다면 아래와 같은 목록이 표시될 것이다.</p>
+<img src="/img/post/android_penetration/2.png" class="lazyload" data-srcset="/img/post/android_penetration/2.png" srcset="data:image/png;base64,666">
   
   
     
@@ -450,7 +464,7 @@ su # root 권한 요청</code></pre>
           <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Jan 31, 2021</p>
+    <p>Date : Feb 13, 2021</p>
   </a>
 </div>
 
@@ -525,7 +539,7 @@ su # root 권한 요청</code></pre>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OWASP-MSTG%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">OWASP-MSTG란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC"><span class="toc-number">2.</span> <span class="toc-text">분석 도구</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4-amp-PC-%EC%97%B0%EA%B2%B0"><span class="toc-number">3.</span> <span class="toc-text">디바이스 &amp; PC 연결</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OWASP-MSTG%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">OWASP-MSTG란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC"><span class="toc-number">2.</span> <span class="toc-text">분석 도구</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4-amp-PC-%EC%97%B0%EA%B2%B0"><span class="toc-number">3.</span> <span class="toc-text">디바이스 &amp; PC 연결</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-Server-amp-Device-Install"><span class="toc-number">4.</span> <span class="toc-text">Frida Server &amp; Device Install</span></a></li></ol>
     </div>
   </section>
 

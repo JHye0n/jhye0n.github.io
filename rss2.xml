@@ -9,14 +9,14 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sun, 31 Jan 2021 06:15:30 GMT</pubDate>
+    <pubDate>Fri, 12 Feb 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>안드로이드 앱 모의해킹(OWASP-MSTG) 풀이</title>
-      <link>https://blog.jhyeon.dev/2021/01/31/owasp-mstg-210131/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/31/owasp-mstg-210131/</guid>
-      <pubDate>Sun, 31 Jan 2021 06:15:30 GMT</pubDate>
+      <link>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/</link>
+      <guid>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/</guid>
+      <pubDate>Fri, 12 Feb 2021 15:00:00 GMT</pubDate>
       
         
         
@@ -25,7 +25,7 @@
       
       
       
-      <content:encoded><![CDATA[<h3 id="OWASP-MSTG란"><a href="#OWASP-MSTG란" class="headerlink" title="OWASP-MSTG란?"></a>OWASP-MSTG란?</h3><p><a href="https://github.com/OWASP/owasp-mstg">https://github.com/OWASP/owasp-mstg</a></p><p>모바일 어플리케이션 보안 진단을 위한 정보들과 모의 해킹을 할 수 있는 <code> Crackme </code> 같은 어플리케이션을 제공한다.</p><p>앱 다운로드는 아래 링크에서 가능하다.</p><p><a href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes">https://github.com/OWASP/owasp-mstg/tree/master/Crackmes</a></p><h3 id="분석-도구"><a href="#분석-도구" class="headerlink" title="분석 도구"></a>분석 도구</h3><ul><li><p>IDA(<a href="https://www.hex-rays.com/products/ida/">https://www.hex-rays.com/products/ida/</a>)</p></li><li><p>FRIDA(<a href="https://frida.re/">https://frida.re/</a>)</p></li></ul><ul><li>adb command</li></ul><h3 id="디바이스-amp-PC-연결"><a href="#디바이스-amp-PC-연결" class="headerlink" title="디바이스 &amp; PC 연결"></a>디바이스 &amp; PC 연결</h3><ul><li>해당 과정부터는 루팅 및 USB 디버깅 모드가 활성화 상태로만 가능합니다.</li></ul><p>루팅 과정을 하지 않으셨다면 이전 게시글을 보고 루팅을 해주세요! (글에서는 공기계 루팅을 대상으로 진행)</p><p>또, 공기계가 따로 없으신분들은 <code> Nox 가상 앱 플레이어 </code> 를 사용하셔도 무방합니다.</p><pre><code class="bash">adb devices # 연결된 디바이스 확인adb shell # 디바이스 쉘 접속su # root 권한 요청</code></pre><img src="/img/post/android_penetration/1.png" class="lazyload" data-srcset="/img/post/android_penetration/1.png" srcset="data:image/png;base64,666">]]></content:encoded>
+      <content:encoded><![CDATA[<h3 id="OWASP-MSTG란"><a href="#OWASP-MSTG란" class="headerlink" title="OWASP-MSTG란?"></a>OWASP-MSTG란?</h3><p><a href="https://github.com/OWASP/owasp-mstg">https://github.com/OWASP/owasp-mstg</a></p><p>모바일 어플리케이션 보안 진단을 위한 정보들과 모의 해킹을 할 수 있는 <code> Crackme </code> 같은 어플리케이션을 제공한다.</p><p>앱 다운로드는 아래 링크에서 가능하다.</p><p><a href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes">https://github.com/OWASP/owasp-mstg/tree/master/Crackmes</a></p><h3 id="분석-도구"><a href="#분석-도구" class="headerlink" title="분석 도구"></a>분석 도구</h3><ul><li><p>IDA(<a href="https://www.hex-rays.com/products/ida/">https://www.hex-rays.com/products/ida/</a>)</p></li><li><p>FRIDA(<a href="https://frida.re/">https://frida.re/</a>)</p></li></ul><ul><li>adb command</li></ul><h3 id="디바이스-amp-PC-연결"><a href="#디바이스-amp-PC-연결" class="headerlink" title="디바이스 &amp; PC 연결"></a>디바이스 &amp; PC 연결</h3><ul><li>해당 과정부터는 루팅 및 USB 디버깅 모드가 활성화 상태로만 가능합니다.</li></ul><p>루팅 과정을 하지 않으셨다면 이전 게시글을 보고 루팅을 해주세요! (글에서는 공기계 루팅을 대상으로 진행)</p><p>또, 공기계가 따로 없으신분들은 <code> Nox 가상 앱 플레이어 </code> 를 사용하셔도 무방합니다.</p><pre><code class="bash">adb devices # 연결된 디바이스 확인adb shell # 디바이스 쉘 접속su # root 권한 요청</code></pre><h3 id="Frida-Server-amp-Device-Install"><a href="#Frida-Server-amp-Device-Install" class="headerlink" title="Frida Server &amp; Device Install"></a>Frida Server &amp; Device Install</h3><p>루팅이 완료되었다면, 이제 분석 디바이스에 Frdia Server 서비스를 설치하고 구동시켜야 한다. (Frida 분석 목적)</p><ul><li><a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></li></ul><img src="/img/post/android_penetration/1.png" class="lazyload" data-srcset="/img/post/android_penetration/1.png" srcset="data:image/png;base64,666"><p>사진과 같이 Release 버전들이 업로드되어 있는데 본인의 디바이스 환경에 맞는 펌웨어를 선택해서 다운로드 받자.</p><p>본인의 디바이스 환경은 <code> adb shell </code> 환경에서 <code> cat /proc/cpuinfo </code> 명령어를 통해 확인할 수 있다.</p><p>다운로드가 완료되었으면, 아래 명령어를 통해 디바이스 로컬 저장소에 파일을 넣어준 뒤 실행하자.</p><pre><code class="bash">adb push &lt;filename&gt; /date/local/tmp./&lt;binary filename&gt; &amp;</code></pre><p>Frida Server를 실행시킨 뒤 <code> adb shell </code> 모드를 빠져나와서 아래 명령어를 입력해보자.</p><pre><code class="bash">frida-ps -U</code></pre><p>위 과정이 잘 진행이 되었다면 아래와 같은 목록이 표시될 것이다.</p><img src="/img/post/android_penetration/2.png" class="lazyload" data-srcset="/img/post/android_penetration/2.png" srcset="data:image/png;base64,666">]]></content:encoded>
       
       
       <category domain="https://blog.jhyeon.dev/categories/Mobile/">Mobile</category>
@@ -40,7 +40,7 @@
       <category domain="https://blog.jhyeon.dev/tags/OWASP-MSTG/">OWASP-MSTG</category>
       
       
-      <comments>https://blog.jhyeon.dev/2021/01/31/owasp-mstg-210131/#disqus_thread</comments>
+      <comments>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/#disqus_thread</comments>
       
     </item>
     
@@ -479,9 +479,9 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/Pwnable/">Pwnable</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/ChristmasCTF2019/">ChristmasCTF2019</category>
       
@@ -532,12 +532,12 @@
         
       <description>&lt;p&gt;POX 2020 출제자 Write up 자료입니다.&lt;/p&gt;
 &lt;p&gt;아래 노션에서 풀이를 확인하실 수 있습니다.&lt;/p&gt;
-&lt;p&gt;질문 사항이 있으시면 &lt;a href=&quot;mailto:&amp;#115;&amp;#116;&amp;#x6a;&amp;#104;&amp;#121;&amp;#101;&amp;#111</description>
+&lt;p&gt;질문 사항이 있으시면 &lt;a href=&quot;mailto:&amp;#115;&amp;#x74;&amp;#x6a;&amp;#104;&amp;#121;&amp;#101;&amp;#x6f</description>
         
       
       
       
-      <content:encoded><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#x6a;&#104;&#121;&#101;&#111;&#x6e;&#x40;&#x6b;&#97;&#107;&#97;&#111;&#46;&#99;&#x6f;&#x6d;">&#115;&#116;&#x6a;&#104;&#121;&#101;&#111;&#x6e;&#x40;&#x6b;&#97;&#107;&#97;&#111;&#46;&#99;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content:encoded>
+      <content:encoded><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#x6a;&#104;&#121;&#101;&#x6f;&#110;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#46;&#99;&#111;&#109;">&#115;&#x74;&#x6a;&#104;&#121;&#101;&#x6f;&#110;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#46;&#99;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content:encoded>
       
       
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
