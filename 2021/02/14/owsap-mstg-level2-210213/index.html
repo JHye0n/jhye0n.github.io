@@ -6,7 +6,7 @@
   
     
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/2021/02/13/owsap-mstg-level2-210213/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/02/14/owsap-mstg-level2-210213/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Feb 13, 2021</p>
+    <p>Date : Feb 14, 2021</p>
   </a>
 </div>
 
@@ -381,7 +381,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 2~4 풀이" data-path="/2021/02/13/owsap-mstg-level2-210213/">
+      <div id="lc-pv" data-title="안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 2~4 풀이" data-path="/2021/02/14/owsap-mstg-level2-210213/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         View
@@ -454,7 +454,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         &#125;)</code></pre>
 <p>코드는 그렇게 어렵진 않고, libfoo.so 라이브러리 내 strncmp에 접근해서 onEnter 이벤트가 발생하면, 코드를 실행하도록 구조를 만들었다.</p>
 <p><code> args[2].toInt32() == 23 </code> 처리를 해준 이유는 strncmp 함수를 실행하는 조건에 입력값 길이가 23을 만족해야 된다.</p>
-<p>그래서 args[0] = 사용자 입력값에 23길이가 채워지면 <code> Memory.readCString() 함수로 메모리에서 값을 읽도록 하였고, 아래와 같이</p>
+<p>그래서 args[0] = 사용자 입력값에 23길이가 채워지면 <code> Memory.readCString() </code> 함수로 메모리에서 값을 읽도록 하였고, 아래와 같이</p>
 <p>정상적으로 키 값을 얻어낼 수 있었다.</p>
 <img src="/img/post/android_penetration2/6.png" class="lazyload" data-srcset="/img/post/android_penetration2/6.png" srcset="data:image/png;base64,666">
 
@@ -497,7 +497,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Feb 13, 2021</p>
+    <p>Date : Feb 14, 2021</p>
   </a>
 </div>
 
@@ -523,17 +523,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/02/13/owasp-mstg-210131/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>안드로이드 앱 모의해킹(OWASP-MSTG) 풀이</p>
+      
+        <a class='next' href='/2021/02/13/owasp-mstg-210131/'>
+          <p class='title'>안드로이드 앱 모의해킹(OWASP-MSTG) 풀이<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>OWASP-MSTG란?https://github.com/OWASP/owasp-mstg
 모바일 어플리케이션 보안 진단을 위한 정보들과 모의 해킹을 할 수 있는  Crackme ...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/01/31/android-app-penetration-study-210131/'>
-          <p class='title'>(스터디 자료) 안드로이드 앱 분석 기초 part.1<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Linkhttps://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing
-해당 자료를 활용한...</p>
         </a>
       
     </div>

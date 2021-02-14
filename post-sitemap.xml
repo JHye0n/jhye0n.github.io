@@ -9,15 +9,15 @@
 
 
     <url>
-        <loc>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/</loc>
-        <lastmod>2021-02-12T15:00:00.000Z</lastmod>
+        <loc>https://blog.jhyeon.dev/2021/02/14/owsap-mstg-level2-210213/</loc>
+        <lastmod>2021-02-13T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2021/02/13/owsap-mstg-level2-210213/</loc>
+        <loc>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/</loc>
         <lastmod>2021-02-12T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
