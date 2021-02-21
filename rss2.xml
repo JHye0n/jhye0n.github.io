@@ -13,6 +13,30 @@
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>VMware Escape(CVE 2017-4901) 개념/분석글</title>
+      <link>https://blog.jhyeon.dev/2021/02/21/cve-2017-4901-210221/</link>
+      <guid>https://blog.jhyeon.dev/2021/02/21/cve-2017-4901-210221/</guid>
+      <pubDate>Sat, 20 Feb 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;이번에, 해킹/보안팀으로 소속중인 “DEMON” 팀에서 세미나 진행을 위해 연구했던 자료를 공유합니다.&lt;/p&gt;
+&lt;p&gt;아직 시스템 해킹쪽으로는 많이 부족한 점이 있는 점을 감안하고 봐주시면 감사드리겠습니다 ㅜ_ㅜ&lt;/p&gt;
+&lt;p&gt;덧붙여, 직접 페이로드</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>이번에, 해킹/보안팀으로 소속중인 “DEMON” 팀에서 세미나 진행을 위해 연구했던 자료를 공유합니다.</p><p>아직 시스템 해킹쪽으로는 많이 부족한 점이 있는 점을 감안하고 봐주시면 감사드리겠습니다 ㅜ_ㅜ</p><p>덧붙여, 직접 페이로드를 작성해보려고 했지만.. 환경 구축에 어려움이 있어 아직 준비만 하고 있는 단계입니다.</p><p>추후 VM/VBox와 관련된 상세 연구를 진행한 이후 조금 더 체계적으로 정리하여 연구글을 한번 더 포스팅 하겠습니다!</p><p><a href="https://www.notion.so/jhyeon/CVE-2017-4901-7b5a7c3d0e714879992013d1cc04d30b">https://www.notion.so/jhyeon/CVE-2017-4901-7b5a7c3d0e714879992013d1cc04d30b</a></p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/02/21/cve-2017-4901-210221/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>해킹캠프(HACKINGCAMP) 22기 운영 후기</title>
       <link>https://blog.jhyeon.dev/2021/02/21/hcamp22th/</link>
       <guid>https://blog.jhyeon.dev/2021/02/21/hcamp22th/</guid>
@@ -585,34 +609,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2020/11/21/bob-bisc-201129/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>POX(Power of xx) 2020 Write up</title>
-      <link>https://blog.jhyeon.dev/2020/11/21/poxctf-201121/</link>
-      <guid>https://blog.jhyeon.dev/2020/11/21/poxctf-201121/</guid>
-      <pubDate>Fri, 20 Nov 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;POX 2020 출제자 Write up 자료입니다.&lt;/p&gt;
-&lt;p&gt;아래 노션에서 풀이를 확인하실 수 있습니다.&lt;/p&gt;
-&lt;p&gt;질문 사항이 있으시면 &lt;a href=&quot;mailto:&amp;#115;&amp;#x74;&amp;#x6a;&amp;#x68;&amp;#121;&amp;#x65;&amp;#x6f</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#x6a;&#x68;&#121;&#x65;&#x6f;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#x2e;&#x63;&#x6f;&#109;">&#115;&#x74;&#x6a;&#x68;&#121;&#x65;&#x6f;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#x2e;&#x63;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/POX2020/">POX2020</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2020/11/21/poxctf-201121/#disqus_thread</comments>
       
     </item>
     
