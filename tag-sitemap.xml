@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/%ED%95%B4%ED%82%B9%EC%BA%A0%ED%94%84/</loc>
+        <lastmod>2021-02-20T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/%EC%A0%95%EB%B3%B4-%EB%B3%B4%EC%95%88/</loc>
+        <lastmod>2021-02-20T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/HACKINGCAMP/</loc>
+        <lastmod>2021-02-20T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/HCAMP/</loc>
+        <lastmod>2021-02-20T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/OWASP-MSTG/</loc>
         <lastmod>2021-02-13T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>

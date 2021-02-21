@@ -467,7 +467,147 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                 console.log(&quot;Debug Hooked!&quot;);
                 return true;
             &#125;</code></pre>
-<h2 id="LEVEL-3"><a href="#LEVEL-3" class="headerlink" title="LEVEL 3"></a>LEVEL 3</h2><h2 id="LEVEL-4"><a href="#LEVEL-4" class="headerlink" title="LEVEL 4"></a>LEVEL 4</h2>
+<h2 id="LEVEL-3"><a href="#LEVEL-3" class="headerlink" title="LEVEL 3"></a>LEVEL 3</h2><ul>
+<li>verifylibs()</li>
+</ul>
+<img src="/img/post/android_penetration2/8.png" class="lazyload" data-srcset="/img/post/android_penetration2/8.png" srcset="data:image/png;base64,666">
+
+<p>MainActivity의 구조를 보면 우선 verifylibs() 함수에서 이전 단계와 동일하게 libfoo.so 라는 라이브러리를 사용하여</p>
+<p>Native Method를 사용하려는 듯 합니다. 다만 달라진 점은 <code> CRC Checksum </code> 검사를 하는데 로직은 아래와 같습니다.</p>
+<pre><code class="java">this.crc.put(&quot;armeabi-v7a&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.armeabi_v7a))));
+this.crc.put(&quot;arm64-v8a&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.arm64_v8a))));
+this.crc.put(&quot;x86&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.x86))));
+this.crc.put(&quot;x86_64&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.x86_64))));</code></pre>
+<p>각 OS별 Architecture에 맞게 CRC 값을 만들어냅니다. </p>
+<pre><code class="java">try &#123;
+    ZipFile zipFile = new ZipFile(getPackageCodePath());
+    for (Map.Entry&lt;String, Long&gt; entry : this.crc.entrySet()) &#123;
+        String str = &quot;lib/&quot; + entry.getKey() + &quot;/libfoo.so&quot;;
+        ZipEntry entry2 = zipFile.getEntry(str);
+        Log.v(TAG, &quot;CRC[&quot; + str + &quot;] = &quot; + entry2.getCrc());
+        if (entry2.getCrc() != entry.getValue().longValue()) &#123;
+            tampered = 31337;
+            Log.v(TAG, str + &quot;: Invalid checksum = &quot; + entry2.getCrc() + &quot;, supposed to be &quot; + entry.getValue());
+        &#125;
+    &#125;
+    ZipEntry entry3 = zipFile.getEntry(&quot;classes.dex&quot;);
+    Log.v(TAG, &quot;CRC[&quot; + &quot;classes.dex&quot; + &quot;] = &quot; + entry3.getCrc());
+    if (entry3.getCrc() != baz()) &#123;
+        tampered = 31337;
+        Log.v(TAG, &quot;classes.dex&quot; + &quot;: crc = &quot; + entry3.getCrc() + &quot;, supposed to be &quot; + baz());
+    &#125;
+&#125; catch (IOException unused) &#123;
+            Log.v(TAG, &quot;Exception&quot;);
+            System.exit(0);
+&#125;</code></pre>
+<p>해당 로직이 CRC 값이 변조되지 않았다는 것을 확인하기 위한 체크 루틴 부분입니다.</p>
+<p>즉, 처음의 CRC값과 다르다면 tampered라는 변수의 값을 31337로 바꿔버립니다.</p>
+<pre><code class="java">    public void onCreate(Bundle bundle) &#123;
+        verifyLibs();
+
+        new AsyncTask&lt;Void, String, String&gt;() &#123;
+            /* class sg.vantagepoint.uncrackable3.MainActivity.AnonymousClass2 */
+
+            /* access modifiers changed from: protected */
+            public String doInBackground(Void... voidArr) &#123;
+                while (!Debug.isDebuggerConnected()) &#123;
+                    SystemClock.sleep(100);
+                &#125;
+                return null;
+            &#125;
+
+            /* access modifiers changed from: protected */
+            public void onPostExecute(String str) &#123;
+                MainActivity.this.showDialog(&quot;Debugger detected!&quot;);
+                System.exit(0);
+            &#125;
+        &#125;.execute(null, null, null);
+        if (RootDetection.checkRoot1() || RootDetection.checkRoot2() || RootDetection.checkRoot3() || IntegrityCheck.isDebuggable(getApplicationContext()) || tampered != 0) &#123;
+            showDialog(&quot;Rooting or tampering detected.&quot;);
+        &#125;
+        this.check = new CodeCheck();
+        super.onCreate(bundle);
+        setContentView(R.layout.activity_main);
+    &#125;</code></pre>
+<p><code> Mainactivity -> onCreate() </code> 앱이 실행될 때 로직을 처리하는 주요 부분입니다.</p>
+<pre><code class="java">public String doInBackground(Void... voidArr) &#123;
+    while (!Debug.isDebuggerConnected()) &#123;
+        SystemClock.sleep(100);
+    &#125;
+    return null;
+&#125;
+
+public void onPostExecute(String str) &#123;
+    MainActivity.this.showDialog(&quot;Debugger detected!&quot;);
+    System.exit(0);
+&#125;</code></pre>
+<p>2단계에서 봤던 방법으로 AsyncTask로 백그라운드로 돌면서 디버깅 여부를 확인하여 탐지하고 있고,</p>
+<pre><code class="java">if (RootDetection.checkRoot1() || RootDetection.checkRoot2() || RootDetection.checkRoot3() || IntegrityCheck.isDebuggable(getApplicationContext()) || tampered != 0) &#123;
+    showDialog(&quot;Rooting or tampering detected.&quot;);
+&#125;
+this.check = new CodeCheck();
+super.onCreate(bundle);
+setContentView(R.layout.activity_main);</code></pre>
+<p>루팅을 탐지하는 로직도 루팅 검사 함수가 존재합니다. 이렇게 디버깅과 루팅 탐지 로직을 통과하면 MainActivty를 활성화 시켜,</p>
+<p><code> CodeCheck() </code> 로 Secret String 체크를 하게 됩니다.</p>
+<p>추가로, 루팅 탐지 로직이 궁금하신 분들이 있을 것 같아 추적해보면 아래와 같습니다. 크게 바뀐 사항은 없습니다. </p>
+<pre><code class="java">public class RootDetection &#123;
+    public static boolean checkRoot1() &#123;
+        for (String str : System.getenv(&quot;PATH&quot;).split(&quot;:&quot;)) &#123;
+            if (new File(str, &quot;su&quot;).exists()) &#123;
+                return true;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+
+    public static boolean checkRoot2() &#123;
+        String str = Build.TAGS;
+        return str != null &amp;&amp; str.contains(&quot;test-keys&quot;);
+    &#125;
+
+    public static boolean checkRoot3() &#123;
+        for (String str : new String[]&#123;&quot;/system/app/Superuser.apk&quot;, &quot;/system/xbin/daemonsu&quot;, &quot;/system/etc/init.d/99SuperSUDaemon&quot;, &quot;/system/bin/.ext/.su&quot;, &quot;/system/etc/.has_su_daemon&quot;, &quot;/system/etc/.installed_su_daemon&quot;, &quot;/dev/com.koushikdutta.superuser.daemon/&quot;&#125;) &#123;
+            if (new File(str).exists()) &#123;
+                return true;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+&#125;</code></pre>
+<p>다음은 CodeCheck() 로직 입니다.</p>
+<pre><code class="java">package sg.vantagepoint.uncrackable3;
+
+public class CodeCheck &#123;
+    private static final String TAG = &quot;CodeCheck&quot;;
+
+    private native boolean bar(byte[] bArr);
+
+    public boolean check_code(String str) &#123;
+        return bar(str.getBytes());
+    &#125;
+&#125;</code></pre>
+<p>역시나 Native Method를 사용하여 아까 확인했던 “libfoo.so” 에서 처리하는 구조입니다.</p>
+<p>지금부터는 IDA로 넘어가서 libfoo.so에 대한 분석을 진행해야 합니다.</p>
+<img src="/img/post/android_penetration2/9.png" class="lazyload" data-srcset="/img/post/android_penetration2/9.png" srcset="data:image/png;base64,666">
+
+<p>import 항목을 보면 fopen, fork, pthread_create, ptrace 등의 함수가 보입니다.</p>
+<p>fork가 있는것으로 보아 자식 프로세스를 만들어서 돌리는 역할을 하는 것 같은데 자세히 분석해봐야 할 것 같구요.</p>
+<p>ptrace 함수는 프로세스를 추적하거나 실행되는 기능을 관리하는 함수로 디버깅 체크에 사용될 듯 합니다.</p>
+<img src="/img/post/android_penetration2/10.png" class="lazyload" data-srcset="/img/post/android_penetration2/10.png" srcset="data:image/png;base64,666">
+
+<p>IDA로 <code> sub_30D0 </code> 함수를 추적하여 디 컴파일링 해보면 이렇게 원본 코드가 출력됩니다.</p>
+<p>fopen() 함수로 /proc/self/maps를 읽어서 frida, xposed 문자열을 찾고 있습니다.</p>
+<pre><code class="c">while ( !strstr(v1, &quot;frida&quot;) &amp;&amp; !strstr(v1, &quot;xposed&quot;) );</code></pre>
+<p>해당 조건에서 frida가 탐지될 경우 <code> Tampering detected! Terminating... </code> 라는 메세지를 출력하고 있네요.</p>
+<p>마지막 부분은 예외처리를 하는 부분인데 /proc/self/maps 이걸 못 읽으면 goodbye() 함수를 실행시켜 종료시켜버립니다.</p>
+<pre><code class="c">void __noreturn goodbye(void)
+&#123;
+  raise(6);
+  _exit(0);
+&#125;</code></pre>
+<p>(추가중 - 210221)</p>
+<h2 id="LEVEL-4"><a href="#LEVEL-4" class="headerlink" title="LEVEL 4"></a>LEVEL 4</h2>
   
   
     
@@ -522,6 +662,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
     <div class="prev-next">
+      
+        <a class='prev' href='/2021/02/21/hcamp22th/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>해킹캠프(HACKINGCAMP) 22기 운영 후기</p>
+          <p class='content'>먼저, 해킹캠프에 대해서 궁금하신 분들이 있을 수 있기 때문에 아래 간략하게 설명을 남긴다.
+해킹캠프란?해킹캠프는 해킹과 보안에 관심을 가지고 있는 국내 학생들을 위해 국제 ...</p>
+        </a>
       
       
         <a class='next' href='/2021/02/13/owasp-mstg-210131/'>
