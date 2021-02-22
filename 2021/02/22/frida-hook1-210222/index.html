@@ -413,7 +413,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 &#125;</code></pre>
 <p>}</p>
 <p>물론 dlopen 함수 후킹을 통해 라이브러리가 로드되는 시점을 후킹할 수도 있습니다.</p>
-<p>```java<br>Java.perform(function(){<br>    Interceptor.attach(Module.findExportByName(null, “dlopen”), {<br>        onEnter: function(args){<br>            this.input = Memory.readUtf8String(args[0]);<br>            if(this.input.indexOf(“lib64.so”) !== -1){<br>                ~~~~<br>            }<br>        },</p>
+<p>```java<br>Java.perform(function(){<br>    Interceptor.attach(Module.findExportByName(null, “dlopen”), {<br>        onEnter: function(args){<br>            this.input = Memory.readUtf8String(args[0]);<br>            if(this.input.indexOf(“lib64.so”) !== -1){<br>                console.log(“lib64.so Loaded!”);<br>                Thread.sleep(5);<br>            }<br>        },</p>
 <pre><code>    onLeave: function(retval)&#123;
         return 0;
     &#125;
