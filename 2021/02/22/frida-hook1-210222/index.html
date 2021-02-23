@@ -406,32 +406,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>해당 라인을 보시면, <code> Interceptor.attach </code> 를 통해서 특정 함수의 호출을 catch할 수 있고,</p>
 <p>함수의 주소를 가져오거나, 후킹을 진행할 수 있게됩니다.</p>
 <p>아래는 예제 코드입니다.</p>
-<pre><code class="java">Java.perform(function()&#123;
-    Interceptor.attach(Module.findExportByName(&quot;라이브러리 파일&quot;, &quot;함수명&quot;), &#123;
-        onEnter: function(args)&#123;
-            this.input = Memory.readUtf8String(args[0]);
-            ~~~~
-        &#125;,
+<pre><code class="java">Interceptor.attach(Module.findExportByName(&quot;라이브러리 파일&quot;, &quot;함수명&quot;), &#123;
+    onEnter: function(args)&#123;
+        this.input = Memory.readUtf8String(args[0]);
+            //input
+    &#125;,
 
-        onLeave: function(retval)&#123;
-            return 0;
-        &#125;
+    onLeave: function(retval)&#123;
+        return 0;
     &#125;
 &#125;</code></pre>
 <p>물론 dlopen 함수 후킹을 통해 라이브러리가 로드되는 시점을 후킹할 수도 있습니다.</p>
-<pre><code class="java">Java.perform(function()&#123;
-    Interceptor.attach(Module.findExportByName(null, &quot;dlopen&quot;), &#123;
-        onEnter: function(args)&#123;
-            this.input = Memory.readUtf8String(args[0]);
-            if(this.input.indexOf(&quot;lib64.so&quot;) !== -1)&#123;
-                console.log(&quot;lib64.so Loaded!&quot;);
-                Thread.sleep(5);
-            &#125;
-        &#125;,
-
-        onLeave: function(retval)&#123;
-            return 0;
+<pre><code class="java">Interceptor.attach(Module.findExportByName(null, &quot;dlopen&quot;), &#123;
+    onEnter: function(args)&#123;
+        this.input = Memory.readUtf8String(args[0]);
+        if(this.input.indexOf(&quot;lib64.so&quot;) !== -1)&#123;
+            console.log(&quot;lib64.so Loaded!&quot;);
+            Thread.sleep(5);
         &#125;
+    &#125;,
+
+    onLeave: function(retval)&#123;
+        return 0;
     &#125;
 &#125;</code></pre>
 <p>이러한 방법도 있고 앞으로 앱 관련 분석을 해보면서, 조금 더 심화적인 것들을 많이 연구해보고 또 글을 쓰도록 하겠습니다.</p>
