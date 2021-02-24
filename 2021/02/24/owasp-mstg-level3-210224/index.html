@@ -5,10 +5,8 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="index,follow">
-    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/tags/hcamp/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/02/24/owasp-mstg-level3-210224/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -26,7 +24,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: HCAMP - JHYEON BLOG</title>
+  <title>안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 3 풀이 - JHYEON BLOG</title>
+  
+    <meta name="keywords" content="Android,Application,Penetration,OWASP-MSTG">
   
 
   
@@ -297,7 +297,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -330,85 +330,363 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/21/hcamp22th/">
-        (추가) 해킹캠프(HACKINGCAMP) 22기 운영 후기
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        먼저, 해킹캠프에 대해서 궁금하신 분들이 있을 수 있기 때문에 아래 간략하게 설명을 남긴다.
-해킹캠프란?해킹캠프는 해킹과 보안에 관심을 가지고 있는 국내 학생들을 위해 국제 해킹·보안 컨퍼런스 POC(POC SECURITY 주관)가 운영하는 해킹·보안 캠프입니다.
-https://hackingcamp.org
-Agenda
-발표 세션
 
-악성코드로 알아보는 ...
-      
-    
-  </div>
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 3 풀이
+      </h1>
+      <div class='new-meta-box'>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/img/header/cat.jpeg">
+    <p>jhyeon</p>
+  </a>
+</div>
+
+          
         
-        <time>2021-02-21</time>
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Mobile/">Mobile</a>
+    </a>
+  </div>
+
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Memo/">Memo</a>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Feb 24, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 3 풀이" data-path="/2021/02/24/owasp-mstg-level3-210224/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="LEVEL-3"><a href="#LEVEL-3" class="headerlink" title="LEVEL 3"></a>LEVEL 3</h2><h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
+<li>verifylibs()</li>
+</ul>
+<img src="/img/post/android_penetration2/8.png" class="lazyload" data-srcset="/img/post/android_penetration2/8.png" srcset="data:image/png;base64,666">
+
+<p>MainActivity의 구조를 보면 우선 verifylibs() 함수에서 이전 단계와 동일하게 libfoo.so 라는 라이브러리를 사용하여</p>
+<p>Native Method를 사용하려는 듯 합니다. 다만 달라진 점은 <code> CRC Checksum </code> 검사를 하는데 로직은 아래와 같습니다.</p>
+<pre><code class="java">this.crc.put(&quot;armeabi-v7a&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.armeabi_v7a))));
+this.crc.put(&quot;arm64-v8a&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.arm64_v8a))));
+this.crc.put(&quot;x86&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.x86))));
+this.crc.put(&quot;x86_64&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.x86_64))));</code></pre>
+<p>각 OS별 Architecture에 맞게 CRC 값을 만들어냅니다. </p>
+<pre><code class="java">try &#123;
+    ZipFile zipFile = new ZipFile(getPackageCodePath());
+    for (Map.Entry&lt;String, Long&gt; entry : this.crc.entrySet()) &#123;
+        String str = &quot;lib/&quot; + entry.getKey() + &quot;/libfoo.so&quot;;
+        ZipEntry entry2 = zipFile.getEntry(str);
+        Log.v(TAG, &quot;CRC[&quot; + str + &quot;] = &quot; + entry2.getCrc());
+        if (entry2.getCrc() != entry.getValue().longValue()) &#123;
+            tampered = 31337;
+            Log.v(TAG, str + &quot;: Invalid checksum = &quot; + entry2.getCrc() + &quot;, supposed to be &quot; + entry.getValue());
+        &#125;
+    &#125;
+    ZipEntry entry3 = zipFile.getEntry(&quot;classes.dex&quot;);
+    Log.v(TAG, &quot;CRC[&quot; + &quot;classes.dex&quot; + &quot;] = &quot; + entry3.getCrc());
+    if (entry3.getCrc() != baz()) &#123;
+        tampered = 31337;
+        Log.v(TAG, &quot;classes.dex&quot; + &quot;: crc = &quot; + entry3.getCrc() + &quot;, supposed to be &quot; + baz());
+    &#125;
+&#125; catch (IOException unused) &#123;
+            Log.v(TAG, &quot;Exception&quot;);
+            System.exit(0);
+&#125;</code></pre>
+<p>해당 로직이 CRC 값이 변조되지 않았다는 것을 확인하기 위한 체크 루틴 부분입니다.</p>
+<p>즉, 처음의 CRC값과 다르다면 tampered라는 변수의 값을 31337로 바꿔버립니다.</p>
+<pre><code class="java">    public void onCreate(Bundle bundle) &#123;
+        verifyLibs();
+
+        new AsyncTask&lt;Void, String, String&gt;() &#123;
+            /* class sg.vantagepoint.uncrackable3.MainActivity.AnonymousClass2 */
+
+            /* access modifiers changed from: protected */
+            public String doInBackground(Void... voidArr) &#123;
+                while (!Debug.isDebuggerConnected()) &#123;
+                    SystemClock.sleep(100);
+                &#125;
+                return null;
+            &#125;
+
+            /* access modifiers changed from: protected */
+            public void onPostExecute(String str) &#123;
+                MainActivity.this.showDialog(&quot;Debugger detected!&quot;);
+                System.exit(0);
+            &#125;
+        &#125;.execute(null, null, null);
+        if (RootDetection.checkRoot1() || RootDetection.checkRoot2() || RootDetection.checkRoot3() || IntegrityCheck.isDebuggable(getApplicationContext()) || tampered != 0) &#123;
+            showDialog(&quot;Rooting or tampering detected.&quot;);
+        &#125;
+        this.check = new CodeCheck();
+        super.onCreate(bundle);
+        setContentView(R.layout.activity_main);
+    &#125;</code></pre>
+<p><code> Mainactivity -> onCreate() </code> 앱이 실행될 때 로직을 처리하는 주요 부분입니다.</p>
+<pre><code class="java">public String doInBackground(Void... voidArr) &#123;
+    while (!Debug.isDebuggerConnected()) &#123;
+        SystemClock.sleep(100);
+    &#125;
+    return null;
+&#125;
+
+public void onPostExecute(String str) &#123;
+    MainActivity.this.showDialog(&quot;Debugger detected!&quot;);
+    System.exit(0);
+&#125;</code></pre>
+<p>2단계에서 봤던 방법으로 AsyncTask로 백그라운드로 돌면서 디버깅 여부를 확인하여 탐지하고 있고,</p>
+<pre><code class="java">if (RootDetection.checkRoot1() || RootDetection.checkRoot2() || RootDetection.checkRoot3() || IntegrityCheck.isDebuggable(getApplicationContext()) || tampered != 0) &#123;
+    showDialog(&quot;Rooting or tampering detected.&quot;);
+&#125;
+this.check = new CodeCheck();
+super.onCreate(bundle);
+setContentView(R.layout.activity_main);</code></pre>
+<p>루팅을 탐지하는 로직도 루팅 검사 함수가 존재합니다. 이렇게 디버깅과 루팅 탐지 로직을 통과하면 MainActivty를 활성화 시켜,</p>
+<p><code> CodeCheck() </code> 로 Secret String 체크를 하게 됩니다.</p>
+<p>추가로, 루팅 탐지 로직이 궁금하신 분들이 있을 것 같아 추적해보면 아래와 같습니다. 크게 바뀐 사항은 없습니다. </p>
+<pre><code class="java">public class RootDetection &#123;
+    public static boolean checkRoot1() &#123;
+        for (String str : System.getenv(&quot;PATH&quot;).split(&quot;:&quot;)) &#123;
+            if (new File(str, &quot;su&quot;).exists()) &#123;
+                return true;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+
+    public static boolean checkRoot2() &#123;
+        String str = Build.TAGS;
+        return str != null &amp;&amp; str.contains(&quot;test-keys&quot;);
+    &#125;
+
+    public static boolean checkRoot3() &#123;
+        for (String str : new String[]&#123;&quot;/system/app/Superuser.apk&quot;, &quot;/system/xbin/daemonsu&quot;, &quot;/system/etc/init.d/99SuperSUDaemon&quot;, &quot;/system/bin/.ext/.su&quot;, &quot;/system/etc/.has_su_daemon&quot;, &quot;/system/etc/.installed_su_daemon&quot;, &quot;/dev/com.koushikdutta.superuser.daemon/&quot;&#125;) &#123;
+            if (new File(str).exists()) &#123;
+                return true;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+&#125;</code></pre>
+<p>다음은 CodeCheck() 로직 입니다.</p>
+<pre><code class="java">package sg.vantagepoint.uncrackable3;
+
+public class CodeCheck &#123;
+    private static final String TAG = &quot;CodeCheck&quot;;
+
+    private native boolean bar(byte[] bArr);
+
+    public boolean check_code(String str) &#123;
+        return bar(str.getBytes());
+    &#125;
+&#125;</code></pre>
+<p>역시나 Native Method를 사용하여 아까 확인했던 “libfoo.so” 에서 처리하는 구조입니다.</p>
+<p>지금부터는 IDA로 넘어가서 libfoo.so에 대한 분석을 진행해야 합니다.</p>
+<img src="/img/post/android_penetration2/9.png" class="lazyload" data-srcset="/img/post/android_penetration2/9.png" srcset="data:image/png;base64,666">
+
+<p>import 항목을 보면 fopen, fork, pthread_create, ptrace 등의 함수가 보입니다.</p>
+<p>fork가 있는것으로 보아 자식 프로세스를 만들어서 돌리는 역할을 하는 것 같은데 자세히 분석해봐야 할 것 같구요.</p>
+<p>ptrace 함수는 프로세스를 추적하거나 실행되는 기능을 관리하는 함수로 디버깅 체크에 사용될 듯 합니다.</p>
+<img src="/img/post/android_penetration2/10.png" class="lazyload" data-srcset="/img/post/android_penetration2/10.png" srcset="data:image/png;base64,666">
+
+<p>IDA로 <code> sub_30D0 </code> 함수를 추적하여 디 컴파일링 해보면 이렇게 원본 코드가 출력됩니다.</p>
+<p>fopen() 함수로 /proc/self/maps를 읽어서 frida, xposed 문자열을 찾고 있습니다.</p>
+<pre><code class="c">while ( !strstr(v1, &quot;frida&quot;) &amp;&amp; !strstr(v1, &quot;xposed&quot;) );</code></pre>
+<p>해당 조건에서 frida가 탐지될 경우 <code> Tampering detected! Terminating... </code> 라는 메세지를 출력하고 있네요.</p>
+<p>마지막 부분은 예외처리를 하는 부분인데 /proc/self/maps 이걸 못 읽으면 goodbye() 함수를 실행시켜 종료시켜버립니다.</p>
+<pre><code class="c">void __noreturn goodbye(void)
+&#123;
+  raise(6);
+  _exit(0);
+&#125;</code></pre>
+<p>우선 탐지하는 로직을 우회하기 위해서는 기존에서 풀이하던 방식으로는 불가능하다.</p>
+<p>왜냐하면, 이미 실행된 앱(프로세스)에서는 탐지 로직이 돌고 있기 때문에, 후킹을 건다해도 앱을 종료시켜버린다.</p>
+<p>따라서 앱이 실행되는 시점이 아닌, 앱이 로드되는 시점에 후킹을 걸어서 탐지 로직보다 먼저 코드를 인젝션 시켜야한다.</p>
+<p>그에 대한 방법으로 아래 사항을 정리한다.</p>
+<p><a target="_blank" rel="noopener" href="https://frida.re/news/2018/05/05/frida-11-0-released/">https://frida.re/news/2018/05/05/frida-11-0-released/</a></p>
+<p>frida에서는 device.spawn 이라는 기능을 제공하며, 해당 기능은 프로세스를 재 실행해주는 기능이다.</p>
+<p>이 spawn 기능을 사용하여 APP의 pid를 얻어오고 attach 과정을 거친 뒤, resume 기능으로 프로세스를 실행시켜주면</p>
+<p>앱이 로드되는 시점에 후킹이 가능하다.</p>
+<p>spawn과 resume에 대해서는 아래 링크를 참고해도 좋을 것 같다.</p>
+<p><a target="_blank" rel="noopener" href="https://bachs.tistory.com/entry/iOS-Hooking2Frida">https://bachs.tistory.com/entry/iOS-Hooking2Frida</a></p>
+<pre><code class="py">if __name__ == &quot;__main__&quot;:
+    try:
+        process = frida.get_usb_device(timeout=5)
+        pid = process.spawn(APP_NAME)
+        run = process.attach(pid)
+        process.resume(pid)
+        script = run.create_script(hook)
+        script.on(&#39;message&#39;, on_message)
+        print(&quot;[*] Start Injection&quot;)
+        script.load()
+        sys.stdin.read()
+        process.detach()
+    except Exception as e:
+        print(e)</code></pre>
+<p>이제, 위에서 분석했던 내용대로 라이브러리에 접근하여 <code> strstr </code> 함수를 후킹한 뒤,</p>
+<p>반환하는 값을 0으로 만들어주면 탐지 로직이 돌더라도 우회가 되는 것을 확인할 수 있을 것이다.</p>
+<p>우선, 라이브러리 파일 내에 있는 함수를 후킹하기 위해서는 frida에서 </code> Interceptor.attach </code> 기능을 제공하고 있다.</p>
+<p>해당 기능에 대한 설명은 이전에 블로그에 정리한 글과 frida 공식 문서인 아래 링크를 참고하기 바란다.</p>
+<p><a href="https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/">https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/</a></p>
+<p><a target="_blank" rel="noopener" href="https://frida.re/docs/javascript-api/#interceptor">https://frida.re/docs/javascript-api/#interceptor</a></p>
+<p>frida에서 Interceptor.attach를 사용하면 특정 라이브러리 내 함수에 접근할 수 있고 후킹을 통해 내가 원하는 방식으로</p>
+<p>앱이 동작하도록 할 수 있다.</p>
+<pre><code class="java">    Interceptor.attach(Module.getExportByName(&quot;libc.so&quot;, &quot;strstr&quot;), &#123;
+        onEnter: function(args)&#123;
+            var haystack = Memory.readUtf8String(args[0]);
+            if(haystack.indexOf(&quot;frida&quot;) !== -1 || haystack.indexOf(&quot;xposed&quot;) !== -1)&#123;
+                this.frida = Boolean(1);
+            &#125;
+        &#125;,
+
+        onLeave : function(retval)&#123;
+            if(this.frida)&#123;
+                retval.replace(0);
+            &#125;
+            return retval;
+        &#125;
+    &#125;);
+
+    Java.perform(function()&#123;
+        var sys = Java.use(&quot;java.lang.System&quot;);
+        sys.exit.overload(&quot;int&quot;).implementation = function(var_0)&#123;
+            send(&quot;System.exit() Hooked!&quot;);
+        &#125;
+    &#125;);</code></pre>
+<p>IDA에서 탐지 로직을 본 것 처럼 frida, xposed가 탐지되는 경우 0을 반환하도록만 처리해줬다.</p>
+<p>또한 exit가 호출될 때 강제 종료가 안되기 위해서 <code> system->exit() </code> 를 후킹하였다.</p>
+<p>위와 같은 코드를 작성하고 테스트해보면 아래와 같이 후킹이 정상적으로 걸려서 우회한 것을 볼 수 있다.</p>
+<img src="/img/post/android_penetration2/11.jpeg" class="lazyload" data-srcset="/img/post/android_penetration2/11.jpeg" srcset="data:image/png;base64,666">
+
+<p>(추가중 21/02/24 ~)</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/02/21/hcamp22th/'>
-            Read More
-          </a>
-        </div>
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2021/02/13/owasp-mstg-210131/" title="안드로이드 앱 모의해킹(OWASP-MSTG) 풀이" rel="bookmark "><img src="/img/post/android_penetration/1.png" class="lazyload" data-srcset="/img/post/android_penetration/1.png" srcset="data:image/png;base64,666" /><span class="title">안드로이드 앱 모의해킹(OWASP-MSTG) 풀이</span></a><a class="item" href="/2021/02/14/owsap-mstg-level2-210214/" title="안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 2 풀이" rel="bookmark "><img src="/img/post/android_penetration2/1.png" class="lazyload" data-srcset="/img/post/android_penetration2/1.png" srcset="data:image/png;base64,666" /><span class="title">안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 2 풀이</span></a><a class="item" href="/2021/01/31/android-app-penetration-study-210131/" title="(스터디 자료) 안드로이드 앱 분석 기초 part.1" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">(스터디 자료) 안드로이드 앱 분석 기초 part.1</span></a></div></section></div>
+      
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Feb 24, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Android/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Android</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Application/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Application</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Penetration/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Penetration</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OWASP-MSTG/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>OWASP-MSTG</p></a></div>
 
 
-    
+        
+      
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/02/22/frida-hook1-210222/'>
+          <p class='title'>Frida를 통한 앱 내부 라이브러리 후킹 방법<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>이번에, 앱을 분석해보다가 특정 라이브러리에 대해 후킹을 해야 하는 상황이 있었는데, 그 방법론을 기억에 남기고자
+아래 작성합니다.
+우선, 뭐든지 공식 문서에는 답이 매우 잘...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> Comments</p>
+    
+    <div id="disqus_thread">
+  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
+  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
+  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -416,130 +694,19 @@ Agenda
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' target="_blank" rel="noopener" href='https://pf.jhyeon.dev'>
-          <img no-lazy src='/img/profile/my.jpeg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>JHYEON</h2>
-        
-        
-          <p>Web Development &amp; Security Research</p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:stjhyeon@kakao.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/jhye0n"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            id="categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docx/" href="/categories/Docx/"
-            id="categoriesDocx"
-            ><div class='name'>Docx</div><div class='badge'>(18)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Memo/" href="/categories/Memo/"
-            id="categoriesMemo"
-            ><div class='name'>Memo</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Mobile/" href="/categories/Mobile/"
-            id="categoriesMobile"
-            ><div class='name'>Mobile</div><div class='badge'>(6)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Pwnable/" href="/categories/Pwnable/"
-            id="categoriesPwnable"
-            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Wargame/" href="/categories/Wargame/"
-            id="categoriesWargame"
-            ><div class='name'>Wargame</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Web/" href="/categories/Web/"
-            id="categoriesWeb"
-            ><div class='name'>Web</div><div class='badge'>(8)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Algorithm/" style="font-size: 16px; color: #8b8b8b">Algorithm</a> <a href="/tags/Android/" style="font-size: 22px; color: #636363">Android</a> <a href="/tags/Application/" style="font-size: 20px; color: #707070">Application</a> <a href="/tags/B-ngsiri/" style="font-size: 14px; color: #999">B@ngsiri</a> <a href="/tags/BISC2020/" style="font-size: 14px; color: #999">BISC2020</a> <a href="/tags/BOF/" style="font-size: 14px; color: #999">BOF</a> <a href="/tags/Backup/" style="font-size: 14px; color: #999">Backup</a> <a href="/tags/Big-Sur/" style="font-size: 14px; color: #999">Big Sur</a> <a href="/tags/Blog/" style="font-size: 14px; color: #999">Blog</a> <a href="/tags/BoB/" style="font-size: 14px; color: #999">BoB</a> <a href="/tags/Browser-Auditor/" style="font-size: 14px; color: #999">Browser Auditor</a> <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CANVAS/" style="font-size: 14px; color: #999">CANVAS</a> <a href="/tags/CSAWCTF-2020/" style="font-size: 14px; color: #999">CSAWCTF 2020</a> <a href="/tags/CSRF/" style="font-size: 14px; color: #999">CSRF</a> <a href="/tags/Canary/" style="font-size: 14px; color: #999">Canary</a> <a href="/tags/Cassandra/" style="font-size: 14px; color: #999">Cassandra</a> <a href="/tags/CheatSheet/" style="font-size: 14px; color: #999">CheatSheet</a> <a href="/tags/ChristmasCTF2019/" style="font-size: 14px; color: #999">ChristmasCTF2019</a> <a href="/tags/Chrome/" style="font-size: 14px; color: #999">Chrome</a> <a href="/tags/DB/" style="font-size: 14px; color: #999">DB</a> <a href="/tags/DVWA/" style="font-size: 14px; color: #999">DVWA</a> <a href="/tags/Development/" style="font-size: 14px; color: #999">Development</a> <a href="/tags/Docker/" style="font-size: 18px; color: #7e7e7e">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 16px; color: #8b8b8b">Dockerfile</a> <a href="/tags/Exploitation/" style="font-size: 14px; color: #999">Exploitation</a> <a href="/tags/Firefox/" style="font-size: 14px; color: #999">Firefox</a> <a href="/tags/Foreign-Key/" style="font-size: 14px; color: #999">Foreign Key</a> <a href="/tags/Frida/" style="font-size: 14px; color: #999">Frida</a> <a href="/tags/Github/" style="font-size: 14px; color: #999">Github</a> <a href="/tags/HACKINGCAMP/" style="font-size: 14px; color: #999">HACKINGCAMP</a> <a href="/tags/HCAMP/" style="font-size: 14px; color: #999">HCAMP</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hooking/" style="font-size: 14px; color: #999">Hooking</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/LFI/" style="font-size: 14px; color: #999">LFI</a> <a href="/tags/LMS/" style="font-size: 14px; color: #999">LMS</a> <a href="/tags/Linux/" style="font-size: 16px; color: #8b8b8b">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 14px; color: #999">Mac OS</a> <a href="/tags/Macro/" style="font-size: 14px; color: #999">Macro</a> <a href="/tags/Malware/" style="font-size: 14px; color: #999">Malware</a> <a href="/tags/Memory-Mitigation/" style="font-size: 14px; color: #999">Memory Mitigation</a> <a href="/tags/Mprotect/" style="font-size: 14px; color: #999">Mprotect</a> <a href="/tags/Network/" style="font-size: 14px; color: #999">Network</a> <a href="/tags/Nexus5X/" style="font-size: 14px; color: #999">Nexus5X</a> <a href="/tags/NoSQL/" style="font-size: 14px; color: #999">NoSQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/OWASP/" style="font-size: 14px; color: #999">OWASP</a> <a href="/tags/OWASP-MSTG/" style="font-size: 18px; color: #7e7e7e">OWASP-MSTG</a> <a href="/tags/PHP/" style="font-size: 16px; color: #8b8b8b">PHP</a> <a href="/tags/POX2020/" style="font-size: 14px; color: #999">POX2020</a> <a href="/tags/Penetration/" style="font-size: 20px; color: #707070">Penetration</a> <a href="/tags/Pentesting/" style="font-size: 16px; color: #8b8b8b">Pentesting</a> <a href="/tags/PicoCTF2019/" style="font-size: 14px; color: #999">PicoCTF2019</a> <a href="/tags/Primary-Key/" style="font-size: 14px; color: #999">Primary Key</a> <a href="/tags/Pwn/" style="font-size: 14px; color: #999">Pwn</a> <a href="/tags/Pwnable/" style="font-size: 20px; color: #707070">Pwnable</a> <a href="/tags/Python/" style="font-size: 14px; color: #999">Python</a> <a href="/tags/RCE/" style="font-size: 16px; color: #8b8b8b">RCE</a> <a href="/tags/ROP/" style="font-size: 18px; color: #7e7e7e">ROP</a> <a href="/tags/Root/" style="font-size: 14px; color: #999">Root</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Shellcode/" style="font-size: 14px; color: #999">Shellcode</a> <a href="/tags/Study/" style="font-size: 14px; color: #999">Study</a> <a href="/tags/Suricata/" style="font-size: 14px; color: #999">Suricata</a> <a href="/tags/System/" style="font-size: 14px; color: #999">System</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 14px; color: #999">Ubuntu</a> <a href="/tags/Wargame/" style="font-size: 14px; color: #999">Wargame</a> <a href="/tags/Web/" style="font-size: 24px; color: #555">Web</a> <a href="/tags/Web-Hacking/" style="font-size: 14px; color: #999">Web Hacking</a> <a href="/tags/Writeup/" style="font-size: 18px; color: #7e7e7e">Writeup</a> <a href="/tags/XSS/" style="font-size: 18px; color: #7e7e7e">XSS</a> <a href="/tags/iftop/" style="font-size: 14px; color: #999">iftop</a> <a href="/tags/syscall/" style="font-size: 14px; color: #999">syscall</a> <a href="/tags/websec-fr/" style="font-size: 16px; color: #8b8b8b">websec.fr</a> <a href="/tags/%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">선형 탐색</a> <a href="/tags/%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">이진 탐색</a> <a href="/tags/%EC%A0%95%EB%B3%B4-%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보 보안</a> <a href="/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보보안</a> <a href="/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/" style="font-size: 14px; color: #999">최신동향</a> <a href="/tags/%ED%95%B4%ED%82%B9%EC%BA%A0%ED%94%84/" style="font-size: 14px; color: #999">해킹캠프</a> <a href="/tags/%ED%9A%8C%EA%B3%A0/" style="font-size: 14px; color: #999">회고</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LEVEL-3"><span class="toc-number">1.</span> <span class="toc-text">LEVEL 3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis"><span class="toc-number">1.1.</span> <span class="toc-text">Analysis</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -550,14 +717,15 @@ Agenda
 </aside>
 
 
+
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 3 풀이";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
