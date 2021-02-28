@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>AeroCTF 2021 Write up</title>
+      <link href="2021/02/28/aeroctf2021-210228/"/>
+      <url>2021/02/28/aeroctf2021-210228/</url>
+      
+        <content type="html"><![CDATA[<p>이번에 팀원분들과 함께 CTF를 진행하였습니다. 제가 푼 문제는 아래 노션에 풀이가 작성되어 있습니다!</p><p><a href="https://public.jhyeon.dev/e08f5543-0769-4404-a7fa-2e7b5a28b66e">https://public.jhyeon.dev/e08f5543-0769-4404-a7fa-2e7b5a28b66e</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> AeroCTF2021 </tag>
+            
+            <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 3 풀이</title>
       <link href="2021/02/24/owasp-mstg-level3-210224/"/>
       <url>2021/02/24/owasp-mstg-level3-210224/</url>
@@ -626,7 +655,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#x6a;&#104;&#121;&#101;&#111;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#111;&#46;&#x63;&#111;&#109;">&#115;&#x74;&#x6a;&#104;&#121;&#101;&#111;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#111;&#46;&#x63;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#106;&#104;&#121;&#101;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#46;&#x63;&#x6f;&#109;">&#115;&#116;&#106;&#104;&#121;&#101;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#46;&#x63;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>

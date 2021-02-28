@@ -9,8 +9,39 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Tue, 23 Feb 2021 15:00:00 GMT</pubDate>
+    <pubDate>Sat, 27 Feb 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>AeroCTF 2021 Write up</title>
+      <link>https://blog.jhyeon.dev/2021/02/28/aeroctf2021-210228/</link>
+      <guid>https://blog.jhyeon.dev/2021/02/28/aeroctf2021-210228/</guid>
+      <pubDate>Sat, 27 Feb 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;이번에 팀원분들과 함께 CTF를 진행하였습니다. 제가 푼 문제는 아래 노션에 풀이가 작성되어 있습니다!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://public.jhyeon.dev/e08f5543-0769-4404-a7fa-2e7b5a28b66e&quot;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>이번에 팀원분들과 함께 CTF를 진행하였습니다. 제가 푼 문제는 아래 노션에 풀이가 작성되어 있습니다!</p><p><a href="https://public.jhyeon.dev/e08f5543-0769-4404-a7fa-2e7b5a28b66e">https://public.jhyeon.dev/e08f5543-0769-4404-a7fa-2e7b5a28b66e</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/AeroCTF2021/">AeroCTF2021</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/02/28/aeroctf2021-210228/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 3 풀이</title>
@@ -587,35 +618,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/01/systemos-210101/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>웹 해킹 기법 기초</title>
-      <link>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</guid>
-      <pubDate>Thu, 31 Dec 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0&quot;&gt;https://www.notion</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web-Hacking/">Web Hacking</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/#disqus_thread</comments>
       
     </item>
     
