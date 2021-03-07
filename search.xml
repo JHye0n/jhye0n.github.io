@@ -33,37 +33,6 @@
     
     
     <entry>
-      <title>안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 3 풀이</title>
-      <link href="2021/02/24/owasp-mstg-level3-210224/"/>
-      <url>2021/02/24/owasp-mstg-level3-210224/</url>
-      
-        <content type="html"><![CDATA[<h2 id="LEVEL-3"><a href="#LEVEL-3" class="headerlink" title="LEVEL 3"></a>LEVEL 3</h2><h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><ul><li>verifylibs()</li></ul><img src="/img/post/android_penetration2/8.png" class="lazyload" data-srcset="/img/post/android_penetration2/8.png" srcset="data:image/png;base64,666"><p>MainActivity의 구조를 보면 우선 verifylibs() 함수에서 이전 단계와 동일하게 libfoo.so 라는 라이브러리를 사용하여</p><p>Native Method를 사용하려는 듯 합니다. 다만 달라진 점은 <code> CRC Checksum </code> 검사를 하는데 로직은 아래와 같습니다.</p><pre><code class="java">this.crc.put(&quot;armeabi-v7a&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.armeabi_v7a))));this.crc.put(&quot;arm64-v8a&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.arm64_v8a))));this.crc.put(&quot;x86&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.x86))));this.crc.put(&quot;x86_64&quot;, Long.valueOf(Long.parseLong(getResources().getString(R.string.x86_64))));</code></pre><p>각 OS별 Architecture에 맞게 CRC 값을 만들어냅니다. </p><pre><code class="java">try &#123;    ZipFile zipFile = new ZipFile(getPackageCodePath());    for (Map.Entry&lt;String, Long&gt; entry : this.crc.entrySet()) &#123;        String str = &quot;lib/&quot; + entry.getKey() + &quot;/libfoo.so&quot;;        ZipEntry entry2 = zipFile.getEntry(str);        Log.v(TAG, &quot;CRC[&quot; + str + &quot;] = &quot; + entry2.getCrc());        if (entry2.getCrc() != entry.getValue().longValue()) &#123;            tampered = 31337;            Log.v(TAG, str + &quot;: Invalid checksum = &quot; + entry2.getCrc() + &quot;, supposed to be &quot; + entry.getValue());        &#125;    &#125;    ZipEntry entry3 = zipFile.getEntry(&quot;classes.dex&quot;);    Log.v(TAG, &quot;CRC[&quot; + &quot;classes.dex&quot; + &quot;] = &quot; + entry3.getCrc());    if (entry3.getCrc() != baz()) &#123;        tampered = 31337;        Log.v(TAG, &quot;classes.dex&quot; + &quot;: crc = &quot; + entry3.getCrc() + &quot;, supposed to be &quot; + baz());    &#125;&#125; catch (IOException unused) &#123;            Log.v(TAG, &quot;Exception&quot;);            System.exit(0);&#125;</code></pre><p>해당 로직이 CRC 값이 변조되지 않았다는 것을 확인하기 위한 체크 루틴 부분입니다.</p><p>즉, 처음의 CRC값과 다르다면 tampered라는 변수의 값을 31337로 바꿔버립니다.</p><pre><code class="java">    public void onCreate(Bundle bundle) &#123;        verifyLibs();        new AsyncTask&lt;Void, String, String&gt;() &#123;            /* class sg.vantagepoint.uncrackable3.MainActivity.AnonymousClass2 */            /* access modifiers changed from: protected */            public String doInBackground(Void... voidArr) &#123;                while (!Debug.isDebuggerConnected()) &#123;                    SystemClock.sleep(100);                &#125;                return null;            &#125;            /* access modifiers changed from: protected */            public void onPostExecute(String str) &#123;                MainActivity.this.showDialog(&quot;Debugger detected!&quot;);                System.exit(0);            &#125;        &#125;.execute(null, null, null);        if (RootDetection.checkRoot1() || RootDetection.checkRoot2() || RootDetection.checkRoot3() || IntegrityCheck.isDebuggable(getApplicationContext()) || tampered != 0) &#123;            showDialog(&quot;Rooting or tampering detected.&quot;);        &#125;        this.check = new CodeCheck();        super.onCreate(bundle);        setContentView(R.layout.activity_main);    &#125;</code></pre><p><code> Mainactivity -> onCreate() </code> 앱이 실행될 때 로직을 처리하는 주요 부분입니다.</p><pre><code class="java">public String doInBackground(Void... voidArr) &#123;    while (!Debug.isDebuggerConnected()) &#123;        SystemClock.sleep(100);    &#125;    return null;&#125;public void onPostExecute(String str) &#123;    MainActivity.this.showDialog(&quot;Debugger detected!&quot;);    System.exit(0);&#125;</code></pre><p>2단계에서 봤던 방법으로 AsyncTask로 백그라운드로 돌면서 디버깅 여부를 확인하여 탐지하고 있고,</p><pre><code class="java">if (RootDetection.checkRoot1() || RootDetection.checkRoot2() || RootDetection.checkRoot3() || IntegrityCheck.isDebuggable(getApplicationContext()) || tampered != 0) &#123;    showDialog(&quot;Rooting or tampering detected.&quot;);&#125;this.check = new CodeCheck();super.onCreate(bundle);setContentView(R.layout.activity_main);</code></pre><p>루팅을 탐지하는 로직도 루팅 검사 함수가 존재합니다. 이렇게 디버깅과 루팅 탐지 로직을 통과하면 MainActivty를 활성화 시켜,</p><p><code> CodeCheck() </code> 로 Secret String 체크를 하게 됩니다.</p><p>추가로, 루팅 탐지 로직이 궁금하신 분들이 있을 것 같아 추적해보면 아래와 같습니다. 크게 바뀐 사항은 없습니다. </p><pre><code class="java">public class RootDetection &#123;    public static boolean checkRoot1() &#123;        for (String str : System.getenv(&quot;PATH&quot;).split(&quot;:&quot;)) &#123;            if (new File(str, &quot;su&quot;).exists()) &#123;                return true;            &#125;        &#125;        return false;    &#125;    public static boolean checkRoot2() &#123;        String str = Build.TAGS;        return str != null &amp;&amp; str.contains(&quot;test-keys&quot;);    &#125;    public static boolean checkRoot3() &#123;        for (String str : new String[]&#123;&quot;/system/app/Superuser.apk&quot;, &quot;/system/xbin/daemonsu&quot;, &quot;/system/etc/init.d/99SuperSUDaemon&quot;, &quot;/system/bin/.ext/.su&quot;, &quot;/system/etc/.has_su_daemon&quot;, &quot;/system/etc/.installed_su_daemon&quot;, &quot;/dev/com.koushikdutta.superuser.daemon/&quot;&#125;) &#123;            if (new File(str).exists()) &#123;                return true;            &#125;        &#125;        return false;    &#125;&#125;</code></pre><p>다음은 CodeCheck() 로직 입니다.</p><pre><code class="java">package sg.vantagepoint.uncrackable3;public class CodeCheck &#123;    private static final String TAG = &quot;CodeCheck&quot;;    private native boolean bar(byte[] bArr);    public boolean check_code(String str) &#123;        return bar(str.getBytes());    &#125;&#125;</code></pre><p>역시나 Native Method를 사용하여 아까 확인했던 “libfoo.so” 에서 처리하는 구조입니다.</p><p>지금부터는 IDA로 넘어가서 libfoo.so에 대한 분석을 진행해야 합니다.</p><img src="/img/post/android_penetration2/9.png" class="lazyload" data-srcset="/img/post/android_penetration2/9.png" srcset="data:image/png;base64,666"><p>import 항목을 보면 fopen, fork, pthread_create, ptrace 등의 함수가 보입니다.</p><p>fork가 있는것으로 보아 자식 프로세스를 만들어서 돌리는 역할을 하는 것 같은데 자세히 분석해봐야 할 것 같구요.</p><p>ptrace 함수는 프로세스를 추적하거나 실행되는 기능을 관리하는 함수로 디버깅 체크에 사용될 듯 합니다.</p><img src="/img/post/android_penetration2/10.png" class="lazyload" data-srcset="/img/post/android_penetration2/10.png" srcset="data:image/png;base64,666"><p>IDA로 <code> sub_30D0 </code> 함수를 추적하여 디 컴파일링 해보면 이렇게 원본 코드가 출력됩니다.</p><p>fopen() 함수로 /proc/self/maps를 읽어서 frida, xposed 문자열을 찾고 있습니다.</p><pre><code class="c">while ( !strstr(v1, &quot;frida&quot;) &amp;&amp; !strstr(v1, &quot;xposed&quot;) );</code></pre><p>해당 조건에서 frida가 탐지될 경우 <code> Tampering detected! Terminating... </code> 라는 메세지를 출력하고 있네요.</p><p>마지막 부분은 예외처리를 하는 부분인데 /proc/self/maps 이걸 못 읽으면 goodbye() 함수를 실행시켜 종료시켜버립니다.</p><pre><code class="c">void __noreturn goodbye(void)&#123;  raise(6);  _exit(0);&#125;</code></pre><p>우선 탐지하는 로직을 우회하기 위해서는 기존에서 풀이하던 방식으로는 불가능합니다.</p><p>왜냐하면, 이미 실행된 앱(프로세스)에서는 탐지 로직이 돌고 있기 때문에, 후킹을 건다해도 앱을 종료시켜버립니다.</p><p>따라서 앱이 실행되는 시점이 아닌, 앱이 로드되는 시점에 후킹을 걸어서 탐지 로직보다 먼저 코드를 인젝션 시켜야합니다.</p><p>그에 대한 방법으로 아래 사항을 정리합니다.</p><p><a href="https://frida.re/news/2018/05/05/frida-11-0-released/">https://frida.re/news/2018/05/05/frida-11-0-released/</a></p><p>frida에서는 device.spawn 이라는 기능을 제공하며, 해당 기능은 프로세스를 재 실행해주는 기능입니다.</p><p>이 spawn 기능을 사용하여 APP의 pid를 얻어오고 attach 과정을 거친 뒤, resume 기능으로 프로세스를 실행시켜주면</p><p>앱이 로드되는 시점에 후킹이 가능합니다.</p><p>spawn과 resume에 대해서는 아래 링크를 참고하세요.</p><p><a href="https://bachs.tistory.com/entry/iOS-Hooking2Frida">https://bachs.tistory.com/entry/iOS-Hooking2Frida</a></p><pre><code class="py">if __name__ == &quot;__main__&quot;:    try:        process = frida.get_usb_device(timeout=5)        pid = process.spawn(APP_NAME)        run = process.attach(pid)        process.resume(pid)        script = run.create_script(hook)        script.on(&#39;message&#39;, on_message)        print(&quot;[*] Start Injection&quot;)        script.load()        sys.stdin.read()        process.detach()    except Exception as e:        print(e)</code></pre><p>이제, 위에서 분석했던 내용대로 라이브러리에 접근하여 <code> strstr </code> 함수를 후킹한 뒤,</p><p>반환하는 값을 0으로 만들어주면 탐지 로직이 돌더라도 우회가 되는 것을 확인할 수 있을 것입니다.</p><p>우선, 라이브러리 파일 내에 있는 함수를 후킹하기 위해서는 frida에서 </code> Interceptor.attach </code> 기능을 제공하고 있습니다.</p><p>해당 기능에 대한 설명은 이전에 블로그에 정리한 글과 frida 공식 문서인 아래 링크를 참고하시길 바랍니다.</p><p><a href="https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/">https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/</a></p><p><a href="https://frida.re/docs/javascript-api/#interceptor">https://frida.re/docs/javascript-api/#interceptor</a></p><p>frida에서 Interceptor.attach를 사용하면 특정 라이브러리 내 함수에 접근할 수 있고 후킹을 통해 원하는 방식으로</p><p>앱이 동작하도록 할 수 있습니다.</p><pre><code class="java">    Interceptor.attach(Module.getExportByName(&quot;libc.so&quot;, &quot;strstr&quot;), &#123;        onEnter: function(args)&#123;            var haystack = Memory.readUtf8String(args[0]);            if(haystack.indexOf(&quot;frida&quot;) !== -1 || haystack.indexOf(&quot;xposed&quot;) !== -1)&#123;                this.frida = Boolean(1);            &#125;        &#125;,        onLeave : function(retval)&#123;            if(this.frida)&#123;                retval.replace(0);            &#125;            return retval;        &#125;    &#125;);    Java.perform(function()&#123;        var sys = Java.use(&quot;java.lang.System&quot;);        sys.exit.overload(&quot;int&quot;).implementation = function(var_0)&#123;            send(&quot;System.exit() Hooked!&quot;);        &#125;    &#125;);</code></pre><p>IDA에서 탐지 로직을 본 것 처럼 frida, xposed가 탐지되는 경우 0을 반환하도록만 처리해주고</p><p>exit가 호출될 때 강제 종료가 안되기 위해서 <code> system->exit() </code> 를 후킹을 진행하였습니다.</p><p>위와 같은 코드를 작성하고 테스트해보면 아래와 같이 후킹이 정상적으로 걸려서 우회한 것을 볼 수 있습니다.</p><img src="/img/post/android_penetration2/11.jpeg" class="lazyload" data-srcset="/img/post/android_penetration2/11.jpeg" srcset="data:image/png;base64,666"><p>(추가중 21/02/24 ~)</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Mobile </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> Application </tag>
-            
-            <tag> Penetration </tag>
-            
-            <tag> OWASP-MSTG </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Frida를 통한 앱 내부 라이브러리 후킹 방법</title>
       <link href="2021/02/22/frida-hook1-210222/"/>
       <url>2021/02/22/frida-hook1-210222/</url>
@@ -537,6 +506,33 @@
     
     
     <entry>
+      <title>웹 해킹 기법 기초</title>
+      <link href="2021/01/01/webhacking-210101/"/>
+      <url>2021/01/01/webhacking-210101/</url>
+      
+        <content type="html"><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+            <tag> Web Hacking </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>시스템 OS 개념 및 기초</title>
       <link href="2021/01/01/systemos-210101/"/>
       <url>2021/01/01/systemos-210101/</url>
@@ -558,33 +554,6 @@
             <tag> OS </tag>
             
             <tag> syscall </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>웹 해킹 기법 기초</title>
-      <link href="2021/01/01/webhacking-210101/"/>
-      <url>2021/01/01/webhacking-210101/</url>
-      
-        <content type="html"><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Docx </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web </tag>
-            
-            <tag> Web Hacking </tag>
             
         </tags>
       
@@ -655,7 +624,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#106;&#104;&#121;&#101;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#46;&#x63;&#x6f;&#109;">&#115;&#116;&#106;&#104;&#121;&#101;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#46;&#x63;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#x6a;&#x68;&#121;&#101;&#111;&#110;&#64;&#107;&#x61;&#x6b;&#x61;&#111;&#46;&#x63;&#111;&#x6d;">&#x73;&#116;&#x6a;&#x68;&#121;&#101;&#111;&#110;&#64;&#107;&#x61;&#x6b;&#x61;&#111;&#46;&#x63;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
