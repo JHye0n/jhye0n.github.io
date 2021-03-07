@@ -407,7 +407,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <hr>
 <h3 id="2-Sandbox"><a href="#2-Sandbox" class="headerlink" title="[2] Sandbox"></a>[2] Sandbox</h3><p>Sandbox란, 외부에서 코드를 실행하거나 신뢰할 수 없는 코드를 안전하게 실행할 수 있도록 메인 시스템과 격리된 환경에서 실행되는 환경입니다.</p>
 <p>Node.JS 기준으로는 <code>vm</code> 모듈이 존재하는데, 해당 모듈에 대해서는 아래 목차에서 좀 더 세심하게 다뤄보겠습니다.</p>
-<h3 id="2-Node-JS-VM-Module"><a href="#2-Node-JS-VM-Module" class="headerlink" title="[2] Node.JS VM Module"></a>[2] Node.JS VM Module</h3><p>우선, Node JS에서는 임의의 JS 코드를 안전한 환경에서 실행될 수 있도록 하기 위해 <code>VM</code> 모듈을 제공하고</p>
+<h3 id="3-Node-JS-VM-Module"><a href="#3-Node-JS-VM-Module" class="headerlink" title="[3] Node.JS VM Module"></a>[3] Node.JS VM Module</h3><p>우선, Node JS에서는 임의의 JS 코드를 안전한 환경에서 실행될 수 있도록 하기 위해 <code>VM</code> 모듈을 제공하고</p>
 <p>있습니다. 해당 모듈은 V8 가상 머신 컨택스트 내에서 코드를 컴파일하고 실행합니다.</p>
 <p>물론, 해당 모듈이 안전하다고 볼수도 없습니다. 신뢰할 수 없는 코드나 임의의 코드를 실행할 수 있게 하지만 이러한 코드에서</p>
 <p>Sandbox 환경을 escape하는 경우가 발생할 때는 시스템에 치명적인 영향을 미칠 수 있기 때문입니다.</p>
@@ -428,7 +428,7 @@ console.log(context.x); // 42
 console.log(context.y); // 17
 
 console.log(x); // 1; y is not defined.</code></pre>
-<h3 id="3-Run-VM-Module-Script"><a href="#3-Run-VM-Module-Script" class="headerlink" title="[3] Run VM Module Script"></a>[3] Run VM Module Script</h3><p>위 예제처럼, VM 모듈을 사용하여 스크립트를 실행하는 방법은 공식 문서에 함수 표현식 옵션이 몇 가지 존재합니다.</p>
+<h3 id="4-Run-VM-Module-Script"><a href="#4-Run-VM-Module-Script" class="headerlink" title="[4] Run VM Module Script"></a>[4] Run VM Module Script</h3><p>위 예제처럼, VM 모듈을 사용하여 스크립트를 실행하는 방법은 공식 문서에 함수 표현식 옵션이 몇 가지 존재합니다.</p>
 <ul>
 <li>script.runInContext(contextifiedObject[, options])</li>
 </ul>
@@ -539,7 +539,7 @@ console.log(`vmResult: &#39;$&#123;vmResult&#125;&#39;, localVar: &#39;$&#123;lo
 const evalResult = eval(&#39;localVar = &quot;eval&quot;;&#39;);
 console.log(`evalResult: &#39;$&#123;evalResult&#125;&#39;, localVar: &#39;$&#123;localVar&#125;&#39;`);
 // Prints: evalResult: &#39;eval&#39;, localVar: &#39;eval&#39;</code></pre>
-<h3 id="4-Escaping-for-VM-Module"><a href="#4-Escaping-for-VM-Module" class="headerlink" title="[4] Escaping for VM Module"></a>[4] Escaping for VM Module</h3><p>최근에 CTF를 자주 참여하는 편인데 이번 zer0ctf 2021 CTF에서 해당 문제가 나왔었는데, 풀이 관련은 추후 정리가 완료되는대로 별도의 포스팅을 해볼 예정입니다.</p>
+<h3 id="5-Escaping-for-VM-Module"><a href="#5-Escaping-for-VM-Module" class="headerlink" title="[5] Escaping for VM Module"></a>[5] Escaping for VM Module</h3><p>최근에 CTF를 자주 참여하는 편인데 이번 zer0ctf 2021 CTF에서 해당 문제가 나왔었는데, 풀이 관련은 추후 정리가 완료되는대로 별도의 포스팅을 해볼 예정입니다.</p>
 <p>우선 [2]에서도 설명 했듯이 VM 모듈을 사용할 때 신뢰할 수 없는 코드, 임의의 코드를 실행할 수 있게 되는 경우 이러한 환경을 탈출할 수 있고,</p>
 <p>VM Context 외부의 객체를 통해 시스템에 치명적인 영향을 끼칠 수 있습니다.</p>
 <p>아래는 일반적인 vm script 코드이며, bypass가 가능한 상황과 비교해보겠습니다.</p>
@@ -682,7 +682,7 @@ https://public.jhyeon.dev/e08f5543-0769...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Node-JS"><span class="toc-number">1.</span> <span class="toc-text">[1] Node.JS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Sandbox"><span class="toc-number">2.</span> <span class="toc-text">[2] Sandbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Node-JS-VM-Module"><span class="toc-number">3.</span> <span class="toc-text">[2] Node.JS VM Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Run-VM-Module-Script"><span class="toc-number">4.</span> <span class="toc-text">[3] Run VM Module Script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Escaping-for-VM-Module"><span class="toc-number">5.</span> <span class="toc-text">[4] Escaping for VM Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Node-JS"><span class="toc-number">1.</span> <span class="toc-text">[1] Node.JS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Sandbox"><span class="toc-number">2.</span> <span class="toc-text">[2] Sandbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Node-JS-VM-Module"><span class="toc-number">3.</span> <span class="toc-text">[3] Node.JS VM Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Run-VM-Module-Script"><span class="toc-number">4.</span> <span class="toc-text">[4] Run VM Module Script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Escaping-for-VM-Module"><span class="toc-number">5.</span> <span class="toc-text">[5] Escaping for VM Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
     </div>
   </section>
 
