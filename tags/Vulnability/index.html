@@ -5,12 +5,10 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="index,follow">
-      
+      <meta name="robots" content="index,follow">
     
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/tags/vulnability/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -28,13 +26,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>JHYEON BLOG</title>
-  
-    <meta name="keywords" content="CTF, 웹해킹, 블로그, 포너블, 정보보안, 모의해킹">
+  <title>Tag: Vulnability - JHYEON BLOG</title>
   
 
-  
-    <meta name="description" content="정동현(JHYEON BLOG)">
   
 
   <!-- feed -->
@@ -116,7 +110,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur "  >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -303,7 +297,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -336,130 +330,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
+
 <div class='l_main'>
   
+    
+      
   <section class="post-list">
     
       
-        
-          
-        
-          
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
         
           
         
@@ -476,17 +354,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/03/08/nodejs-vmescape/">
-        Node.JS VM Module Sandbox Escape Research
+      <a href="/2020/06/16/python-pickle-200616/">
+        Python Pickle Library Vulnability
       </a>
     </h2>
   
   <div class='md'>
     
       
-        [1] Node.JSNode.JS는 네트워크 애플리케이션(서버 사이드) 개발에 사용되는 소프트웨어 플랫폼입니다.
-Javascript 언어를 사용하며, Non-blocking I/O와 단일 스레드 이벤트 루프를 사용하여 높은 처리 성능을 가지고 있습니다.
-또한, HTTP 라이브러리를 내장하고 있어 웹 서버 구동에 필요한 Apache, Nginx와 같이 ...
+        Python PicklePython Pickle은 직렬화(Pickling) , 역직렬화(UnPickling) 을 지원하는 모듈 입니다.
+
+Vuln해당 모듈은 공식 문서에서도 사용을 권장하지 않습니다, 데이터를 역직렬화(UnPickling) 할 때,
+임의의 코드를 실행하는 등의 악의적인 데이터로 구성하여 RCE(Remote Control Exexecut...
       
     
   </div>
@@ -497,7 +376,7 @@ Javascript 언어를 사용하며, Non-blocking I/O와 단일 스레드 이벤�
           
           <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
         
-        <time>2021-03-08</time>
+        <time>2020-06-16</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/Research/">Research</a>
@@ -505,277 +384,7 @@ Javascript 언어를 사용하며, Non-blocking I/O와 단일 스레드 이벤�
       </div>
       
         <div>
-          <a class='readmore' href='/2021/03/08/nodejs-vmescape/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/28/aeroctf2021-210228/">
-        AeroCTF 2021 Write up
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        이번에 팀원분들과 함께 CTF를 진행하였습니다. 제가 푼 문제는 아래 노션에 풀이가 작성되어 있습니다!
-https://public.jhyeon.dev/e08f5543-0769-4404-a7fa-2e7b5a28b66e
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
-        
-        <time>2021-02-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/CTF/">CTF</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/28/aeroctf2021-210228/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/22/frida-hook1-210222/">
-        Frida를 통한 앱 내부 라이브러리 후킹 방법
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        이번에, 앱을 분석해보다가 특정 라이브러리에 대해 후킹을 해야 하는 상황이 있었는데, 그 방법론을 기억에 남기고자
-아래 작성합니다.
-우선, 뭐든지 공식 문서에는 답이 매우 잘 나와있습니다.
-https://frida.re/docs/javascript-api/#interceptor
-해당 라인을 보시면,  Interceptor.attach  를 통해서 특정...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
-        
-        <time>2021-02-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Mobile/">Mobile</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/22/frida-hook1-210222/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/21/cve-2017-4901-210221/">
-        VMware Escape(CVE 2017-4901) 개념/분석글
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        이번에, 해킹/보안팀으로 소속중인 “DEMON” 팀에서 세미나 진행을 위해 연구했던 자료를 공유합니다.
-아직 시스템 해킹쪽으로는 많이 부족한 점이 있는 점을 감안하고 봐주시면 감사드리겠습니다 ㅜ_ㅜ
-덧붙여, 직접 페이로드를 작성해보려고 했지만.. 환경 구축에 어려움이 있어 아직 준비만 하고 있는 단계입니다.
-추후 VM/VBox와 관련된 상세 연구를 진...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
-        
-        <time>2021-02-21</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/21/cve-2017-4901-210221/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/21/hcamp22th/">
-        (추가) 해킹캠프(HACKINGCAMP) 22기 운영 후기
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        먼저, 해킹캠프에 대해서 궁금하신 분들이 있을 수 있기 때문에 아래 간략하게 설명을 남긴다.
-해킹캠프란?해킹캠프는 해킹과 보안에 관심을 가지고 있는 국내 학생들을 위해 국제 해킹·보안 컨퍼런스 POC(POC SECURITY 주관)가 운영하는 해킹·보안 캠프입니다.
-https://hackingcamp.org
-Agenda
-발표 세션
-
-악성코드로 알아보는 ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
-        
-        <time>2021-02-21</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Memo/">Memo</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/21/hcamp22th/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/14/owsap-mstg-level2-210214/">
-        안드로이드 앱 모의해킹(OWASP-MSTG) LEVEL 2 풀이
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        LEVEL 2앞 포스팅에 이어서 LEVEL 2단계 어플리케이션 분석을 진행하겠습니다.
-
-
-
-
-APK 디컴파일 이후 MainActivity 구조를 보면 LEVEL1 단계에서 분석을 했던 것과 크게 차이는 없지만,
-두 가지 변경 사항이 있습니다.
-
-Static Library 호출(foo)
-
-AsyncTask 클래스 추가
-
-
-먼저 1번의 내용부터 보면 코드...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
-        
-        <time>2021-02-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Mobile/">Mobile</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/14/owsap-mstg-level2-210214/'>
+          <a class='readmore' href='/2020/06/16/python-pickle-200616/'>
             Read More
           </a>
         </div>
@@ -792,24 +401,11 @@ AsyncTask 클래스 추가
   </section>
   
     
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 10
-        </p>
-        
-          <a class="next" rel="next" href="/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
   
 
 
+    
+  
 </div>
 <aside class='l_side'>
   
@@ -956,7 +552,6 @@ AsyncTask 클래스 추가
 </aside>
 
 
-
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
@@ -970,7 +565,7 @@ AsyncTask 클래스 추가
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
