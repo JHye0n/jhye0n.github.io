@@ -347,62 +347,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2020/04/22/xssgame-200422/">
-        xss game Write up
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        홈페이지 : https://xss-game.appspot.com/
-1. LEVEL-1&lt;svg onload=alert(1)&gt;
-
-2. LEVEL-2&lt;img src=&quot;#&quot; onerror=alert(1)&gt;
-onerror 이벤트 핸들러로 alert를 띄워줄 수 있다.
-
-3. LEVEL-3    &lt;script&gt;
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
-        
-        <time>2020-04-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Web/">Web</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/22/xssgame-200422/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
       <a href="/2020/04/10/angstormctf-200410/">
         angstorm ctf 2020 Write up
       </a>
@@ -647,6 +591,60 @@ if (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &#12
       
         <div>
           <a class='readmore' href='/2020/02/10/rop-instruction-200210/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/02/06/dimictf-200206/">
+        DIMICTF 2019 Write up
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1. web(5shared)&lt;?php
+
+require_once &#39;lib.php&#39;;
+
+session_start();
+$session = md5(session_id());
+$uploaddir = __DIR__ . &quot;/~uploads/&#123;$session&#125;/&quot;;
+
+createDirectory(__DIR__...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+        
+        <time>2020-02-06</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/02/06/dimictf-200206/'>
             Read More
           </a>
         </div>

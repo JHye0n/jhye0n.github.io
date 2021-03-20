@@ -66,11 +66,11 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
       <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
       
       <category domain="https://blog.jhyeon.dev/tags/AeroCTF2021/">AeroCTF2021</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2021/02/28/aeroctf2021-210228/#disqus_thread</comments>
@@ -111,30 +111,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>VMware Escape(CVE 2017-4901) 개념/분석글</title>
-      <link>https://blog.jhyeon.dev/2021/02/21/cve-2017-4901-210221/</link>
-      <guid>https://blog.jhyeon.dev/2021/02/21/cve-2017-4901-210221/</guid>
-      <pubDate>Sat, 20 Feb 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;이번에, 해킹/보안팀으로 소속중인 “DEMON” 팀에서 세미나 진행을 위해 연구했던 자료를 공유합니다.&lt;/p&gt;
-&lt;p&gt;아직 시스템 해킹쪽으로는 많이 부족한 점이 있는 점을 감안하고 봐주시면 감사드리겠습니다 ㅜ_ㅜ&lt;/p&gt;
-&lt;p&gt;덧붙여, 직접 페이로드</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>이번에, 해킹/보안팀으로 소속중인 “DEMON” 팀에서 세미나 진행을 위해 연구했던 자료를 공유합니다.</p><p>아직 시스템 해킹쪽으로는 많이 부족한 점이 있는 점을 감안하고 봐주시면 감사드리겠습니다 ㅜ_ㅜ</p><p>덧붙여, 직접 페이로드를 작성해보려고 했지만.. 환경 구축에 어려움이 있어 아직 준비만 하고 있는 단계입니다.</p><p>추후 VM/VBox와 관련된 상세 연구를 진행한 이후 조금 더 체계적으로 정리하여 연구글을 한번 더 포스팅 하겠습니다!</p><p><a href="https://www.notion.so/jhyeon/CVE-2017-4901-7b5a7c3d0e714879992013d1cc04d30b">https://www.notion.so/jhyeon/CVE-2017-4901-7b5a7c3d0e714879992013d1cc04d30b</a></p>]]></content:encoded>
-      
-      
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/02/21/cve-2017-4901-210221/#disqus_thread</comments>
       
     </item>
     
@@ -620,6 +596,35 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/01/systemos-210101/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>웹 해킹 기법 기초</title>
+      <link>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</link>
+      <guid>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</guid>
+      <pubDate>Thu, 31 Dec 2020 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0&quot;&gt;https://www.notion</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web-Hacking/">Web Hacking</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/#disqus_thread</comments>
       
     </item>
     
