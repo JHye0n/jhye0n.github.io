@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>AWS EC2 환경에서 Selenium(ChromeDriver) 활용하기</title>
+      <link href="2021/03/25/awschrome-210325/"/>
+      <url>2021/03/25/awschrome-210325/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>최근에 AWS EC2, Ubuntu CLI 환경에서 Selenium을 활용할 일이 있었는데 그 과정을 정리해놓고 나중에 써먹고자</p><p>아래의 글을 정리한다.</p><h3 id="Install-Package"><a href="#Install-Package" class="headerlink" title="Install Package"></a>Install Package</h3><p>우선 chromedriver를 사용하기 전 크롬과 관련된 패키지를 설치 해줘야 한다.</p><pre><code class="bash">sudo apt updatesudo apt install wget unzipecho &quot;deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.listwget https://dl.google.com/linux/linux_signing_key.pubsudo apt install gnupgsudo apt-key add linux_signing_key.pubsudo apt install google-chrome-stable</code></pre><p>여기까지가 관련 패키지들을 설치해주는 명령어이다. 그 다음은 selenium 설치 과정이다.</p><p>pip로 selenium을 설치해주면 끝나서 간편하다.</p><pre><code class="bash">pip3 install --user selenium</code></pre><p>이렇게만 설치한다고 끝이 아닌, 크롬 공식 홈페이지에서 driver를 다운 받아줘야 한다.</p><p><a href="http://chromedriver.chromium.org/downloads">http://chromedriver.chromium.org/downloads</a></p><p>위 사이트에서 크롬 브라우저의 버전을 선택하여 wget으로 내려 받은 뒤 실행 파일을 사용하면 된다.</p><pre><code class="bash">wget https://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zipunzip chromedriver_linux64.zip</code></pre><h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>이렇게 설치했으면 크롬 브라우저를 어떻게 활용하냐, python 기준으로 예제 코드는 다음과 같다.</p><p>사실, 크롬 브라우저가 메모리를 되게 먹기 때문에 multiprocessing 처리를 하는 방식 등으로 사용하면 좋을 듯 하다.</p><p>메모리를 좀 줄여보겠다고 gpu, headless 등 각종 옵션을 넣긴 했지만 자체적으로 메모리를 많이 써서 큰 도움은 안되는 듯 하다.</p><pre><code class="py">#!/usr/bin/python3from selenium import webdriverfrom selenium.webdriver.chrome.options import Optionsdef openbr():    url = &quot;&quot;    options = webdriver.ChromeOptions()    options.add_argument(&#39;--headless&#39;)    options.add_argument(&#39;--no-sandbox&#39;)    options.add_argument(&#39;--disable-dev-shm-usage&#39;)    options.add_argument(&quot;--disable-gpu&quot;)    options.add_argument(&quot;--disable-infobars&quot;)    browser = webdriver.Chrome(chrome_options=options, executable_path=&quot;./chromedriver&quot;)    browser.get(url)    html = browser.page_source    return htmlif __name__ == &quot;__main__&quot;:    try:        openbr()    except Exception as excepterr:        logging~~</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AWS </tag>
+            
+            <tag> EC2 </tag>
+            
+            <tag> Ubuntu CLI </tag>
+            
+            <tag> Selenium </tag>
+            
+            <tag> ChromeDriver </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Node.JS VM Module Sandbox Escape Research</title>
       <link href="2021/03/08/nodejs-vmescape/"/>
       <url>2021/03/08/nodejs-vmescape/</url>
@@ -644,7 +677,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#106;&#104;&#121;&#x65;&#x6f;&#x6e;&#x40;&#x6b;&#97;&#x6b;&#97;&#111;&#46;&#x63;&#111;&#x6d;">&#115;&#x74;&#106;&#104;&#121;&#x65;&#x6f;&#x6e;&#x40;&#x6b;&#97;&#x6b;&#97;&#111;&#46;&#x63;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#x6a;&#104;&#x79;&#x65;&#x6f;&#110;&#64;&#107;&#x61;&#107;&#97;&#x6f;&#46;&#99;&#111;&#x6d;">&#x73;&#116;&#x6a;&#104;&#x79;&#x65;&#x6f;&#110;&#64;&#107;&#x61;&#107;&#97;&#x6f;&#46;&#99;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>

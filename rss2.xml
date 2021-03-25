@@ -9,8 +9,42 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>정동현(JHYEON BLOG)</description>
-    <pubDate>Sun, 07 Mar 2021 15:00:00 GMT</pubDate>
+    <pubDate>Wed, 24 Mar 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>AWS EC2 환경에서 Selenium(ChromeDriver) 활용하기</title>
+      <link>https://blog.jhyeon.dev/2021/03/25/awschrome-210325/</link>
+      <guid>https://blog.jhyeon.dev/2021/03/25/awschrome-210325/</guid>
+      <pubDate>Wed, 24 Mar 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;최근에 AWS EC2, Ubuntu CLI 환경에서 Selenium을 활용할 일이 있었는데 그 과정을 정</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>최근에 AWS EC2, Ubuntu CLI 환경에서 Selenium을 활용할 일이 있었는데 그 과정을 정리해놓고 나중에 써먹고자</p><p>아래의 글을 정리한다.</p><h3 id="Install-Package"><a href="#Install-Package" class="headerlink" title="Install Package"></a>Install Package</h3><p>우선 chromedriver를 사용하기 전 크롬과 관련된 패키지를 설치 해줘야 한다.</p><pre><code class="bash">sudo apt updatesudo apt install wget unzipecho &quot;deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.listwget https://dl.google.com/linux/linux_signing_key.pubsudo apt install gnupgsudo apt-key add linux_signing_key.pubsudo apt install google-chrome-stable</code></pre><p>여기까지가 관련 패키지들을 설치해주는 명령어이다. 그 다음은 selenium 설치 과정이다.</p><p>pip로 selenium을 설치해주면 끝나서 간편하다.</p><pre><code class="bash">pip3 install --user selenium</code></pre><p>이렇게만 설치한다고 끝이 아닌, 크롬 공식 홈페이지에서 driver를 다운 받아줘야 한다.</p><p><a href="http://chromedriver.chromium.org/downloads">http://chromedriver.chromium.org/downloads</a></p><p>위 사이트에서 크롬 브라우저의 버전을 선택하여 wget으로 내려 받은 뒤 실행 파일을 사용하면 된다.</p><pre><code class="bash">wget https://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zipunzip chromedriver_linux64.zip</code></pre><h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>이렇게 설치했으면 크롬 브라우저를 어떻게 활용하냐, python 기준으로 예제 코드는 다음과 같다.</p><p>사실, 크롬 브라우저가 메모리를 되게 먹기 때문에 multiprocessing 처리를 하는 방식 등으로 사용하면 좋을 듯 하다.</p><p>메모리를 좀 줄여보겠다고 gpu, headless 등 각종 옵션을 넣긴 했지만 자체적으로 메모리를 많이 써서 큰 도움은 안되는 듯 하다.</p><pre><code class="py">#!/usr/bin/python3from selenium import webdriverfrom selenium.webdriver.chrome.options import Optionsdef openbr():    url = &quot;&quot;    options = webdriver.ChromeOptions()    options.add_argument(&#39;--headless&#39;)    options.add_argument(&#39;--no-sandbox&#39;)    options.add_argument(&#39;--disable-dev-shm-usage&#39;)    options.add_argument(&quot;--disable-gpu&quot;)    options.add_argument(&quot;--disable-infobars&quot;)    browser = webdriver.Chrome(chrome_options=options, executable_path=&quot;./chromedriver&quot;)    browser.get(url)    html = browser.page_source    return htmlif __name__ == &quot;__main__&quot;:    try:        openbr()    except Exception as excepterr:        logging~~</code></pre>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/AWS/">AWS</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/EC2/">EC2</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Ubuntu-CLI/">Ubuntu CLI</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Selenium/">Selenium</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/ChromeDriver/">ChromeDriver</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/03/25/awschrome-210325/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Node.JS VM Module Sandbox Escape Research</title>
@@ -596,35 +630,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/01/systemos-210101/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>웹 해킹 기법 기초</title>
-      <link>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/</guid>
-      <pubDate>Thu, 31 Dec 2020 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0&quot;&gt;https://www.notion</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0">https://www.notion.so/jhyeon/Web-Hacking-Basic-1b7c7cb3dfe44feeae9e48dc17486ff0</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web-Hacking/">Web Hacking</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/01/webhacking-210101/#disqus_thread</comments>
       
     </item>
     

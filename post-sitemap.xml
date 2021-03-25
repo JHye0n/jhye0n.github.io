@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/2021/03/25/awschrome-210325/</loc>
+        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/2021/03/08/nodejs-vmescape/</loc>
         <lastmod>2021-03-07T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>

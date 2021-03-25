@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/ChromeDriver/</loc>
+        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Selenium/</loc>
+        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Ubuntu-CLI/</loc>
+        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/EC2/</loc>
+        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/AWS/</loc>
+        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/Code-Execution/</loc>
         <lastmod>2021-03-07T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
