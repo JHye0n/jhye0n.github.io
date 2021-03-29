@@ -38,13 +38,6 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/tags/WebHackingKR/</loc>
-        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.jhyeon.dev/tags/ChromeDriver/</loc>
         <lastmod>2021-03-24T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
