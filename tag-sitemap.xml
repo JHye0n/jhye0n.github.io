@@ -3,6 +3,48 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/CTFtime/</loc>
+        <lastmod>2021-03-28T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/UMassCTF-21/</loc>
+        <lastmod>2021-03-28T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Web-Hacking/</loc>
+        <lastmod>2021-03-28T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Web/</loc>
+        <lastmod>2021-03-28T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/CTF/</loc>
+        <lastmod>2021-03-28T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/WebHackingKR/</loc>
+        <lastmod>2021-03-24T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/ChromeDriver/</loc>
         <lastmod>2021-03-24T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -74,20 +116,6 @@
 
     <url>
         <loc>https://blog.jhyeon.dev/tags/AeroCTF2021/</loc>
-        <lastmod>2021-02-27T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/CTF/</loc>
-        <lastmod>2021-02-27T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Web/</loc>
         <lastmod>2021-02-27T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -327,13 +355,6 @@
     <url>
         <loc>https://blog.jhyeon.dev/tags/Linux/</loc>
         <lastmod>2021-01-01T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Web-Hacking/</loc>
-        <lastmod>2020-12-31T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
