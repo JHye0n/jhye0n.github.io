@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/CVSS/</loc>
+        <lastmod>2021-04-10T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/CVE/</loc>
+        <lastmod>2021-04-10T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/VirtualBox/</loc>
+        <lastmod>2021-04-10T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Reversing/</loc>
+        <lastmod>2021-04-10T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/Pwnable/</loc>
+        <lastmod>2021-04-10T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/CTFtime/</loc>
         <lastmod>2021-04-09T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -18,20 +53,6 @@
 
     <url>
         <loc>https://blog.jhyeon.dev/tags/Crpyto/</loc>
-        <lastmod>2021-04-09T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Reversing/</loc>
-        <lastmod>2021-04-09T15:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.jhyeon.dev/tags/Pwnable/</loc>
         <lastmod>2021-04-09T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
