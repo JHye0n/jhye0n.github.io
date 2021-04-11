@@ -5,10 +5,8 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="index,follow">
-    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/tags/cvss/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/04/11/ctfreview-210411/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -26,7 +24,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: CVSS - JHYEON</title>
+  <title>CTF(Capture the Flag)에 관한 개인적인 생각 - JHYEON</title>
+  
+    <meta name="keywords" content="CTF,CTFtime">
   
 
   
@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg"></div>
           
@@ -328,83 +328,173 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/11/virtualboxcve-210411/">
-        VirtualBox Escape Research(CVE 2019-2525 & 2548)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Intro
 
-이번에 소속으로 활동 중인 데몬팀(DEMON TEAM) 팀 세미나 진행을 위해 “VirtualBox Research Study Team” 에서
-VirtualBox Escape (CVE 2019-2525 &amp; 2548) 에 대해 연구했던 자료를 공유합니다.
-발표 자료는 비공개지만, 개인 노션에 정리한 자료는 다음 링크에서 확인할 수 있...
-      
-    
-  </div>
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        CTF(Capture the Flag)에 관한 개인적인 생각
+      </h1>
+      <div class='new-meta-box'>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/img/header/cat.jpeg">
+    <p>jhyeon</p>
+  </a>
+</div>
+
+          
         
-        <time>2021-04-11</time>
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Memo/">Memo</a>
+    </a>
+  </div>
+
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Research/">Research</a>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Apr 11, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="CTF(Capture the Flag)에 관한 개인적인 생각" data-path="/2021/04/11/ctfreview-210411/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <p>요즘 주말마다 ctftime.org를 통해 OpenCTF에 종종 참여하고 있다.</p>
+<p>아무래도 요즘 공부가 더 필요하다는 생각이 들면서 최대한 많은 분야와 기술을 접해보기 위한 목적이라곤 할 수 있다.</p>
+<p>그러나.. 요즘 CTF에 참여해보면 취약점 위주의 문제라기 보다 <code> 억지 아이디어로 만들어낸 것 </code> 이나 <code> 짬뽕 </code> 시켜놓거나</p>
+<p></code> 게싱(Guessing) </code> 문제들이 꽤 많이 나오는 것 같다. (그렇다, 즉 시간 낭비라는 뜻이다.)</p>
+<p>뭐 이건 CTF마다 차이가 있을 수 있다. 대개 국내에서 유명한 CTF라고 하면 CODEGATE, CCE 등 유명한 대회들도 있을 것이다.</p>
+<p>개인적으로 확실히 문제 퀄리티가 괜찮고 풀면서 도움이 된다고 생각하는 대회들은 위 예시를 든 대회들이 있다.</p>
+<p>그에 비해 OpenCTF로 진행되는 CTF 일부 문제들은 확실히 전년도, 전전년도에 비해 퀄리티도 엄청 떨어지고 있다는 생각을 한다.</p>
+<p>왜 그런건지는 모르겠지만, 참여하면서 불만적인 사항들도 많이 생겨서 그냥 짧은 개인적인 리뷰글을 써봤다.</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/04/11/virtualboxcve-210411/'>
-            Read More
-          </a>
-        </div>
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2021/04/10/angstormctf-210410/" title="AngStormCTF 2021 Write-Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">AngStormCTF 2021 Write-Up</span></a><a class="item" href="/2021/03/29/umassctf-210329/" title="UMassCTF'21 Write Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">UMassCTF'21 Write Up</span></a><a class="item" href="/2020/06/19/bangsiri-wargame-200619/" title="동아리 워게임 홍보(?)" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">동아리 워게임 홍보(?)</span></a></div></section></div>
+      
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Apr 11, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CTF/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CTF</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CTFtime/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CTFtime</p></a></div>
 
 
-    
+        
+      
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/04/11/virtualboxcve-210411/'>
+          <p class='title'>VirtualBox Escape Research(CVE 2019-2525 & 2548)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Intro
+
+이번에 소속으로 활동 중인 데몬팀(DEMON TEAM) 팀 세미나 진행을 위해 “VirtualBox Research Study Team” 에서
+VirtualBox...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> Comments</p>
+    
+    <div id="disqus_thread">
+  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
+  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
+  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -412,137 +502,7 @@ VirtualBox Escape (CVE 2019-2525 &amp; 2548) 에 대해 연구했던 자료를 �
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' target="_blank" rel="noopener" href='https://mypf.jhyeon.dev'>
-          <img no-lazy src='/img/profile/my.jpeg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>JHYEON</h2>
-        
-        
-          <p>Devops &amp; Security Engineer</p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:stjhyeon@kakao.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/jhye0n"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
-    
-  <header>
-    
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            id="categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(12)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docx/" href="/categories/Docx/"
-            id="categoriesDocx"
-            ><div class='name'>Docx</div><div class='badge'>(19)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Memo/" href="/categories/Memo/"
-            id="categoriesMemo"
-            ><div class='name'>Memo</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Mobile/" href="/categories/Mobile/"
-            id="categoriesMobile"
-            ><div class='name'>Mobile</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Pwnable/" href="/categories/Pwnable/"
-            id="categoriesPwnable"
-            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Research/" href="/categories/Research/"
-            id="categoriesResearch"
-            ><div class='name'>Research</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Wargame/" href="/categories/Wargame/"
-            id="categoriesWargame"
-            ><div class='name'>Wargame</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Web/" href="/categories/Web/"
-            id="categoriesWeb"
-            ><div class='name'>Web</div><div class='badge'>(8)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/AWS/" style="font-size: 14px; color: #999">AWS</a> <a href="/tags/AeroCTF2021/" style="font-size: 14px; color: #999">AeroCTF2021</a> <a href="/tags/Algorithm/" style="font-size: 15.67px; color: #8e8e8e">Algorithm</a> <a href="/tags/Android/" style="font-size: 20.67px; color: #6c6c6c">Android</a> <a href="/tags/AngStormCTF-2021/" style="font-size: 14px; color: #999">AngStormCTF 2021</a> <a href="/tags/Application/" style="font-size: 19px; color: #777">Application</a> <a href="/tags/B-ngsiri/" style="font-size: 14px; color: #999">B@ngsiri</a> <a href="/tags/BISC2020/" style="font-size: 14px; color: #999">BISC2020</a> <a href="/tags/BOF/" style="font-size: 14px; color: #999">BOF</a> <a href="/tags/Backup/" style="font-size: 14px; color: #999">Backup</a> <a href="/tags/Big-Sur/" style="font-size: 14px; color: #999">Big Sur</a> <a href="/tags/Blog/" style="font-size: 14px; color: #999">Blog</a> <a href="/tags/BoB/" style="font-size: 14px; color: #999">BoB</a> <a href="/tags/Browser-Auditor/" style="font-size: 14px; color: #999">Browser Auditor</a> <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CANVAS/" style="font-size: 14px; color: #999">CANVAS</a> <a href="/tags/CSAWCTF-2020/" style="font-size: 14px; color: #999">CSAWCTF 2020</a> <a href="/tags/CSRF/" style="font-size: 14px; color: #999">CSRF</a> <a href="/tags/CTF/" style="font-size: 19px; color: #777">CTF</a> <a href="/tags/CTFtime/" style="font-size: 17.33px; color: #828282">CTFtime</a> <a href="/tags/CVE/" style="font-size: 14px; color: #999">CVE</a> <a href="/tags/CVSS/" style="font-size: 14px; color: #999">CVSS</a> <a href="/tags/Canary/" style="font-size: 14px; color: #999">Canary</a> <a href="/tags/Cassandra/" style="font-size: 14px; color: #999">Cassandra</a> <a href="/tags/CheatSheet/" style="font-size: 14px; color: #999">CheatSheet</a> <a href="/tags/ChristmasCTF2019/" style="font-size: 14px; color: #999">ChristmasCTF2019</a> <a href="/tags/Chrome/" style="font-size: 14px; color: #999">Chrome</a> <a href="/tags/ChromeDriver/" style="font-size: 14px; color: #999">ChromeDriver</a> <a href="/tags/Code-Execution/" style="font-size: 14px; color: #999">Code Execution</a> <a href="/tags/Crpyto/" style="font-size: 14px; color: #999">Crpyto</a> <a href="/tags/DB/" style="font-size: 14px; color: #999">DB</a> <a href="/tags/DVWA/" style="font-size: 14px; color: #999">DVWA</a> <a href="/tags/Development/" style="font-size: 14px; color: #999">Development</a> <a href="/tags/Docker/" style="font-size: 17.33px; color: #828282">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 15.67px; color: #8e8e8e">Dockerfile</a> <a href="/tags/EC2/" style="font-size: 14px; color: #999">EC2</a> <a href="/tags/Exploitation/" style="font-size: 14px; color: #999">Exploitation</a> <a href="/tags/Firefox/" style="font-size: 14px; color: #999">Firefox</a> <a href="/tags/Foreign-Key/" style="font-size: 14px; color: #999">Foreign Key</a> <a href="/tags/Frida/" style="font-size: 14px; color: #999">Frida</a> <a href="/tags/Github/" style="font-size: 14px; color: #999">Github</a> <a href="/tags/HACKINGCAMP/" style="font-size: 14px; color: #999">HACKINGCAMP</a> <a href="/tags/HCAMP/" style="font-size: 14px; color: #999">HCAMP</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hooking/" style="font-size: 14px; color: #999">Hooking</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/LFI/" style="font-size: 14px; color: #999">LFI</a> <a href="/tags/LMS/" style="font-size: 14px; color: #999">LMS</a> <a href="/tags/Linux/" style="font-size: 15.67px; color: #8e8e8e">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 14px; color: #999">Mac OS</a> <a href="/tags/Macro/" style="font-size: 14px; color: #999">Macro</a> <a href="/tags/Malware/" style="font-size: 14px; color: #999">Malware</a> <a href="/tags/Memory-Mitigation/" style="font-size: 14px; color: #999">Memory Mitigation</a> <a href="/tags/Mprotect/" style="font-size: 14px; color: #999">Mprotect</a> <a href="/tags/Network/" style="font-size: 14px; color: #999">Network</a> <a href="/tags/Nexus5X/" style="font-size: 14px; color: #999">Nexus5X</a> <a href="/tags/NoSQL/" style="font-size: 14px; color: #999">NoSQL</a> <a href="/tags/NodeJS/" style="font-size: 14px; color: #999">NodeJS</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/OWASP/" style="font-size: 14px; color: #999">OWASP</a> <a href="/tags/OWASP-MSTG/" style="font-size: 15.67px; color: #8e8e8e">OWASP-MSTG</a> <a href="/tags/PHP/" style="font-size: 15.67px; color: #8e8e8e">PHP</a> <a href="/tags/POX2020/" style="font-size: 14px; color: #999">POX2020</a> <a href="/tags/Penetration/" style="font-size: 19px; color: #777">Penetration</a> <a href="/tags/Pentesting/" style="font-size: 15.67px; color: #8e8e8e">Pentesting</a> <a href="/tags/PicoCTF2019/" style="font-size: 14px; color: #999">PicoCTF2019</a> <a href="/tags/Primary-Key/" style="font-size: 14px; color: #999">Primary Key</a> <a href="/tags/Pwn/" style="font-size: 14px; color: #999">Pwn</a> <a href="/tags/Pwnable/" style="font-size: 22.33px; color: #606060">Pwnable</a> <a href="/tags/Python/" style="font-size: 14px; color: #999">Python</a> <a href="/tags/Python-Pickle/" style="font-size: 14px; color: #999">Python Pickle</a> <a href="/tags/RCE/" style="font-size: 17.33px; color: #828282">RCE</a> <a href="/tags/ROP/" style="font-size: 17.33px; color: #828282">ROP</a> <a href="/tags/Reversing/" style="font-size: 15.67px; color: #8e8e8e">Reversing</a> <a href="/tags/Root/" style="font-size: 14px; color: #999">Root</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Sandbox/" style="font-size: 14px; color: #999">Sandbox</a> <a href="/tags/Selenium/" style="font-size: 14px; color: #999">Selenium</a> <a href="/tags/Shellcode/" style="font-size: 14px; color: #999">Shellcode</a> <a href="/tags/Study/" style="font-size: 14px; color: #999">Study</a> <a href="/tags/Suricata/" style="font-size: 14px; color: #999">Suricata</a> <a href="/tags/System/" style="font-size: 14px; color: #999">System</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/UMassCTF-21/" style="font-size: 14px; color: #999">UMassCTF'21</a> <a href="/tags/Ubuntu/" style="font-size: 14px; color: #999">Ubuntu</a> <a href="/tags/Ubuntu-CLI/" style="font-size: 14px; color: #999">Ubuntu CLI</a> <a href="/tags/V8-Engine/" style="font-size: 14px; color: #999">V8 Engine</a> <a href="/tags/VM-Module/" style="font-size: 14px; color: #999">VM Module</a> <a href="/tags/VirtualBox/" style="font-size: 14px; color: #999">VirtualBox</a> <a href="/tags/Vulnability/" style="font-size: 14px; color: #999">Vulnability</a> <a href="/tags/Wargame/" style="font-size: 14px; color: #999">Wargame</a> <a href="/tags/Web/" style="font-size: 24px; color: #555">Web</a> <a href="/tags/Web-Hacking/" style="font-size: 15.67px; color: #8e8e8e">Web Hacking</a> <a href="/tags/Writeup/" style="font-size: 17.33px; color: #828282">Writeup</a> <a href="/tags/XSS/" style="font-size: 17.33px; color: #828282">XSS</a> <a href="/tags/iftop/" style="font-size: 14px; color: #999">iftop</a> <a href="/tags/syscall/" style="font-size: 14px; color: #999">syscall</a> <a href="/tags/websec-fr/" style="font-size: 15.67px; color: #8e8e8e">websec.fr</a> <a href="/tags/%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">선형 탐색</a> <a href="/tags/%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">이진 탐색</a> <a href="/tags/%EC%A0%95%EB%B3%B4-%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보 보안</a> <a href="/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보보안</a> <a href="/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/" style="font-size: 14px; color: #999">최신동향</a> <a href="/tags/%ED%95%B4%ED%82%B9%EC%BA%A0%ED%94%84/" style="font-size: 14px; color: #999">해킹캠프</a> <a href="/tags/%ED%9A%8C%EA%B3%A0/" style="font-size: 14px; color: #999">회고</a>
-    </div>
-  </section>
 
 
   
@@ -551,14 +511,15 @@ VirtualBox Escape (CVE 2019-2525 &amp; 2548) 에 대해 연구했던 자료를 �
 </aside>
 
 
+
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="CTF(Capture the Flag)에 관한 개인적인 생각";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

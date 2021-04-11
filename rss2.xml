@@ -13,6 +13,36 @@
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>CTF(Capture the Flag)에 관한 개인적인 생각</title>
+      <link>https://blog.jhyeon.dev/2021/04/11/ctfreview-210411/</link>
+      <guid>https://blog.jhyeon.dev/2021/04/11/ctfreview-210411/</guid>
+      <pubDate>Sat, 10 Apr 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;요즘 주말마다 ctftime.org를 통해 OpenCTF에 종종 참여하고 있다.&lt;/p&gt;
+&lt;p&gt;아무래도 요즘 공부가 더 필요하다는 생각이 들면서 최대한 많은 분야와 기술을 접해보기 위한 목적이라곤 할 수 있다.&lt;/p&gt;
+&lt;p&gt;그러나.. 요즘 CTF에</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>요즘 주말마다 ctftime.org를 통해 OpenCTF에 종종 참여하고 있다.</p><p>아무래도 요즘 공부가 더 필요하다는 생각이 들면서 최대한 많은 분야와 기술을 접해보기 위한 목적이라곤 할 수 있다.</p><p>그러나.. 요즘 CTF에 참여해보면 취약점 위주의 문제라기 보다 <code> 억지 아이디어로 만들어낸 것 </code> 이나 <code> 짬뽕 </code> 시켜놓거나</p><p></code> 게싱(Guessing) </code> 문제들이 꽤 많이 나오는 것 같다. (그렇다, 즉 시간 낭비라는 뜻이다.)</p><p>뭐 이건 CTF마다 차이가 있을 수 있다. 대개 국내에서 유명한 CTF라고 하면 CODEGATE, CCE 등 유명한 대회들도 있을 것이다.</p><p>개인적으로 확실히 문제 퀄리티가 괜찮고 풀면서 도움이 된다고 생각하는 대회들은 위 예시를 든 대회들이 있다.</p><p>그에 비해 OpenCTF로 진행되는 CTF 일부 문제들은 확실히 전년도, 전전년도에 비해 퀄리티도 엄청 떨어지고 있다는 생각을 한다.</p><p>왜 그런건지는 모르겠지만, 참여하면서 불만적인 사항들도 많이 생겨서 그냥 짧은 개인적인 리뷰글을 써봤다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Memo/">Memo</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTFtime/">CTFtime</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/04/11/ctfreview-210411/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>VirtualBox Escape Research(CVE 2019-2525 &amp; 2548)</title>
       <link>https://blog.jhyeon.dev/2021/04/11/virtualboxcve-210411/</link>
       <guid>https://blog.jhyeon.dev/2021/04/11/virtualboxcve-210411/</guid>
@@ -66,8 +96,6 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/Pwnable/">Pwnable</category>
@@ -75,6 +103,8 @@
       <category domain="https://blog.jhyeon.dev/tags/Reversing/">Reversing</category>
       
       <category domain="https://blog.jhyeon.dev/tags/Crpyto/">Crpyto</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
       
       <category domain="https://blog.jhyeon.dev/tags/AngStormCTF-2021/">AngStormCTF 2021</category>
       
@@ -105,9 +135,9 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
       
       <category domain="https://blog.jhyeon.dev/tags/CTFtime/">CTFtime</category>
       
@@ -208,11 +238,11 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
       <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
       
       <category domain="https://blog.jhyeon.dev/tags/AeroCTF2021/">AeroCTF2021</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2021/02/28/aeroctf2021-210228/#disqus_thread</comments>
@@ -623,34 +653,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/08/docker-install-210108/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Suricata 설치 &amp; 기초</title>
-      <link>https://blog.jhyeon.dev/2021/01/08/suricata-210108/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/08/suricata-210108/</guid>
-      <pubDate>Thu, 07 Jan 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Suricata란&quot;&gt;&lt;a href=&quot;#Suricata란&quot; class=&quot;headerlink&quot; title=&quot;Suricata란?&quot;&gt;&lt;/a&gt;Suricata란?&lt;/h3&gt;&lt;p&gt;IDS(Intrusion Detection System) 시스템으로, 실</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Suricata란"><a href="#Suricata란" class="headerlink" title="Suricata란?"></a>Suricata란?</h3><p>IDS(Intrusion Detection System) 시스템으로, 실시간 IDS, IPS, NSM(Network Security Monitoring) 및 pcap 캡처를 지원한다.</p><h3 id="Suricata-Installation"><a href="#Suricata-Installation" class="headerlink" title="Suricata Installation"></a>Suricata Installation</h3><p>아래 설치 가이드는 우분투 20.04 환경에 맞는 설치 방법이다. 18.04는 아마 “sudo apt install suricata”로도 설치가 가능할 것이다.</p><pre><code class="bash">sudo apt updatesudo apt install software-properties-commonsudo add-apt-repository ppa:oisf/suricata-stablesudo apt updatesudo apt install suricata</code></pre><h3 id="Suricata-기본-룰-셋-다운로드"><a href="#Suricata-기본-룰-셋-다운로드" class="headerlink" title="Suricata 기본 룰 셋 다운로드"></a>Suricata 기본 룰 셋 다운로드</h3><pre><code class="bash">sudo suricata-updatesudo systemctl restart suricata</code></pre><h3 id="테스트-룰-셋"><a href="#테스트-룰-셋" class="headerlink" title="테스트 룰 셋"></a>테스트 룰 셋</h3><pre><code class="bash">alert tcp any any -&gt; any 80 (msg:&quot;Connection to sites.com&quot;; content:&quot;sites.com&quot;; sid:1001; rev:1;)</code></pre><p>위와 같이 테스트 룰 셋을 짜고 저장하면 80포트로 tcp통신하는 sites.com에 대한 패킷을 로그에 찍을 수 있다.</p><p>로그 파일은 “/var/log/suricata/fast.log”에서 볼 수 있고 tail 명령어로 실시간으로 찍어볼 수도 있다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Suricata/">Suricata</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Network/">Network</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/08/suricata-210108/#disqus_thread</comments>
       
     </item>
     
