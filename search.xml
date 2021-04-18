@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> CTF </tag>
-            
             <tag> Web </tag>
+            
+            <tag> CTF </tag>
             
             <tag> CTFtime </tag>
             
@@ -64,33 +64,6 @@
             <tag> Crypto </tag>
             
             <tag> RITSEC 2021 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CTF(Capture the Flag)에 관한 개인적인 생각</title>
-      <link href="2021/04/11/ctfreview-210411/"/>
-      <url>2021/04/11/ctfreview-210411/</url>
-      
-        <content type="html"><![CDATA[<p>요즘 주말마다 ctftime.org를 통해 OpenCTF에 종종 참여하고 있다.</p><p>아무래도 요즘 공부가 더 필요하다는 생각이 들면서 최대한 많은 분야와 기술을 접해보기 위한 목적이라곤 할 수 있다.</p><p>그러나.. 요즘 CTF에 참여해보면 취약점 위주의 문제라기 보다 <code> 억지 아이디어로 만들어낸 것 </code> 이나 <code> 짬뽕 </code> 시켜놓거나</p><p><code> 게싱(Guessing) </code> 문제들이 꽤 많이 나오는 것 같다. (그렇다, 즉 시간 낭비라는 뜻이다.)</p><p>뭐 이건 CTF마다 차이가 있을 수 있다. 대개 국내에서 유명한 CTF라고 하면 CODEGATE, CCE 등 유명한 대회들도 있을 것이다.</p><p>개인적으로 확실히 문제 퀄리티가 괜찮고 풀면서 도움이 된다고 생각하는 대회들은 위 예시를 든 대회들이 있다.</p><p>그에 비해 일부 OpenCTF 대회들은 확실히 전년도, 전전년도에 비해 퀄리티도 엄청 떨어지고 있다는 생각을 한다.</p><p>왜 그런건지는 모르겠지만, 참여하면서 불만적인 사항들도 많이 생겨서 그냥 짧은 개인적인 리뷰글을 써봤다.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Memo </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> CTFtime </tag>
             
         </tags>
       
@@ -148,8 +121,6 @@
       
         <tags>
             
-            <tag> CTF </tag>
-            
             <tag> Web </tag>
             
             <tag> Pwnable </tag>
@@ -157,6 +128,8 @@
             <tag> Reversing </tag>
             
             <tag> Crpyto </tag>
+            
+            <tag> CTF </tag>
             
             <tag> AngStormCTF 2021 </tag>
             
@@ -185,9 +158,9 @@
       
         <tags>
             
-            <tag> CTF </tag>
-            
             <tag> Web </tag>
+            
+            <tag> CTF </tag>
             
             <tag> CTFtime </tag>
             
@@ -284,11 +257,11 @@
       
         <tags>
             
+            <tag> Web </tag>
+            
             <tag> CTF </tag>
             
             <tag> AeroCTF2021 </tag>
-            
-            <tag> Web </tag>
             
         </tags>
       
@@ -875,7 +848,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#x6a;&#x68;&#x79;&#x65;&#111;&#x6e;&#x40;&#x6b;&#97;&#x6b;&#x61;&#111;&#46;&#99;&#111;&#x6d;">&#x73;&#x74;&#x6a;&#x68;&#x79;&#x65;&#111;&#x6e;&#x40;&#x6b;&#97;&#x6b;&#x61;&#111;&#46;&#99;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#106;&#104;&#x79;&#x65;&#x6f;&#110;&#x40;&#x6b;&#x61;&#x6b;&#97;&#111;&#x2e;&#99;&#111;&#109;">&#x73;&#116;&#106;&#104;&#x79;&#x65;&#x6f;&#110;&#x40;&#x6b;&#x61;&#x6b;&#97;&#111;&#x2e;&#99;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
