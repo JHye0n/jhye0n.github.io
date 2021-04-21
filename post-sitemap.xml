@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/2021/04/21/webpayload-210421/</loc>
+        <lastmod>2021-04-20T15:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/2021/04/18/hackpackctf-210418/</loc>
         <lastmod>2021-04-17T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -449,7 +457,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/10/zer0ptsctf-200410/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/10/zixemchall-200410/</loc>
         <lastmod>2020-04-09T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -457,7 +465,7 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2020/04/10/zixemchall-200410/</loc>
+        <loc>https://blog.jhyeon.dev/2020/04/10/zer0ptsctf-200410/</loc>
         <lastmod>2020-04-09T15:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
