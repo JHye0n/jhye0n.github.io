@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Unity 엔진으로 개발 된 앱 덤프 도구</title>
+      <link href="2021/04/25/il2cppdumper-210425/"/>
+      <url>2021/04/25/il2cppdumper-210425/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><ul><li>il2cppDumper<ul><li><a href="https://github.com/Perfare/Il2CppDumper">https://github.com/Perfare/Il2CppDumper</a></li></ul></li></ul><pre><code>il2cppdumper.exe &lt;executable-file&gt; &lt;metadata.dat&gt; &lt;output-dir&gt;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mobile </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Penetration </tag>
+            
+            <tag> Mobile </tag>
+            
+            <tag> App </tag>
+            
+            <tag> il2cppdumper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Web/Hacking Payload Docx</title>
       <link href="2021/04/21/webpayload-210421/"/>
       <url>2021/04/21/webpayload-210421/</url>
@@ -881,7 +912,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#x6a;&#x68;&#121;&#101;&#x6f;&#x6e;&#64;&#x6b;&#x61;&#107;&#97;&#111;&#x2e;&#x63;&#x6f;&#x6d;">&#115;&#x74;&#x6a;&#x68;&#121;&#101;&#x6f;&#x6e;&#64;&#x6b;&#x61;&#107;&#97;&#111;&#x2e;&#x63;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#x6a;&#104;&#121;&#101;&#111;&#110;&#x40;&#107;&#97;&#x6b;&#x61;&#x6f;&#46;&#x63;&#x6f;&#109;">&#115;&#116;&#x6a;&#104;&#121;&#101;&#111;&#110;&#x40;&#107;&#97;&#x6b;&#x61;&#x6f;&#46;&#x63;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
