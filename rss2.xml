@@ -9,8 +9,52 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Sun, 25 Apr 2021 01:00:00 GMT</pubDate>
+    <pubDate>Sun, 25 Apr 2021 03:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>HSPACE (SatunX) CTF 2021 Write Up</title>
+      <link>https://blog.jhyeon.dev/2021/04/25/hspacectf-210425/</link>
+      <guid>https://blog.jhyeon.dev/2021/04/25/hspacectf-210425/</guid>
+      <pubDate>Sun, 25 Apr 2021 03:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/img/post/ctf/hspace2021/logo.png&quot; class=&quot;lazylo</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p><img src="/img/post/ctf/hspace2021/logo.png" class="lazyload" data-srcset="/img/post/ctf/hspace2021/logo.png" srcset="data:image/png;base64,666" alt="photo1"></p><p>HSPACE(SatunX) 2021 (4/24 Sat 10:00 ~ 4/24 Sat 22:00 KST)</p><ul><li><a href="https://ctf.hspace.io/">https://ctf.hspace.io/</a></li><li>rank : 24th (jhye3n)</li></ul><h3 id="Write-Up"><a href="#Write-Up" class="headerlink" title="Write Up"></a>Write Up</h3><ul><li>4/26 23:59분 이후 공개되는 게시글입니다.</li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Pwnable/">Pwnable</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Reversing/">Reversing</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Crypto/">Crypto</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Network/">Network</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Mobile/">Mobile</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/SatunX/">SatunX</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/HSPACE/">HSPACE</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/HSPACE-CTF/">HSPACE CTF</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/04/25/hspacectf-210425/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>모바일 게임 앱 분석(Unity Game Engine)</title>
@@ -647,34 +691,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/20/hexoblog-210120/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>OWASP TOP 10 2021 제안 자료</title>
-      <link>https://blog.jhyeon.dev/2021/01/20/owasp2021-210120/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/20/owasp2021-210120/</guid>
-      <pubDate>Tue, 19 Jan 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;4년마다 OWASP 에서는 웹 애플리케이션에서 발생한 주요 취약점 리스트(top 10/category) 정보를 주는데,&lt;/p&gt;
-&lt;p&gt;올해에도 제안 자료가 있어서 링크를 남겨본다. (공식 정보는 아닙니당)&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https:/</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>4년마다 OWASP 에서는 웹 애플리케이션에서 발생한 주요 취약점 리스트(top 10/category) 정보를 주는데,</p><p>올해에도 제안 자료가 있어서 링크를 남겨본다. (공식 정보는 아닙니당)</p><p><a href="https://lab.wallarm.com/owasp-top-10-2021-proposal-based-on-a-statistical-data/?amp&amp;fbclid=IwAR1oIWYr_bXxragBk1OJEX4WasafYOUbyv-61z5wAKicIa6RwuPlJbxJnrc">https://lab.wallarm.com/owasp-top-10-2021-proposal-based-on-a-statistical-data/?amp&amp;fbclid=IwAR1oIWYr_bXxragBk1OJEX4WasafYOUbyv-61z5wAKicIa6RwuPlJbxJnrc</a></p><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li>Play The Web</li></ul>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/OWASP/">OWASP</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/20/owasp2021-210120/#disqus_thread</comments>
       
     </item>
     
