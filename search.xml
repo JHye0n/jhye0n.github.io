@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Android 7.0 이상의 환경에서 CA 인증서 설치</title>
+      <link href="2021/04/27/android-cert-210503/"/>
+      <url>2021/04/27/android-cert-210503/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>안드로이드 빌드 7.0 이상에서 CA(Certificate Authority) 인증서를 설치 할 때,</p><p>사용자 인증서로 설치하게 되면 SSL이 정상적으로 적용되지 않는 문제가 있다.</p><p>Burp Suite의 CA 인증서는 만료기간이 20년 이상의 인증서로 생성되는데,</p><p>Google에서 시스템 인증서는 39개월 이내의 만료기간을 가지기 때문에 정상적으로 동작하지 않는다.</p><p>따라서 7.0 빌드 이상의 환경이라면 시스템 루트 공간에 자격 증명을 만들어줘야 동작하게 되는데</p><p>그 과정을 정리하고자 한다.</p><h3 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h3><p>인증서는 “Burp Suite”의 <code>cacert.der</code>을 사용할 것이다.</p><ul><li><a href="http://burp/">http://burp</a></li></ul><h3 id="Hash-Extraction"><a href="#Hash-Extraction" class="headerlink" title="Hash Extraction"></a>Hash Extraction</h3><p>위 인증서를 다운로드 받았다면 인증서 변환, 해쉬 값 추출을 진행해야 한다.</p><p>OpenSSL을 사용하여 이 과정 진행이 가능하다.</p><pre><code class="bash">mv cacert.der cacert.ceropenssl x509 -inform DER -in cacert.cer -out cacert.pemopenssl x509 -inform PEM -subject_hash_old -in cacert.pem</code></pre><p>위 세가지 명령어를 입력했다면, 아래와 같은 사진을 확인할 수 있다.</p><p><img src="/img/post/android-cert/1.png" class="lazyload" data-srcset="/img/post/android-cert/1.png" srcset="data:image/png;base64,666" alt="photo1"></p><p>여기서 9a5ba575(hash는 다를 수 있음)를 복사해서 파일명을 <code>해쉬값.0</code> 으로 바꿔준다.</p><pre><code class="bash">mv cacert.pem 9a5ba575.0</code></pre><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>이제 해당 인증서를 시스템 CA 인증서 디렉토리에 push 해주면 된다.</p><pre><code class="bash">adb push 9a5ba575.0 /sdcardadb shellsumount -o rw,remount /systemmv /sdcard/9a5ba575.0 /system/etc/security/cacerts/cd /system/etc/security/cacerts/chmod 644 9a5ba575.0</code></pre><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><a href="https://hackcatml.tistory.com/37">https://hackcatml.tistory.com/37</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mobile </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> ADB </tag>
+            
+            <tag> SSL </tag>
+            
+            <tag> CA 인증서 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HSPACE (SatunX) CTF 2021 Write Up</title>
       <link href="2021/04/25/hspacectf-210425/"/>
       <url>2021/04/25/hspacectf-210425/</url>
@@ -988,7 +1019,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#x6a;&#104;&#x79;&#101;&#111;&#110;&#64;&#107;&#97;&#107;&#97;&#x6f;&#46;&#x63;&#x6f;&#109;">&#115;&#116;&#x6a;&#104;&#x79;&#101;&#111;&#110;&#64;&#107;&#97;&#107;&#97;&#x6f;&#46;&#x63;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#116;&#106;&#104;&#121;&#x65;&#111;&#x6e;&#x40;&#107;&#97;&#107;&#97;&#x6f;&#x2e;&#99;&#x6f;&#109;">&#x73;&#116;&#106;&#104;&#121;&#x65;&#111;&#x6e;&#x40;&#107;&#97;&#107;&#97;&#x6f;&#x2e;&#99;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
