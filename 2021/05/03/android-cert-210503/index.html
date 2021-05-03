@@ -6,7 +6,7 @@
   
     
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/2020/11/21/bob-bisc-201129/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/05/03/android-cert-210503/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -24,9 +24,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>BISC CTF 2020(oldschool) write up - JHYEON</title>
+  <title>Android 7.0 이상의 환경에서 CA 인증서 설치 - JHYEON</title>
   
-    <meta name="keywords" content="Pwnable,BISC2020,ROP">
+    <meta name="keywords" content="Android,ADB,SSL,CA 인증서">
   
 
   
@@ -339,7 +339,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        BISC CTF 2020(oldschool) write up
+        Android 7.0 이상의 환경에서 CA 인증서 설치
       </h1>
       <div class='new-meta-box'>
         
@@ -359,7 +359,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/CTF/">CTF</a>
+      <a class="category-link" href="/categories/Mobile/">Mobile</a>
     </a>
   </div>
 
@@ -370,7 +370,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Nov 21, 2020</p>
+    <p>Date : May 3, 2021</p>
   </a>
 </div>
 
@@ -381,7 +381,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="BISC CTF 2020(oldschool) write up" data-path="/2020/11/21/bob-bisc-201129/">
+      <div id="lc-pv" data-title="Android 7.0 이상의 환경에서 CA 인증서 설치" data-path="/2021/05/03/android-cert-210503/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         View
@@ -399,9 +399,36 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <p>사실 풀고나니 꽤나 쉬웠던 것 같은 문제인데, 요즘 시스템쪽을 하는둥 마는둥 하다보니 익스코드 짜는데</p>
-<p>오래 걸려버려서 대회 중에는 인증을 못해봤었다.. (틈틈히 챙겨야 할듯)</p>
-<p><a target="_blank" rel="noopener" href="https://www.notion.so/jhyeon/BISC-2020-oldschool-write-up-7b4dc57cf9834eab9f1260adf1b609f5">https://www.notion.so/jhyeon/BISC-2020-oldschool-write-up-7b4dc57cf9834eab9f1260adf1b609f5</a></p>
+  <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>안드로이드 빌드 7.0 이상에서 CA(Certificate Authority) 인증서를 설치 할 때,</p>
+<p>사용자 인증서로 설치하게 되면 SSL이 정상적으로 적용되지 않는 문제가 있다.</p>
+<p>Burp Suite의 CA 인증서는 만료기간이 20년 이상의 인증서로 생성되는데,</p>
+<p>Google에서 시스템 인증서는 39개월 이내의 만료기간을 가지기 때문에 정상적으로 동작하지 않는다.</p>
+<p>따라서 7.0 빌드 이상의 환경이라면 시스템 루트 공간에 자격 증명을 만들어줘야 동작하게 되는데</p>
+<p>그 과정을 정리하고자 한다.</p>
+<h3 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h3><p>인증서는 “Burp Suite”의 <code>cacert.der</code>을 사용할 것이다.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://burp/">http://burp</a></li>
+</ul>
+<h3 id="Hash-Extraction"><a href="#Hash-Extraction" class="headerlink" title="Hash Extraction"></a>Hash Extraction</h3><p>위 인증서를 다운로드 받았다면 인증서 변환, 해쉬 값 추출을 진행해야 한다.</p>
+<p>OpenSSL을 사용하여 이 과정 진행이 가능하다.</p>
+<pre><code class="bash">mv cacert.der cacert.cer
+openssl x509 -inform DER -in cacert.cer -out cacert.pem
+openssl x509 -inform PEM -subject_hash_old -in cacert.pem</code></pre>
+<p>위 세가지 명령어를 입력했다면, 아래와 같은 사진을 확인할 수 있다.</p>
+<p><img src="/img/post/android-cert/1.png" class="lazyload" data-srcset="/img/post/android-cert/1.png" srcset="data:image/png;base64,666" alt="photo1"></p>
+<p>여기서 9a5ba575(hash는 다를 수 있음)를 복사해서 파일명을 <code>해쉬값.0</code> 으로 바꿔준다.</p>
+<pre><code class="bash">mv cacert.pem 9a5ba575.0</code></pre>
+<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>이제 해당 인증서를 시스템 CA 인증서 디렉토리에 push 해주면 된다.</p>
+<pre><code class="bash">adb push 9a5ba575.0 /sdcard
+adb shell
+su
+mount -o rw,remount /system
+mv /sdcard/9a5ba575.0 /system/etc/security/cacerts/
+cd /system/etc/security/cacerts/
+chmod 644 9a5ba575.0</code></pre>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://hackcatml.tistory.com/37">https://hackcatml.tistory.com/37</a></li>
+</ul>
 
   
   
@@ -415,7 +442,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/09/14/csawctf-200914/" title="CSAW CTF 2020 roppity Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">CSAW CTF 2020 roppity Write up</span></a><a class="item" href="/2021/04/10/angstormctf-210410/" title="AngStormCTF 2021 Write-Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">AngStormCTF 2021 Write-Up</span></a><a class="item" href="/2021/02/28/aeroctf2021-210228/" title="AeroCTF 2021 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">AeroCTF 2021 Write up</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/2021/01/31/android-app-penetration-study-210131/" title="(스터디 자료) 안드로이드 앱 분석 기초 part.1" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">(스터디 자료) 안드로이드 앱 분석 기초 part.1</span></a><a class="item" href="/2021/01/31/android-rootkit-210131/" title="넥서스 5X 벽돌폰 복구 + 루팅" rel="bookmark "><img src="/img/post/android_root/1.jpeg" class="lazyload" data-srcset="/img/post/android_root/1.jpeg" srcset="data:image/png;base64,666" /><span class="title">넥서스 5X 벽돌폰 복구 + 루팅</span></a><a class="item" href="/2021/02/22/frida-hook1-210222/" title="Frida를 통한 앱 내부 라이브러리 후킹 방법" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">Frida를 통한 앱 내부 라이브러리 후킹 방법</span></a></div></section></div>
       
       
       
@@ -432,7 +459,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>Date : Nov 21, 2020</p>
+    <p>Date : May 3, 2021</p>
   </a>
 </div>
 
@@ -441,7 +468,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pwnable/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pwnable</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/BISC2020/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>BISC2020</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ROP/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ROP</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Android/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Android</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ADB/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ADB</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/SSL/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>SSL</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CA-%EC%9D%B8%EC%A6%9D%EC%84%9C/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CA 인증서</p></a></div>
 
 
         
@@ -458,19 +485,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/12/26/christmasctf-201226/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>ChristmasCTF 2019 Write up</p>
-          <p class='content'>1. [Web] watermelon이 문제는 언인텐 풀이로 푼 것 같다. 문제 내에서 로그인 계정 중
-admin 계정에 대해서
-비밀번호가 admin 과 같이 세팅되어 있음을 ...</p>
-        </a>
       
-      
-        <a class='next' href='/2020/11/21/poxctf-201121/'>
-          <p class='title'>POX(Power of xx) 2020 Write up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>POX 2020 출제자 Write up 자료입니다.
-아래 노션에서 풀이를 확인하실 수 있습니다.
-질문 사항이 있으시면 &#115;&#x74;&#x6a;&#104;&#x79;&...</p>
+        <a class='next' href='/2021/04/25/hspacectf-210425/'>
+          <p class='title'>HSPACE (SatunX) CTF 2021 Write Up<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Intro
+HSPACE(SatunX) 2021 (4/24 Sat 10:00 ~ 4/24 Sat 22:00 KST)
+
+https://ctf.hspace.io/
+rank : 24...</p>
         </a>
       
     </div>
@@ -505,6 +527,20 @@ admin 계정에 대해서
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Download"><span class="toc-number">1.1.</span> <span class="toc-text">Download</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash-Extraction"><span class="toc-number">1.2.</span> <span class="toc-text">Hash Extraction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install"><span class="toc-number">1.3.</span> <span class="toc-text">Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">1.4.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -520,7 +556,7 @@ admin 계정에 대해서
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="BISC CTF 2020(oldschool) write up";
+  pdata.postTitle="Android 7.0 이상의 환경에서 CA 인증서 설치";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

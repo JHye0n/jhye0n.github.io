@@ -9,14 +9,14 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Mon, 26 Apr 2021 15:00:00 GMT</pubDate>
+    <pubDate>Sun, 02 May 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>Android 7.0 이상의 환경에서 CA 인증서 설치</title>
-      <link>https://blog.jhyeon.dev/2021/04/27/android-cert-210503/</link>
-      <guid>https://blog.jhyeon.dev/2021/04/27/android-cert-210503/</guid>
-      <pubDate>Mon, 26 Apr 2021 15:00:00 GMT</pubDate>
+      <link>https://blog.jhyeon.dev/2021/05/03/android-cert-210503/</link>
+      <guid>https://blog.jhyeon.dev/2021/05/03/android-cert-210503/</guid>
+      <pubDate>Sun, 02 May 2021 15:00:00 GMT</pubDate>
       
         
         
@@ -40,7 +40,7 @@
       <category domain="https://blog.jhyeon.dev/tags/CA-%EC%9D%B8%EC%A6%9D%EC%84%9C/">CA 인증서</category>
       
       
-      <comments>https://blog.jhyeon.dev/2021/04/27/android-cert-210503/#disqus_thread</comments>
+      <comments>https://blog.jhyeon.dev/2021/05/03/android-cert-210503/#disqus_thread</comments>
       
     </item>
     
