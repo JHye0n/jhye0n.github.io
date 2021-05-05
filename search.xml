@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Python 환경에서 웹 서비스 운영할 때 비밀키 관리방법(python-decouple)</title>
+      <link href="2021/05/05/python-decouple-210505/"/>
+      <url>2021/05/05/python-decouple-210505/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>요즘 Python Web Framework(Flask, Django) 실제 웹을 운영할 때도 생각보다 괜찮게 잘 되있어서</p><p>실 서비스에도 많이 사용하게 되는 것을 여기저기서 많이 봤다.</p><p>다만 개발할 떄 비밀키라던가 API KEY 등을 코드에 하드코딩을 하면 취약점이 발생했을 때 이러한 키들이</p><p>유출 당할 수 있는 문제점이 있는데 그러한 문제를 막고자 파이썬에서는 <code>decouple</code> 모듈이 있다.</p><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><pre><code class="bash">pip3 install python-decouple</code></pre><h3 id="Apply"><a href="#Apply" class="headerlink" title="Apply"></a>Apply</h3><p><code>settings.ini</code></p><pre><code>[settings]TESTKEY=this_is_test_key</code></pre><p><code>main.py</code></p><pre><code class="py">#!/usr/bin/python3from decouple import configtest_api_key = config(&quot;TESTKEY&quot;)print(test_api_key)</code></pre><p>여기서 주의할 점은 settings.ini는 main.py 위치에 존재해야 하며,</p><p>git으로 관리시에는 반드시 <code>.gitignore</code> 를 통해서 git에 push 되지 않도록 해야한다.</p><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><a href="https://pypi.org/project/python-decouple/">https://pypi.org/project/python-decouple/</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Development </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Decouple </tag>
+            
+            <tag> SECRET_KEY </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Android 7.0 이상의 환경에서 CA 인증서 설치</title>
       <link href="2021/05/03/android-cert-210503/"/>
       <url>2021/05/03/android-cert-210503/</url>
@@ -1019,7 +1048,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#x6a;&#104;&#x79;&#x65;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#x2e;&#99;&#x6f;&#x6d;">&#115;&#x74;&#x6a;&#104;&#x79;&#x65;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#97;&#111;&#x2e;&#99;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#x6a;&#104;&#121;&#101;&#x6f;&#x6e;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#x2e;&#99;&#x6f;&#109;">&#x73;&#x74;&#x6a;&#104;&#121;&#101;&#x6f;&#x6e;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#x2e;&#99;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>

