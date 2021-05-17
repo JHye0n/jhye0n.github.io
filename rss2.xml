@@ -9,8 +9,67 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Wed, 05 May 2021 01:00:00 GMT</pubDate>
+    <pubDate>Mon, 17 May 2021 14:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>dCTF 2021 Write up</title>
+      <link>https://blog.jhyeon.dev/2021/05/17/dctf2021-210517/</link>
+      <guid>https://blog.jhyeon.dev/2021/05/17/dctf2021-210517/</guid>
+      <pubDate>Mon, 17 May 2021 14:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;p&gt;dCTF 2021 (5/15 Sat 00:00 ~ 5/17 Mon 06:59 KST)&lt;/p&gt;
+&lt;ul&gt;
+&lt;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>dCTF 2021 (5/15 Sat 00:00 ~ 5/17 Mon 06:59 KST)</p><ul><li><a href="http://dctf.dragonsec.si/">http://dctf.dragonsec.si/</a></li><li>pwnhub (jhyeon, malhyuk, nga)</li><li>rank : 292th (1250 points)</li></ul><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>해당 게시글은 아래 노션 링크를 통해 확인하실 수 있습니다.</p><ul><li><a href="https://public.jhyeon.dev/ctf/dctf2021">https://public.jhyeon.dev/ctf/dctf2021</a></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTFtime/">CTFtime</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/dCTF-2021/">dCTF 2021</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/05/17/dctf2021-210517/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>CTFd Account Takeover Research</title>
+      <link>https://blog.jhyeon.dev/2021/05/05/ctfd-exploit-210505/</link>
+      <guid>https://blog.jhyeon.dev/2021/05/05/ctfd-exploit-210505/</guid>
+      <pubDate>Wed, 05 May 2021 01:00:00 GMT</pubDate>
+      
+      
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Research/">Research</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Python/">Python</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/CTFd/">CTFd</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/ORM/">ORM</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Exploit/">Exploit</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/05/05/ctfd-exploit-210505/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Python 환경에서 웹 서비스 운영할 때 비밀키 관리방법(python-decouple)</title>
@@ -631,68 +690,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>(스터디 자료) 안드로이드 앱 분석 기초 part.1</title>
-      <link>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/</guid>
-      <pubDate>Sun, 31 Jan 2021 06:09:52 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Link&quot;&gt;&lt;a href=&quot;#Link&quot; class=&quot;headerlink&quot; title=&quot;Link&quot;&gt;&lt;/a&gt;Link&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAx</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p><a href="https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing">https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing</a></p><p>해당 자료를 활용한 무단 배포 등의 행위는 금지합니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Mobile/">Mobile</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Android/">Android</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Application/">Application</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Study/">Study</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>넥서스 5X 벽돌폰 복구 + 루팅</title>
-      <link>https://blog.jhyeon.dev/2021/01/31/android-rootkit-210131/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/31/android-rootkit-210131/</guid>
-      <pubDate>Sat, 30 Jan 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;벽돌폰-계기&quot;&gt;&lt;a href=&quot;#벽돌폰-계기&quot; class=&quot;headerlink&quot; title=&quot;벽돌폰 계기&quot;&gt;&lt;/a&gt;벽돌폰 계기&lt;/h3&gt;&lt;p&gt;최근에 BoB 프로젝트 때 썼던 도구들도 있고 이를 바탕으로 앱 모의해킹 한번 시도해보고자&lt;/p&gt;</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="벽돌폰-계기"><a href="#벽돌폰-계기" class="headerlink" title="벽돌폰 계기"></a>벽돌폰 계기</h3><p>최근에 BoB 프로젝트 때 썼던 도구들도 있고 이를 바탕으로 앱 모의해킹 한번 시도해보고자</p><p>잠들어있던 Nexus 5X 공기계를 살려냈다.</p><p>근데 이폰이 루팅만 해놓고 몇번 테스트용도로만 쓰다가 안써왔더니 터치도 안되고 해서 그냥 포맷하고</p><p>다시 루팅을 걸어서 앱 분석을 하려고 했으나.. 루팅 하는 과정에서 실수(?)로 인하여 벽돌폰을 만들어버렸다. (ㅎㅎ)</p><img src="/img/post/android_root/1.jpeg" class="lazyload" data-srcset="/img/post/android_root/1.jpeg" srcset="data:image/png;base64,666"><p>그래서 <code> Nexus Root Toolkit 2.19 </code> 프로그램을 써서 복구를 했는데 과정은 크게 어렵진 않아서 생략한다.</p><p>다만 이 프로그램이 패치가 2년전?부터 중단했기 때문에 펌웨어는 다소 구버전 일 수 있으나 살려내는게 큰 목적이라면 이것도 상관없다.</p><h3 id="루팅-재-시도"><a href="#루팅-재-시도" class="headerlink" title="루팅 재 시도"></a>루팅 재 시도</h3><p>이번에 루팅을 할 때는 그냥 수동으로 oem unlock 걸고 해서 한 방법인데 아래와 같이 수행했다.</p><ul><li>OEM 잠금 해제 -&gt; USB 디버깅 활성화</li></ul><img src="/img/post/android_root/2.jpeg" class="lazyload" data-srcset="/img/post/android_root/2.jpeg" srcset="data:image/png;base64,666"><img src="/img/post/android_root/3.jpeg" class="lazyload" data-srcset="/img/post/android_root/3.jpeg" srcset="data:image/png;base64,666"><hr><ul><li>안드로이드 스튜디오 &amp; platform tools 설치</li></ul><p><a href="https://developer.android.com/studio/install?hl=ko">https://developer.android.com/studio/install?hl=ko</a></p><hr><ul><li>디바이스랑 PC를 USB로 연결해서 adb 사용</li></ul><pre><code class="bash">adb devices # 현재 현결된 디바이스 확인adb reboot bootloader # 부트로더 화면으로 재부팅fastboot oem unlock # oem unlockfastboot reboot # 재부팅</code></pre><hr><ul><li>TWRP Recovery 도구 설치</li></ul><p><a href="https://dl.twrp.me/bullhead/">https://dl.twrp.me/bullhead/</a></p><hr><ul><li>루팅(1)</li></ul><pre><code class="bash">adb reboot bootloaderfastboot flash recovery &lt;imgfile&gt;adb reboot bootloader</code></pre><ul><li>SuperSU 다운로드</li></ul><pre><code class="bash">adb push BETA-SuperSU-v2.66-20160103015024.zip /sdcard/</code></pre><p>이런 과정이 사실 좀 복잡한데, 위에 언급됐던 <code> Nexus Root Toolkit 2.19 </code></p><p>써서 원클릭으로 루팅도 가능하니 알아두자..</p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Mobile/">Mobile</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Android/">Android</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Root/">Root</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Nexus5X/">Nexus5X</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/31/android-rootkit-210131/#disqus_thread</comments>
       
     </item>
     
