@@ -17,14 +17,6 @@
     </url>
 
     <url>
-        <loc>https://blog.jhyeon.dev/2021/05/05/ctfd-exploit-210505/</loc>
-        <lastmod>2021-05-05T01:00:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/</loc>
         <lastmod>2021-05-05T01:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>

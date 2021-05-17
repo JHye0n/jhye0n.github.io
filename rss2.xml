@@ -47,31 +47,6 @@
     </item>
     
     <item>
-      <title>CTFd Account Takeover Research</title>
-      <link>https://blog.jhyeon.dev/2021/05/05/ctfd-exploit-210505/</link>
-      <guid>https://blog.jhyeon.dev/2021/05/05/ctfd-exploit-210505/</guid>
-      <pubDate>Wed, 05 May 2021 01:00:00 GMT</pubDate>
-      
-      
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Research/">Research</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Python/">Python</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/CTFd/">CTFd</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/ORM/">ORM</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Exploit/">Exploit</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/05/05/ctfd-exploit-210505/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
       <title>Python 환경에서 웹 서비스 운영할 때 비밀키 관리방법(python-decouple)</title>
       <link>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/</link>
       <guid>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/</guid>
@@ -266,9 +241,9 @@
       <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
       
       <category domain="https://blog.jhyeon.dev/tags/OWASP/">OWASP</category>
       
@@ -690,6 +665,38 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>(스터디 자료) 안드로이드 앱 분석 기초 part.1</title>
+      <link>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/</link>
+      <guid>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/</guid>
+      <pubDate>Sun, 31 Jan 2021 06:09:52 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Link&quot;&gt;&lt;a href=&quot;#Link&quot; class=&quot;headerlink&quot; title=&quot;Link&quot;&gt;&lt;/a&gt;Link&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAx</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p><a href="https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing">https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing</a></p><p>해당 자료를 활용한 무단 배포 등의 행위는 금지합니다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Mobile/">Mobile</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Android/">Android</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Application/">Application</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Study/">Study</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/#disqus_thread</comments>
       
     </item>
     
