@@ -47,7 +47,7 @@
     </item>
     
     <item>
-      <title>Python 환경에서 웹 서비스 운영할 때 비밀키 관리방법(python-decouple)</title>
+      <title>Python 비밀키 관리방법(python-decouple)</title>
       <link>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/</link>
       <guid>https://blog.jhyeon.dev/2021/05/05/python-decouple-210505/</guid>
       <pubDate>Wed, 05 May 2021 01:00:00 GMT</pubDate>
@@ -241,9 +241,9 @@
       <category domain="https://blog.jhyeon.dev/categories/Web/">Web</category>
       
       
-      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
-      
       <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
       
       <category domain="https://blog.jhyeon.dev/tags/OWASP/">OWASP</category>
       
