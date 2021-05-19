@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>주요통신기반시설 기술 취약점 분석 가이드(2021-03)</title>
+      <link href="2021/05/19/kisareport-210519/"/>
+      <url>2021/05/19/kisareport-210519/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>2021.3월에 업데이트 된 KISA 주통기 기반 기술 취약점 분석 가이드 자료를 공유합니다.</p><p>모의 해킹이나 취약점 점검할 때 도움이 되는 자료입니다 ~~</p><ul><li><a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=&SV=">공식 홈페이지 다운로드</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> KISA </tag>
+            
+            <tag> 한국인터넷진흥원 </tag>
+            
+            <tag> 기술 취약점 분석 </tag>
+            
+            <tag> 기술 취약점 분석 가이드 </tag>
+            
+            <tag> 주통기 취약점 가이드 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>dCTF 2021 Write up</title>
       <link href="2021/05/17/dctf2021-210517/"/>
       <url>2021/05/17/dctf2021-210517/</url>
@@ -1079,7 +1112,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#106;&#x68;&#121;&#101;&#x6f;&#110;&#64;&#x6b;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;">&#115;&#x74;&#106;&#x68;&#121;&#101;&#x6f;&#110;&#64;&#x6b;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#x6a;&#104;&#x79;&#101;&#111;&#110;&#64;&#107;&#x61;&#107;&#x61;&#111;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x74;&#x6a;&#104;&#x79;&#101;&#111;&#110;&#64;&#107;&#x61;&#107;&#x61;&#111;&#x2e;&#x63;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>

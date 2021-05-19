@@ -9,8 +9,43 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Mon, 17 May 2021 14:00:00 GMT</pubDate>
+    <pubDate>Wed, 19 May 2021 02:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>주요통신기반시설 기술 취약점 분석 가이드(2021-03)</title>
+      <link>https://blog.jhyeon.dev/2021/05/19/kisareport-210519/</link>
+      <guid>https://blog.jhyeon.dev/2021/05/19/kisareport-210519/</guid>
+      <pubDate>Wed, 19 May 2021 02:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;p&gt;2021.3월에 업데이트 된 KISA 주통기 기반 기술 취약점 분석 가이드 자료를 공유합니다.&lt;/p&gt;
+&lt;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>2021.3월에 업데이트 된 KISA 주통기 기반 기술 취약점 분석 가이드 자료를 공유합니다.</p><p>모의 해킹이나 취약점 점검할 때 도움이 되는 자료입니다 ~~</p><ul><li><a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=&SV=">공식 홈페이지 다운로드</a></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Docx/">Docx</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/KISA/">KISA</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/%ED%95%9C%EA%B5%AD%EC%9D%B8%ED%84%B0%EB%84%B7%EC%A7%84%ED%9D%A5%EC%9B%90/">한국인터넷진흥원</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D/">기술 취약점 분석</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D-%EA%B0%80%EC%9D%B4%EB%93%9C/">기술 취약점 분석 가이드</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/%EC%A3%BC%ED%86%B5%EA%B8%B0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EA%B0%80%EC%9D%B4%EB%93%9C/">주통기 취약점 가이드</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/05/19/kisareport-210519/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>dCTF 2021 Write up</title>
@@ -665,38 +700,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>(스터디 자료) 안드로이드 앱 분석 기초 part.1</title>
-      <link>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/</link>
-      <guid>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/</guid>
-      <pubDate>Sun, 31 Jan 2021 06:09:52 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Link&quot;&gt;&lt;a href=&quot;#Link&quot; class=&quot;headerlink&quot; title=&quot;Link&quot;&gt;&lt;/a&gt;Link&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAx</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p><a href="https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing">https://drive.google.com/file/d/1CVK_wyioojm3qDyqXUAxTVYLEak8ih4F/view?usp=sharing</a></p><p>해당 자료를 활용한 무단 배포 등의 행위는 금지합니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Mobile/">Mobile</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Android/">Android</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Application/">Application</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Study/">Study</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/01/31/android-app-penetration-study-210131/#disqus_thread</comments>
       
     </item>
     

@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/tags/%EC%A3%BC%ED%86%B5%EA%B8%B0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EA%B0%80%EC%9D%B4%EB%93%9C/</loc>
+        <lastmod>2021-05-19T02:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D-%EA%B0%80%EC%9D%B4%EB%93%9C/</loc>
+        <lastmod>2021-05-19T02:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D/</loc>
+        <lastmod>2021-05-19T02:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/%ED%95%9C%EA%B5%AD%EC%9D%B8%ED%84%B0%EB%84%B7%EC%A7%84%ED%9D%A5%EC%9B%90/</loc>
+        <lastmod>2021-05-19T02:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.jhyeon.dev/tags/KISA/</loc>
+        <lastmod>2021-05-19T02:00:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/tags/dCTF-2021/</loc>
         <lastmod>2021-05-17T14:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
