@@ -9,8 +9,40 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Wed, 19 May 2021 02:00:00 GMT</pubDate>
+    <pubDate>Thu, 20 May 2021 15:00:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python Flask + WSGI 사용하기</title>
+      <link>https://blog.jhyeon.dev/2021/05/21/flask-apache-210521/</link>
+      <guid>https://blog.jhyeon.dev/2021/05/21/flask-apache-210521/</guid>
+      <pubDate>Thu, 20 May 2021 15:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;&lt;p&gt;이번 글에서는 Python Flask 환경에서 WSGI를 사용해 Apache2 웹 서버 엔진과 연동하는&lt;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>이번 글에서는 Python Flask 환경에서 WSGI를 사용해 Apache2 웹 서버 엔진과 연동하는</p><p>방법에 대해서 글을 작성해보고자 한다.</p><h2 id="WSGI란"><a href="#WSGI란" class="headerlink" title="WSGI란?"></a>WSGI란?</h2><p>WSGI(Web Server Gateway Interface)로 파이썬에서 웹 어플리케이션이 서버와 통신하기 위한 인터페이스를 의미한다.</p><p>즉, 웹 서버가 받은 요청을 Python Application 으로 넘겨주고 응답을 반환받는 호출 조약(Calling Converstation)이다.</p><h2 id="WSGI를-왜-사용하는가"><a href="#WSGI를-왜-사용하는가" class="headerlink" title="WSGI를 왜 사용하는가?"></a>WSGI를 왜 사용하는가?</h2><p><img src="/img/post/wsgi/wsgi_browser.jpg" class="lazyload" data-srcset="/img/post/wsgi/wsgi_browser.jpg" srcset="data:image/png;base64,666" alt="photo1"></p><p>Flask 같은 경우 Restful API 서비스에 사용되거나 하는 가장 최소한의 기능들을 포함한 웹 프레임 워크입니다.</p><p>기본적으로 한번에 최대 하나의 요청까지만을 처리하기 때문에 실제 웹 서비스를 배포하는 경우,</p><p>Flask를 단일로 구성해서 배포하는 것은 올바르지 않은 것이고</p><p>주로 WSGI를 사용해서 중간에 웹 서버 엔진(nginx, apache 등)을 경유할 수 있도록 하는 것이 좋습니다.</p><h2 id="WSGI-Middleware"><a href="#WSGI-Middleware" class="headerlink" title="WSGI Middleware"></a>WSGI Middleware</h2><p><img src="/img/post/wsgi/wsgi.png" class="lazyload" data-srcset="/img/post/wsgi/wsgi.png" srcset="data:image/png;base64,666" alt="photo2"></p><p>사진으로 매우 간결하게 정리되어있는데 Private Physical Server 위에 그려진 모든 내용을</p><p>WAS(Web Application Server)라고 명칭합니다.</p><p>그리고 WSGI Module, Process를 합쳐서 <code>WSGI Middleware</code> 라고 부르게 되고 WSGI 전용 프로토콜을 사용합니다.</p><p>이러한 WSGI Middleware는 웹 서버(Web Server)와 어플리케이션(Application)을 서로 연결시켜주는 역할을 합니다.</p><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>이번 글에서는 flask+uwsgi+nginx를 사용한 웹 어플리케이션 구동 과정과,</p><p>flask+wsgi+apache2를 사용한 구동 과정을 정리할 것이다.</p><h3 id="1-NGINX"><a href="#1-NGINX" class="headerlink" title="1. NGINX"></a>1. NGINX</h3><p>예전에는 uwsgi를 통해 직접 nginx 환경을 세팅해야 했지만 요즘에는 <code>docker</code>를 통해서</p><p>flask+uwsgi+nginx 패키지를 묶어둔 도커 이미지가 있기 때문에 사용이 조금 더 편리해진 감이 있다.</p><p>(<a href="https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask">https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask</a>)</p><p>우선 파일 트리는 다음 사진과 같다.</p><p><img src="/img/post/wsgi/nginx_tree.png" class="lazyload" data-srcset="/img/post/wsgi/nginx_tree.png" srcset="data:image/png;base64,666" alt="photo3"></p><p>프로젝트 폴더(NGINX)에 dockerfile, docker-compose.yml 파일을 두고</p><p>web 폴더를 하나 생성해서 실제 flask 앱을 구동할 파일들을 넣어줬다.</p><p><code>dockerfile</code></p><pre><code class="docker">FROM tiangolo/uwsgi-nginx-flask:python3.8COPY ./web /app</code></pre><p><code>docker-compose.yml</code></p><pre><code class="docker">version: &#39;3.7&#39;services:    nginx-wsgi:        build: ./        container_name: nginx-wsgi        ports:            - 80:80</code></pre><p><code>main.py</code></p><pre><code class="py">from flask import Flaskapp = Flask(__name__)@app.route(&#39;/&#39;, methods=[&quot;GET&quot;])def index():    return &#39;hello world!&#39;if __name__ == &quot;__main__&quot;:    app.run(host=&#39;0.0.0.0&#39;, port=80, debug=False)</code></pre><p>이렇게 구성해주고 아래 명령어로 도커 이미지를 빌드시키면 된다.</p><p><code>docker-compose up -d --build</code></p><p><img src="/img/post/wsgi/nginx_run.png" class="lazyload" data-srcset="/img/post/wsgi/nginx_run.png" srcset="data:image/png;base64,666" alt="photo4"></p><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://velog.io/@misun9283/WSGI-%EB%9E%80">1. WSGI란?</a></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Development/">Development</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/Flask/">Flask</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Apache2/">Apache2</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/WSGI/">WSGI</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/uWSGI/">uWSGI</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/05/21/flask-apache-210521/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>주요통신기반시설 기술 취약점 분석 가이드(2021-03)</title>
@@ -668,38 +700,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/02/14/owsap-mstg-level2-210214/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>안드로이드 앱 모의해킹(OWASP-MSTG) 풀이</title>
-      <link>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/</link>
-      <guid>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/</guid>
-      <pubDate>Fri, 12 Feb 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;OWASP-MSTG란&quot;&gt;&lt;a href=&quot;#OWASP-MSTG란&quot; class=&quot;headerlink&quot; title=&quot;OWASP-MSTG란?&quot;&gt;&lt;/a&gt;OWASP-MSTG란?&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/OWAS</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="OWASP-MSTG란"><a href="#OWASP-MSTG란" class="headerlink" title="OWASP-MSTG란?"></a>OWASP-MSTG란?</h3><p><a href="https://github.com/OWASP/owasp-mstg">https://github.com/OWASP/owasp-mstg</a></p><p>모바일 어플리케이션 보안 진단을 위한 정보들과 모의 해킹을 할 수 있는 <code> Crackme </code> 같은 어플리케이션을 제공한다.</p><p>앱 다운로드는 아래 링크에서 가능하다.</p><p><a href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes">https://github.com/OWASP/owasp-mstg/tree/master/Crackmes</a></p><hr><h3 id="분석-도구"><a href="#분석-도구" class="headerlink" title="분석 도구"></a>분석 도구</h3><ul><li><p>IDA(<a href="https://www.hex-rays.com/products/ida/">https://www.hex-rays.com/products/ida/</a>)</p></li><li><p>FRIDA(<a href="https://frida.re/">https://frida.re/</a>)</p></li><li><p>APKTOOLS(<a href="https://ibotpeaches.github.io/Apktool/">https://ibotpeaches.github.io/Apktool/</a>)</p></li><li><p>JADX(<a href="https://github.com/skylot/jadx">https://github.com/skylot/jadx</a>)</p></li><li><p>JEB(<a href="https://www.pnfsoftware.com/">https://www.pnfsoftware.com/</a>)</p></li></ul><ul><li>adb command</li></ul><hr><h3 id="디바이스-amp-PC-연결"><a href="#디바이스-amp-PC-연결" class="headerlink" title="디바이스 &amp; PC 연결"></a>디바이스 &amp; PC 연결</h3><ul><li>해당 과정부터는 루팅 및 USB 디버깅 모드가 활성화 상태로만 가능합니다.</li></ul><p>루팅 과정을 하지 않으셨다면 이전 게시글을 보고 루팅을 해주세요! (글에서는 공기계 루팅을 대상으로 진행)</p><p>또, 공기계가 따로 없으신분들은 <code> Nox 가상 앱 플레이어 </code> 를 사용하셔도 무방합니다.</p><pre><code class="bash">adb devices # 연결된 디바이스 확인adb shell # 디바이스 쉘 접속su # root 권한 요청</code></pre><hr><h3 id="Frida-Server-Install"><a href="#Frida-Server-Install" class="headerlink" title="Frida Server Install"></a>Frida Server Install</h3><p>루팅이 완료되었다면, 이제 분석 디바이스에 Frdia Server 서비스를 설치하고 구동시켜야 한다. (Frida 분석 목적)</p><ul><li><a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></li></ul><img src="/img/post/android_penetration/1.png" class="lazyload" data-srcset="/img/post/android_penetration/1.png" srcset="data:image/png;base64,666"><p>사진과 같이 Release 버전들이 업로드되어 있는데 본인의 디바이스 환경에 맞는 펌웨어를 선택해서 다운로드 받자.</p><p>본인의 디바이스 환경은 <code> adb shell </code> 환경에서 <code> cat /proc/cpuinfo </code> 명령어를 통해 확인할 수 있다.</p><p>다운로드가 완료되었으면, 아래 명령어를 통해 디바이스 로컬 저장소에 파일을 넣어준 뒤 실행하자.</p><pre><code class="bash">adb push &lt;filename&gt; /date/local/tmp./&lt;binary filename&gt; &amp;</code></pre><p>Frida Server를 실행시킨 뒤 <code> adb shell </code> 모드를 빠져나와서 아래 명령어를 입력해보자.</p><pre><code class="bash">frida-ps -U</code></pre><p>위 과정이 잘 진행이 되었다면 아래와 같은 목록이 표시될 것이다.</p><img src="/img/post/android_penetration/2.png" class="lazyload" data-srcset="/img/post/android_penetration/2.png" srcset="data:image/png;base64,666"><hr><h3 id="App-Analysis-1-Decompile-to-APK"><a href="#App-Analysis-1-Decompile-to-APK" class="headerlink" title="App Analysis(1) - Decompile to APK"></a>App Analysis(1) - Decompile to APK</h3><p>이제 본격적인 앱 분석을 위해 어플리케이션 디컴파일 과정을 거쳐 smail 코드를 볼 것이다.</p><p>디컴파일 도구로는 본문에 표시된 <code> apktool, jadx, jeb </code> 도구를 활용할 수 있다.</p><p>우선 apktools로 APK를 디컴파일 하는 과정은 아래 명령어로 수행할 수 있다.</p><pre><code class="bash">apktool d &lt;application&gt;</code></pre><img src="/img/post/android_penetration/3.png" class="lazyload" data-srcset="/img/post/android_penetration/3.png" srcset="data:image/png;base64,666"><img src="/img/post/android_penetration/4.png" class="lazyload" data-srcset="/img/post/android_penetration/4.png" srcset="data:image/png;base64,666"><p>어플리케이션 디컴파일이 완료되었다면 아래 사진과 같이 어플리케이션을 빌드한 파일들과 smail 코드가 나온다. </p><hr><h3 id="App-Analysis-2-Analyze-to-APK"><a href="#App-Analysis-2-Analyze-to-APK" class="headerlink" title="App Analysis(2) - Analyze to APK"></a>App Analysis(2) - Analyze to APK</h3><p>이제, 어플리케이션 디컴파일 과정을 거쳤다면 앱 로직에 대해서 분석해보는 단계이다.</p><img src="/img/post/android_penetration/5.png" class="lazyload" data-srcset="/img/post/android_penetration/5.png" srcset="data:image/png;base64,666"><p><code> JADX </code> 도구를 활용하면 위 사진과 같이 java 코드를 확인할 수 있으니 참고하도록 하자.</p><p>우선 다운로드 받은 APK를 루팅 기기에서 일반적으로 실행하면, 루팅 탐지 로직때문에 강제 종료가 된다.</p><p>그 로직을 분석한다음 우회를 해볼건데 하나씩 해보자</p><img src="/img/post/android_penetration/6.png" class="lazyload" data-srcset="/img/post/android_penetration/6.png" srcset="data:image/png;base64,666"><p>앱이 실행될 때 동작하는 onCreate() 함수 부분을 보면 <code> c.a(), c.b(), c.c() </code> 로직과 같이</p><p>루팅된 디바이스일 경우 탐지하는 로직과 디버깅 모드를 탐지하는 로직이 있다.</p><img src="/img/post/android_penetration/7.png" class="lazyload" data-srcset="/img/post/android_penetration/7.png" srcset="data:image/png;base64,666"><img src="/img/post/android_penetration/8.png" class="lazyload" data-srcset="/img/post/android_penetration/8.png" srcset="data:image/png;base64,666"><p>위 두 사진은 디바이스의 루팅 상태를 체크하는 로직, 디버깅 모드 여부를 체크하는 로직이다.</p><p>루팅의 경우 다들 아실만한 <code> SuperSu </code> 관련 파일들이 눈에 띄게 보인다.</p><p>뭐.. 아무튼 시스템 경로나 루팅과 연관된 파일을 검사하는 정도이고</p><p>두 번째 사진에서는 <code> context.getApplicationContext().getApplicationInfo().flags </code> 이 부분이 디버깅 모드 상태를 확인하는 것이다.</p><p>위 두가지 로직에 하나라도 해당되는 상태라면, 앱이 정상적으로 실행되지 않고. exit() 함수가 실행되어 앱이 종료될 것이다.</p><hr><h3 id="App-Analysis-3-Root-Detected-Bypass"><a href="#App-Analysis-3-Root-Detected-Bypass" class="headerlink" title="App Analysis(3) - Root Detected Bypass"></a>App Analysis(3) - Root Detected Bypass</h3><p>그럼 루팅이 감지되었을 때 우회하는 방법은 어떻게 될까.</p><p>위에서 분석해봤듯이, 루팅이나 디버깅 체크 로직에 탐지될 경우 exit() 함수가 실행되는데 이 함수를 후킹해서</p><p>자신이 원하는 흐름으로 흘러가게 할 수 있다. (exit() 함수가 동작하지 않도록 한다거나..)</p><img src="/img/post/android_penetration/9.png" class="lazyload" data-srcset="/img/post/android_penetration/9.png" srcset="data:image/png;base64,666"><p>위 경우 Frida로 특정 함수를 후킹해서 진행할 수 있는데 예제 코드는 사진과 같다.</p><img src="/img/post/android_penetration/10.png" class="lazyload" data-srcset="/img/post/android_penetration/10.png" srcset="data:image/png;base64,666"><img src="/img/post/android_penetration/11.png" class="lazyload" data-srcset="/img/post/android_penetration/11.png" srcset="data:image/png;base64,666"><p>코드를 뚝딱하고나서 앱 실행 -&gt; 코드 실행을 해보면 사진과 같이 exit() 함수가 후킹되었다고 출력되고,</p><p>실제 앱에서 봤을 때도 exit() 함수가 실행되지 않아 앱이 작동하는 화면이다.</p><hr><h3 id="App-Analysis-4-Get-Secret-Key"><a href="#App-Analysis-4-Get-Secret-Key" class="headerlink" title="App Analysis(4) - Get Secret Key"></a>App Analysis(4) - Get Secret Key</h3><img src="/img/post/android_penetration/12.png" class="lazyload" data-srcset="/img/post/android_penetration/12.png" srcset="data:image/png;base64,666"><p>루팅 탐지 우회만이 끝이 아니다. 앱을 보면 특정 키값을 입력하여 확인하는 로직이 있다.</p><p>a.a() 조건을 만족할 경우 Success 제목과 correct 메세지를 띄워주고, 그게 아니라면 Nope..(try again) 문구를 띄운다.</p><img src="/img/post/android_penetration/13.png" class="lazyload" data-srcset="/img/post/android_penetration/13.png" srcset="data:image/png;base64,666"><p>키를 만들것 같은 부분은 a.a() 에 존재하는데 해당 로직을 따라가면 사진과 같이 확인할 수 있다.</p><p>8d127684cbc37c17616d806cf50473cc 이 값을 b()에 넣고</p><p>5UJiFctbmgbDoLXmpL12mkno8HT4Lv8dlat8FxR2GOc= 값을 Base64-Decode 한 값을 <code> sg.vantagepoint.a.a.a </code></p><p>함수를 호출하여 bArr 라는 변수에 저장하게 됩니다.</p><p>이후 bArr에 저장된 값과 입력한 값을 비교하여 return (true/false)를 반환 해주고 있다.</p><p>따라서, 키 값을 만들어주는 함수를 후킹해서 값을 확인할 것이다.</p><pre><code class="java">Java.perform(function() &#123;    var secret_class = Java.use(&quot;sg.vantagepoint.a.a&quot;);        secret_class.a.implementation = function(arr1, arr2)&#123;        var retval = this.a(arr1, arr2);        var secret_msg = &quot;&quot;;        for(var i=0; i &lt; retval.length; i++)&#123;            secret_msg += String.fromCharCode(retval[i]);        &#125;        console.log(&quot;[*] Secret Method Hooking!!&quot;);        console.log(secret_msg);        return retval;        &#125;&#125;);</code></pre><p>후킹하는 코드는 간단하다. exit() 함수를 후킹할 때와 비슷한 방향으로 진행하면 되는데</p><p><code> sg.vantagepoint.a.a.a </code> 는 인자가 2개이기 때문에 그에 맞게 인자를 처리해주고,</p><p>for문을 활용해서 fromCharCode(문자열 변환) 함수로 변수하나를 지정해서 키 값을 저장해주면 된다.</p><img src="/img/post/android_penetration/14.png" class="lazyload" data-srcset="/img/post/android_penetration/14.png" srcset="data:image/png;base64,666"><p>결과로 Secret key 값을 정상적으로 얻어낼 수 있다.</p><h3 id="기타"><a href="#기타" class="headerlink" title="기타"></a>기타</h3><p>본문에 사용된 코드는 아래 깃허브에서 확인할 수 있습니다.</p><p>다음편에서 계속…</p><ul><li><a href="https://github.com/jhye0n/android_frida_python">https://github.com/jhye0n/android_frida_python</a></li></ul>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Mobile/">Mobile</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Android/">Android</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Application/">Application</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/OWASP-MSTG/">OWASP-MSTG</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/02/13/owasp-mstg-210131/#disqus_thread</comments>
       
     </item>
     
