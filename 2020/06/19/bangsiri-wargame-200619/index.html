@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post featured' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="/img/background/background3.jpeg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="/img/header/header.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -306,7 +306,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <p class="title">JHYEON</p>
     
     
-      <p class="subtitle">Devops (Development & Operation) & Security Engineer</p>
+      <p class="subtitle">Devops & Security Engineer</p>
     
   </div>
   <div class='bottom'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="/img/header/cat.jpeg">
+    <img no-lazy src="/img/header/junddok.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -409,14 +409,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     <div class='footer'>
       
-      
-        
-  <div class="related_posts">
-    <section class='header'>
-      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
-    </section>
-    <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2020/05/10/bob8th-200510/" title="BOB 8기 서류 & 면접 후기" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">BOB 8기 서류 & 면접 후기</span></a></div></section></div>
       
       
       
@@ -538,7 +530,7 @@ Vuln해당 모듈은 공식 문서에서도 ...</p>
     
       
         <div class='copyright'>
-        <p><a href="https://blog.jhyeon.dev/">Copyright © 2019-2021 JHYEON BLOG</a></p>
+        <p><a href="https://blog.jhyeon.dev/">Copyright © 2021 JHYEON BLOG</a></p>
 
         </div>
       
@@ -873,7 +865,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   <script>
-  const disqus_shortname = 'blog-jhyeon-xyz';
+  const disqus_shortname = 'jhyeon';
   const autoload = 'true';
   const global_url = 'https://blog.jhyeon.dev';  //  must use an absolute URL; relative URLs won’t work.
 
@@ -898,7 +890,7 @@ var loadCSS = function( href, before, media, attributes ){
       })
     }
     return Promise.all([
-      runcheck('blog-jhyeon-xyz.disqus.com')
+      runcheck('jhyeon.disqus.com')
     ]).then(loadDisqus,showError);
   }
 
@@ -1271,6 +1263,8 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
 		
 	  });
     });

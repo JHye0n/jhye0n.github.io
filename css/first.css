@@ -32,8 +32,8 @@
   font-style: 'normal';
 }
 :root {
-  --color-site-body: #f4f4f4;
-  --color-site-bg: #f4f4f4;
+  --color-site-body: #eee;
+  --color-site-bg: #eee;
   --color-site-inner: #fff;
   --color-site-footer: #666;
   --color-card: #fff;

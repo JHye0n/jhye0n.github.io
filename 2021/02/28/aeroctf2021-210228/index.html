@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper post featured' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="/img/background/background3.jpeg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="/img/header/header.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -306,7 +306,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <p class="title">JHYEON</p>
     
     
-      <p class="subtitle">Devops (Development & Operation) & Security Engineer</p>
+      <p class="subtitle">Devops & Security Engineer</p>
     
   </div>
   <div class='bottom'>
@@ -347,7 +347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="/img/header/cat.jpeg">
+    <img no-lazy src="/img/header/junddok.jpeg">
     <p>jhyeon</p>
   </a>
 </div>
@@ -407,14 +407,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     <div class='footer'>
       
-      
-        
-  <div class="related_posts">
-    <section class='header'>
-      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>Related Posts</span>
-    </section>
-    <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/2021/04/10/angstormctf-210410/" title="AngStormCTF 2021 Write-Up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">AngStormCTF 2021 Write-Up</span></a><a class="item" href="/2021/05/17/dctf2021-210517/" title="dCTF 2021 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">dCTF 2021 Write up</span></a><a class="item" href="/2020/04/10/angstormctf-200410/" title="angstorm ctf 2020 Write up" rel="bookmark "><img src="/img/header/cat.jpeg" class="lazyload" data-srcset="/img/header/cat.jpeg" srcset="data:image/png;base64,666" /><span class="title">angstorm ctf 2020 Write up</span></a></div></section></div>
       
       
       
@@ -536,7 +528,7 @@ Javascript 언어를 사용하며, Non-blocking ...</p>
     
       
         <div class='copyright'>
-        <p><a href="https://blog.jhyeon.dev/">Copyright © 2019-2021 JHYEON BLOG</a></p>
+        <p><a href="https://blog.jhyeon.dev/">Copyright © 2021 JHYEON BLOG</a></p>
 
         </div>
       
@@ -871,7 +863,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   <script>
-  const disqus_shortname = 'blog-jhyeon-xyz';
+  const disqus_shortname = 'jhyeon';
   const autoload = 'true';
   const global_url = 'https://blog.jhyeon.dev';  //  must use an absolute URL; relative URLs won’t work.
 
@@ -896,7 +888,7 @@ var loadCSS = function( href, before, media, attributes ){
       })
     }
     return Promise.all([
-      runcheck('blog-jhyeon-xyz.disqus.com')
+      runcheck('jhyeon.disqus.com')
     ]).then(loadDisqus,showError);
   }
 
@@ -1269,6 +1261,8 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
 		
 	  });
     });

@@ -295,9 +295,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="half" class='cover-wrapper  featured' style="display: ;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="/img/background/background3.jpeg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="/img/header/header.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -306,7 +306,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <p class="title">JHYEON</p>
     
     
-      <p class="subtitle">Devops (Development & Operation) & Security Engineer</p>
+      <p class="subtitle">Devops & Security Engineer</p>
     
   </div>
   <div class='bottom'>
@@ -379,11 +379,11 @@ https://hackingzone.net
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
+    <div class='meta-v3' line_style='dashed'>
       <div>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
         
         <time>2021-05-21</time>
         
@@ -431,11 +431,11 @@ WSGI란?WSGI(Web Server Gateway Interface)로 파이썬에서 웹 어플리케�
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
+    <div class='meta-v3' line_style='dashed'>
       <div>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
         
         <time>2021-05-21</time>
         
@@ -485,11 +485,11 @@ WSGI란?WSGI(Web Server Gateway Interface)로 파이썬에서 웹 어플리케�
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
+    <div class='meta-v3' line_style='dashed'>
       <div>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
         
         <time>2021-05-19</time>
         
@@ -542,11 +542,11 @@ https://public....
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
+    <div class='meta-v3' line_style='dashed'>
       <div>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
         
         <time>2021-05-17</time>
         
@@ -594,11 +594,11 @@ https://public....
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
+    <div class='meta-v3' line_style='dashed'>
       <div>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
         
         <time>2021-05-05</time>
         
@@ -646,11 +646,11 @@ Google에서 시스템 인증서는 39개월 이내의 만료기간을 가지기
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
+    <div class='meta-v3' line_style='dashed'>
       <div>
         
           
-          <a class='avatar' href='/'><img src='/img/header/cat.jpeg'></a>
+          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
         
         <time>2021-05-03</time>
         
@@ -692,7 +692,7 @@ Google에서 시스템 인증서는 39개월 이내의 만료기간을 가지기
   <div class='content'>
     
       
-        <a class='avatar flat-box rectangle' target="_blank" rel="noopener" href='https://mypf.jhyeon.dev'>
+        <a class='avatar flat-box circle' target="_blank" rel="noopener" href='https://mypf.jhyeon.dev'>
           <img no-lazy src='/img/profile/my.jpeg'/>
         </a>
       
@@ -858,7 +858,7 @@ Google에서 시스템 인증서는 39개월 이내의 만료기간을 가지기
     
       
         <div class='copyright'>
-        <p><a href="https://blog.jhyeon.dev/">Copyright © 2019-2021 JHYEON BLOG</a></p>
+        <p><a href="https://blog.jhyeon.dev/">Copyright © 2021 JHYEON BLOG</a></p>
 
         </div>
       
@@ -1193,7 +1193,7 @@ var loadCSS = function( href, before, media, attributes ){
 
 
   <script>
-  const disqus_shortname = 'blog-jhyeon-xyz';
+  const disqus_shortname = 'jhyeon';
   const autoload = 'true';
   const global_url = 'https://blog.jhyeon.dev';  //  must use an absolute URL; relative URLs won’t work.
 
@@ -1218,7 +1218,7 @@ var loadCSS = function( href, before, media, attributes ){
       })
     }
     return Promise.all([
-      runcheck('blog-jhyeon-xyz.disqus.com')
+      runcheck('jhyeon.disqus.com')
     ]).then(loadDisqus,showError);
   }
 
@@ -1591,6 +1591,8 @@ function listennSidebarTOC() {
       event.preventDefault();
       window.scrollTo({
 		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
 		
 	  });
     });
