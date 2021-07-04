@@ -9,8 +9,39 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Sun, 04 Jul 2021 00:34:00 GMT</pubDate>
+    <pubDate>Sun, 04 Jul 2021 00:39:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Memory Mitigation - RELRO</title>
+      <link>https://blog.jhyeon.dev/2021/07/04/memory-mitigation-1/</link>
+      <guid>https://blog.jhyeon.dev/2021/07/04/memory-mitigation-1/</guid>
+      <pubDate>Sun, 04 Jul 2021 00:39:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Link&quot;&gt;&lt;a href=&quot;#Link&quot; class=&quot;headerlink&quot; title=&quot;Link&quot;&gt;&lt;/a&gt;Link&lt;/h3&gt;&lt;p&gt;아래 링크에 접속하시면 게시글을 보실 수 있습니다!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post/memory</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>아래 링크에 접속하시면 게시글을 보실 수 있습니다!</p><p><img src="/img/post/memory_mitigation/relro.png" class="lazyload" data-srcset="/img/post/memory_mitigation/relro.png" srcset="data:image/png;base64,666" alt="img"></p><p><a href="https://www.notion.so/jhyeon/Linux-Memory-Mitigation-RELRO-5e6e7da5e44944bd86456d3033620d68">바로가기(Notion)</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Pwnable/">Pwnable</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B4%ED%98%B8%EA%B8%B0%EB%B2%95/">메모리 보호기법</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Memory-Mitigation/">Memory Mitigation</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/RELRO/">RELRO</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/07/04/memory-mitigation-1/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>해킹존(HackingZone) 국내 버그바운티 플랫폼 리뷰</title>
@@ -669,43 +700,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/02/28/aeroctf2021-210228/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Frida를 통한 앱 내부 라이브러리 후킹 방법</title>
-      <link>https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/</link>
-      <guid>https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/</guid>
-      <pubDate>Sun, 21 Feb 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;이번에, 앱을 분석해보다가 특정 라이브러리에 대해 후킹을 해야 하는 상황이 있었는데, 그 방법론을 기억에 남기고자&lt;/p&gt;
-&lt;p&gt;아래 작성합니다.&lt;/p&gt;
-&lt;p&gt;우선, 뭐든지 공식 문서에는 답이 매우 잘 나와있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;h</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>이번에, 앱을 분석해보다가 특정 라이브러리에 대해 후킹을 해야 하는 상황이 있었는데, 그 방법론을 기억에 남기고자</p><p>아래 작성합니다.</p><p>우선, 뭐든지 공식 문서에는 답이 매우 잘 나와있습니다.</p><p><a href="https://frida.re/docs/javascript-api/#interceptor">https://frida.re/docs/javascript-api/#interceptor</a></p><p>해당 라인을 보시면, <code> Interceptor.attach </code> 를 통해서 특정 함수의 호출을 catch할 수 있고,</p><p>함수의 주소를 가져오거나, 후킹을 진행할 수 있게됩니다.</p><p>아래는 예제 코드입니다.</p><pre><code class="java">Interceptor.attach(Module.findExportByName(&quot;라이브러리 파일&quot;, &quot;함수명&quot;), &#123;    onEnter: function(args)&#123;        this.input = Memory.readUtf8String(args[0]);            //input    &#125;,    onLeave: function(retval)&#123;        return 0;    &#125;&#125;</code></pre><p>물론 dlopen 함수 후킹을 통해 라이브러리가 로드되는 시점을 후킹할 수도 있습니다.</p><pre><code class="java">Interceptor.attach(Module.findExportByName(null, &quot;dlopen&quot;), &#123;    onEnter: function(args)&#123;        this.input = Memory.readUtf8String(args[0]);        if(this.input.indexOf(&quot;lib64.so&quot;) !== -1)&#123;            console.log(&quot;lib64.so Loaded!&quot;);            Thread.sleep(5);        &#125;    &#125;,    onLeave: function(retval)&#123;        return 0;    &#125;&#125;</code></pre><p>이러한 방법도 있고 앞으로 앱 관련 분석을 해보면서, 조금 더 심화적인 것들을 많이 연구해보고 또 글을 쓰도록 하겠습니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Mobile/">Mobile</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Android/">Android</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Application/">Application</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Penetration/">Penetration</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Frida/">Frida</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Hooking/">Hooking</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/02/22/frida-hook1-210222/#disqus_thread</comments>
       
     </item>
     

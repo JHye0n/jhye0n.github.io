@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Memory Mitigation - RELRO</title>
+      <link href="2021/07/04/memory-mitigation-1/"/>
+      <url>2021/07/04/memory-mitigation-1/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>아래 링크에 접속하시면 게시글을 보실 수 있습니다!</p><p><img src="/img/post/memory_mitigation/relro.png" class="lazyload" data-srcset="/img/post/memory_mitigation/relro.png" srcset="data:image/png;base64,666" alt="img"></p><p><a href="https://www.notion.so/jhyeon/Linux-Memory-Mitigation-RELRO-5e6e7da5e44944bd86456d3033620d68">바로가기(Notion)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Pwnable </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 메모리 보호기법 </tag>
+            
+            <tag> Memory Mitigation </tag>
+            
+            <tag> RELRO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>해킹존(HackingZone) 국내 버그바운티 플랫폼 리뷰</title>
       <link href="2021/07/04/hackingzone-210704/"/>
       <url>2021/07/04/hackingzone-210704/</url>
@@ -1055,9 +1084,9 @@
             
             <tag> Linux </tag>
             
-            <tag> Canary </tag>
-            
             <tag> Memory Mitigation </tag>
+            
+            <tag> Canary </tag>
             
         </tags>
       
@@ -1209,7 +1238,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#x6a;&#104;&#121;&#101;&#111;&#x6e;&#x40;&#107;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;">&#115;&#116;&#x6a;&#104;&#121;&#101;&#111;&#x6e;&#x40;&#107;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#x6a;&#x68;&#121;&#101;&#111;&#x6e;&#64;&#x6b;&#x61;&#x6b;&#97;&#111;&#46;&#x63;&#x6f;&#x6d;">&#115;&#116;&#x6a;&#x68;&#121;&#101;&#111;&#x6e;&#64;&#x6b;&#x61;&#x6b;&#97;&#111;&#46;&#x63;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
