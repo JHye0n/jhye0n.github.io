@@ -5,10 +5,8 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="index,follow">
-    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/tags/bugcrowd/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/07/04/hackingzone-210704/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -26,7 +24,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: BugCrowd - JHYEON</title>
+  <title>해킹존(HackingZone) 국내 버그바운티 플랫폼 리뷰 - JHYEON</title>
+  
+    <meta name="keywords" content="KISA,삼성SDS,버그 바운티,Bug Bounty,취약점 제보,해킹존">
   
 
   
@@ -295,7 +295,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  featured' style="display: none;">
+        <div id="full" class='cover-wrapper post featured' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="/img/header/header.jpg"></div>
           
@@ -328,85 +328,202 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/21/hackingzone-210521/">
-        (삼성SDS) 해킹존 버그바운티 리뷰
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        해킹존이란?
-https://hackingzone.net
 
-화이트해커는 서비스의 취약점을 제보하여 보안을 향상시키고, 기업은 제보받은 취약점에 합당한 포상금을 지급합니다.
-라는 의미로 개설된 삼성SDS에서 개발한 국내 버그바운티 플랫폼입니다.
-해킹존 소개홈페이지에 들어가셔서 회원가입 절차를 진행해주시면 되며 구글 계정 로그인이 연동되어 있어
-별도 회원가...
-      
-    
-  </div>
+
   
-    <div class='meta-v3' line_style='dashed'>
-      <div>
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        해킹존(HackingZone) 국내 버그바운티 플랫폼 리뷰
+      </h1>
+      <div class='new-meta-box'>
         
           
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/img/header/junddok.jpeg">
+    <p>jhyeon</p>
+  </a>
+</div>
+
+          
         
-        <time>2021-05-21</time>
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Memo/">Memo</a>
+    </a>
+  </div>
+
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Memo/">Memo</a>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Jul 4, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="해킹존(HackingZone) 국내 버그바운티 플랫폼 리뷰" data-path="/2021/07/04/hackingzone-210704/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h3 id="버그-바운티란"><a href="#버그-바운티란" class="headerlink" title="버그 바운티란?"></a>버그 바운티란?</h3><p>기업의 서비스나 제품 등을 해킹하여 취약점을 발견한 화이트 해커에게 포상금을 지급하는 제도.</p>
+<p>대표적으로 넷플릭스, 구글, 애플, 스타벅스, 페이스북 등 글로벌 유명기업도 다수 진행하고 있으며</p>
+<p>국내 기업에도 삼성, 네이버, 리디북스 등 자발적으로 버그 바운티 시장에 참여하는 기업이</p>
+<p>증가하고 있습니다.</p>
+<h3 id="참여-방법"><a href="#참여-방법" class="headerlink" title="참여 방법"></a>참여 방법</h3><p>국내에는 대표적으로 제보하는 사이트가 한국인터넷진흥원(KISA)와 최근에 오픈된 해킹존 플랫폼이</p>
+<p>존재합니다. 이외에도 자사 기업 서비스 취약점을 제보하는 <code>네이버</code>,<code>리디북스</code> 등 기업에서도</p>
+<p>자발적으로 버그바운티 제도를 시행하고 있는 추세입니다.</p>
+<h3 id="해킹존이란"><a href="#해킹존이란" class="headerlink" title="해킹존이란?"></a>해킹존이란?</h3><p>해킹존 플랫폼도 위 설명한 플랫폼들과 같이 기업 서비스, 제품들에 대해 취약점을 제보를 받아</p>
+<p>포상금을 지급하는 <code>국내 버그바운티 플랫폼</code> 입니다.</p>
+<p>해킹존만의 차이점이라고 한다면 자사 서비스만이 아닌 국내 스타트업, 중소기업, 대기업과 협력해</p>
+<p>다양한 기업들의 서비스, 제품들의 취약점을 찾고 이를 제보할 수 있도록 하고 있고</p>
+<p>본인도 이런 장점이 편리해서 국내 버그바운티를 할 때는 해킹존 플랫폼을 주로 사용합니다.</p>
+<h3 id="해킹존에-대해서-알아보자"><a href="#해킹존에-대해서-알아보자" class="headerlink" title="해킹존에 대해서 알아보자"></a>해킹존에 대해서 알아보자</h3><ul>
+<li>해킹존 홈페이지 : <a target="_blank" rel="noopener" href="https://hackingzone.net/">https://hackingzone.net</a></li>
+</ul>
+<p><img src="/img/post/hackingzone/hackingzone.png" class="lazyload" data-srcset="/img/post/hackingzone/hackingzone.png" srcset="data:image/png;base64,666" alt="hackingzone"></p>
+<p>해킹존 홈페이지에 들어가면 우선 이렇게 사용자 친화적인 UI/UX 인터페이스를 뽐내고 있습니다.</p>
+<p>전체 진행중인 버그 바운티 프로그램에 대해서 목록화가 되어있고, 오른쪽에는 리포터 랭킹이라고</p>
+<p>취약점을 제보하여 포상금 또는 포인트를 얻은 사용자의 순위를 보여주고 있습니다.</p>
+<p><img src="/img/post/hackingzone/hzone2.png" class="lazyload" data-srcset="/img/post/hackingzone/hzone2.png" srcset="data:image/png;base64,666" alt="hackingzone2"></p>
+<p><img src="/img/post/hackingzone/hzone3.png" class="lazyload" data-srcset="/img/post/hackingzone/hzone3.png" srcset="data:image/png;base64,666" alt="hackingzone3"></p>
+<p>이제 프로그램 별 버그 바운티 페이지가 어떻게 구성되어있는지 보면,</p>
+<p>사진과 같이 <code>프로그램 명</code> <code>최대 지급 포인트</code> <code>최대 포상금</code> <code>제보된 취약점</code> <code>진행 기간</code></p>
+<p>이렇게 한눈에 알아볼 수 있도록 정보가 표시되어 있구요.</p>
+<p>아래에는 프로그램 소개라해서 해당 서비스가 어떤 서비스인지 간단하게 소개해주고 있고</p>
+<p>아래에는 취약점 제보 관련해서 안내 사항을 기록한 내용입니다.</p>
+<p>글로싸인 같은 경우 빨간글씨로 취약점 제외 대상 홈페이지를 명시해두었는데 이부분을 해석하면</p>
+<p>간혹 취약점 대상 사이트가 아닌곳을 접근하여 공격 시도를 하시는 분들이 많나봅니다 ㅎㅎ..</p>
+<hr>
+<p>그리고 마지막으로는 취약점 제보 관련해서 제약 사항들로 표시됩니다.</p>
+<p>취약점 제보를 하되 포상이 제외되는 항목을 나열한것이고 이 항목들에 연관이 된다면</p>
+<p>취약점이 인정이 되도 포상은 안되겠죠? ㅎㅎ</p>
+<p><img src="/img/post/hackingzone/hzone4.png" class="lazyload" data-srcset="/img/post/hackingzone/hzone4.png" srcset="data:image/png;base64,666" alt="hackingzone4"></p>
+<p>이건 조금 신선했던 기능인데 중복 취약점 제보를 막기위해서 대상 서비스에 어떤 취약점이</p>
+<p>제보되었는지 제목, 제보시간을 공개하면서 ~~ 취약점이 있었구나하면서 중복 제보 하는것을 조금</p>
+<p>줄일수도 있을 것이고, 어떻게 보면 조금 더 넓은 시각으로 보면서 다르게 접근해서 또 새로운</p>
+<p>취약점을 찾아낼 수도 있는 것이지요! 아무튼 이 기능은 매우 좋은 것 같습니다.</p>
+<p><img src="/img/post/hackingzone/hzone5.png" class="lazyload" data-srcset="/img/post/hackingzone/hzone5.png" srcset="data:image/png;base64,666" alt="hackingzone5"></p>
+<p>마지막으로 소개할 기능인데 <code>MY 리포트</code> 라고해서 본인이 제보한 취약점 항목, 포상금 지급 내역</p>
+<p>취약점 제보 이후 처리되고 있는 과정들을 간단하게 볼 수 있는 페이지에요~</p>
+<p>제보한 취약점들을 다시 볼 수 있도록 되어 있어서 나중에 찾아야 하는 일이 생기더라도</p>
+<p>MY 리포트 페이지를 통해서라면 쉽고 빠르게 확인할 수 있습니다 ~!</p>
+<h3 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h3><p>이전에도 해킹존쪽에서 연락이 오셔서 인터뷰 요청을 해주셨는데 해킹존 플랫폼분들이</p>
+<p>다들 친절하시고 사용자 입장에서 해킹존 플랫폼 발전을 위해 여러가지 의견도 적극적으로</p>
+<p>들어주셨습니다 ㅎㅎ. 향후 해킹존의 방향이 매우 기대가 되고 있고 널리 알려져서</p>
+<p>국내 버그바운티 시장이 규모가 확대되었으면 좋겠습니다.</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/05/21/hackingzone-210521/'>
-            Read More
-          </a>
-        </div>
+      
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Jul 4, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/KISA/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>KISA</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%EC%82%BC%EC%84%B1SDS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>삼성SDS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%EB%B2%84%EA%B7%B8-%EB%B0%94%EC%9A%B4%ED%8B%B0/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>버그 바운티</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Bug-Bounty/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Bug Bounty</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A0%9C%EB%B3%B4/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>취약점 제보</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%ED%95%B4%ED%82%B9%EC%A1%B4/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>해킹존</p></a></div>
 
 
-    
+        
+      
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/05/26/proxybypass-210525/'>
+          <p class='title'>Proxy Bypass Technologies<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Intro이번 글에서는 웹 프록시 도구로 취약점을 진단할 때 이러한 프록시 설정이 차단되어 있을 경우를 가정하여
+우회(Bypassing) 하는 방법을 작성해보고자 합니다.
+B...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> Comments</p>
+    
+    <div id="disqus_thread">
+  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
+  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
+  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -414,141 +531,19 @@ https://hackingzone.net
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' target="_blank" rel="noopener" href='https://mypf.jhyeon.dev'>
-          <img no-lazy src='/img/profile/my.jpeg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>JHYEON</h2>
-        
-        
-          <p>Devops &amp; Security Engineer</p>
-<p><a target="_blank" rel="noopener" href="https://www.facebook.com/jhyeonstory"><img src="https://img.shields.io/badge/-Facebook-1877f2?style=flat-square&logo=facebook&logoColor=white&link=https://www.facebook.com/jhyeonstory" class="lazyload" data-srcset="https://img.shields.io/badge/-Facebook-1877f2?style=flat-square&logo=facebook&logoColor=white&link=https://www.facebook.com/jhyeonstory" srcset="data:image/png;base64,666" alt="Facebook Badge"></a> <a target="_blank" rel="noopener" href="https://www.instagram.com/jhye3n_/"><img src="https://img.shields.io/badge/-Instagram-dd2a7b?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/jhye3n_/" class="lazyload" data-srcset="https://img.shields.io/badge/-Instagram-dd2a7b?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/jhye3n_/" srcset="data:image/png;base64,666" alt="Instagram Badge"></a></p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:stjhyeon@kakao.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/jhye0n"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            id="categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(16)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Development/" href="/categories/Development/"
-            id="categoriesDevelopment"
-            ><div class='name'>Development</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docx/" href="/categories/Docx/"
-            id="categoriesDocx"
-            ><div class='name'>Docx</div><div class='badge'>(20)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Memo/" href="/categories/Memo/"
-            id="categoriesMemo"
-            ><div class='name'>Memo</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Mobile/" href="/categories/Mobile/"
-            id="categoriesMobile"
-            ><div class='name'>Mobile</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Pwnable/" href="/categories/Pwnable/"
-            id="categoriesPwnable"
-            ><div class='name'>Pwnable</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Research/" href="/categories/Research/"
-            id="categoriesResearch"
-            ><div class='name'>Research</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Wargame/" href="/categories/Wargame/"
-            id="categoriesWargame"
-            ><div class='name'>Wargame</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Web/" href="/categories/Web/"
-            id="categoriesWeb"
-            ><div class='name'>Web</div><div class='badge'>(9)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/ADB/" style="font-size: 14px; color: #999">ADB</a> <a href="/tags/AWS/" style="font-size: 14px; color: #999">AWS</a> <a href="/tags/AeroCTF2021/" style="font-size: 14px; color: #999">AeroCTF2021</a> <a href="/tags/Algorithm/" style="font-size: 15.25px; color: #919191">Algorithm</a> <a href="/tags/Android/" style="font-size: 20.25px; color: #6f6f6f">Android</a> <a href="/tags/AngStormCTF-2021/" style="font-size: 14px; color: #999">AngStormCTF 2021</a> <a href="/tags/Apache2/" style="font-size: 14px; color: #999">Apache2</a> <a href="/tags/App/" style="font-size: 15.25px; color: #919191">App</a> <a href="/tags/Application/" style="font-size: 17.75px; color: #808080">Application</a> <a href="/tags/B-ngsiri/" style="font-size: 14px; color: #999">B@ngsiri</a> <a href="/tags/BISC2020/" style="font-size: 14px; color: #999">BISC2020</a> <a href="/tags/BOF/" style="font-size: 14px; color: #999">BOF</a> <a href="/tags/Backup/" style="font-size: 14px; color: #999">Backup</a> <a href="/tags/Big-Sur/" style="font-size: 14px; color: #999">Big Sur</a> <a href="/tags/Blog/" style="font-size: 14px; color: #999">Blog</a> <a href="/tags/BoB/" style="font-size: 14px; color: #999">BoB</a> <a href="/tags/Browser-Auditor/" style="font-size: 14px; color: #999">Browser Auditor</a> <a href="/tags/Bug-Bounty/" style="font-size: 14px; color: #999">Bug Bounty</a> <a href="/tags/BugCrowd/" style="font-size: 14px; color: #999">BugCrowd</a> <a href="/tags/Burp-Suite/" style="font-size: 14px; color: #999">Burp Suite</a> <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CA-%EC%9D%B8%EC%A6%9D%EC%84%9C/" style="font-size: 14px; color: #999">CA 인증서</a> <a href="/tags/CANVAS/" style="font-size: 14px; color: #999">CANVAS</a> <a href="/tags/CSAWCTF-2020/" style="font-size: 14px; color: #999">CSAWCTF 2020</a> <a href="/tags/CSRF/" style="font-size: 14px; color: #999">CSRF</a> <a href="/tags/CTF/" style="font-size: 20.25px; color: #6f6f6f">CTF</a> <a href="/tags/CTFtime/" style="font-size: 19px; color: #777">CTFtime</a> <a href="/tags/CVE/" style="font-size: 14px; color: #999">CVE</a> <a href="/tags/CVSS/" style="font-size: 14px; color: #999">CVSS</a> <a href="/tags/Canary/" style="font-size: 14px; color: #999">Canary</a> <a href="/tags/Cassandra/" style="font-size: 14px; color: #999">Cassandra</a> <a href="/tags/CheatSheet/" style="font-size: 14px; color: #999">CheatSheet</a> <a href="/tags/ChristmasCTF2019/" style="font-size: 14px; color: #999">ChristmasCTF2019</a> <a href="/tags/Chrome/" style="font-size: 14px; color: #999">Chrome</a> <a href="/tags/ChromeDriver/" style="font-size: 14px; color: #999">ChromeDriver</a> <a href="/tags/Code-Execution/" style="font-size: 14px; color: #999">Code Execution</a> <a href="/tags/Crpyto/" style="font-size: 14px; color: #999">Crpyto</a> <a href="/tags/Crypto/" style="font-size: 16.5px; color: #888">Crypto</a> <a href="/tags/DB/" style="font-size: 14px; color: #999">DB</a> <a href="/tags/DVWA/" style="font-size: 14px; color: #999">DVWA</a> <a href="/tags/Decouple/" style="font-size: 14px; color: #999">Decouple</a> <a href="/tags/Development/" style="font-size: 14px; color: #999">Development</a> <a href="/tags/Docker/" style="font-size: 16.5px; color: #888">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 15.25px; color: #919191">Dockerfile</a> <a href="/tags/EC2/" style="font-size: 14px; color: #999">EC2</a> <a href="/tags/Exploitation/" style="font-size: 14px; color: #999">Exploitation</a> <a href="/tags/Fiddler/" style="font-size: 14px; color: #999">Fiddler</a> <a href="/tags/Firefox/" style="font-size: 14px; color: #999">Firefox</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Foreign-Key/" style="font-size: 14px; color: #999">Foreign Key</a> <a href="/tags/Frida/" style="font-size: 14px; color: #999">Frida</a> <a href="/tags/Github/" style="font-size: 14px; color: #999">Github</a> <a href="/tags/HACKINGCAMP/" style="font-size: 14px; color: #999">HACKINGCAMP</a> <a href="/tags/HCAMP/" style="font-size: 14px; color: #999">HCAMP</a> <a href="/tags/HSPACE/" style="font-size: 14px; color: #999">HSPACE</a> <a href="/tags/HSPACE-CTF/" style="font-size: 14px; color: #999">HSPACE CTF</a> <a href="/tags/HackPackCTF-2021/" style="font-size: 14px; color: #999">HackPackCTF 2021</a> <a href="/tags/HackerOne/" style="font-size: 14px; color: #999">HackerOne</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hooking/" style="font-size: 14px; color: #999">Hooking</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/KISA/" style="font-size: 15.25px; color: #919191">KISA</a> <a href="/tags/LFI/" style="font-size: 14px; color: #999">LFI</a> <a href="/tags/LMS/" style="font-size: 14px; color: #999">LMS</a> <a href="/tags/Linux/" style="font-size: 15.25px; color: #919191">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 14px; color: #999">Mac OS</a> <a href="/tags/Macro/" style="font-size: 14px; color: #999">Macro</a> <a href="/tags/Malware/" style="font-size: 14px; color: #999">Malware</a> <a href="/tags/Memory-Mitigation/" style="font-size: 14px; color: #999">Memory Mitigation</a> <a href="/tags/Mobile/" style="font-size: 16.5px; color: #888">Mobile</a> <a href="/tags/Mobile-Hacking/" style="font-size: 14px; color: #999">Mobile Hacking</a> <a href="/tags/Mprotect/" style="font-size: 14px; color: #999">Mprotect</a> <a href="/tags/Network/" style="font-size: 15.25px; color: #919191">Network</a> <a href="/tags/Nexus5X/" style="font-size: 14px; color: #999">Nexus5X</a> <a href="/tags/NoSQL/" style="font-size: 14px; color: #999">NoSQL</a> <a href="/tags/NodeJS/" style="font-size: 14px; color: #999">NodeJS</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/OWASP/" style="font-size: 15.25px; color: #919191">OWASP</a> <a href="/tags/OWASP-MSTG/" style="font-size: 15.25px; color: #919191">OWASP-MSTG</a> <a href="/tags/PHP/" style="font-size: 15.25px; color: #919191">PHP</a> <a href="/tags/POX2020/" style="font-size: 14px; color: #999">POX2020</a> <a href="/tags/Penetration/" style="font-size: 21.5px; color: #666">Penetration</a> <a href="/tags/Pentesting/" style="font-size: 15.25px; color: #919191">Pentesting</a> <a href="/tags/PicoCTF2019/" style="font-size: 14px; color: #999">PicoCTF2019</a> <a href="/tags/Primary-Key/" style="font-size: 14px; color: #999">Primary Key</a> <a href="/tags/Proxy/" style="font-size: 14px; color: #999">Proxy</a> <a href="/tags/Proxy-Bypass/" style="font-size: 14px; color: #999">Proxy Bypass</a> <a href="/tags/Pwn/" style="font-size: 15.25px; color: #919191">Pwn</a> <a href="/tags/Pwnable/" style="font-size: 22.75px; color: #5e5e5e">Pwnable</a> <a href="/tags/Python/" style="font-size: 15.25px; color: #919191">Python</a> <a href="/tags/Python-Pickle/" style="font-size: 14px; color: #999">Python Pickle</a> <a href="/tags/RCE/" style="font-size: 16.5px; color: #888">RCE</a> <a href="/tags/RITSEC-2021/" style="font-size: 14px; color: #999">RITSEC 2021</a> <a href="/tags/ROP/" style="font-size: 16.5px; color: #888">ROP</a> <a href="/tags/Rev/" style="font-size: 14px; color: #999">Rev</a> <a href="/tags/Reversing/" style="font-size: 16.5px; color: #888">Reversing</a> <a href="/tags/Root/" style="font-size: 14px; color: #999">Root</a> <a href="/tags/SECRET-KEY/" style="font-size: 14px; color: #999">SECRET_KEY</a> <a href="/tags/SSL/" style="font-size: 14px; color: #999">SSL</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Sandbox/" style="font-size: 14px; color: #999">Sandbox</a> <a href="/tags/SatunX/" style="font-size: 14px; color: #999">SatunX</a> <a href="/tags/Selenium/" style="font-size: 14px; color: #999">Selenium</a> <a href="/tags/Shellcode/" style="font-size: 14px; color: #999">Shellcode</a> <a href="/tags/Study/" style="font-size: 14px; color: #999">Study</a> <a href="/tags/Suricata/" style="font-size: 14px; color: #999">Suricata</a> <a href="/tags/System/" style="font-size: 14px; color: #999">System</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/UMassCTF-21/" style="font-size: 14px; color: #999">UMassCTF'21</a> <a href="/tags/Ubuntu/" style="font-size: 14px; color: #999">Ubuntu</a> <a href="/tags/Ubuntu-CLI/" style="font-size: 14px; color: #999">Ubuntu CLI</a> <a href="/tags/Unity/" style="font-size: 14px; color: #999">Unity</a> <a href="/tags/V8-Engine/" style="font-size: 14px; color: #999">V8 Engine</a> <a href="/tags/VM-Module/" style="font-size: 14px; color: #999">VM Module</a> <a href="/tags/VirtualBox/" style="font-size: 14px; color: #999">VirtualBox</a> <a href="/tags/Vulnability/" style="font-size: 14px; color: #999">Vulnability</a> <a href="/tags/WSGI/" style="font-size: 14px; color: #999">WSGI</a> <a href="/tags/Wargame/" style="font-size: 14px; color: #999">Wargame</a> <a href="/tags/Web/" style="font-size: 24px; color: #555">Web</a> <a href="/tags/Web-Hacking/" style="font-size: 15.25px; color: #919191">Web Hacking</a> <a href="/tags/WebHacking/" style="font-size: 14px; color: #999">WebHacking</a> <a href="/tags/Writeup/" style="font-size: 16.5px; color: #888">Writeup</a> <a href="/tags/XSS/" style="font-size: 16.5px; color: #888">XSS</a> <a href="/tags/dCTF-2021/" style="font-size: 14px; color: #999">dCTF 2021</a> <a href="/tags/iftop/" style="font-size: 14px; color: #999">iftop</a> <a href="/tags/il2cppdumper/" style="font-size: 14px; color: #999">il2cppdumper</a> <a href="/tags/syscall/" style="font-size: 14px; color: #999">syscall</a> <a href="/tags/uWSGI/" style="font-size: 14px; color: #999">uWSGI</a> <a href="/tags/webhacking-kr/" style="font-size: 14px; color: #999">webhacking.kr</a> <a href="/tags/websec-fr/" style="font-size: 15.25px; color: #919191">websec.fr</a> <a href="/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D/" style="font-size: 14px; color: #999">기술 취약점 분석</a> <a href="/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D-%EA%B0%80%EC%9D%B4%EB%93%9C/" style="font-size: 14px; color: #999">기술 취약점 분석 가이드</a> <a href="/tags/%EB%AA%A8%EC%9D%98%ED%95%B4%ED%82%B9/" style="font-size: 14px; color: #999">모의해킹</a> <a href="/tags/%EB%B2%84%EA%B7%B8%EB%B0%94%EC%9A%B4%ED%8B%B0/" style="font-size: 14px; color: #999">버그바운티</a> <a href="/tags/%EC%82%BC%EC%84%B1SDS/" style="font-size: 14px; color: #999">삼성SDS</a> <a href="/tags/%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">선형 탐색</a> <a href="/tags/%EC%9B%B9-%EB%AA%A8%EC%9D%98%ED%95%B4%ED%82%B9/" style="font-size: 14px; color: #999">웹 모의해킹</a> <a href="/tags/%EC%9B%B9-%ED%95%B4%ED%82%B9/" style="font-size: 14px; color: #999">웹 해킹</a> <a href="/tags/%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">이진 탐색</a> <a href="/tags/%EC%A0%95%EB%B3%B4-%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보 보안</a> <a href="/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보보안</a> <a href="/tags/%EC%A3%BC%ED%86%B5%EA%B8%B0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EA%B0%80%EC%9D%B4%EB%93%9C/" style="font-size: 14px; color: #999">주통기 취약점 가이드</a> <a href="/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/" style="font-size: 14px; color: #999">최신동향</a> <a href="/tags/%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A0%9C%EB%B3%B4/" style="font-size: 14px; color: #999">취약점 제보</a> <a href="/tags/%ED%95%9C%EA%B5%AD%EC%9D%B8%ED%84%B0%EB%84%B7%EC%A7%84%ED%9D%A5%EC%9B%90/" style="font-size: 14px; color: #999">한국인터넷진흥원</a> <a href="/tags/%ED%95%B4%ED%82%B9%EC%A1%B4/" style="font-size: 14px; color: #999">해킹존</a> <a href="/tags/%ED%95%B4%ED%82%B9%EC%BA%A0%ED%94%84/" style="font-size: 14px; color: #999">해킹캠프</a> <a href="/tags/%ED%9A%8C%EA%B3%A0/" style="font-size: 14px; color: #999">회고</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B2%84%EA%B7%B8-%EB%B0%94%EC%9A%B4%ED%8B%B0%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">버그 바운티란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%B0%B8%EC%97%AC-%EB%B0%A9%EB%B2%95"><span class="toc-number">2.</span> <span class="toc-text">참여 방법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%B4%ED%82%B9%EC%A1%B4%EC%9D%B4%EB%9E%80"><span class="toc-number">3.</span> <span class="toc-text">해킹존이란?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%B4%ED%82%B9%EC%A1%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90"><span class="toc-number">4.</span> <span class="toc-text">해킹존에 대해서 알아보자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A7%88%EB%AC%B4%EB%A6%AC"><span class="toc-number">5.</span> <span class="toc-text">마무리</span></a></li></ol>
     </div>
   </section>
 
@@ -559,14 +554,15 @@ https://hackingzone.net
 </aside>
 
 
+
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="해킹존(HackingZone) 국내 버그바운티 플랫폼 리뷰";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
