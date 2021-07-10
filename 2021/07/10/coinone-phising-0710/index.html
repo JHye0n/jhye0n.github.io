@@ -5,10 +5,8 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="index,follow">
-    
   
-  <link rel="canonical" href="https://blog.jhyeon.dev/archives/2021/"/>
+  <link rel="canonical" href="https://blog.jhyeon.dev/2021/07/10/coinone-phising-0710/"/>
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -26,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2021 - JHYEON</title>
+  <title>가상화폐 거래소 피싱 사이트 분석에 대해서 - JHYEON</title>
   
 
   
@@ -108,7 +106,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur "  >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -295,7 +293,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  featured' style="display: ;">
+        <div id="full" class='cover-wrapper post featured' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="/img/header/header.jpg"></div>
           
@@ -329,469 +327,206 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/2021/07/10/coinone-phising-0710/">
+      <h1 class="title">
         가상화폐 거래소 피싱 사이트 분석에 대해서
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        들어가며우선. 최근이라고 하면 이상한가(?) 아무튼 올해 초부터 가상화폐에 대한 2030 세대들에서 관심을 많이 갖기 시작하면서
-국내 3대 거래소라고 불리는 코OO, 빗O, 업OO 등등 유명한 거래소들이 있었죠.
-관심을 많이 가지게 된 계기라고하면 다들 아시다시피 도지코인 가격이 거의 10배가까이 폭등하면서 뉴스에 보도되기도 하고..
-뭐 이러면서 사람...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
+      </h1>
+      <div class='new-meta-box'>
         
           
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="/img/header/junddok.jpeg">
+    <p>jhyeon</p>
+  </a>
+</div>
+
+          
         
-        <time>2021-07-10</time>
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Jul 10, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="가상화폐 거래소 피싱 사이트 분석에 대해서" data-path="/2021/07/10/coinone-phising-0710/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        View
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h3 id="들어가며"><a href="#들어가며" class="headerlink" title="들어가며"></a>들어가며</h3><p>우선. 최근이라고 하면 이상한가(?) 아무튼 올해 초부터 가상화폐에 대한 2030 세대들에서 관심을 많이 갖기 시작하면서</p>
+<p>국내 3대 거래소라고 불리는 코OO, 빗O, 업OO 등등 유명한 거래소들이 있었죠.</p>
+<p>관심을 많이 가지게 된 계기라고하면 다들 아시다시피 <code>도지코인</code> 가격이 거의 10배가까이 폭등하면서 뉴스에 보도되기도 하고..</p>
+<p>뭐 이러면서 사람들이 자연스레 주식 -&gt; 코인으로 유입되기 시작한 시기였죠 ㅎㅎ</p>
+<p>그만큼 해커 입장에서는 거래소에 어마어마한 거래 자금이 생기니깐 타겟팅을 거래소쪽을 선택을 하겠죠?</p>
+<p>물론 거래소들은 망 분리 등 허술하지 않게 여러 보안 시스템을 잘 구축해놓은지라 거래소를 직접적인 해킹 하는건 불가능에 가깝습니다.</p>
+<p>그럼 해커들은 어디를 노릴까요? 바로 <code>피싱 사이트</code> 입니다.</p>
+<p>피싱 사이트라고 하면은 실제 사이트와 화면을 똑같이 copy해서 만든 사이트입니다. (아래 예시를 보시죠)</p>
+<p><img src="/img/post/coinone_phising/naver.jpeg" class="lazyload" data-srcset="/img/post/coinone_phising/naver.jpeg" srcset="data:image/png;base64,666" alt="img"></p>
+<p>또 이번에 분석할 대상 피싱 사이트는 심지어 국내 번호를 대상으로 무작위로 문자를 전송하여 실제 거래소에 해킹이</p>
+<p>발생한 것처럼 꾸며 사이트 접속을 유도하는 식으로 해킹 피해를 발생시켜 왔습니다. 아래 예시 사진과 같습니다.</p>
+<p><img src="/img/post/coinone_phising/coinone.png" class="lazyload" data-srcset="/img/post/coinone_phising/coinone.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>이런식으로 문자가 오고 사이트는 당연히 피싱 사이트입니다. 이제 바로 본론으로 가겠습니다.</p>
+<h3 id="분석-1회차"><a href="#분석-1회차" class="headerlink" title="분석 1회차"></a>분석 1회차</h3><p>저는 비교적 일찍(?) 피싱 사이트에 대한 존재를 알고 사이트들을 분석하였는데요.</p>
+<p>대부분 코OO 거래소의 피싱 사이트였습니다. 왜 다른 거래소들은 없었냐라고 궁금하신 분들이 있으실텐데</p>
+<p>없는 것은 아니였습니다. 다만 빈도수가 극히 드물고 해커 입장에서는 까다로웠겠죠 그 이유를 알아봅시다.</p>
+<p>당시 코OO 거래소에 로그인을 하기 위한 과정은 생각보다 간단했습니다.</p>
+<p><code>계정 입력 -&gt; (선택) OTP 입력 -&gt; 거래소 로그인</code> 과정으로 진행됩니다.</p>
+<p>이 때 OTP(One-Time Password) 방식의 2단계 보안 인증 과정이 있었으나 필수 항목은 아니였습니다.</p>
+<p>즉 사용자가 설정함에 따라 OTP를 사용할 수도 있고, 아닐수도 있는건데요.</p>
+<p>여기서 해커가 쉽게 타인의 계정을 탈취할 수 있었던 이유는 <code>OTP 미사용</code> 유저를 대상으로 한 타겟팅이였습니다.</p>
+<p>OTP를 사용하지 않게 되면 <code>이메일, 비밀번호</code> 만 알아도 거래소에 접근이 가능했기 때문이죠.</p>
+<p>하지만 다른 거래소들의 예시를 보면 업OO 에서는 <code>카카오톡 연동 로그인</code></p>
+<p>빗O 에서는 <code>보안 비밀번호</code> + <code>OTP</code> 방식으로 로그인을 할 수 있도록 이중 보안 잠금 기능이 존재하였는데요.</p>
+<p>이 때문에 해커 입장에서는 비교적 계정 접속이 쉬운 코OO 거래소를 위주로 피싱 사이트를 만들어내기 시작하였습니다.</p>
+<h3 id="분석-2회차"><a href="#분석-2회차" class="headerlink" title="분석 2회차"></a>분석 2회차</h3><p>실제 피싱 사이트의 예시 화면을 보실까요?</p>
+<p><img src="/img/post/coinone_phising/phising.png" class="lazyload" data-srcset="/img/post/coinone_phising/phising.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>위 자료화면은 코OO 거래소 공식사이트에서 가져온 사진입니다. (분석 당시에 했던 사진들을 삭제한 탓에 ㅠ_ㅠ)</p>
+<p>일단 사진을 보면 공식 사이트의 도메인주소랑 다르죠? 공식 사이트는 <code>coinone.co.kr</code> 입니다.</p>
+<p>주소들도 생각보다 다양합니다. coinen** coincn** 등등 공식 사이트 도메인에서 철자만 교묘하게 바꾸면서</p>
+<p>사이트를 옮겨다닙니다. 그리고 언뜻보면 똑같아 보이지만 사이트에 들어가보면 로그인 말고는 다른 기능들이 동작하지 않습니다.</p>
+<p>즉, 로그인 페이지만 copy해서 만들고 나머지 기능들은 구현이 안되어있습니다.</p>
+<p>이런 피싱 사이트에 계정을 입력하게 되면 당연히! <code>코인원</code> 서버가 아닌 <code>해커</code>의 서버로 입력한 정보들이 저장되는 방식인거죠.</p>
+<p><img src="/img/post/coinone_phising/phising2.png" class="lazyload" data-srcset="/img/post/coinone_phising/phising2.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>위 사진은 제가 <code>COINDB</code> 라는 사이트에서 백엔드를 담당하여 개발을 진행하면서 수집하였던 피싱 사이트의</p>
+<p>일부 정보인데요. 보시면은 도메인이 제 각각 모두 다른 구조를 띄고 있습니다.</p>
+<p><img src="/img/post/coinone_phising/phising3.png" class="lazyload" data-srcset="/img/post/coinone_phising/phising3.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>또한 실제 서버가 운영되고 있는 서버IP 주소를 보면 103<del>, 45</del> 로 시작하는데 정확한 위치를 트래킹할 수는 없었지만</p>
+<p>대부분 중국에서 운영되고 있었습니다. VPN로 경로를 우회한건진 정확하게 알 수 없었으나 이후에 나올 맛보기(?)에서</p>
+<p>중국임을 확신할 수 있었습니다.</p>
+<h3 id="분석-3회차"><a href="#분석-3회차" class="headerlink" title="분석 3회차"></a>분석 3회차</h3><p>제가 해당 사이트를 분석했을 당시에는 아래와 같은 방식으로 데이터를 저장하고 있었습니다.</p>
+<p>예시 사진들을 첨부하면서 설명드리고 싶으나 당시 관련 사진들은 모두 삭제했기에 기억을 짚어서 글을 쓰겠습니다 ㅎㅎ..</p>
+<p>우선 사용자가 계정을 입력하고 로그인 버튼을 누르면 <code>data.php</code>로 입력한 데이터들을 <code>ajax</code>를 사용하여 가공을 해서</p>
+<p>데이터를 넘겨주게 됩니다. 이후 <code>data.php</code> 라는 파일에서는 넘어온 데이터들을 DB로 저장시키는 방법을 쓰고 있었겠죠?</p>
+<p>이 때 생각난것이 관리자 페이지가 존재하지 않을까? 라고 생각했고 directory fuzzing을 통해서 관리자 페이지의 URL을</p>
+<p>획득했습니다. 주소는 매우 간단했습니다 guessing으로도 찾을 수 있었고 <code>/admin/index.php</code> 이라는 path에 관리자 페이지가</p>
+<p>존재하고 있었습니다. 이런 피싱 사이트들은 보안에 매우 취약하고 사이트를 구축하는데 돈 한푼 들이지 않습니다.</p>
+<p>그말인 즉슨 취약점이 매우 많다는 의미로도 해석되겠지요. 여기서 잠깐 맛보기로 말씀드리면 당시 DB 엔진으로 어떤걸 쓸까 하면서</p>
+<p>생각하던 찰나에 비교적 접근성, 구축이 쉬운 <code>MySQL</code> 데이터베이스를 쓸 것이라고 생각했습니다. 그 예상은 적중을 했구요.</p>
+<p>그래서 저는 여기서 한 단계 더 접근해서 사이트의 보안 취약점을 이용해 권한 상승, Exploitation에 성공하면서</p>
+<p>내부 서버로 침투가 가능했습니다. 즉 DB 데이터도 모두 열람이 가능하였단 의미입니다. 사실 이 방법은 인가되지 않은 접근이기 때문에</p>
+<p>이 글을 보시고 함부로 아무 사이트에서 공격을 테스팅하시거나 그러시면 철컹철컹 당합니다. 절대 호기심에 따라하지 마세요~!</p>
+<p>아래 사진은 해당 피싱 사이트의 DB 데이터 중 일부 정보가 포함된 예시 사진입니다.</p>
+<p><img src="/img/post/coinone_phising/phising4.jpeg" class="lazyload" data-srcset="/img/post/coinone_phising/phising4.jpeg" srcset="data:image/png;base64,666" alt="img"></p>
+<h3 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h3><p>현재에도 피싱 사이트들이 많이 존재하고 있습니다. 물론 이렇게 알려져도 피싱 사이트인줄 인지하지 못하시고</p>
+<p>거기서 로그인을 하시는 경우가 많은데요. 본인의 소중한 자산을 지키기 위해서는 <code>보안</code> 필수입니다.</p>
+<p>항상 경각심을 가지시길 바란다는 마음에서 예전 경험을 좀 작성해봤네요.</p>
+<p>요즘에는 거래소에서도 자체적으로 <code>카카오톡 로그인 알림</code> 등을 적용하여 인가되지 않은 사용자의 접근이 발생할 경우</p>
+<p>즉시 접속, 거래 차단이 가능한 방법을 적용하고 있어 빈도수가 많이 줄어든 편이라고 생각을 하나 그래도 여전히</p>
+<p>많이 발생하고 있습니다. 앞으로도 보안 관련 피해가 발생하지 않길 바라고 피싱은 좀 근절되었으면 좋겠네요.</p>
+<p>당연하겠지만 관련 데이터들은 <code>코OO</code> 거래소를 통해 정보들을 모두 넘겨드린 상태입니다 <del>_</del></p>
+<p>우리 모두 보안에 경각심을 가지고 해킹으로 부터 안전한 환경을 만들어요! 그럼 Goodbye~</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/07/10/coinone-phising-0710/'>
-            Read More
-          </a>
-        </div>
+      
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>Date : Jul 10, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/10/webhackingkr-renew-0710/">
-        Webhacking.kr 새로운 문제들이 공개되었네요!
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Webhacking.kr - 웹 해킹 관련 문제 풀이 워게임 사이트라고 많이 알려져들 있죠
-예전에는 oldzomebie 님이 운영을 하신걸로 알고있고 최근에는 rubiya님이 운영을 하고 있다고 합니다!
-그러면서 새롭게 추가된 문제들도 많이 보이는데요..? (아래 사진과 같이)
-
-문제들을 잠깐잠깐 보고 지나갔었는데 트렌드가 계속 변화하는 만큼 해킹 기...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
         
           
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
+
         
-        <time>2021-07-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Memo/">Memo</a>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2021/07/10/webhackingkr-renew-0710/'>
-            Read More
-          </a>
-        </div>
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/07/10/webhackingkr-renew-0710/'>
+          <p class='title'>Webhacking.kr 새로운 문제들이 공개되었네요!<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Webhacking.kr - 웹 해킹 관련 문제 풀이 워게임 사이트라고 많이 알려져들 있죠
+예전에는 oldzomebie 님이 운영을 하신걸로 알고있고 최근에는 rubiya님이...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> Comments</p>
+    
+    <div id="disqus_thread">
+  <div id="notShowDisqus" style="display: none;text-align: center;"><i class='fas fa-exclamation-triangle'></i>&nbsp;Unable to load Disqus, please make sure your network can access.</div>
+  <div id="load-btns"><a class="load-comments" onclick="needLoadDisqus()">Load Disqus</a></div>
+  <div id="loading-comments" style="display: none"><i class="fa fa-cog fa-spin fa-fw fa-2x"></i><br>Checking if Disqus is accessible...</div>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/05/memory-mitigation-2/">
-        Memory Mitigation - ASLR
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Link아래 링크에 접속하시면 게시글을 보실 수 있습니다!
-
-바로가기(Notion)
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
-        
-        <time>2021-07-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Pwnable/">Pwnable</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/05/memory-mitigation-2/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/04/memory-mitigation-1/">
-        Memory Mitigation - RELRO
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Link아래 링크에 접속하시면 게시글을 보실 수 있습니다!
-
-바로가기(Notion)
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
-        
-        <time>2021-07-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Pwnable/">Pwnable</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/04/memory-mitigation-1/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/07/04/hackingzone-210704/">
-        해킹존(HackingZone) 국내 버그바운티 플랫폼 리뷰
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        버그 바운티란?기업의 서비스나 제품 등을 해킹하여 취약점을 발견한 화이트 해커에게 포상금을 지급하는 제도.
-대표적으로 넷플릭스, 구글, 애플, 스타벅스, 페이스북 등 글로벌 유명기업도 다수 진행하고 있으며
-국내 기업에도 삼성, 네이버, 리디북스 등 자발적으로 버그 바운티 시장에 참여하는 기업이
-증가하고 있습니다.
-참여 방법국내에는 대표적으로 제보하는 ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
-        
-        <time>2021-07-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Memo/">Memo</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/07/04/hackingzone-210704/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/26/proxybypass-210525/">
-        Proxy Bypass Technologies
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Intro이번 글에서는 웹 프록시 도구로 취약점을 진단할 때 이러한 프록시 설정이 차단되어 있을 경우를 가정하여
-우회(Bypassing) 하는 방법을 작성해보고자 합니다.
-Bypass첫 번째로 Burp Suite 프록시 도구를 통해 진단을 하는 경우에는 Request Handling 기능을 사용할 수 있습니다.
-Proxy 기본 설정 옵션에 존재하며 해...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
-        
-        <time>2021-05-26</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/26/proxybypass-210525/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/21/flask-apache-210521/">
-        Python Flask + WSGI 사용하기
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Intro이번 글에서는 Python Flask 환경에서 WSGI를 사용해 Apache2 웹 서버 엔진과 연동하는
-방법에 대해서 글을 작성해보고자 한다.
-WSGI란?WSGI(Web Server Gateway Interface)로 파이썬에서 웹 어플리케이션이 서버와 통신하기 위한 인터페이스를 의미한다.
-즉, 웹 서버가 받은 요청을 Python Applic...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
-        
-        <time>2021-05-21</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Development/">Development</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/21/flask-apache-210521/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/05/19/kisareport-210519/">
-        주요통신기반시설 기술 취약점 분석 가이드(2021-03)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Intro2021.3월에 업데이트 된 KISA 주통기 기반 기술 취약점 분석 가이드 자료를 공유합니다.
-모의 해킹이나 취약점 점검할 때 도움이 되는 자료입니다 ~~
-
-공식 홈페이지 다운로드
+  </article>
 
 
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='/img/header/junddok.jpeg'></a>
-        
-        <time>2021-05-19</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Docx/">Docx</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/05/19/kisareport-210519/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 6
-        </p>
-        
-          <a class="next" rel="next" href="/archives/2021/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
 
 
-	
+
+
 </div>
 <aside class='l_side'>
   
@@ -799,141 +534,19 @@ WSGI란?WSGI(Web Server Gateway Interface)로 파이썬에서 웹 어플리케�
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box circle' target="_blank" rel="noopener" href='https://mypf.jhyeon.dev'>
-          <img no-lazy src='/img/profile/my.jpeg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>JHYEON</h2>
-        
-        
-          <p>Devops &amp; Security Engineer</p>
-<p><a target="_blank" rel="noopener" href="https://www.facebook.com/jhyeonstory"><img src="https://img.shields.io/badge/-Facebook-1877f2?style=flat-square&logo=facebook&logoColor=white&link=https://www.facebook.com/jhyeonstory" class="lazyload" data-srcset="https://img.shields.io/badge/-Facebook-1877f2?style=flat-square&logo=facebook&logoColor=white&link=https://www.facebook.com/jhyeonstory" srcset="data:image/png;base64,666" alt="Facebook Badge"></a> <a target="_blank" rel="noopener" href="https://www.instagram.com/jhye3n_/"><img src="https://img.shields.io/badge/-Instagram-dd2a7b?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/jhye3n_/" class="lazyload" data-srcset="https://img.shields.io/badge/-Instagram-dd2a7b?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/jhye3n_/" srcset="data:image/png;base64,666" alt="Instagram Badge"></a></p>
 
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:stjhyeon@kakao.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/jhye0n"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>Categories</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>TOC</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            id="categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(16)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Development/" href="/categories/Development/"
-            id="categoriesDevelopment"
-            ><div class='name'>Development</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Docx/" href="/categories/Docx/"
-            id="categoriesDocx"
-            ><div class='name'>Docx</div><div class='badge'>(20)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Memo/" href="/categories/Memo/"
-            id="categoriesMemo"
-            ><div class='name'>Memo</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Mobile/" href="/categories/Mobile/"
-            id="categoriesMobile"
-            ><div class='name'>Mobile</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Pwnable/" href="/categories/Pwnable/"
-            id="categoriesPwnable"
-            ><div class='name'>Pwnable</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Research/" href="/categories/Research/"
-            id="categoriesResearch"
-            ><div class='name'>Research</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Wargame/" href="/categories/Wargame/"
-            id="categoriesWargame"
-            ><div class='name'>Wargame</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Web/" href="/categories/Web/"
-            id="categoriesWeb"
-            ><div class='name'>Web</div><div class='badge'>(9)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>Tags</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/ADB/" style="font-size: 14px; color: #999">ADB</a> <a href="/tags/ASLR/" style="font-size: 14px; color: #999">ASLR</a> <a href="/tags/AWS/" style="font-size: 14px; color: #999">AWS</a> <a href="/tags/AeroCTF2021/" style="font-size: 14px; color: #999">AeroCTF2021</a> <a href="/tags/Algorithm/" style="font-size: 15.25px; color: #919191">Algorithm</a> <a href="/tags/Android/" style="font-size: 20.25px; color: #6f6f6f">Android</a> <a href="/tags/AngStormCTF-2021/" style="font-size: 14px; color: #999">AngStormCTF 2021</a> <a href="/tags/Apache2/" style="font-size: 14px; color: #999">Apache2</a> <a href="/tags/App/" style="font-size: 15.25px; color: #919191">App</a> <a href="/tags/Application/" style="font-size: 17.75px; color: #808080">Application</a> <a href="/tags/B-ngsiri/" style="font-size: 14px; color: #999">B@ngsiri</a> <a href="/tags/BISC2020/" style="font-size: 14px; color: #999">BISC2020</a> <a href="/tags/BOF/" style="font-size: 14px; color: #999">BOF</a> <a href="/tags/Backup/" style="font-size: 14px; color: #999">Backup</a> <a href="/tags/Big-Sur/" style="font-size: 14px; color: #999">Big Sur</a> <a href="/tags/Blog/" style="font-size: 14px; color: #999">Blog</a> <a href="/tags/BoB/" style="font-size: 14px; color: #999">BoB</a> <a href="/tags/Browser-Auditor/" style="font-size: 14px; color: #999">Browser Auditor</a> <a href="/tags/Bug-Bounty/" style="font-size: 14px; color: #999">Bug Bounty</a> <a href="/tags/Burp-Suite/" style="font-size: 14px; color: #999">Burp Suite</a> <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CA-%EC%9D%B8%EC%A6%9D%EC%84%9C/" style="font-size: 14px; color: #999">CA 인증서</a> <a href="/tags/CANVAS/" style="font-size: 14px; color: #999">CANVAS</a> <a href="/tags/CSAWCTF-2020/" style="font-size: 14px; color: #999">CSAWCTF 2020</a> <a href="/tags/CSRF/" style="font-size: 14px; color: #999">CSRF</a> <a href="/tags/CTF/" style="font-size: 21.5px; color: #666">CTF</a> <a href="/tags/CTFtime/" style="font-size: 19px; color: #777">CTFtime</a> <a href="/tags/CVE/" style="font-size: 14px; color: #999">CVE</a> <a href="/tags/CVSS/" style="font-size: 14px; color: #999">CVSS</a> <a href="/tags/Canary/" style="font-size: 14px; color: #999">Canary</a> <a href="/tags/Cassandra/" style="font-size: 14px; color: #999">Cassandra</a> <a href="/tags/CheatSheet/" style="font-size: 14px; color: #999">CheatSheet</a> <a href="/tags/ChristmasCTF2019/" style="font-size: 14px; color: #999">ChristmasCTF2019</a> <a href="/tags/Chrome/" style="font-size: 14px; color: #999">Chrome</a> <a href="/tags/ChromeDriver/" style="font-size: 14px; color: #999">ChromeDriver</a> <a href="/tags/Code-Execution/" style="font-size: 14px; color: #999">Code Execution</a> <a href="/tags/Crpyto/" style="font-size: 14px; color: #999">Crpyto</a> <a href="/tags/Crypto/" style="font-size: 16.5px; color: #888">Crypto</a> <a href="/tags/DB/" style="font-size: 14px; color: #999">DB</a> <a href="/tags/DVWA/" style="font-size: 14px; color: #999">DVWA</a> <a href="/tags/Decouple/" style="font-size: 14px; color: #999">Decouple</a> <a href="/tags/Development/" style="font-size: 14px; color: #999">Development</a> <a href="/tags/Docker/" style="font-size: 16.5px; color: #888">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 15.25px; color: #919191">Dockerfile</a> <a href="/tags/EC2/" style="font-size: 14px; color: #999">EC2</a> <a href="/tags/Exploitation/" style="font-size: 14px; color: #999">Exploitation</a> <a href="/tags/Fiddler/" style="font-size: 14px; color: #999">Fiddler</a> <a href="/tags/Firefox/" style="font-size: 14px; color: #999">Firefox</a> <a href="/tags/Flask/" style="font-size: 14px; color: #999">Flask</a> <a href="/tags/Foreign-Key/" style="font-size: 14px; color: #999">Foreign Key</a> <a href="/tags/Frida/" style="font-size: 14px; color: #999">Frida</a> <a href="/tags/Github/" style="font-size: 14px; color: #999">Github</a> <a href="/tags/HACKINGCAMP/" style="font-size: 14px; color: #999">HACKINGCAMP</a> <a href="/tags/HCAMP/" style="font-size: 14px; color: #999">HCAMP</a> <a href="/tags/HSPACE/" style="font-size: 14px; color: #999">HSPACE</a> <a href="/tags/HSPACE-CTF/" style="font-size: 14px; color: #999">HSPACE CTF</a> <a href="/tags/HackPackCTF-2021/" style="font-size: 14px; color: #999">HackPackCTF 2021</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hooking/" style="font-size: 14px; color: #999">Hooking</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/KISA/" style="font-size: 15.25px; color: #919191">KISA</a> <a href="/tags/LFI/" style="font-size: 14px; color: #999">LFI</a> <a href="/tags/LMS/" style="font-size: 14px; color: #999">LMS</a> <a href="/tags/Linux/" style="font-size: 15.25px; color: #919191">Linux</a> <a href="/tags/Mac-OS/" style="font-size: 14px; color: #999">Mac OS</a> <a href="/tags/Macro/" style="font-size: 14px; color: #999">Macro</a> <a href="/tags/Malware/" style="font-size: 14px; color: #999">Malware</a> <a href="/tags/Memory-Mitigation/" style="font-size: 16.5px; color: #888">Memory Mitigation</a> <a href="/tags/Mobile/" style="font-size: 16.5px; color: #888">Mobile</a> <a href="/tags/Mobile-Hacking/" style="font-size: 14px; color: #999">Mobile Hacking</a> <a href="/tags/Mprotect/" style="font-size: 14px; color: #999">Mprotect</a> <a href="/tags/Network/" style="font-size: 15.25px; color: #919191">Network</a> <a href="/tags/Nexus5X/" style="font-size: 14px; color: #999">Nexus5X</a> <a href="/tags/NoSQL/" style="font-size: 14px; color: #999">NoSQL</a> <a href="/tags/NodeJS/" style="font-size: 14px; color: #999">NodeJS</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/OWASP/" style="font-size: 15.25px; color: #919191">OWASP</a> <a href="/tags/OWASP-MSTG/" style="font-size: 15.25px; color: #919191">OWASP-MSTG</a> <a href="/tags/PHP/" style="font-size: 15.25px; color: #919191">PHP</a> <a href="/tags/POX2020/" style="font-size: 14px; color: #999">POX2020</a> <a href="/tags/Penetration/" style="font-size: 21.5px; color: #666">Penetration</a> <a href="/tags/Pentesting/" style="font-size: 15.25px; color: #919191">Pentesting</a> <a href="/tags/PicoCTF2019/" style="font-size: 14px; color: #999">PicoCTF2019</a> <a href="/tags/Primary-Key/" style="font-size: 14px; color: #999">Primary Key</a> <a href="/tags/Proxy/" style="font-size: 14px; color: #999">Proxy</a> <a href="/tags/Proxy-Bypass/" style="font-size: 14px; color: #999">Proxy Bypass</a> <a href="/tags/Pwn/" style="font-size: 15.25px; color: #919191">Pwn</a> <a href="/tags/Pwnable/" style="font-size: 22.75px; color: #5e5e5e">Pwnable</a> <a href="/tags/Python/" style="font-size: 15.25px; color: #919191">Python</a> <a href="/tags/Python-Pickle/" style="font-size: 14px; color: #999">Python Pickle</a> <a href="/tags/RCE/" style="font-size: 16.5px; color: #888">RCE</a> <a href="/tags/RELRO/" style="font-size: 14px; color: #999">RELRO</a> <a href="/tags/RITSEC-2021/" style="font-size: 14px; color: #999">RITSEC 2021</a> <a href="/tags/ROP/" style="font-size: 16.5px; color: #888">ROP</a> <a href="/tags/Rev/" style="font-size: 14px; color: #999">Rev</a> <a href="/tags/Reversing/" style="font-size: 16.5px; color: #888">Reversing</a> <a href="/tags/Root/" style="font-size: 14px; color: #999">Root</a> <a href="/tags/SECRET-KEY/" style="font-size: 14px; color: #999">SECRET_KEY</a> <a href="/tags/SSL/" style="font-size: 14px; color: #999">SSL</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Sandbox/" style="font-size: 14px; color: #999">Sandbox</a> <a href="/tags/SatunX/" style="font-size: 14px; color: #999">SatunX</a> <a href="/tags/Selenium/" style="font-size: 14px; color: #999">Selenium</a> <a href="/tags/Shellcode/" style="font-size: 14px; color: #999">Shellcode</a> <a href="/tags/Study/" style="font-size: 14px; color: #999">Study</a> <a href="/tags/Suricata/" style="font-size: 14px; color: #999">Suricata</a> <a href="/tags/System/" style="font-size: 14px; color: #999">System</a> <a href="/tags/Tools/" style="font-size: 14px; color: #999">Tools</a> <a href="/tags/UMassCTF-21/" style="font-size: 14px; color: #999">UMassCTF'21</a> <a href="/tags/Ubuntu/" style="font-size: 14px; color: #999">Ubuntu</a> <a href="/tags/Ubuntu-CLI/" style="font-size: 14px; color: #999">Ubuntu CLI</a> <a href="/tags/Unity/" style="font-size: 14px; color: #999">Unity</a> <a href="/tags/V8-Engine/" style="font-size: 14px; color: #999">V8 Engine</a> <a href="/tags/VM-Module/" style="font-size: 14px; color: #999">VM Module</a> <a href="/tags/VirtualBox/" style="font-size: 14px; color: #999">VirtualBox</a> <a href="/tags/Vulnability/" style="font-size: 14px; color: #999">Vulnability</a> <a href="/tags/WSGI/" style="font-size: 14px; color: #999">WSGI</a> <a href="/tags/Wargame/" style="font-size: 15.25px; color: #919191">Wargame</a> <a href="/tags/Web/" style="font-size: 24px; color: #555">Web</a> <a href="/tags/Web-Hacking/" style="font-size: 16.5px; color: #888">Web Hacking</a> <a href="/tags/WebHacking/" style="font-size: 14px; color: #999">WebHacking</a> <a href="/tags/Writeup/" style="font-size: 16.5px; color: #888">Writeup</a> <a href="/tags/XSS/" style="font-size: 16.5px; color: #888">XSS</a> <a href="/tags/dCTF-2021/" style="font-size: 14px; color: #999">dCTF 2021</a> <a href="/tags/iftop/" style="font-size: 14px; color: #999">iftop</a> <a href="/tags/il2cppdumper/" style="font-size: 14px; color: #999">il2cppdumper</a> <a href="/tags/syscall/" style="font-size: 14px; color: #999">syscall</a> <a href="/tags/uWSGI/" style="font-size: 14px; color: #999">uWSGI</a> <a href="/tags/webhacking-kr/" style="font-size: 15.25px; color: #919191">webhacking.kr</a> <a href="/tags/websec-fr/" style="font-size: 15.25px; color: #919191">websec.fr</a> <a href="/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D/" style="font-size: 14px; color: #999">기술 취약점 분석</a> <a href="/tags/%EA%B8%B0%EC%88%A0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B6%84%EC%84%9D-%EA%B0%80%EC%9D%B4%EB%93%9C/" style="font-size: 14px; color: #999">기술 취약점 분석 가이드</a> <a href="/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B4%ED%98%B8%EA%B8%B0%EB%B2%95/" style="font-size: 15.25px; color: #919191">메모리 보호기법</a> <a href="/tags/%EB%AA%A8%EC%9D%98%ED%95%B4%ED%82%B9/" style="font-size: 14px; color: #999">모의해킹</a> <a href="/tags/%EB%B2%84%EA%B7%B8-%EB%B0%94%EC%9A%B4%ED%8B%B0/" style="font-size: 14px; color: #999">버그 바운티</a> <a href="/tags/%EC%82%BC%EC%84%B1SDS/" style="font-size: 14px; color: #999">삼성SDS</a> <a href="/tags/%EC%84%A0%ED%98%95-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">선형 탐색</a> <a href="/tags/%EC%9B%B9-%EB%AA%A8%EC%9D%98%ED%95%B4%ED%82%B9/" style="font-size: 14px; color: #999">웹 모의해킹</a> <a href="/tags/%EC%9B%B9-%ED%95%B4%ED%82%B9/" style="font-size: 14px; color: #999">웹 해킹</a> <a href="/tags/%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89/" style="font-size: 14px; color: #999">이진 탐색</a> <a href="/tags/%EC%A0%95%EB%B3%B4-%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보 보안</a> <a href="/tags/%EC%A0%95%EB%B3%B4%EB%B3%B4%EC%95%88/" style="font-size: 14px; color: #999">정보보안</a> <a href="/tags/%EC%A3%BC%ED%86%B5%EA%B8%B0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EA%B0%80%EC%9D%B4%EB%93%9C/" style="font-size: 14px; color: #999">주통기 취약점 가이드</a> <a href="/tags/%EC%B5%9C%EC%8B%A0%EB%8F%99%ED%96%A5/" style="font-size: 14px; color: #999">최신동향</a> <a href="/tags/%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A0%9C%EB%B3%B4/" style="font-size: 14px; color: #999">취약점 제보</a> <a href="/tags/%ED%95%9C%EA%B5%AD%EC%9D%B8%ED%84%B0%EB%84%B7%EC%A7%84%ED%9D%A5%EC%9B%90/" style="font-size: 14px; color: #999">한국인터넷진흥원</a> <a href="/tags/%ED%95%B4%ED%82%B9%EC%A1%B4/" style="font-size: 14px; color: #999">해킹존</a> <a href="/tags/%ED%95%B4%ED%82%B9%EC%BA%A0%ED%94%84/" style="font-size: 14px; color: #999">해킹캠프</a> <a href="/tags/%ED%9A%8C%EA%B3%A0/" style="font-size: 14px; color: #999">회고</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%93%A4%EC%96%B4%EA%B0%80%EB%A9%B0"><span class="toc-number">1.</span> <span class="toc-text">들어가며</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-1%ED%9A%8C%EC%B0%A8"><span class="toc-number">2.</span> <span class="toc-text">분석 1회차</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-2%ED%9A%8C%EC%B0%A8"><span class="toc-number">3.</span> <span class="toc-text">분석 2회차</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%84%EC%84%9D-3%ED%9A%8C%EC%B0%A8"><span class="toc-number">4.</span> <span class="toc-text">분석 3회차</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A0%95%EB%A6%AC"><span class="toc-number">5.</span> <span class="toc-text">정리</span></a></li></ol>
     </div>
   </section>
 
@@ -944,20 +557,21 @@ WSGI란?WSGI(Web Server Gateway Interface)로 파이썬에서 웹 어플리케�
 </aside>
 
 
+
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="가상화폐 거래소 피싱 사이트 분석에 대해서";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
