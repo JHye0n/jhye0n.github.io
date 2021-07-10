@@ -9,8 +9,41 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Sat, 10 Jul 2021 12:04:00 GMT</pubDate>
+    <pubDate>Sat, 10 Jul 2021 13:13:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Memory Mitigation - NXBIT, DEP</title>
+      <link>https://blog.jhyeon.dev/2021/07/10/memory-mitigation-3/</link>
+      <guid>https://blog.jhyeon.dev/2021/07/10/memory-mitigation-3/</guid>
+      <pubDate>Sat, 10 Jul 2021 13:13:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;Link&quot;&gt;&lt;a href=&quot;#Link&quot; class=&quot;headerlink&quot; title=&quot;Link&quot;&gt;&lt;/a&gt;Link&lt;/h3&gt;&lt;p&gt;아래 링크에 접속하시면 게시글을 보실 수 있습니다!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post/memory</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>아래 링크에 접속하시면 게시글을 보실 수 있습니다!</p><p><img src="/img/post/memory_mitigation/nxbit.png" class="lazyload" data-srcset="/img/post/memory_mitigation/nxbit.png" srcset="data:image/png;base64,666" alt="img"></p><p><a href="https://www.notion.so/jhyeon/Linux-Memory-Mitigation-Nx-bit-DEP-a8289b5a172a4b7da525d4a9256e9401">바로가기(Notion)</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Pwnable/">Pwnable</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B4%ED%98%B8%EA%B8%B0%EB%B2%95/">메모리 보호기법</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Memory-Mitigation/">Memory Mitigation</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/NXBIT/">NXBIT</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/DEP/">DEP</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/07/10/memory-mitigation-3/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>가상화폐 거래소 피싱 사이트 분석에 대해서</title>
@@ -652,41 +685,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/04/10/angstormctf-210410/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>UMassCTF&#39;21 Write Up</title>
-      <link>https://blog.jhyeon.dev/2021/03/29/umassctf-210329/</link>
-      <guid>https://blog.jhyeon.dev/2021/03/29/umassctf-210329/</guid>
-      <pubDate>Sun, 28 Mar 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Post&quot;&gt;&lt;a href=&quot;#Post&quot; class=&quot;headerlink&quot; title=&quot;Post&quot;&gt;&lt;/a&gt;Post&lt;/h3&gt;&lt;p&gt;해당 게시글은 아래의 노션을 통해서 확인이 가능합니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://public.</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Post"><a href="#Post" class="headerlink" title="Post"></a>Post</h3><p>해당 게시글은 아래의 노션을 통해서 확인이 가능합니다.</p><p><a href="https://public.jhyeon.dev/540fa8cc-458c-451c-a0d0-d614f5a57fb5">https://public.jhyeon.dev/540fa8cc-458c-451c-a0d0-d614f5a57fb5</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/CTF/">CTF</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/CTF/">CTF</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web/">Web</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/CTFtime/">CTFtime</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Web-Hacking/">Web Hacking</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/UMassCTF-21/">UMassCTF&#39;21</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/03/29/umassctf-210329/#disqus_thread</comments>
       
     </item>
     

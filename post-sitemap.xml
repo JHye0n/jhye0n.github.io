@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.jhyeon.dev/2021/07/10/memory-mitigation-3/</loc>
+        <lastmod>2021-07-10T13:13:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.jhyeon.dev/2021/07/10/coinone-phising-0710/</loc>
         <lastmod>2021-07-10T12:04:00.000Z</lastmod>
         <changefreq>weekly</changefreq>

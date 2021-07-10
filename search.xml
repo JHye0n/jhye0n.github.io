@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Memory Mitigation - NXBIT, DEP</title>
+      <link href="2021/07/10/memory-mitigation-3/"/>
+      <url>2021/07/10/memory-mitigation-3/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>아래 링크에 접속하시면 게시글을 보실 수 있습니다!</p><p><img src="/img/post/memory_mitigation/nxbit.png" class="lazyload" data-srcset="/img/post/memory_mitigation/nxbit.png" srcset="data:image/png;base64,666" alt="img"></p><p><a href="https://www.notion.so/jhyeon/Linux-Memory-Mitigation-Nx-bit-DEP-a8289b5a172a4b7da525d4a9256e9401">바로가기(Notion)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Pwnable </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 메모리 보호기법 </tag>
+            
+            <tag> Memory Mitigation </tag>
+            
+            <tag> NXBIT </tag>
+            
+            <tag> DEP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>가상화폐 거래소 피싱 사이트 분석에 대해서</title>
       <link href="2021/07/10/coinone-phising-0710/"/>
       <url>2021/07/10/coinone-phising-0710/</url>
@@ -1311,7 +1342,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#x6a;&#104;&#121;&#x65;&#111;&#110;&#64;&#x6b;&#97;&#107;&#x61;&#111;&#x2e;&#99;&#111;&#109;">&#115;&#116;&#x6a;&#104;&#121;&#x65;&#111;&#110;&#64;&#x6b;&#97;&#107;&#x61;&#111;&#x2e;&#99;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#116;&#x6a;&#x68;&#121;&#101;&#x6f;&#110;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#46;&#x63;&#111;&#109;">&#115;&#116;&#x6a;&#x68;&#121;&#101;&#x6f;&#110;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#46;&#x63;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
