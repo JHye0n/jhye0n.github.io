@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Webhacking.kr 새로운 문제들이 공개되었네요!</title>
+      <link href="2021/07/10/webhackingkr-renew-0710/"/>
+      <url>2021/07/10/webhackingkr-renew-0710/</url>
+      
+        <content type="html"><![CDATA[<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>Webhacking.kr - 웹 해킹 관련 문제 풀이 워게임 사이트라고 많이 알려져들 있죠</p><p>예전에는 oldzomebie 님이 운영을 하신걸로 알고있고 최근에는 rubiya님이 운영을 하고 있다고 합니다!</p><p>그러면서 새롭게 추가된 문제들도 많이 보이는데요..? (아래 사진과 같이)</p><p><img src="/img/post/webhackingkr_renew/challenge.png" class="lazyload" data-srcset="/img/post/webhackingkr_renew/challenge.png" srcset="data:image/png;base64,666" alt="img"></p><p>문제들을 잠깐잠깐 보고 지나갔었는데 트렌드가 계속 변화하는 만큼 해킹 기술도 발전하니.. 이에 맞춰서</p><p>rubiya님이 재미있는 문제들로 많이 구성을 해두신 것 같습니다 ㅎㅎ..</p><p>요즘은 회사일 때문에 바빠서 블로그에 글을 잘 못쓰고 있는데 주말이라는 시간을 활용해서 새 문제들이</p><p>어떤 문제이고, 어떤 기법을 활용했는지 등을 <code>Write up</code> 과 함께 준비하려고 합니다!</p><p>그럼. Coming soon~</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Memo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> Web Hacking </tag>
+            
+            <tag> Wargame </tag>
+            
+            <tag> webhacking.kr </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Memory Mitigation - ASLR</title>
       <link href="2021/07/05/memory-mitigation-2/"/>
       <url>2021/07/05/memory-mitigation-2/</url>
@@ -307,9 +338,9 @@
             
             <tag> Reversing </tag>
             
-            <tag> Crypto </tag>
-            
             <tag> Network </tag>
+            
+            <tag> Crypto </tag>
             
             <tag> Mobile </tag>
             
@@ -412,9 +443,9 @@
             
             <tag> OWASP </tag>
             
-            <tag> WebHacking </tag>
-            
             <tag> webhacking.kr </tag>
+            
+            <tag> WebHacking </tag>
             
         </tags>
       
@@ -445,11 +476,11 @@
             
             <tag> CTFtime </tag>
             
+            <tag> Crypto </tag>
+            
             <tag> Pwn </tag>
             
             <tag> Rev </tag>
-            
-            <tag> Crypto </tag>
             
             <tag> HackPackCTF 2021 </tag>
             
@@ -1267,7 +1298,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#106;&#x68;&#121;&#x65;&#x6f;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#x6f;&#46;&#x63;&#111;&#109;">&#x73;&#x74;&#106;&#x68;&#121;&#x65;&#x6f;&#x6e;&#64;&#107;&#x61;&#x6b;&#x61;&#x6f;&#46;&#x63;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#x73;&#x74;&#x6a;&#x68;&#121;&#x65;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#111;&#x6d;">&#x73;&#x74;&#x6a;&#x68;&#121;&#x65;&#111;&#x6e;&#64;&#x6b;&#97;&#x6b;&#x61;&#111;&#46;&#x63;&#111;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
