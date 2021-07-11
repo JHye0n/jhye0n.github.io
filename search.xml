@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Memory Mitigation - Canary</title>
+      <link href="2021/07/11/memory-mitigation-4/"/>
+      <url>2021/07/11/memory-mitigation-4/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>해당 포스트는 Notion 문서에 작성되어 있으며, 아래 링크 접속 시 자료를 확인할 수 있답니다~</p><p><a href="https://www.notion.so/jhyeon/Linux-Memory-Mitigation-Canary-5239b7144d0a41ff8e71bf3e55c3230f">https://www.notion.so/jhyeon/Linux-Memory-Mitigation-Canary-5239b7144d0a41ff8e71bf3e55c3230f</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Pwnable </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 메모리 보호기법 </tag>
+            
+            <tag> Memory Mitigation </tag>
+            
+            <tag> Canary </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WebHacking.kr CHILD Write up</title>
       <link href="2021/07/11/webhackingkr-child-0711/"/>
       <url>2021/07/11/webhackingkr-child-0711/</url>
@@ -1402,7 +1431,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#106;&#x68;&#121;&#101;&#111;&#110;&#x40;&#x6b;&#x61;&#107;&#x61;&#x6f;&#x2e;&#99;&#111;&#109;">&#115;&#x74;&#106;&#x68;&#121;&#101;&#111;&#110;&#x40;&#x6b;&#x61;&#107;&#x61;&#x6f;&#x2e;&#99;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#106;&#x68;&#x79;&#101;&#111;&#110;&#x40;&#107;&#97;&#x6b;&#x61;&#x6f;&#46;&#99;&#x6f;&#109;">&#115;&#x74;&#106;&#x68;&#x79;&#101;&#111;&#110;&#x40;&#107;&#97;&#x6b;&#x61;&#x6f;&#46;&#99;&#x6f;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>
